@@ -1,0 +1,416 @@
+/* ===========================
+   STYLE GÉNÉRAL
+=========================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    font-family:Arial, Helvetica, sans-serif;
+
+    background:linear-gradient(135deg,#00853f,#fcd116,#dc241f);
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding-top:90px;
+
+}
+
+/* ===========================
+   BARRE DE NAVIGATION
+=========================== */
+
+.navbar{
+
+    position:fixed;
+
+    top:0;
+
+    left:0;
+
+    width:100%;
+
+    height:65px;
+
+    background:white;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:0 35px;
+
+    box-shadow:0 3px 12px rgba(0,0,0,.15);
+
+    z-index:1000;
+
+}
+
+.logo{
+
+    font-size:28px;
+
+    font-weight:bold;
+
+    color:#00853f;
+
+    letter-spacing:2px;
+
+}
+
+.menu{
+
+    display:flex;
+
+    gap:20px;
+
+}
+
+.menu a:hover{
+    background:#009543;
+    color:#ffffff;
+}
+
+.menu a:hover{
+
+    background:#00853f;
+
+    color:white;
+
+}
+
+/* ===========================
+   CARTE D'ACCUEIL
+=========================== */
+
+.accueil{
+
+    width:520px;
+
+    max-width:92%;
+
+    background:white;
+
+    border-radius:22px;
+
+    padding:35px;
+
+    text-align:center;
+
+    box-shadow:0 15px 40px rgba(0,0,0,.20);
+
+}
+
+.hero{
+
+    margin-bottom:20px;
+
+}
+
+.hero p{
+
+    font-size:22px;
+
+    color:#444;
+
+    line-height:1.6;
+
+}
+
+.sous-titre{
+
+    font-size:17px;
+
+    color:#666;
+
+    margin-bottom:30px;
+
+}
+/* ===========================
+   BOUTONS
+=========================== */
+
+button{
+
+    width:100%;
+
+    height:55px;
+
+    margin:12px 0;
+
+    border:none;
+
+    border-radius:14px;
+
+    background:#009543;
+
+    color:white;
+
+    font-size:19px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:all .3s ease;
+
+}
+
+button:hover{
+
+    background:#007a36;
+
+    transform:translateY(-3px);
+
+    box-shadow:0 8px 20px rgba(0,149,67,.35);
+
+}
+
+button:active{
+
+    transform:scale(.98);
+
+}
+
+
+@keyframes apparition {
+
+    from{
+        opacity:0;
+        transform:scale(0.5);
+    }
+
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
+
+}
+
+.finQuiz{
+
+    animation: apparition 1s ease;
+
+}
+
+.niveau{
+
+    animation: clignoter 1.5s infinite;
+
+    font-weight:bold;
+
+    color:#0b8f3a;
+
+}
+
+@keyframes clignoter{
+
+    0%{
+        opacity:1;
+    }
+
+    50%{
+        opacity:0.6;
+    }
+
+    100%{
+        opacity:1;
+    }
+
+}
+
+.rejouer{
+
+    padding:12px 25px;
+    border:none;
+    border-radius:10px;
+    background:#0b8f3a;
+    color:white;
+    cursor:pointer;
+    font-size:18px;
+    transition:0.3s;
+}
+
+.rejouer:hover{
+
+    transform:scale(1.1);
+
+}
+h1{
+    font-size:42px;
+    color:#009543;
+    margin-bottom:10px;
+}
+
+@keyframes titre{
+
+    from{
+        opacity:0;
+        transform:translateY(-20px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+h1{
+
+    font-size:42px;
+    color:#009543;
+    animation:titre 1s ease;
+
+}
+
+
+
+/* Barre de navigation */
+
+
+.menu a{
+
+    text-decoration:none;
+
+    color:#444;
+
+    font-size:17px;
+
+    font-weight:600;
+
+    transition:.3s;
+
+    padding:8px 15px;
+
+    border-radius:30px;
+
+}
+.menu a:hover{
+
+    background:#009543;
+
+    color:white;
+
+}
+
+
+
+
+
+
+/* ===========================
+   PIED DE PAGE
+=========================== */
+
+.footer{
+
+    position:fixed;
+
+    bottom:15px;
+
+    right:20px;
+
+    font-size:13px;
+
+    color:white;
+
+    text-align:right;
+
+    opacity:0.9;
+
+}
+/* ===========================
+   ANIMATION D'ACCUEIL
+=========================== */
+
+@keyframes apparitionAccueil{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(25px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+.accueil{
+
+    animation:apparitionAccueil .8s ease;
+
+}
+.apropos p{
+    text-align:justify;
+    line-height:1.9;
+    font-size:18px;
+    color:#444;
+    margin-bottom:22px;
+}
+.apropos h1{
+    text-align:left;
+    color:#009543;
+    font-size:40px;
+    margin-bottom:30px;
+    border-bottom:3px solid #009543;
+    padding-bottom:12px;
+}
+
+.apropos h2{
+    color:#009543;
+    font-size:28px;
+    margin-top:40px;
+    margin-bottom:18px;
+    padding-left:12px;
+    border-left:6px solid #009543;
+}
+.apropos{
+    width:750px;
+    max-width:90%;
+    background:white;
+    padding:55px;
+    border-radius:20px;
+    box-shadow:0 20px 50px rgba(0,0,0,.2);
+    margin:120px auto 50px;
+}
+.themes{
+    list-style:none;
+    padding:0;
+}
+
+.themes li{
+    background:#fafafa;
+    padding:15px 20px;
+    margin:12px 0;
+    border-left:6px solid #009543;
+    border-radius:10px;
+    font-size:17px;
+}
+.citation{
+    margin:35px 0;
+    text-align:center;
+    font-style:italic;
+    color:#555;
+    font-size:20px;
+}
