@@ -357,9 +357,8 @@ h1{
 }
 
 .accueil{
-
-    animation:apparitionAccueil .8s ease;
-
+    animation: apparitionAccueil .8s ease;
+    margin: auto;
 }
 .apropos p{
     text-align:justify;

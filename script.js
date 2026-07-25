@@ -1052,3 +1052,22 @@ function choisirQuestions(nombre) {
         let radios = document.querySelectorAll('input[name="rep"]');
         radios.forEach(radio => radio.disabled = true);
     }
+    // ================================
+// Cinématique d'introduction
+// ================================
+
+window.addEventListener("load", function () {
+
+    setTimeout(function () {
+
+        const intro = document.getElementById("intro");
+
+        intro.classList.add("intro-fin");
+
+        setTimeout(function () {
+            intro.style.display = "none";
+        }, 800);
+
+    }, 5000);
+
+});
