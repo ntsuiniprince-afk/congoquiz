@@ -20,7 +20,7 @@ body{
 
     justify-content:center;
 
-    align-items:center;
+    align-items:flex-start;
 
     padding-top:90px;
 
@@ -358,7 +358,7 @@ h1{
 
 .accueil{
     animation: apparitionAccueil .8s ease;
-    margin: auto;
+    margin:40px auto;
 }
 .apropos p{
     text-align:justify;
