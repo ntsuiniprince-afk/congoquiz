@@ -1058,16 +1058,71 @@ function choisirQuestions(nombre) {
 
 window.addEventListener("load", function () {
 
-    setTimeout(function () {
+    const intro = document.getElementById("intro");
+    const params = new URLSearchParams(window.location.search);
 
-        const intro = document.getElementById("intro");
+    if(params.get("accueil") === "1"){
+
+    document.getElementById("intro").style.display = "none";
+    return;
+
+    }
+
+    
+    setTimeout(function () {
 
         intro.classList.add("intro-fin");
 
         setTimeout(function () {
+
             intro.style.display = "none";
+
         }, 800);
 
     }, 5000);
 
 });
+// ================================
+// MENU PRINCIPAL
+// ================================
+
+function ouvrirMenuJeu(){
+
+    document.getElementById("btnJouer").style.display = "none";
+
+    document.querySelector("button[disabled]").style.display = "none";
+
+    document.getElementById("menuJeu").style.display = "block";
+
+}
+
+function fermerMenuJeu(){
+
+    document.getElementById("menuJeu").style.display = "none";
+
+    document.getElementById("btnJouer").style.display = "block";
+
+    document.querySelector("button[disabled]").style.display = "block";
+
+}
+
+function ouvrirQuizGeneral(){
+
+    document.getElementById("menuJeu").style.display = "none";
+
+    document.getElementById("menuQuestions").style.display = "block";
+
+}
+
+function ouvrirCategories(){
+
+    alert("🚧 Cette fonctionnalité sera disponible prochainement.");
+
+}
+function retourMenuJeu(){
+
+    document.getElementById("menuQuestions").style.display = "none";
+
+    document.getElementById("menuJeu").style.display = "block";
+
+}

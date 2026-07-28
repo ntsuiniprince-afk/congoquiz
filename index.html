@@ -43,19 +43,53 @@
     
     
         <p class="sous-titre">
-        Sélectionnez le nombre de questions puis relevez le défi.
-        </p>
-        <button class="choix" onclick="demarrerQuiz(5)">
-            🎯 5 Questions
+            Découvrez la République du Congo autrement.
+            </p>
+            
+            <button id="btnJouer" onclick="ouvrirMenuJeu()">
+            ▶ JOUER
             </button>
             
-            <button class="choix" onclick="demarrerQuiz(10)">
-            📘 10 Questions
+            <button disabled>
+            🌍 Mode en ligne
+            <br>
+            <small>Bientôt disponible</small>
             </button>
             
-            <button class="choix" onclick="demarrerQuiz(20)">
-            🏆 20 Questions
-            </button>
+            <div class="menu-jeu" id="menuJeu">
+                <div class="menu-questions" id="menuQuestions">
+
+                    <button onclick="demarrerQuiz(5)">
+                        🎯 5 Questions
+                    </button>
+                
+                    <button onclick="demarrerQuiz(10)">
+                        📘 10 Questions
+                    </button>
+                
+                    <button onclick="demarrerQuiz(20)">
+                        🏆 20 Questions
+                    </button>
+                
+                    <button onclick="retourMenuJeu()">
+                        ⬅ Retour
+                    </button>
+                
+                </div>
+            
+                <button onclick="ouvrirQuizGeneral()">
+                    🎲 Quiz général
+                </button>
+            
+                <button onclick="ouvrirCategories()">
+                    📚 Quiz par catégorie
+                </button>
+            
+                <button onclick="fermerMenuJeu()">
+                    ⬅ Retour
+                </button>
+            
+            </div>
        
     
     </div>
