@@ -610,3 +610,78 @@ button small{
     font-weight:normal;
 
 }
+/* ==========================
+   BARRE DE NAVIGATION BAS
+========================== */
+
+/* ==========================
+   BARRE DE NAVIGATION MODERNE
+========================== */
+
+.bottom-nav{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-top:30px;
+
+    padding:15px 10px 5px;
+
+    border-top:1px solid #e5e5e5;
+
+}
+
+.nav-btn{
+
+    background:transparent;
+
+    border:none;
+
+    width:70px;
+
+    height:auto;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+    color:#666;
+
+    cursor:pointer;
+
+    transition:all .25s ease;
+
+    box-shadow:none;
+
+}
+
+.nav-btn:hover{
+
+    color:#009543;
+
+    transform:translateY(-4px) scale(1.08);
+
+}
+
+.nav-btn span{
+
+    margin-top:6px;
+
+    font-size:11px;
+
+    font-weight:600;
+
+}
+
+.nav-btn i{
+
+    font-size:26px;
+
+}

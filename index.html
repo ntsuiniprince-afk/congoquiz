@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Congoquiz</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
 <body>
 
@@ -30,6 +31,8 @@
     
     </nav>
     <div class="accueil">
+        <div id="menuPrincipal">
+
 
         <div class="hero">
 
@@ -55,7 +58,82 @@
             <br>
             <small>Bientôt disponible</small>
             </button>
-            
+        </div>
+        <div id="menuJeu" style="display:none;">
+
+            <h2>Choisissez un mode</h2>
+        
+            <button onclick="ouvrirQuizGeneral()">
+                🎲 Quiz général
+            </button>
+        
+            <button onclick="ouvrirCategories()">
+                📚 Quiz par catégorie
+            </button>
+        
+            <button onclick="fermerMenuJeu()">
+                ⬅ Retour
+            </button>
+        
+        </div>
+        <div id="menuQuestions" style="display:none;">
+
+            <h2>Quiz général</h2>
+        
+            <button onclick="demarrerQuiz(5)">
+                🎯 5 Questions
+            </button>
+        
+            <button onclick="demarrerQuiz(10)">
+                📘 10 Questions
+            </button>
+        
+            <button onclick="demarrerQuiz(20)">
+                🏆 20 Questions
+            </button>
+        
+            <button onclick="retourMenuJeu()">
+                ⬅ Retour
+            </button>
+        
+        </div>
+        <div id="menuCategories" style="display:none;">
+
+            <h2>Choisissez une catégorie</h2>
+        
+            <button onclick="ouvrirQuestionsCategorie('histoire')">
+                📜 Histoire
+            </button>
+        
+            <button onclick="ouvrirQuestionsCategorie('culture')">
+                🎭 Culture
+            </button>
+        
+            <button onclick="ouvrirQuestionsCategorie('institutions')">
+                🏛 Institutions
+            </button>
+        
+            <button onclick="ouvrirQuestionsCategorie('geographie')">
+                🌍 Géographie
+            </button>
+        
+            <button onclick="ouvrirQuestionsCategorie('sport')">
+                ⚽ Sport
+            </button>
+        
+            <button onclick="ouvrirQuestionsCategorie('musique')">
+                🎵 Musique
+            </button>
+        
+            <button onclick="ouvrirQuestionsCategorie('personnalites')">
+                👤 Grandes personnalités
+            </button>
+        
+            <button onclick="retourMenuPrincipalJeu()">
+                ⬅ Retour
+            </button>
+        
+        </div>
             <div class="menu-jeu" id="menuJeu">
                 <div class="menu-questions" id="menuQuestions">
 
@@ -91,7 +169,29 @@
             
             </div>
        
-    
+            <div class="bottom-nav">
+
+                <button class="nav-btn" onclick="alert('🏆 Classement bientôt disponible')">
+                    🏆
+                    <span>Classement</span>
+                </button>
+            
+                <button class="nav-btn" onclick="alert('📊 Statistiques bientôt disponibles')">
+                    📊
+                    <span>Stats</span>
+                </button>
+            
+                <button class="nav-btn" onclick="alert('👤 Profil bientôt disponible')">
+                    👤
+                    <span>Profil</span>
+                </button>
+            
+                <button class="nav-btn" onclick="alert('⚙️ Réglages bientôt disponibles')">
+                    ⚙️
+                    <span>Réglages</span>
+                </button>
+            
+            </div>
     </div>
     <footer class="footer">
 

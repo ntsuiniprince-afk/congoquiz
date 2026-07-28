@@ -1088,9 +1088,7 @@ window.addEventListener("load", function () {
 
 function ouvrirMenuJeu(){
 
-    document.getElementById("btnJouer").style.display = "none";
-
-    document.querySelector("button[disabled]").style.display = "none";
+    document.getElementById("menuPrincipal").style.display = "none";
 
     document.getElementById("menuJeu").style.display = "block";
 
@@ -1100,9 +1098,7 @@ function fermerMenuJeu(){
 
     document.getElementById("menuJeu").style.display = "none";
 
-    document.getElementById("btnJouer").style.display = "block";
-
-    document.querySelector("button[disabled]").style.display = "block";
+    document.getElementById("menuPrincipal").style.display = "block";
 
 }
 
@@ -1116,13 +1112,28 @@ function ouvrirQuizGeneral(){
 
 function ouvrirCategories(){
 
-    alert("🚧 Cette fonctionnalité sera disponible prochainement.");
+    document.getElementById("menuJeu").style.display = "none";
+
+    document.getElementById("menuCategories").style.display = "block";
 
 }
+
 function retourMenuJeu(){
 
     document.getElementById("menuQuestions").style.display = "none";
 
     document.getElementById("menuJeu").style.display = "block";
+
+}
+function retourMenuPrincipalJeu(){
+
+    document.getElementById("menuCategories").style.display = "none";
+
+    document.getElementById("menuJeu").style.display = "block";
+
+}
+function ouvrirQuestionsCategorie(categorie){
+
+    alert("La catégorie " + categorie + " sera bientôt disponible.");
 
 }
