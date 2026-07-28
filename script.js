@@ -847,7 +847,7 @@ function choisirQuestions(nombre) {
     let temps = 20;
     let chrono;
     let intervalle;
-    
+    let categorieChoisie = "";
     function demarrerQuiz(nombre){
     
         nombreQuestions = nombre;
@@ -1134,6 +1134,32 @@ function retourMenuPrincipalJeu(){
 }
 function ouvrirQuestionsCategorie(categorie){
 
-    alert("La catégorie " + categorie + " sera bientôt disponible.");
+    categorieChoisie = categorie;
+
+    document.getElementById("titreCategorie").innerHTML =
+        "📚 " + categorie.charAt(0).toUpperCase() + categorie.slice(1);
+
+    document.getElementById("menuCategories").style.display = "none";
+
+    document.getElementById("menuCategorieQuestions").style.display = "block";
+
+}
+function retourCategories(){
+
+    document.getElementById("menuCategorieQuestions").style.display = "none";
+
+    document.getElementById("menuCategories").style.display = "block";
+
+}
+
+function demarrerCategorie(nombre){
+
+    alert(
+        "La catégorie " +
+        categorieChoisie +
+        " avec " +
+        nombre +
+        " questions sera connectée prochainement."
+    );
 
 }

@@ -31,7 +31,7 @@
     
     </nav>
     <div class="accueil">
-        <div id="menuPrincipal">
+        <div id="menuPrincipal" class="menu-page">
 
 
         <div class="hero">
@@ -59,7 +59,7 @@
             <small>Bientôt disponible</small>
             </button>
         </div>
-        <div id="menuJeu" style="display:none;">
+        <div id="menuJeu" class="menu-page" style="display:none;">
 
             <h2>Choisissez un mode</h2>
         
@@ -76,7 +76,7 @@
             </button>
         
         </div>
-        <div id="menuQuestions" style="display:none;">
+        <div id="menuQuestions" class="menu-page" style="display:none;">
 
             <h2>Quiz général</h2>
         
@@ -97,7 +97,7 @@
             </button>
         
         </div>
-        <div id="menuCategories" style="display:none;">
+        <div id="menuCategories" class="menu-page" style="display:none;">
 
             <h2>Choisissez une catégorie</h2>
         
@@ -134,41 +134,23 @@
             </button>
         
         </div>
-            <div class="menu-jeu" id="menuJeu">
-                <div class="menu-questions" id="menuQuestions">
+        <div id="menuCategorieQuestions" class="menu-page" style="display:none;">
 
-                    <button onclick="demarrerQuiz(5)">
-                        🎯 5 Questions
-                    </button>
-                
-                    <button onclick="demarrerQuiz(10)">
-                        📘 10 Questions
-                    </button>
-                
-                    <button onclick="demarrerQuiz(20)">
-                        🏆 20 Questions
-                    </button>
-                
-                    <button onclick="retourMenuJeu()">
-                        ⬅ Retour
-                    </button>
-                
-                </div>
-            
-                <button onclick="ouvrirQuizGeneral()">
-                    🎲 Quiz général
-                </button>
-            
-                <button onclick="ouvrirCategories()">
-                    📚 Quiz par catégorie
-                </button>
-            
-                <button onclick="fermerMenuJeu()">
-                    ⬅ Retour
-                </button>
-            
-            </div>
-       
+            <h2 id="titreCategorie">Catégorie</h2>
+        
+            <button onclick="demarrerCategorie(10)">
+                📘 10 Questions
+            </button>
+        
+            <button onclick="demarrerCategorie(20)">
+                🏆 20 Questions
+            </button>
+        
+            <button onclick="retourCategories()">
+                ⬅ Retour
+            </button>
+        
+        </div>
             <div class="bottom-nav">
 
                 <button class="nav-btn" onclick="alert('🏆 Classement bientôt disponible')">

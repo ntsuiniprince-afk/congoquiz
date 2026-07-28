@@ -12,7 +12,13 @@ body{
 
     font-family:Arial, Helvetica, sans-serif;
 
-    background:linear-gradient(135deg,#00853f,#fcd116,#dc241f);
+    background:
+    radial-gradient(circle at 20% 30%, rgba(0,149,67,.35), transparent 35%),
+    radial-gradient(circle at 80% 70%, rgba(252,209,22,.30), transparent 35%),
+    radial-gradient(circle at 90% 20%, rgba(220,36,31,.25), transparent 30%),
+    linear-gradient(135deg,#006b34,#fcd116,#b51f1f);
+
+    background-size:cover;
 
     min-height:100vh;
 
@@ -20,12 +26,13 @@ body{
 
     justify-content:center;
 
-    align-items:flex-start;
+    align-items:center;
 
     padding-top:90px;
 
-}
+    overflow-x:hidden;
 
+}
 /* ===========================
    BARRE DE NAVIGATION
 =========================== */
@@ -101,15 +108,23 @@ body{
 
     max-width:92%;
 
-    background:white;
+    background:rgba(255,255,255,.96);
 
-    border-radius:22px;
+    border-radius:30px;
 
-    padding:35px 35px 20px 35px;
+    padding:40px;
 
     text-align:center;
 
-    box-shadow:0 15px 40px rgba(0,0,0,.20);
+    box-shadow:
+        0 20px 60px rgba(0,0,0,.25),
+        0 5px 15px rgba(255,255,255,.4);
+
+    border:1px solid rgba(255,255,255,.6);
+
+    backdrop-filter:blur(10px);
+
+    animation:apparitionAccueil .8s ease;
 
 }
 
@@ -683,5 +698,72 @@ button small{
 .nav-btn i{
 
     font-size:26px;
+
+}
+body{
+
+    font-family:Arial, Helvetica, sans-serif;
+
+    background:
+    radial-gradient(circle at 20% 30%, rgba(0,149,67,.35), transparent 35%),
+    radial-gradient(circle at 80% 70%, rgba(252,209,22,.30), transparent 35%),
+    radial-gradient(circle at 90% 20%, rgba(220,36,31,.25), transparent 30%),
+    linear-gradient(135deg,#006b34,#fcd116,#b51f1f);
+
+    background-size:cover;
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding-top:90px;
+
+    overflow-x:hidden;
+
+}
+@keyframes fondAnime{
+
+    from{
+
+        transform:scale(1);
+
+    }
+
+    to{
+
+        transform:scale(1.15);
+
+    }
+
+}
+/* ==========================
+   ANIMATION DES MENUS
+========================== */
+
+.menu-page{
+
+    animation:slideMenu .35s ease;
+
+}
+
+@keyframes slideMenu{
+
+    from{
+
+        opacity:0;
+        transform:translateX(40px);
+
+    }
+
+    to{
+
+        opacity:1;
+        transform:translateX(0);
+
+    }
 
 }
