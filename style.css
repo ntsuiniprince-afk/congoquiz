@@ -104,27 +104,28 @@ body{
 
 .accueil{
 
-    width:520px;
-
+    width:560px;
     max-width:92%;
 
-    background:rgba(255,255,255,.96);
+    background:rgba(255,255,255,.98);
 
-    border-radius:30px;
+    border-radius:32px;
 
-    padding:40px;
+    padding:45px 40px;
 
     text-align:center;
 
     box-shadow:
-        0 20px 60px rgba(0,0,0,.25),
-        0 5px 15px rgba(255,255,255,.4);
+        0 25px 70px rgba(0,0,0,.22),
+        0 8px 25px rgba(255,255,255,.35);
 
-    border:1px solid rgba(255,255,255,.6);
+    border:1px solid rgba(255,255,255,.75);
 
-    backdrop-filter:blur(10px);
+    backdrop-filter:blur(15px);
 
     animation:apparitionAccueil .8s ease;
+
+    transition:.3s;
 
 }
 
@@ -765,5 +766,123 @@ body{
         transform:translateX(0);
 
     }
+
+}
+/* ===========================
+   CARTES DE RÉPONSES
+=========================== */
+
+.carte-reponse{
+
+    display:flex;
+    align-items:center;
+
+    width:100%;
+
+    padding:18px 22px;
+
+    margin:15px 0;
+
+    background:white;
+
+    border:2px solid #e7e7e7;
+
+    border-radius:18px;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+    font-size:20px;
+
+    font-weight:600;
+
+}
+
+.carte-reponse:hover{
+
+    transform:translateY(-3px);
+
+    border-color:#009543;
+
+    box-shadow:0 10px 25px rgba(0,149,67,.18);
+
+}
+
+.carte-reponse input{
+
+    margin-right:18px;
+
+    transform:scale(1.4);
+
+}
+
+.carte-reponse span{
+
+    flex:1;
+
+    text-align:left;
+
+}
+.carte-reponse{
+
+    user-select:none;
+
+}
+
+.carte-reponse:active{
+
+    transform:scale(.98);
+
+}
+.carte-reponse.bonne{
+
+    background:#d8f5df;
+
+    border-color:#009543;
+
+    color:#006b2f;
+
+}
+
+.carte-reponse.mauvaise{
+
+    background:#ffe2e2;
+
+    border-color:#d62828;
+
+    color:#a30000;
+
+}
+/* ===========================
+   BARRE DE PROGRESSION
+=========================== */
+
+.barreProgression{
+
+    width:100%;
+    height:10px;
+
+    background:#e5e5e5;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    margin:15px 0 25px;
+
+}
+
+#progression{
+
+    width:0;
+
+    height:100%;
+
+    background:linear-gradient(90deg,#009543,#00c853);
+
+    border-radius:20px;
+
+    transition:.4s;
 
 }

@@ -441,9 +441,9 @@ const questions = [
 
 {
     question: "Quelle est la devise officielle de la République du Congo ?",
-    reponses: ["Unité – Travail – Justice", "Travail – Progrès – Humanité", "Paix – Travail – Patrie"],
+    reponses: ["Unité – Travail – Progres", "Travail – Progrès – Humanité", "Paix – Travail – Patrie"],
     bonne: 1,
-    explication: "La devise officielle est « Travail – Progrès – Humanité »."
+    explication: "La devise officielle est « Unité – Travail – Progres »."
 },
 
 {
@@ -840,7 +840,7 @@ function choisirQuestions(nombre) {
     return selection;
 
 }
-    
+    let reponseVerrouillee = false;
     let nombreQuestions = 0;
     let numeroQuestion = 0;
     let score = 0;
@@ -848,13 +848,18 @@ function choisirQuestions(nombre) {
     let chrono;
     let intervalle;
     let categorieChoisie = "";
+    let dernierMode = "";
     function demarrerQuiz(nombre){
-    
+
+        dernierMode = "general";
         nombreQuestions = nombre;
         melangerQuestions(questions);
     
         document.querySelector(".accueil").innerHTML = `
         <p id="numeroQuestion"></p>
+        <div class="barreProgression">
+          <div id="progression"></div>
+        </div>
         <p id="chrono">⏱️ Temps : 20 s</p>
         <p id="messageErreur" style="color:red;font-weight:bold;"></p>
 
@@ -863,8 +868,6 @@ function choisirQuestions(nombre) {
         <div id="reponses"></div>
         
         <p id="explication"></p>
-        
-        <button id="btnValider" onclick="verifier()">Valider</button>
         
         <button id="btnSuivant" onclick="questionSuivante()" style="display:none;">
         Question suivante
@@ -880,9 +883,13 @@ function choisirQuestions(nombre) {
     }
     
     function afficherQuestion(){
-    
+        reponseVerrouillee = false;
         document.getElementById("numeroQuestion").innerHTML =
         "Question " + (numeroQuestion + 1) + " / " + nombreQuestions;
+        let pourcentage = ((numeroQuestion + 1) / nombreQuestions) * 100;
+
+        document.getElementById("progression").style.width =
+        pourcentage + "%";
 
         document.getElementById("question").innerHTML =
         questions[numeroQuestion].question;
@@ -892,22 +899,44 @@ function choisirQuestions(nombre) {
         questions[numeroQuestion].reponses.forEach(function(rep,index){
     
             html += `
-            <label>
-                <input type="radio" name="rep" value="${index}">
-                ${rep}
-            </label><br><br>
+            <label class="carte-reponse" onclick="selectionnerReponse(${index})">
+            
+                <input
+                    type="radio"
+                    name="rep"
+                    value="${index}"
+                    style="display:none;">
+            
+                <span>${rep}</span>
+            
+            </label>
             `;
-    
         });
     
         document.getElementById("reponses").innerHTML = html;
         demarrerChrono();
     
     }
+    function selectionnerReponse(index){
+
+        if(reponseVerrouillee){
+            return;
+        }
+    
+        reponseVerrouillee = true;
+    
+        let radios = document.querySelectorAll('input[name="rep"]');
+    
+        radios[index].checked = true;
+    
+        verifier();
+    
+    }
     
     function verifier(){
 
         let choix = document.querySelector('input[name="rep"]:checked');
+        let cartes = document.querySelectorAll(".carte-reponse");
     
         if(!choix){
     
@@ -929,6 +958,7 @@ function choisirQuestions(nombre) {
         if (Number(choix.value) === questions[numeroQuestion].bonne) {
 
             score++;
+            cartes[questions[numeroQuestion].bonne].classList.add("bonne");
         
             const son = document.getElementById("sonCorrect");
             son.currentTime = 0;
@@ -943,6 +973,9 @@ function choisirQuestions(nombre) {
             son.play().catch(err => console.log(err));
         
             texte = "❌ Mauvaise réponse.<br><br>";
+            cartes[choix.value].classList.add("mauvaise");
+
+            cartes[questions[numeroQuestion].bonne].classList.add("bonne");
         
         }
         
@@ -951,9 +984,10 @@ function choisirQuestions(nombre) {
         
         document.getElementById("explication").innerHTML = texte;
         
-        document.getElementById("btnValider").style.display = "none";
         document.getElementById("btnSuivant").style.display = "inline-block";
-    
+
+        let radios = document.querySelectorAll('input[name="rep"]');
+        radios.forEach(radio => radio.disabled = true);
     }
     function questionSuivante(){
         document.getElementById("messageErreur").textContent = "";
@@ -965,7 +999,6 @@ function choisirQuestions(nombre) {
     
             document.getElementById("explication").innerHTML = "";
     
-            document.getElementById("btnValider").style.display = "inline-block";
             document.getElementById("btnSuivant").style.display = "none";
     
         }else{
@@ -995,7 +1028,7 @@ function choisirQuestions(nombre) {
 
               <h3 class="niveau">${niveau}</h3>
 
-              <button class="rejouer" onclick="location.reload()">🔄 Rejouer</button>
+              <button class="rejouer" onclick="rejouer()">🔄 Rejouer</button>
             `;
     
         }
@@ -1046,7 +1079,6 @@ function choisirQuestions(nombre) {
     
         document.getElementById("explication").innerHTML = texte;
     
-        document.getElementById("btnValider").style.display = "none";
         document.getElementById("btnSuivant").style.display = "inline-block";
     
         let radios = document.querySelectorAll('input[name="rep"]');
@@ -1161,5 +1193,17 @@ function demarrerCategorie(nombre){
         nombre +
         " questions sera connectée prochainement."
     );
+
+}
+function rejouer(){
+
+    numeroQuestion = 0;
+    score = 0;
+
+    if(dernierMode === "general"){
+
+        demarrerQuiz(nombreQuestions);
+
+    }
 
 }
