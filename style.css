@@ -886,3 +886,97 @@ body{
     transition:.4s;
 
 }
+.finQuizContainer{
+
+    animation: apparitionAccueil .7s ease;
+
+}
+
+.scoreCard{
+
+    background:white;
+
+    border-radius:25px;
+
+    padding:25px;
+
+    margin:25px 0;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.15);
+
+}
+
+.finQuizTitre{
+
+    font-size:34px;
+
+    color:#009543;
+
+}
+
+.scoreCard h2{
+
+    font-size:55px;
+
+    margin:10px 0;
+
+    color:#009543;
+
+}
+
+.scoreCard p{
+
+    font-size:24px;
+
+    font-weight:bold;
+
+}
+
+.scoreCard h3{
+
+    color:#444;
+
+    margin-top:15px;
+
+}
+
+.etoiles{
+
+    font-size:40px;
+
+    margin-top:15px;
+
+}
+
+.retourAccueil{
+
+    margin-top:15px;
+
+    background:#444;
+
+    color:white;
+
+}
+.classement-card{
+
+    background:white;
+
+    border-radius:20px;
+
+    padding:20px;
+
+    margin:20px 0;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.15);
+
+    text-align:left;
+
+}
+
+.classement-card p{
+
+    font-size:20px;
+
+    margin:12px 0;
+
+}

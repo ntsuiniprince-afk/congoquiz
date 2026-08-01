@@ -849,11 +849,14 @@ function choisirQuestions(nombre) {
     let intervalle;
     let categorieChoisie = "";
     let dernierMode = "";
+    let questionsActuelles = questions;
     function demarrerQuiz(nombre){
 
-        dernierMode = "general";
         nombreQuestions = nombre;
-        melangerQuestions(questions);
+        melangerQuestions(questionsActuelles);
+        dernierMode = "categorie";
+        numeroQuestion = 0;
+        score = 0;
     
         document.querySelector(".accueil").innerHTML = `
         <p id="numeroQuestion"></p>
@@ -892,11 +895,11 @@ function choisirQuestions(nombre) {
         pourcentage + "%";
 
         document.getElementById("question").innerHTML =
-        questions[numeroQuestion].question;
+        questionsActuelles[numeroQuestion].question
     
         let html = "";
     
-        questions[numeroQuestion].reponses.forEach(function(rep,index){
+        questionsActuelles[numeroQuestion].reponses.forEach(function(rep,index){
     
             html += `
             <label class="carte-reponse" onclick="selectionnerReponse(${index})">
@@ -955,10 +958,10 @@ function choisirQuestions(nombre) {
     
         let texte = "";
 
-        if (Number(choix.value) === questions[numeroQuestion].bonne) {
+        if (Number(choix.value) === questionsActuelles[numeroQuestion].bonne) {
 
             score++;
-            cartes[questions[numeroQuestion].bonne].classList.add("bonne");
+            cartes[questionsActuelles[numeroQuestion].bonne].classList.add("bonne");
         
             const son = document.getElementById("sonCorrect");
             son.currentTime = 0;
@@ -975,12 +978,12 @@ function choisirQuestions(nombre) {
             texte = "❌ Mauvaise réponse.<br><br>";
             cartes[choix.value].classList.add("mauvaise");
 
-            cartes[questions[numeroQuestion].bonne].classList.add("bonne");
+            cartes[questionsActuelles[numeroQuestion].bonne].classList.add("bonne");
         
         }
         
         texte += "<strong>Explication :</strong><br>" +
-        questions[numeroQuestion].explication;
+        questionsActuelles[numeroQuestion].explication;
         
         document.getElementById("explication").innerHTML = texte;
         
@@ -1019,16 +1022,47 @@ function choisirQuestions(nombre) {
             niveau = "💪 Débutant";
             }
 
+            let etoiles = "";
+
+            if (pourcentage >= 90){
+                etoiles = "⭐⭐⭐⭐⭐";
+            }else if (pourcentage >= 70){
+                etoiles = "⭐⭐⭐⭐";
+            }else if (pourcentage >= 50){
+                etoiles = "⭐⭐⭐";
+            }else if (pourcentage >= 30){
+    etoiles = "⭐⭐";
+            }else{
+             etoiles = "⭐";
+            }
+
             document.querySelector(".accueil").innerHTML = `
-            <h1 class="finQuiz">🎉 Quiz terminé !</h1>
+            <div class="finQuizContainer">
 
-              <h2>Score : ${score}/${nombreQuestions}</h2>
+                 <h1 class="finQuizTitre">🎉 Quiz terminé !</h1>
 
-              <h3>📊 Pourcentage : ${pourcentage}%</h3>
+                <div class="scoreCard">
 
-              <h3 class="niveau">${niveau}</h3>
+                 <h2>${score}/${nombreQuestions}</h2>
 
-              <button class="rejouer" onclick="rejouer()">🔄 Rejouer</button>
+                 <p>📊 ${pourcentage}%</p>
+
+                <h3>${niveau}</h3>
+
+                 <div class="etoiles">${etoiles}</div>
+
+                </div>
+
+               <button class="rejouer" onclick="rejouer()">
+                🔄 Rejouer
+              </button>
+
+              <button class="retourAccueil"
+               onclick="window.location.href='index.html?accueil=1'">
+               🏠 Retour au menu
+              </button>
+
+            </div>
             `;
     
         }
@@ -1065,17 +1099,19 @@ function choisirQuestions(nombre) {
     }
     function verifierTemps(){
 
+        reponseVerrouillee = true;
+
         const son = document.getElementById("sonFaux");
         son.currentTime = 0;
         son.play().catch(err => console.log(err));
         let texte = "⏰ Temps écoulé !<br><br>";
     
         texte += "✅ Bonne réponse : <strong>" +
-        questions[numeroQuestion].reponses[questions[numeroQuestion].bonne] +
+        questionsActuelles[numeroQuestion].reponses[questionsActuelles[numeroQuestion].bonne] +
         "</strong><br><br>";
     
         texte += "<strong>Explication :</strong><br>" +
-        questions[numeroQuestion].explication;
+        questionsActuelles[numeroQuestion].explication;
     
         document.getElementById("explication").innerHTML = texte;
     
@@ -1186,13 +1222,42 @@ function retourCategories(){
 
 function demarrerCategorie(nombre){
 
-    alert(
-        "La catégorie " +
-        categorieChoisie +
-        " avec " +
-        nombre +
-        " questions sera connectée prochainement."
-    );
+    switch(categorieChoisie){
+
+        case "sport":
+            questionsActuelles = questionsSport;
+            break;
+
+        case "histoire":
+            questionsActuelles = questionsHistoire;
+            break;
+
+        case "culture":
+            questionsActuelles = questionsCulture;
+            break;
+
+        case "institutions":
+            questionsActuelles = questionsInstitutions;
+            break;
+
+        case "geographie":
+            questionsActuelles = questionsGeographie;
+            break;
+
+        case "personnalites":
+            questionsActuelles = questionsPersonnalites;
+            break;
+
+        default:
+            alert("Catégorie introuvable.");
+            return;
+    }
+
+    dernierMode = "categorie";
+    numeroQuestion = 0;
+    score = 0;
+
+    demarrerQuiz(nombre);
 
 }
 function rejouer(){
@@ -1201,6 +1266,11 @@ function rejouer(){
     score = 0;
 
     if(dernierMode === "general"){
+
+        questionsActuelles = questions;
+        demarrerQuiz(nombreQuestions);
+
+    }else if(dernierMode === "categorie"){
 
         demarrerQuiz(nombreQuestions);
 

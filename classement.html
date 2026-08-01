@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <title>Document</title>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">🇨🇬 <strong>CongoQuiz</strong></div>
+    
+        <div class="menu">
+            <a href="index.html?accueil=1">Accueil</a>
+        </div>
+    </nav>
+    
+    <div class="accueil">
+    
+        <h1>🏆 Classement</h1>
+    
+        <h2>🎲 Quiz général</h2>
+    
+        <div class="classement-card">
+            <p>🥇 Meilleur score : <strong id="scoreGeneral">--</strong></p>
+        </div>
+    
+        <h2>📚 Catégories</h2>
+    
+        <div class="classement-card">
+            <p>⚽ Sport : <strong id="scoreSport">--</strong></p>
+            <p>📜 Histoire : <strong id="scoreHistoire">--</strong></p>
+            <p>🎭 Culture : <strong id="scoreCulture">--</strong></p>
+            <p>🏛 Institutions : <strong id="scoreInstitutions">--</strong></p>
+            <p>🌍 Géographie : <strong id="scoreGeographie">--</strong></p>
+            <p>👤 Grandes personnalités : <strong id="scorePersonnalites">--</strong></p>
+        </div>
+    
+        <button onclick="window.location.href='index.html?accueil=1'">
+            🏠 Retour à l'accueil
+        </button>
+    
+    </div>
+</body>
+</html>
