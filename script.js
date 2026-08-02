@@ -1005,7 +1005,57 @@ function choisirQuestions(nombre) {
             document.getElementById("btnSuivant").style.display = "none";
     
         }else{
-    
+             
+            let joueur = chargerJoueur();
+
+            // Une partie terminée = une partie jouée
+            joueur.partiesJouees++;
+            
+            // Ajout des points gagnés
+            joueur.points += score;
+            
+            // Vérification de la victoire parfaite
+            if (score === nombreQuestions) {
+                joueur.partiesGagnees++;
+            }
+            
+            // Sanction si le joueur est en dessous de la moyenne
+            if (score < (nombreQuestions / 2)) {
+                joueur.points -= nombreQuestions;
+            }
+            
+            // Empêcher les points négatifs
+            if (joueur.points < 0) {
+                joueur.points = 0;
+            }
+            
+            sauvegarderJoueur(joueur);
+            
+            // Meilleur score Quiz général
+            joueur.points += score;
+            {
+            
+                if (categorieChoisie === "sport" && score > joueur.sport)
+                    joueur.sport = score;
+            
+                if(categorieChoisie === "histoire" && score > joueur.histoire)
+                    joueur.histoire = score;
+            
+                if(categorieChoisie === "culture" && score > joueur.culture)
+                    joueur.culture = score;
+            
+                if(categorieChoisie === "institutions" && score > joueur.institutions)
+                    joueur.institutions = score;
+            
+                if(categorieChoisie === "geographie" && score > joueur.geographie)
+                    joueur.geographie = score;
+            
+                if(categorieChoisie === "personnalites" && score > joueur.personnalites)
+                    joueur.personnalites = score;
+            }
+            
+            sauvegarderJoueur(joueur);
+             
             let pourcentage = Math.round((score / nombreQuestions) * 100);
 
             let niveau = "";
@@ -1171,6 +1221,7 @@ function fermerMenuJeu(){
 }
 
 function ouvrirQuizGeneral(){
+    dernierMode = "categorie";
 
     document.getElementById("menuJeu").style.display = "none";
 
@@ -1221,6 +1272,7 @@ function retourCategories(){
 }
 
 function demarrerCategorie(nombre){
+    dernierMode = "categorie";
 
     switch(categorieChoisie){
 
@@ -1275,5 +1327,39 @@ function rejouer(){
         demarrerQuiz(nombreQuestions);
 
     }
+
+}
+// ================================
+// DONNÉES DU JOUEUR
+// ================================
+
+function chargerJoueur(){
+
+    let joueur = JSON.parse(localStorage.getItem("joueur"));
+
+    if(!joueur){
+
+        joueur = {
+
+            nom: "Invité",
+
+            avatar: "😀",
+
+           points: 0,
+            tempsJeu: 0
+
+        };
+
+        localStorage.setItem("joueur", JSON.stringify(joueur));
+
+    }
+
+    return joueur;
+
+}
+
+function sauvegarderJoueur(joueur){
+
+    localStorage.setItem("joueur", JSON.stringify(joueur));
 
 }

@@ -980,3 +980,238 @@ body{
     margin:12px 0;
 
 }
+.ligne-classement{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:12px 0;
+
+    border-bottom:1px solid #e5e5e5;
+
+    font-size:18px;
+
+}
+
+.ligne-classement:last-child{
+
+    border-bottom:none;
+
+}
+
+.ligne-classement strong{
+
+    background:#009543;
+
+    color:white;
+
+    padding:6px 15px;
+
+    border-radius:20px;
+
+    min-width:60px;
+
+    text-align:center;
+
+}
+.grandScore{
+
+    font-size:70px;
+
+    font-weight:bold;
+
+    color:#009543;
+
+    margin:25px 0;
+
+}
+.trophee{
+
+    font-size:55px;
+
+    margin-bottom:10px;
+
+}
+
+.libellePoints{
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    letter-spacing:3px;
+
+    color:#777;
+
+}
+
+.niveauClassement{
+
+    margin-top:20px;
+
+    font-size:22px;
+
+    font-weight:bold;
+
+    color:#009543;
+
+}
+
+.barreNiveau{
+
+    width:100%;
+
+    height:14px;
+
+    background:#e5e5e5;
+
+    border-radius:30px;
+
+    margin:20px 0;
+
+    overflow:hidden;
+
+}
+
+#progressionNiveau{
+
+    height:100%;
+
+    width:0%;
+
+    background:linear-gradient(90deg,#009543,#38d66b);
+
+    border-radius:30px;
+
+    transition:.5s;
+
+}
+
+.descriptionClassement{
+
+    margin-top:20px;
+
+    color:#666;
+
+    line-height:25px;
+
+}
+.stat-card{
+
+    background:white;
+
+    border-radius:25px;
+
+    padding:35px;
+
+    margin:25px auto;
+
+    width:90%;
+    max-width:520px;
+
+    text-align:center;
+
+    box-shadow:0 12px 30px rgba(0,0,0,.15);
+
+    transition:.3s;
+
+}
+
+.stat-card:hover{
+
+    transform:translateY(-5px);
+
+}
+.stat-icon{
+
+    font-size:55px;
+
+    margin-bottom:15px;
+
+}
+.stat-valeur{
+
+    font-size:75px;
+
+    font-weight:900;
+
+    color:#009543;
+
+    margin:15px 0;
+
+    text-shadow:0 4px 12px rgba(0,149,67,.2);
+
+}
+.stat-titre{
+
+    font-size:22px;
+
+    color:#555;
+
+    font-weight:bold;
+
+    margin-top:10px;
+
+}
+.titrePage{
+
+    text-align:center;
+
+    color:#009543;
+
+    font-size:42px;
+
+    margin:40px 0 30px;
+
+}
+
+.stats-container{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:25px;
+
+    flex-wrap:wrap;
+
+    margin-bottom:40px;
+
+}
+
+.infoStat{
+
+    background:white;
+
+    max-width:700px;
+
+    margin:30px auto;
+
+    padding:25px;
+
+    border-radius:20px;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.15);
+
+    text-align:center;
+
+}
+
+.infoStat h3{
+
+    color:#009543;
+
+    margin-bottom:15px;
+
+}
+
+.infoStat p{
+
+    color:#555;
+
+    line-height:28px;
+
+}

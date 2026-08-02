@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <title>Document</title>
+    <style>
+
+        body{
+        
+            display:block;
+        
+            padding-top:100px;
+        
+        }
+        
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">🇨🇬 <strong>CongoQuiz</strong></div>
+    
+        <div class="menu">
+            <a href="index.html?accueil=1">Accueil</a>
+        </div>
+    </nav>
+    
+    <h1 class="titrePage">📊 Statistiques</h1>
+
+    <div class="stats-container">
+    
+    <div class="stat-card">
+    
+        <div class="stat-icon">🎮</div>
+    
+        <div class="stat-valeur" id="partiesJouees">0</div>
+    
+        <div class="stat-titre">Parties jouées</div>
+    
+    </div>
+    
+    <div class="stat-card">
+    
+        <div class="stat-icon">🏆</div>
+    
+        <div class="stat-valeur" id="partiesGagnees">0</div>
+    
+        <div class="stat-titre">Parties gagnées</div>
+    
+    </div>
+    
+    <div class="stat-card">
+    
+        <div class="stat-icon">📈</div>
+    
+        <div class="stat-valeur" id="tauxReussite">0%</div>
+    
+        <div class="stat-titre">Taux de réussite</div>
+    
+    </div>
+    </div>
+    <div class="infoStat">
+
+        <h3>ℹ Informations</h3>
+    
+        <p>
+    
+            Une partie est considérée comme gagnée uniquement si
+            vous obtenez un score parfait :
+    
+            <br><br>
+    
+            ✅ 5/5
+    
+            <br>
+    
+            ✅ 10/10
+    
+            <br>
+    
+            ✅ 20/20
+    
+        </p>
+    
+    </div>
+    
+    <button class="rejouer"
+    onclick="window.location.href='index.html?accueil=1'">
+    🏠 Retour à l'accueil
+    </button>
+<script src="script.js"></script>
+
+<script>
+
+const joueur = chargerJoueur();
+
+document.getElementById("partiesJouees").textContent =
+joueur.partiesJouees;
+
+document.getElementById("partiesGagnees").textContent =
+joueur.partiesGagnees;
+
+let taux = 0;
+
+if(joueur.partiesJouees > 0){
+
+    taux = Math.round(
+        (joueur.partiesGagnees / joueur.partiesJouees) * 100
+    );
+
+}
+
+document.getElementById("tauxReussite").textContent =
+taux + "%";
+
+</script>
+</body>
+</html>

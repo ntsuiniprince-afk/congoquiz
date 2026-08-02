@@ -17,41 +17,42 @@
         </div>
     </nav>
     
-    <div class="accueil">
-        <h1>🏆 Classement</h1>
+    <h1>📊 Statistiques</h1>
 
-        <div class="classement-card">
-
-            <div class="trophee">🏆</div>
-        
-            <h2>Total des points</h2>
-        
-            <div id="pointsTotal" class="grandScore">0</div>
-        
-            <div class="libellePoints">POINTS</div>
-        
-            <div id="niveau" class="niveauClassement">
-                🌱 Débutant
-            </div>
-        
-            <div class="barreNiveau">
-                <div id="progressionNiveau"></div>
-            </div>
-        
-            <p id="texteProgression">
-                0 / 100 points
-            </p>
-        
-            <p class="descriptionClassement">
-                Continue de jouer pour monter dans le classement.
-            </p>
-        
-        </div>
-        <button class="rejouer"
-    onclick="window.location.href='index.html?accueil=1'">
-     🏠 Retour à l'accueil
-        </button>
+    <div class="stat-card">
+    
+        <div class="stat-icon">🎮</div>
+    
+        <div class="stat-valeur" id="partiesJouees">0</div>
+    
+        <div class="stat-titre">Parties jouées</div>
+    
     </div>
+    
+    <div class="stat-card">
+    
+        <div class="stat-icon">🏆</div>
+    
+        <div class="stat-valeur" id="partiesGagnees">0</div>
+    
+        <div class="stat-titre">Parties gagnées</div>
+    
+    </div>
+    
+    <div class="stat-card">
+    
+        <div class="stat-icon">📈</div>
+    
+        <div class="stat-valeur" id="tauxReussite">0%</div>
+    
+        <div class="stat-titre">Taux de réussite</div>
+    
+    </div>
+    
+    <button class="rejouer"
+    onclick="window.location.href='index.html?accueil=1'">
+    🏠 Retour à l'accueil
+    </button>
     <script src="script.js"></script>
 <script>
      const joueur = chargerJoueur();
@@ -90,6 +91,32 @@ progression + "%";
 
 document.getElementById("texteProgression").textContent =
 joueur.points + " / " + objectif + " points";
+</script>
+<script src="script.js"></script>
+
+<script>
+
+const joueur = chargerJoueur();
+
+document.getElementById("partiesJouees").textContent =
+joueur.partiesJouees;
+
+document.getElementById("partiesGagnees").textContent =
+joueur.partiesGagnees;
+
+let taux = 0;
+
+if(joueur.partiesJouees > 0){
+
+    taux = Math.round(
+        (joueur.partiesGagnees / joueur.partiesJouees) * 100
+    );
+
+}
+
+document.getElementById("tauxReussite").textContent =
+taux + "%";
+
 </script>
 </body>
 </html>
