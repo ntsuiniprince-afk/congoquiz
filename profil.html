@@ -37,9 +37,13 @@
             Membre officiel de CongoQuiz 🇨🇬
         </p>
 
-        <button class="modifierPseudo"
-         onclick="modifierPseudo()">
-            ✏️ Modifier mon pseudo
+        <button
+        id="btnPseudo"
+        class="modifierPseudo"
+        onclick="modifierPseudo()">
+        
+        ✏️ Modifier mon pseudo
+        
         </button>
 
     </div>
@@ -135,21 +139,112 @@ niveau;
 
 function modifierPseudo(){
 
-    let pseudo = prompt(
-        "Entrez votre pseudo :",
-        joueur.pseudo || ""
-    );
+const maintenant = Date.now();
 
-    if(!pseudo) return;
+const attente = 4 * 24 * 60 * 60 * 1000;
 
-    joueur.pseudo = pseudo;
+if(joueur.dernierChangementPseudo !== 0){
 
-    sauvegarderJoueur(joueur);
+    const tempsPasse =
+    maintenant - joueur.dernierChangementPseudo;
 
-    document.getElementById("pseudo").textContent =
-    pseudo;
+    if(tempsPasse < attente){
+
+        const joursRestants = Math.ceil(
+
+            (attente - tempsPasse) /
+
+            (1000*60*60*24)
+
+        );
+
+        alert(
+
+            "Vous pourrez modifier votre pseudo dans "
+
+            + joursRestants +
+
+            " jour(s)."
+
+        );
+
+        return;
+
+    }
 
 }
+
+let nouveauPseudo = prompt(
+
+    "Entrez votre nouveau pseudo :",
+
+    joueur.pseudo
+
+);
+
+if(!nouveauPseudo) return;
+
+joueur.pseudo = nouveauPseudo;
+
+joueur.dernierChangementPseudo = maintenant;
+
+sauvegarderJoueur(joueur);
+
+document.getElementById("pseudo").textContent = nouveauPseudo;
+
+verifierBoutonPseudo();
+
+}
+function verifierBoutonPseudo(){
+
+const bouton = document.getElementById("btnPseudo");
+
+const maintenant = Date.now();
+
+const attente = 4 * 24 * 60 * 60 * 1000;
+
+if(joueur.dernierChangementPseudo === 0){
+
+    bouton.disabled = false;
+
+    bouton.textContent = "✏️ Modifier mon pseudo";
+
+    return;
+
+}
+
+const tempsPasse =
+maintenant - joueur.dernierChangementPseudo;
+
+if(tempsPasse >= attente){
+
+    bouton.disabled = false;
+
+    bouton.textContent = "✏️ Modifier mon pseudo";
+
+}
+
+else{
+
+    const joursRestants = Math.ceil(
+
+        (attente - tempsPasse) /
+
+        (1000*60*60*24)
+
+    );
+
+    bouton.disabled = true;
+
+    bouton.textContent =
+    "🔒 Disponible dans " +
+    joursRestants +
+    " jour(s)";
+
+}
+
+}
+verifierBoutonPseudo();
 
 </script>
 

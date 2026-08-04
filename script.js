@@ -1173,31 +1173,48 @@ function choisirQuestions(nombre) {
     // ================================
 // Cinématique d'introduction
 // ================================
-
 window.addEventListener("load", function () {
 
     const intro = document.getElementById("intro");
+    const creationProfil = document.getElementById("creationProfil");
+
     const params = new URLSearchParams(window.location.search);
 
     if(params.get("accueil") === "1"){
 
-    document.getElementById("intro").style.display = "none";
-    return;
+        intro.style.display = "none";
+
+        if(creationProfil){
+            creationProfil.style.display = "none";
+        }
+
+        return;
 
     }
 
-    
-    setTimeout(function () {
+    setTimeout(function(){
 
         intro.classList.add("intro-fin");
 
-        setTimeout(function () {
+        setTimeout(function(){
 
             intro.style.display = "none";
 
-        }, 800);
+            if(creationProfil){
 
-    }, 5000);
+                const joueur = chargerJoueur();
+
+                if(!joueur.pseudo || joueur.pseudo.trim() === ""){
+
+                    creationProfil.style.display = "flex";
+
+                }
+
+            }
+
+        },800);
+
+    },5000);
 
 });
 // ================================
@@ -1347,12 +1364,21 @@ function chargerJoueur(){
             partiesJouees:0,
             partiesGagnees:0,
 
-            tempsJeu:0
+            tempsJeu:0,
+
+            dernierChangementPseudo:0
 
         };
 
         sauvegarderJoueur(joueur);
 
+    }
+    if(joueur.dernierChangementPseudo === undefined){
+
+        joueur.dernierChangementPseudo = 0;
+    
+        sauvegarderJoueur(joueur);
+    
     }
 
     return joueur;
