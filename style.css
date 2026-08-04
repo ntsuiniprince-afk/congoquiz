@@ -1388,3 +1388,12 @@ body{
     animation:fermerProfil .4s forwards;
 
 }
+#creationProfil{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
