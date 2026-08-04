@@ -1341,16 +1341,17 @@ function chargerJoueur(){
 
         joueur = {
 
-            nom: "Invité",
+            pseudo:"",
+            points:0,
 
-            avatar: "😀",
+            partiesJouees:0,
+            partiesGagnees:0,
 
-           points: 0,
-            tempsJeu: 0
+            tempsJeu:0
 
         };
 
-        localStorage.setItem("joueur", JSON.stringify(joueur));
+        sauvegarderJoueur(joueur);
 
     }
 
@@ -1362,4 +1363,52 @@ function sauvegarderJoueur(joueur){
 
     localStorage.setItem("joueur", JSON.stringify(joueur));
 
+}
+window.addEventListener("load", verifierProfil);
+
+function verifierProfil(){
+
+    const joueur = chargerJoueur();
+
+    const fenetre = document.getElementById("creationProfil");
+
+    if(!fenetre) return;
+
+    if(joueur.pseudo && joueur.pseudo.trim() !== ""){
+
+        fenetre.style.display = "none";
+
+    }
+
+}
+
+function creerProfil(){
+
+    const champ = document.getElementById("pseudoDepart");
+
+    const pseudo = champ.value.trim();
+
+    if(pseudo === ""){
+
+        alert("Veuillez entrer votre pseudo.");
+
+        return;
+
+    }
+
+    let joueur = chargerJoueur();
+
+    joueur.pseudo = pseudo;
+
+    sauvegarderJoueur(joueur);
+
+    const fenetre = document.getElementById("creationProfil");
+
+    fenetre.classList.add("fermerProfil");
+    
+    setTimeout(() => {
+    
+        fenetre.style.display = "none";
+    
+    }, 400);
 }

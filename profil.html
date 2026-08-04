@@ -1,12 +1,157 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Profil - CongoQuiz</title>
+
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    
+
+<nav class="navbar">
+
+    <div class="logo">🇨🇬 <strong>CongoQuiz</strong></div>
+
+    <div class="menu">
+        <a href="index.html?accueil=1">Accueil</a>
+    </div>
+
+</nav>
+
+<div class="accueil">
+
+    <h1 class="titrePage">👤 Profil</h1>
+
+    <!-- Carte Profil -->
+    <div class="profil-card">
+
+        <div class="avatar" id="avatarInitiales">
+            JM
+        </div>
+
+        <h2 id="pseudo">Joueur</h2>
+
+        <p class="profil-sous-titre">
+            Membre officiel de CongoQuiz 🇨🇬
+        </p>
+
+        <button class="modifierPseudo"
+         onclick="modifierPseudo()">
+            ✏️ Modifier mon pseudo
+        </button>
+
+    </div>
+
+    <!-- Carte Informations -->
+    <div class="profil-card">
+
+        <div class="profil-info">
+            <span>🏆 Niveau</span>
+            <strong id="niveau">Débutant</strong>
+        </div>
+
+        <div class="profil-info">
+            <span>⭐ Points</span>
+            <strong id="points">0</strong>
+        </div>
+
+        <div class="profil-info">
+            <span>📈 Taux de réussite</span>
+            <strong id="taux">0%</strong>
+        </div>
+
+    </div>
+
+    <button class="rejouer"
+      onclick="window.location.href='index.html?accueil=1'">
+        🏠 Retour à l'accueil
+    </button>
+
+</div>
+
+<script src="script.js"></script>
+
+<script>
+
+const joueur = chargerJoueur();
+
+document.getElementById("pseudo").textContent =
+joueur.pseudo || "Joueur";
+const pseudo = joueur.pseudo || "Joueur";
+
+const mots = pseudo.trim().split(" ");
+
+let initiales = "";
+
+if(mots.length === 1){
+
+    initiales = mots[0].substring(0,2);
+
+}else{
+
+    initiales =
+    mots[0][0] + mots[1][0];
+
+}
+
+document.getElementById("avatarInitiales").textContent =
+initiales.toUpperCase();
+
+document.getElementById("points").textContent =
+joueur.points;
+
+let taux = 0;
+
+if(joueur.partiesJouees > 0){
+
+    taux = Math.round(
+        (joueur.partiesGagnees /
+        joueur.partiesJouees) * 100
+    );
+
+}
+
+document.getElementById("taux").textContent =
+taux + "%";
+
+let niveau = "🌱 Débutant";
+
+if(joueur.points >= 100)
+niveau = "📚 Connaisseur";
+
+if(joueur.points >= 300)
+niveau = "🏆 Expert";
+
+if(joueur.points >= 700)
+niveau = "👑 Maître";
+
+if(joueur.points >= 1500)
+niveau = "💎 Légende";
+
+document.getElementById("niveau").textContent =
+niveau;
+
+function modifierPseudo(){
+
+    let pseudo = prompt(
+        "Entrez votre pseudo :",
+        joueur.pseudo || ""
+    );
+
+    if(!pseudo) return;
+
+    joueur.pseudo = pseudo;
+
+    sauvegarderJoueur(joueur);
+
+    document.getElementById("pseudo").textContent =
+    pseudo;
+
+}
+
+</script>
+
 </body>
 </html>
