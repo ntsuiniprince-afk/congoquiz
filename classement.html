@@ -59,24 +59,24 @@
 document.getElementById("pointsTotal").textContent = joueur.points;
 
 let niveau = "🌱 Débutant";
-let objectif = 100;
+let objectif = 1000;
 
-if(joueur.points >= 100){
+if(joueur.points >= 1000){
     niveau = "📚 Connaisseur";
-    objectif = 300;
+    objectif = 10000;
 }
 
-if(joueur.points >= 300){
+if(joueur.points >= 10000){
     niveau = "🏆 Expert";
-    objectif = 700;
+    objectif = 100000;
 }
 
-if(joueur.points >= 700){
+if(joueur.points >= 100000){
     niveau = "👑 Maître";
-    objectif = 1500;
+    objectif = 1000000;
 }
 
-if(joueur.points >= 1500){
+if(joueur.points >= 1000000){
     niveau = "💎 Légende";
     objectif = joueur.points;
 }
