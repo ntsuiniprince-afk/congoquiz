@@ -682,7 +682,24 @@ button small{
 
     color:#009543;
 
-    transform:translateY(-4px) scale(1.08);
+    background:rgba(0,149,67,.08);
+
+    border-radius:14px;
+
+    transform:translateY(-3px);
+
+}
+.nav-btn:hover span{
+
+    color:#009543;
+
+}
+
+.nav-btn span{
+
+    color:#666;
+
+    transition:.25s;
 
 }
 
@@ -1411,12 +1428,23 @@ body{
 }
 .boutonRetour{
 
-    width:320px;
+    width:280px;
 
-    max-width:90%;
+    height:55px;
 
     margin:30px auto;
 
     display:block;
+
+}
+.rejouer{
+
+    width:280px;
+
+    max-width:90%;
+
+    display:block;
+
+    margin:30px auto;
 
 }
