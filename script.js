@@ -1197,19 +1197,34 @@ window.addEventListener("load", function () {
         intro.classList.add("intro-fin");
 
         setTimeout(function(){
+
             intro.style.display = "none";
 
-            setTimeout(function(){
+            const joueur = chargerJoueur();
             
+            if(joueur.pseudo && joueur.pseudo.trim() !== ""){
+            
+                document.getElementById("accueilSite").style.display = "block";
+            
+            }else{
+            
+                document.getElementById("creationProfil").style.display = "flex";
+            
+            }
+
+            if(creationProfil){
+
                 const joueur = chargerJoueur();
-            
+
                 if(!joueur.pseudo || joueur.pseudo.trim() === ""){
-            
-                    document.getElementById("creationProfil").style.display="flex";
-            
+
+                    creationProfil.style.display = "flex";
+
                 }
-            
-            },300);
+
+            }
+
+        },800);
 
     },5000);
 
@@ -1428,10 +1443,11 @@ function creerProfil(){
     const fenetre = document.getElementById("creationProfil");
 
     fenetre.classList.add("fermerProfil");
-    
     setTimeout(() => {
-    
+
         fenetre.style.display = "none";
     
-    }, 400);
+        document.getElementById("accueilSite").style.display = "block";
+    
+    },400);
 }
