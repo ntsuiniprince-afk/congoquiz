@@ -1,97 +1,66 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Statistiques - CongoQuiz</title>
+
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-    <title>Document</title>
 </head>
+
 <body>
-    <nav class="navbar">
-        <div class="logo">🇨🇬 <strong>CongoQuiz</strong></div>
-    
-        <div class="menu">
-            <a href="index.html?accueil=1">Accueil</a>
-        </div>
-    </nav>
-    
-    <h1>📊 Statistiques</h1>
 
-    <div class="stat-card">
-    
-        <div class="stat-icon">🎮</div>
-    
-        <div class="stat-valeur" id="partiesJouees">0</div>
-    
-        <div class="stat-titre">Parties jouées</div>
-    
+<nav class="navbar">
+
+    <div class="logo">🇨🇬 <strong>CongoQuiz</strong></div>
+
+    <div class="menu">
+        <a href="index.html?accueil=1">Accueil</a>
     </div>
-    
-    <div class="stat-card">
-    
-        <div class="stat-icon">🏆</div>
-    
-        <div class="stat-valeur" id="partiesGagnees">0</div>
-    
-        <div class="stat-titre">Parties gagnées</div>
-    
-    </div>
-    
-    <div class="stat-card">
-    
-        <div class="stat-icon">📈</div>
-    
-        <div class="stat-valeur" id="tauxReussite">0%</div>
-    
-        <div class="stat-titre">Taux de réussite</div>
-    
-    </div>
-    
-    <button class="rejouer"
-    onclick="window.location.href='index.html?accueil=1'">
-    🏠 Retour à l'accueil
-    </button>
-    <script src="script.js"></script>
-<script>
-     const joueur = chargerJoueur();
 
-document.getElementById("pointsTotal").textContent = joueur.points;
+</nav>
 
-let niveau = "🌱 Débutant";
-let objectif = 100;
+<h1>📊 Statistiques</h1>
 
-if(joueur.points >= 100){
-    niveau = "📚 Connaisseur";
-    objectif = 300;
-}
+<div class="stat-card">
 
-if(joueur.points >= 300){
-    niveau = "🏆 Expert";
-    objectif = 700;
-}
+    <div class="stat-icon">🎮</div>
 
-if(joueur.points >= 700){
-    niveau = "👑 Maître";
-    objectif = 1500;
-}
+    <div class="stat-valeur" id="partiesJouees">0</div>
 
-if(joueur.points >= 1500){
-    niveau = "💎 Légende";
-    objectif = joueur.points;
-}
+    <div class="stat-titre">Parties jouées</div>
 
-document.getElementById("niveau").textContent = niveau;
+</div>
 
-let progression = Math.min((joueur.points / objectif) * 100,100);
+<div class="stat-card">
 
-document.getElementById("progressionNiveau").style.width =
-progression + "%";
+    <div class="stat-icon">🏆</div>
 
-document.getElementById("texteProgression").textContent =
-joueur.points + " / " + objectif + " points";
-</script>
+    <div class="stat-valeur" id="partiesGagnees">0</div>
+
+    <div class="stat-titre">Parties gagnées</div>
+
+</div>
+
+<div class="stat-card">
+
+    <div class="stat-icon">📈</div>
+
+    <div class="stat-valeur" id="tauxReussite">0%</div>
+
+    <div class="stat-titre">Taux de réussite</div>
+
+</div>
+
+<button
+class="rejouer boutonRetour"
+onclick="window.location.href='index.html?accueil=1'">
+
+🏠 Retour à l'accueil
+
+</button>
+
 <script src="script.js"></script>
 
 <script>
@@ -99,17 +68,18 @@ joueur.points + " / " + objectif + " points";
 const joueur = chargerJoueur();
 
 document.getElementById("partiesJouees").textContent =
-joueur.partiesJouees;
+joueur.partiesJouees || 0;
 
 document.getElementById("partiesGagnees").textContent =
-joueur.partiesGagnees;
+joueur.partiesGagnees || 0;
 
 let taux = 0;
 
 if(joueur.partiesJouees > 0){
 
     taux = Math.round(
-        (joueur.partiesGagnees / joueur.partiesJouees) * 100
+        (joueur.partiesGagnees /
+        joueur.partiesJouees) * 100
     );
 
 }
@@ -118,5 +88,6 @@ document.getElementById("tauxReussite").textContent =
 taux + "%";
 
 </script>
+
 </body>
 </html>

@@ -757,6 +757,752 @@ const questionsHistoire = [
         bonne: 0,
     
         explication: "Le pays portait le nom de République populaire du Congo de 1970 à 1992 avant de redevenir la République du Congo."
+    },
+    {
+        question: "Quel président est élu en République du Congo lors de la première élection présidentielle pluraliste de 1992 ?",
+    
+        reponses: [
+            "Denis Sassou-Nguesso",
+            "Pascal Lissouba",
+            "Bernard Kolélas",
+            "André Milongo"
+        ],
+    
+        bonne: 1,
+    
+        explication: "Pascal Lissouba remporte l'élection présidentielle de 1992 et devient président de la République du Congo."
+    },
+    
+    {
+        question: "Quel poste occupait Bernard Kolélas avant de devenir une figure majeure de l'opposition congolaise dans les années 1990 ?",
+    
+        reponses: [
+            "Maire de Brazzaville",
+            "Roi du royaume Téké",
+            "Président de la République",
+            "Gouverneur colonial"
+        ],
+    
+        bonne: 0,
+    
+        explication: "Bernard Kolélas a notamment été maire de Brazzaville et est devenu un important leader politique du Congo."
+    },
+    
+    {
+        question: "Quel parti politique était dirigé par Pascal Lissouba ?",
+    
+        reponses: [
+            "Le Parti congolais du travail (PCT)",
+            "L'Union panafricaine pour la démocratie sociale (UPADS)",
+            "Le Mouvement congolais pour la démocratie et le développement intégral (MCDDI)",
+            "L'Union démocratique pour la défense des intérêts africains (UDDIA)"
+        ],
+    
+        bonne: 1,
+    
+        explication: "Pascal Lissouba était le fondateur et dirigeant de l'UPADS, parti politique créé pendant la période du multipartisme."
+    },
+    
+    {
+        question: "Quel parti politique était associé à Bernard Kolélas dans les années 1990 ?",
+    
+        reponses: [
+            "Le MCDDI",
+            "Le PCT",
+            "L'UPADS",
+            "Le RDD"
+        ],
+    
+        bonne: 0,
+    
+        explication: "Bernard Kolélas était le dirigeant du Mouvement congolais pour la démocratie et le développement intégral (MCDDI)."
+    },
+    
+    {
+        question: "En quelle année débute la guerre civile congolaise qui oppose notamment les forces de Pascal Lissouba et de Denis Sassou-Nguesso ?",
+    
+        reponses: [
+            "1991",
+            "1993",
+            "1997",
+            "2002"
+        ],
+    
+        bonne: 2,
+    
+        explication: "La guerre civile congolaise de 1997 éclate après de fortes tensions politiques entre les camps de Pascal Lissouba et Denis Sassou-Nguesso."
+    },
+    
+    {
+        question: "Quel ancien président revient au pouvoir après la guerre civile de 1997 ?",
+    
+        reponses: [
+            "Fulbert Youlou",
+            "Pascal Lissouba",
+            "Denis Sassou-Nguesso",
+            "Alphonse Massamba-Débat"
+        ],
+    
+        bonne: 2,
+    
+        explication: "Denis Sassou-Nguesso reprend le pouvoir en 1997 après la victoire militaire de son camp."
+    },
+    
+    {
+        question: "Quelle ville a été le principal centre des combats pendant la guerre civile congolaise de 1997 ?",
+    
+        reponses: [
+            "Brazzaville",
+            "Ouesso",
+            "Impfondo",
+            "Pointe-Noire uniquement"
+        ],
+    
+        bonne: 0,
+    
+        explication: "Brazzaville a été le principal théâtre des affrontements pendant la guerre civile de 1997."
+    },
+    
+    {
+        question: "Quel groupe armé était associé au camp de Denis Sassou-Nguesso pendant la guerre civile de 1997 ?",
+    
+        reponses: [
+            "Les Cobras",
+            "Les Ninjas",
+            "Les Zoulous",
+            "Les Tigres"
+        ],
+    
+        bonne: 0,
+    
+        explication: "Les Cobras étaient les milices associées au camp de Denis Sassou-Nguesso pendant la guerre civile de 1997."
+    },
+    
+    {
+        question: "Quel groupe armé était principalement associé au camp de Bernard Kolélas pendant la guerre civile de 1997 ?",
+    
+        reponses: [
+            "Les Cobras",
+            "Les Ninjas",
+            "Les Forces françaises",
+            "Les Bakongo"
+        ],
+    
+        bonne: 1,
+    
+        explication: "Les Ninjas étaient associés au camp de Bernard Kolélas pendant la guerre civile congolaise de 1997."
+    },
+    
+    {
+        question: "Quel événement marque la fin du conflit principal de la guerre civile congolaise de 1997 ?",
+    
+        reponses: [
+            "La victoire militaire du camp de Denis Sassou-Nguesso et son retour au pouvoir",
+            "L'indépendance du Congo",
+            "La création de l'AEF",
+            "La Conférence de Brazzaville de 1944"
+        ],
+    
+        bonne: 0,
+    
+        explication: "La guerre civile de 1997 se termine par la victoire du camp de Denis Sassou-Nguesso, qui reprend la direction du pays."
+    },
+    {
+        question: "Quel président dirige la République du Congo après son retour au pouvoir en 1997 ?",
+    
+        reponses: [
+            "Pascal Lissouba",
+            "Denis Sassou-Nguesso",
+            "André Milongo",
+            "Fulbert Youlou"
+        ],
+    
+        bonne: 1,
+    
+        explication: "Denis Sassou-Nguesso revient au pouvoir en 1997 après la guerre civile et dirige ensuite la République du Congo."
+    },
+    
+    {
+        question: "Quelle ville accueille le siège principal des institutions politiques de la République du Congo ?",
+    
+        reponses: [
+            "Pointe-Noire",
+            "Dolisie",
+            "Brazzaville",
+            "Ouesso"
+        ],
+    
+        bonne: 2,
+    
+        explication: "Brazzaville est la capitale politique et administrative de la République du Congo."
+    },
+    
+    {
+        question: "Quelle ressource naturelle joue un rôle majeur dans l'économie congolaise depuis la fin du XXe siècle ?",
+    
+        reponses: [
+            "Le pétrole",
+            "Le charbon uniquement",
+            "L'or principalement",
+            "Le gaz naturel uniquement"
+        ],
+    
+        bonne: 0,
+    
+        explication: "Le pétrole est la principale ressource d'exportation de la République du Congo depuis plusieurs décennies."
+    },
+    
+    {
+        question: "Quelle ville congolaise est connue comme un important centre pétrolier et portuaire ?",
+    
+        reponses: [
+            "Pointe-Noire",
+            "Brazzaville",
+            "Madingou",
+            "Ouesso"
+        ],
+    
+        bonne: 0,
+    
+        explication: "Pointe-Noire est le principal port maritime du Congo et un centre majeur de l'industrie pétrolière."
+    },
+    
+    {
+        question: "En quelle année une nouvelle Constitution a-t-elle été adoptée en République du Congo après un référendum ?",
+    
+        reponses: [
+            "1992",
+            "2002",
+            "2015",
+            "2020"
+        ],
+    
+        bonne: 2,
+    
+        explication: "Une nouvelle Constitution est adoptée par référendum en 2015, ouvrant notamment la voie à une nouvelle organisation institutionnelle."
+    },
+    
+    {
+        question: "Quel type de régime politique est établi par la Constitution congolaise de 2015 ?",
+    
+        reponses: [
+            "Un régime parlementaire sans président",
+            "Un régime présidentiel avec un président de la République",
+            "Une monarchie constitutionnelle",
+            "Un régime militaire permanent"
+        ],
+    
+        bonne: 1,
+    
+        explication: "La Constitution de 2015 établit un régime présidentiel avec un président de la République comme chef de l'État."
+    },
+    
+    {
+        question: "Quel fleuve traverse Brazzaville et joue un rôle historique majeur dans les échanges de la région ?",
+    
+        reponses: [
+            "Le fleuve Congo",
+            "Le fleuve Sénégal",
+            "Le fleuve Niger",
+            "Le fleuve Zambèze"
+        ],
+    
+        bonne: 0,
+    
+        explication: "Le fleuve Congo est un axe historique de transport et d'échanges en Afrique centrale."
+    },
+    
+    {
+        question: "Quel est le nom du principal port maritime de la République du Congo ?",
+    
+        reponses: [
+            "Port de Brazzaville",
+            "Port de Pointe-Noire",
+            "Port de Dolisie",
+            "Port de Ouesso"
+        ],
+    
+        bonne: 1,
+    
+        explication: "Le port autonome de Pointe-Noire est le principal port maritime du Congo."
+    },
+    
+    {
+        question: "Quelle organisation régionale regroupe plusieurs États d'Afrique centrale, dont la République du Congo ?",
+    
+        reponses:[
+            "La Communauté économique des États de l'Afrique centrale (CEEAC)",
+            "L'Union européenne",
+            "L'Association des nations d'Asie du Sud-Est",
+            "L'Organisation des États américains"
+        ],
+    
+        bonne: 0,
+    
+        explication: "La République du Congo est membre de la CEEAC, une organisation de coopération régionale en Afrique centrale."
+    },
+    
+    {
+        question: "Quel secteur économique a historiquement fourni une grande partie des revenus d'exportation du Congo ?",
+    
+        reponses: [
+            "L'industrie pétrolière",
+            "L'industrie automobile",
+            "La production de logiciels",
+            "La construction navale"
+        ],
+    
+        bonne: 0,
+    
+        explication: "Le secteur pétrolier représente une part importante des exportations et des revenus de la République du Congo."
+    },
+    {
+        question: "Qui est considéré comme le premier président de la République du Congo indépendante ?",
+    
+        reponses: [
+            "Marien Ngouabi",
+            "Fulbert Youlou",
+            "Pascal Lissouba",
+            "Denis Sassou-Nguesso"
+        ],
+    
+        bonne: 1,
+    
+        explication: "Fulbert Youlou devient le premier président de la République du Congo après l'indépendance obtenue en 1960."
+    },
+    
+    {
+        question: "Quel dirigeant congolais est associé à la création du Parti congolais du travail (PCT) en 1969 ?",
+    
+        reponses: [
+            "Marien Ngouabi",
+            "André Milongo",
+            "Bernard Kolélas",
+            "Pascal Lissouba"
+        ],
+    
+        bonne: 0,
+    
+        explication: "Marien Ngouabi fonde le Parti congolais du travail en 1969, qui devient le parti dirigeant pendant la période marxiste-léniniste."
+    },
+    
+    {
+        question: "Quel écrivain congolais est l'auteur du roman « Le Pleurer-rire » publié en 1982 ?",
+    
+        reponses: [
+            "Henri Lopes",
+            "Alain Mabanckou",
+            "Sony Labou Tansi",
+            "Jean-Baptiste Tati Loutard"
+        ],
+    
+        bonne: 0,
+    
+        explication: "Henri Lopes, écrivain et homme politique congolais, est l'auteur du roman Le Pleurer-rire publié en 1982."
+    },
+    
+    {
+        question: "Quel écrivain congolais est l'auteur du roman « La Vie et demie » publié en 1979 ?",
+    
+        reponses: [
+            "Emmanuel Dongala",
+            "Sony Labou Tansi",
+            "Henri Lopes",
+            "Jean Malonga"
+        ],
+    
+        bonne: 1,
+    
+        explication: "Sony Labou Tansi est l'auteur de La Vie et demie, une œuvre majeure de la littérature africaine contemporaine."
+    },
+    
+    {
+        question: "Quel symbole figure au centre du drapeau actuel de la République du Congo ?",
+    
+        reponses: [
+            "Une étoile jaune",
+            "Un lion rouge",
+            "Aucun symbole central",
+            "Un soleil noir"
+        ],
+    
+        bonne: 2,
+    
+        explication: "Le drapeau congolais actuel est composé de trois couleurs diagonales (vert, jaune, rouge) sans symbole central."
+    },
+    
+    {
+        question: "Quelles sont les trois couleurs du drapeau de la République du Congo ?",
+    
+        reponses: [
+            "Vert, jaune et rouge",
+            "Bleu, blanc et rouge",
+            "Noir, jaune et vert",
+            "Rouge, blanc et noir"
+        ],
+    
+        bonne: 0,
+    
+        explication: "Le drapeau congolais est composé du vert, du jaune et du rouge, couleurs panafricaines."
+    },
+    
+    {
+        question: "Quel hymne national est adopté par la République du Congo ?",
+    
+        reponses: [
+            "La Congolaise",
+            "Debout Congolais",
+            "L'Abidjanaise",
+            "Nkosi Sikelel' iAfrika"
+        ],
+    
+        bonne: 0,
+    
+        explication: "La Congolaise est l'hymne national de la République du Congo."
+    },
+    
+    {
+        question: "Quelle fête nationale célèbre l'accession du Congo à l'indépendance ?",
+    
+        reponses: [
+            "Le 15 août",
+            "Le 1er mai",
+            "Le 11 novembre",
+            "Le 30 juin"
+        ],
+    
+        bonne: 0,
+    
+        explication: "Le 15 août 1960 marque l'indépendance de la République du Congo et est célébré comme fête nationale."
+    },
+    
+    {
+        question: "Quel musicien congolais est considéré comme l'un des grands noms de la rumba congolaise ?",
+    
+        reponses: [
+            "Franklin Boukaka",
+            "Youssou N'Dour",
+            "Salif Keïta",
+            "Manu Dibango"
+        ],
+    
+        bonne: 0,
+    
+        explication: "Franklin Boukaka est un artiste majeur de la musique congolaise et africaine, connu notamment pour son engagement artistique et politique."
+    },
+    
+    {
+        question: "Quel ancien royaume est historiquement lié au peuple Kongo dans la région d'Afrique centrale ?",
+    
+        reponses: [
+            "Le Royaume Kongo",
+            "L'Empire romain",
+            "Le Royaume du Ghana",
+            "L'Empire ottoman"
+        ],
+    
+        bonne: 0,
+    
+        explication: "Le Royaume Kongo était un grand État d'Afrique centrale qui s'étendait notamment sur des territoires correspondant aux actuels Angola, République démocratique du Congo et zones voisines."
+    },
+    {
+        question: "Quel royaume précolonial était situé principalement dans la région correspondant aujourd'hui au sud de la République du Congo et au nord de l'Angola ?",
+    
+        reponses: [
+            "Le Royaume de Loango",
+            "L'Empire du Mali",
+            "Le Royaume du Bénin",
+            "L'Empire du Songhaï"
+        ],
+    
+        bonne: 0,
+    
+        explication: "Le Royaume de Loango était un important royaume côtier d'Afrique centrale situé autour de l'actuel littoral congolais."
+    },
+    
+    {
+        question: "Quel peuple est historiquement associé au Royaume Kongo qui a eu des contacts avec les Européens dès la fin du XVe siècle ?",
+    
+        reponses: [
+            "Les Kongo",
+            "Les Touareg",
+            "Les Zoulous",
+            "Les Berbères"
+        ],
+    
+        bonne: 0,
+    
+        explication: "Le Royaume Kongo était dirigé par le peuple Kongo et entra en contact avec les Portugais à partir de la fin du XVe siècle."
+    },
+    
+    {
+        question: "Quel navigateur portugais est associé à l'arrivée des Européens dans l'embouchure du fleuve Congo en 1482 ?",
+    
+        reponses: [
+            "Christophe Colomb",
+            "Diogo Cão",
+            "Vasco de Gama",
+            "Bartolomeu Dias"
+        ],
+    
+        bonne: 1,
+    
+        explication: "Diogo Cão atteint l'embouchure du fleuve Congo en 1482 lors des explorations portugaises en Afrique."
+    },
+    
+    {
+        question: "Quel nom portait la ville de Brazzaville lors de sa fondation par Pierre Savorgnan de Brazza en 1880 ?",
+    
+        reponses: [
+            "Brazzaville",
+            "Mfoa",
+            "Léopoldville",
+            "Kinshasa"
+        ],
+    
+        bonne: 1,
+    
+        explication: "La ville était initialement appelée Mfoa avant de prendre le nom de Brazzaville en hommage à Pierre Savorgnan de Brazza."
+    },
+    
+    {
+        question: "Quel traité signé en 1880 a permis à la France d'établir une présence dans la région du Congo ?",
+    
+        reponses: [
+            "Le traité Brazza-Makoko",
+            "Le traité de Versailles",
+            "Le traité de Berlin",
+            "Le traité de Tordesillas"
+        ],
+    
+        bonne: 0,
+    
+        explication: "Le traité Brazza-Makoko signé en 1880 entre Pierre Savorgnan de Brazza et le Makoko Iloo établit une influence française dans la région."
+    },
+    
+    {
+        question: "Quelle conférence internationale de 1884-1885 a organisé le partage colonial de l'Afrique entre puissances européennes ?",
+    
+        reponses: [
+            "La Conférence de Berlin",
+            "La Conférence de Brazzaville",
+            "La Conférence de Bandung",
+            "La Conférence de Genève"
+        ],
+    
+        bonne: 0,
+    
+        explication: "La Conférence de Berlin (1884-1885) fixe les règles du partage colonial de l'Afrique par les puissances européennes."
+    },
+    
+    {
+        question: "Quel nom portait l'administration coloniale française qui gérait le territoire du Congo avant l'indépendance ?",
+    
+        reponses: [
+            "Le Moyen-Congo",
+            "Le Congo belge",
+            "Le Congo portugais",
+            "Le Congo allemand"
+        ],
+    
+        bonne: 0,
+    
+        explication: "Le territoire correspondant à l'actuelle République du Congo était appelé Moyen-Congo sous administration française."
+    },
+    
+    {
+        question: "Quel événement de 1944 a fait de Brazzaville un centre important de la politique coloniale française ?",
+    
+        reponses: [
+            "La Conférence de Brazzaville",
+            "La création de l'Union africaine",
+            "L'indépendance du Congo",
+            "La fondation de Kinshasa"
+        ],
+    
+        bonne: 0,
+    
+        explication: "La Conférence de Brazzaville de 1944 a réuni les représentants de la France libre et des colonies africaines."
+    },
+    
+    {
+        question: "Quel changement politique majeur intervient au Congo en 1991 après la Conférence nationale souveraine ?",
+    
+        reponses: [
+            "Le retour au système colonial",
+            "L'introduction du multipartisme",
+            "La suppression de l'État",
+            "La création d'un royaume"
+        ],
+    
+        bonne: 1,
+    
+        explication: "La Conférence nationale souveraine de 1991 marque la transition vers le multipartisme au Congo."
+    },
+    
+    {
+        question: "Quel président congolais est associé à la période du multipartisme commencée en 1992 après avoir remporté l'élection présidentielle ?",
+    
+        reponses: [
+            "Pascal Lissouba",
+            "Marien Ngouabi",
+            "Fulbert Youlou",
+            "Alphonse Massamba-Débat"
+        ],
+    
+        bonne: 0,
+    
+        explication: "Pascal Lissouba remporte l'élection présidentielle de 1992, première élection présidentielle pluraliste de la République du Congo."
+    },
+    {
+        question: "Quelle date marque officiellement l'indépendance de la République du Congo ?",
+    
+        reponses: [
+            "15 août 1960",
+            "28 novembre 1958",
+            "18 mars 1977",
+            "31 décembre 1991"
+        ],
+    
+        bonne: 0,
+    
+        explication: "La République du Congo devient indépendante le 15 août 1960 après la période de transition avec la France."
+    },
+    
+    {
+        question: "Qui était le premier président de la République du Congo après l'indépendance ?",
+    
+        reponses: [
+            "Pascal Lissouba",
+            "Fulbert Youlou",
+            "Marien Ngouabi",
+            "Denis Sassou-Nguesso"
+        ],
+    
+        bonne: 1,
+    
+        explication: "Fulbert Youlou devient le premier président du Congo indépendant en 1960."
+    },
+    
+    {
+        question: "Quel événement de 1963 provoque la chute du président Fulbert Youlou ?",
+    
+        reponses: [
+            "Les Trois Glorieuses",
+            "La Conférence de Brazzaville",
+            "La guerre civile de 1997",
+            "La Conférence nationale souveraine"
+        ],
+    
+        bonne: 0,
+    
+        explication: "Les Trois Glorieuses d'août 1963 entraînent la démission de Fulbert Youlou."
+    },
+    
+    {
+        question: "Quel président congolais est à l'origine de la création du Parti congolais du travail (PCT) en 1969 ?",
+    
+        reponses: [
+            "Marien Ngouabi",
+            "Fulbert Youlou",
+            "Pascal Lissouba",
+            "André Milongo"
+        ],
+    
+        bonne: 0,
+    
+        explication: "Marien Ngouabi crée le Parti congolais du travail en 1969, qui devient le parti dirigeant du Congo pendant la période du parti unique."
+    },
+    
+    {
+        question: "Quel nom porte la capitale de la République du Congo ?",
+    
+        reponses: [
+            "Pointe-Noire",
+            "Brazzaville",
+            "Dolisie",
+            "Nkayi"
+        ],
+    
+        bonne: 1,
+    
+        explication: "Brazzaville est la capitale politique et administrative de la République du Congo."
+    },
+    
+    {
+        question: "Quel événement politique de 1991 marque la fin progressive du parti unique au Congo ?",
+    
+        reponses: [
+            "La Conférence nationale souveraine",
+            "La Conférence de Berlin",
+            "Les Trois Glorieuses",
+            "Le traité Brazza-Makoko"
+        ],
+    
+        bonne: 0,
+    
+        explication: "La Conférence nationale souveraine de 1991 ouvre la voie au multipartisme et à une nouvelle organisation politique."
+    },
+    
+    {
+        question: "Quel président remporte la première élection présidentielle pluraliste du Congo en 1992 ?",
+    
+        reponses: [
+            "Denis Sassou-Nguesso",
+            "Pascal Lissouba",
+            "Bernard Kolélas",
+            "Joachim Yhombi-Opango"
+        ],
+    
+        bonne: 1,
+    
+        explication: "Pascal Lissouba remporte l'élection présidentielle de 1992 et devient président de la République."
+    },
+    
+    {
+        question: "En quelle année éclate la guerre civile congolaise qui oppose notamment les camps de Pascal Lissouba et Denis Sassou-Nguesso ?",
+    
+        reponses: [
+            "1990",
+            "1993",
+            "1997",
+            "2005"
+        ],
+    
+        bonne: 2,
+    
+        explication: "La guerre civile congolaise éclate en 1997 dans un contexte de fortes tensions politiques."
+    },
+    
+    {
+        question: "Quelle ressource naturelle occupe une place majeure dans l'économie de la République du Congo ?",
+    
+        reponses: [
+            "Le pétrole",
+            "Le diamant principalement",
+            "Le charbon",
+            "L'uranium uniquement"
+        ],
+    
+        bonne: 0,
+    
+        explication: "Le pétrole représente une ressource économique majeure pour la République du Congo."
+    },
+    
+    {
+        question: "Quel fleuve porte le nom du pays et constitue un axe historique majeur de la région ?",
+    
+        reponses: [
+            "Le fleuve Congo",
+            "Le fleuve Niger",
+            "Le fleuve Sénégal",
+            "Le fleuve Nil"
+        ],
+    
+        bonne: 0,
+    
+        explication: "Le fleuve Congo est un élément géographique et historique central de l'Afrique centrale et des deux Congo."
     }
+    
 
     ];

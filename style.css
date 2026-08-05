@@ -1409,3 +1409,14 @@ body{
     z-index:999998;
 
 }
+.boutonRetour{
+
+    width:320px;
+
+    max-width:90%;
+
+    margin:30px auto;
+
+    display:block;
+
+}

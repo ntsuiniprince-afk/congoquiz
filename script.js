@@ -1183,13 +1183,19 @@ window.addEventListener("load", function () {
     if(params.get("accueil") === "1"){
 
         intro.style.display = "none";
-
+    
         if(creationProfil){
             creationProfil.style.display = "none";
         }
-
+    
+        const accueil = document.getElementById("accueilSite");
+    
+        if(accueil){
+            accueil.style.display = "block";
+        }
+    
         return;
-
+    
     }
 
     setTimeout(function(){
