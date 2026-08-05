@@ -1197,22 +1197,19 @@ window.addEventListener("load", function () {
         intro.classList.add("intro-fin");
 
         setTimeout(function(){
-
             intro.style.display = "none";
 
-            if(creationProfil){
-
+            setTimeout(function(){
+            
                 const joueur = chargerJoueur();
-
+            
                 if(!joueur.pseudo || joueur.pseudo.trim() === ""){
-
-                    creationProfil.style.display = "flex";
-
+            
+                    document.getElementById("creationProfil").style.display="flex";
+            
                 }
-
-            }
-
-        },800);
+            
+            },300);
 
     },5000);
 
