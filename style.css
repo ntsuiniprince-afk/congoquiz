@@ -1822,3 +1822,25 @@ VERSION MOBILE CONGOQUIZ
     }
 
 }
+@media (max-width:768px){
+
+    body{
+        padding-top:120px;      /* Avant 90px : descend toute la carte */
+        padding-bottom:40px;    /* Laisse un peu d'espace en bas */
+        align-items:flex-start; /* La carte commence en haut sans être collée */
+    }
+
+    .accueil{
+        margin-top:30px;
+        margin-bottom:80px;
+    }
+
+    .footer{
+        position:relative;      /* Au lieu de fixed sur téléphone */
+        right:auto;
+        bottom:auto;
+        text-align:center;
+        margin:25px 0;
+    }
+
+}
