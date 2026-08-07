@@ -105,7 +105,12 @@ body{
 .accueil{
 
     width:560px;
-    max-width:92%;
+
+    max-width:95vw;
+
+    margin:90px auto 30px;
+
+    padding:45px 40px;
 
     background:rgba(255,255,255,.98);
 
@@ -1784,6 +1789,35 @@ VERSION MOBILE CONGOQUIZ
         word-break:normal;
         overflow-wrap:break-word;
         white-space:normal;
+
+    }
+
+}
+/* =====================================
+   RESPONSIVE - ÉTAPE 1
+===================================== */
+
+@media (max-width:768px){
+
+    body{
+
+        padding-top:70px;
+
+        display:block;
+
+    }
+
+    .accueil{
+
+        width:calc(100% - 20px);
+
+        max-width:none;
+
+        margin:15px auto;
+
+        padding:25px 18px;
+
+        border-radius:22px;
 
     }
 
