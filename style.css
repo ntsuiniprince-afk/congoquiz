@@ -348,6 +348,7 @@ h1{
     opacity:0.9;
 
 }
+
 /* ===========================
    ANIMATION D'ACCUEIL
 =========================== */
@@ -355,156 +356,231 @@ h1{
 @keyframes apparitionAccueil{
 
     from{
-
         opacity:0;
-
         transform:translateY(25px);
-
     }
 
     to{
-
         opacity:1;
-
         transform:translateY(0);
-
     }
 
 }
 
 .accueil{
-    animation: apparitionAccueil .8s ease;
+
+    animation:apparitionAccueil .8s ease;
     margin:40px auto;
+
 }
-.apropos p{
-    text-align:justify;
-    line-height:1.9;
-    font-size:18px;
-    color:#444;
-    margin-bottom:22px;
+
+/* ===========================
+   PAGE À PROPOS
+=========================== */
+
+.apropos{
+
+    width:750px;
+    max-width:90%;
+
+    background:white;
+
+    padding:55px;
+
+    border-radius:20px;
+
+    box-shadow:0 20px 50px rgba(0,0,0,.2);
+
+    margin:120px auto 50px;
+
 }
+
 .apropos h1{
+
     text-align:left;
+
     color:#009543;
+
     font-size:40px;
+
     margin-bottom:30px;
-    border-bottom:3px solid #009543;
+
     padding-bottom:12px;
+
+    border-bottom:3px solid #009543;
+
 }
 
 .apropos h2{
+
     color:#009543;
+
     font-size:28px;
+
     margin-top:40px;
+
     margin-bottom:18px;
+
     padding-left:12px;
+
     border-left:6px solid #009543;
+
 }
-.apropos{
-    width:750px;
-    max-width:90%;
-    background:white;
-    padding:55px;
-    border-radius:20px;
-    box-shadow:0 20px 50px rgba(0,0,0,.2);
-    margin:120px auto 50px;
+
+.apropos p{
+
+    text-align:justify;
+
+    line-height:1.9;
+
+    font-size:18px;
+
+    color:#444;
+
+    margin-bottom:22px;
+
 }
+
 .themes{
+
     list-style:none;
+
     padding:0;
+
 }
 
 .themes li{
+
     background:#fafafa;
+
     padding:15px 20px;
+
     margin:12px 0;
+
     border-left:6px solid #009543;
+
     border-radius:10px;
+
     font-size:17px;
+
 }
+
 .citation{
+
     margin:35px 0;
+
     text-align:center;
+
     font-style:italic;
+
     color:#555;
+
     font-size:20px;
+
 }
-/* ==========================
-   MENU RESPONSIVE MOBILE
-========================== */
+
+/* ===========================
+   VERSION MOBILE
+=========================== */
 
 @media (max-width:768px){
-    
-                                    
 
     .navbar{
-        padding:0 12px;
+
         height:60px;
+
+        padding:0 12px;
+
     }
 
     .logo{
-        font-size:11px;
+
+        font-size:20px;
+
         white-space:nowrap;
+
     }
-    
+
     .logo strong{
-        font-size:12px;
+
+        font-size:20px;
+
     }
 
     .menu{
-        gap:12px;
+
+        gap:10px;
+
     }
-    
+
     .menu a{
+
         font-size:14px;
-        padding:4px 2px;
+
+        padding:6px 8px;
+
         white-space:nowrap;
+
     }
-    /* ===== À propos sur téléphone ===== */
 
-.apropos{
+    /* ===== À propos ===== */
 
-    width:95%;
-    padding:30px 20px;
-    margin:90px auto 30px;
+    .apropos{
 
-}
+        width:95%;
 
-.apropos h1{
+        margin:90px auto 25px;
 
-    font-size:28px;
+        padding:28px 20px;
 
-}
+        border-radius:18px;
 
-.apropos h2{
+    }
 
-    font-size:22px;
+    .apropos h1{
 
-}
+        font-size:30px;
 
-.apropos p{
+        margin-bottom:22px;
 
-    text-align:left;
-    font-size:17px;
-    line-height:1.7;
+    }
 
-}
+    .apropos h2{
 
-.citation{
+        font-size:22px;
 
-    font-size:18px;
+        margin-top:28px;
 
-}
+    }
 
-.themes li{
+    .apropos p{
 
-    font-size:16px;
-    padding:14px 16px;
+        text-align:left;
 
-}
-                           
+        font-size:17px;
 
-}
+        line-height:1.7;
+
+    }
+
+    .themes li{
+
+        padding:14px 16px;
+
+        font-size:16px;
+
+    }
+
+    .citation{
+
+        font-size:18px;
+
+        line-height:1.6;
+
+    }
+
+}              
+
 /* ======================================
    CINÉMATIQUE D'INTRODUCTION
 ====================================== */
