@@ -1645,3 +1645,25 @@ VERSION MOBILE CONGOQUIZ
     }
 
 }
+@media (max-width: 768px){
+
+    .apropos-card{
+
+        width:95%;
+        padding:25px 20px;
+
+    }
+
+    .apropos-card p{
+
+        text-align:left;
+        line-height:1.7;
+        font-size:17px;
+
+        word-break:normal;
+        overflow-wrap:break-word;
+        white-space:normal;
+
+    }
+
+}
