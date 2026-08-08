@@ -41,773 +41,1188 @@ const questions = [
     reponses: ["Ouesso", "Pointe-Noire", "Owando"],
     bonne: 1,
     explication: "Pointe-Noire est le principal port maritime du pays."
-},
-
-{
-    question: "En quelle année la République du Congo a-t-elle obtenu son indépendance ?",
-    reponses: ["1960", "1958", "1965"],
-    bonne: 0,
-    explication: "La République du Congo est devenue indépendante le 15 août 1960."
-},
-
-{
-    question: "Quelles sont les deux langues nationales les plus parlées au Congo ?",
-    reponses: ["Lingala et Kituba", "Français et Anglais", "Kikongo et Swahili"],
-    bonne: 0,
-    explication: "Le lingala et le kituba sont les deux principales langues nationales."
-},
-
-{
-    question: "Quelle est la fête nationale de la République du Congo ?",
-    reponses: ["15 août", "30 juin", "1er janvier"],
-    bonne: 0,
-    explication: "Le 15 août célèbre l'indépendance du pays."
-},
-
-{
-    question: "Quelle ville est surnommée la capitale économique du Congo ?",
-    reponses: ["Brazzaville", "Pointe-Noire", "Dolisie"],
-    bonne: 1,
-    explication: "Pointe-Noire est la capitale économique grâce à son port et à son activité pétrolière."
-},
-
-{
-    question: "Quel département abrite la ville de Brazzaville ?",
-    reponses: ["Pool", "Brazzaville", "Kouilou"],
-    bonne: 1,
-    explication: "Brazzaville est à la fois une ville et un département."
-},
-
-{
-    question: "Quel est le plus long fleuve de la République du Congo ?",
-    reponses: ["Le fleuve Congo", "Le Kouilou", "L'Alima"],
-    bonne: 0,
-    explication: "Le fleuve Congo est le plus grand fleuve du pays."
-},
-
-{
-    question: "Quelle est la devise officielle de la République du Congo ?",
-    reponses: ["Unité - Travail - Progrès", "Paix - Travail - Patrie", "Liberté - Égalité - Fraternité"],
-    bonne: 0,
-    explication: "La devise officielle est : « Unité - Travail - Progrès »."
-},
-
-{
-    question: "Quelle est la couleur située au milieu du drapeau congolais ?",
-    reponses: ["Rouge", "Jaune", "Vert"],
-    bonne: 1,
-    explication: "Le drapeau est composé d'une bande jaune en diagonale entre le vert et le rouge."
-},
-
-{
-    question: "Quel est le plus haut sommet de la République du Congo ?",
-    reponses: ["Mont Nabemba", "Mont Chaillu", "Mont Cameroun"],
-    bonne: 0,
-    explication: "Le mont Nabemba est le point culminant du pays."
-},
-
-{
-    question: "Dans quelle ville se trouve le principal port pétrolier du Congo ?",
-    reponses: ["Pointe-Noire", "Ouesso", "Nkayi"],
-    bonne: 0,
-    explication: "Pointe-Noire est le principal port maritime et pétrolier du pays."
-},
-
-{
-    question: "Quel océan borde la République du Congo ?",
-    reponses: ["Océan Indien", "Océan Atlantique", "Océan Pacifique"],
-    bonne: 1,
-    explication: "Le pays possède une façade sur l'océan Atlantique."
-},
-
-{
-    question: "Quelle est la capitale du département de la Cuvette ?",
-    reponses: ["Owando", "Ouesso", "Oyo"],
-    bonne: 0,
-    explication: "Owando est le chef-lieu du département de la Cuvette."
-},
-
-{
-    question: "Combien de pays frontaliers la République du Congo possède-t-elle ?",
-    reponses: ["4", "5", "6"],
-    bonne: 1,
-    explication: "Le Congo est frontalier du Cameroun, de la République centrafricaine, de la RDC, de l'Angola (Cabinda) et du Gabon."
-},
-
-{
-    question: "Quelle est la principale langue officielle de l'administration congolaise ?",
-    reponses: ["Français", "Lingala", "Kituba"],
-    bonne: 0,
-    explication: "Le français est la langue officielle utilisée dans l'administration et l'enseignement."
-},
-{
-    question: "Quel département a pour chef-lieu Djambala ?",
-    reponses: ["Plateaux", "Cuvette", "Pool"],
-    bonne: 0,
-    explication: "Djambala est le chef-lieu du département des Plateaux."
-},
-
-{
-    question: "Quel département a pour chef-lieu Sibiti ?",
-    reponses: ["Niari", "Lékoumou", "Bouenza"],
-    bonne: 1,
-    explication: "Sibiti est le chef-lieu du département de la Lékoumou."
-},
-
-{
-    question: "Quel département a pour chef-lieu Impfondo ?",
-    reponses: ["Likouala", "Sangha", "Cuvette-Ouest"],
-    bonne: 0,
-    explication: "Impfondo est le chef-lieu du département de la Likouala."
-},
-
-{
-    question: "Quel département a pour chef-lieu Mossendjo ?",
-    reponses: ["Niari", "Kouilou", "Cuvette-Ouest"],
-    bonne: 2,
-    explication: "Mossendjo est le chef-lieu de la Cuvette-Ouest."
-},
-
-{
-    question: "Quel département a pour chef-lieu Ouesso ?",
-    reponses: ["Sangha", "Likouala", "Pool"],
-    bonne: 0,
-    explication: "Ouesso est le chef-lieu du département de la Sangha."
-},
-
-{
-    question: "Quel département a pour chef-lieu Loango ?",
-    reponses: ["Kouilou", "Niari", "Bouenza"],
-    bonne: 0,
-    explication: "Loango est le chef-lieu du département du Kouilou."
-},
-
-{
-    question: "Quelle est la couleur située en haut du drapeau de la République du Congo ?",
-    reponses: ["Rouge", "Vert", "Jaune"],
-    bonne: 1,
-    explication: "Le vert occupe la partie supérieure gauche du drapeau."
-},
-
-{
-    question: "Quel est le nom de l'hymne national de la République du Congo ?",
-    reponses: ["La Congolaise", "Debout Congolais", "En ce jour"],
-    bonne: 0,
-    explication: "L'hymne national de la République du Congo est « La Congolaise »."
-},
-
-{
-    question: "Quel est le plus grand affluent du fleuve Congo situé en République du Congo ?",
-    reponses: ["La Sangha", "Le Niari", "La Loufoulakari"],
-    bonne: 0,
-    explication: "La Sangha est l'un des plus importants affluents du fleuve Congo."
-},
-
-{
-    question: "Dans quelle communauté économique régionale la République du Congo est-elle membre ?",
-    reponses: ["CEMAC", "CEDEAO", "SADC"],
-    bonne: 0,
-    explication: "La République du Congo fait partie de la Communauté économique et monétaire de l'Afrique centrale (CEMAC)."
-},
-
-{
-    question: "Quel était le nom de l'ancien parti unique de la République du Congo à partir de 1969 ?",
-    reponses: ["PCT", "UPADS", "MCDDI"],
-    bonne: 0,
-    explication: "Le Parti Congolais du Travail (PCT) a été créé en 1969."
-},
-
-{
-    question: "Quelle ville a accueilli la conférence de Brazzaville en 1944 ?",
-    reponses: ["Brazzaville", "Pointe-Noire", "Dolisie"],
-    bonne: 0,
-    explication: "La conférence de Brazzaville s'est tenue à Brazzaville en 1944."
-},
-
-{
-    question: "Quel est le nom du premier président de la République du Congo après l'indépendance ?",
-    reponses: ["Fulbert Youlou", "Pascal Lissouba", "Alphonse Massamba-Débat"],
-    bonne: 0,
-    explication: "Fulbert Youlou a été le premier président du Congo indépendant."
-},
-
-{
-    question: "Quel président congolais a dirigé le pays de 1992 à 1997 ?",
-    reponses: ["Pascal Lissouba", "Marien Ngouabi", "Denis Sassou-Nguesso"],
-    bonne: 0,
-    explication: "Pascal Lissouba a été président de la République du Congo de 1992 à 1997."
-},
-
-{
-    question: "Quel est le nom du parlement qui représente le peuple congolais ?",
-    reponses: ["Assemblée nationale", "Cour constitutionnelle", "Conseil économique"],
-    bonne: 0,
-    explication: "L'Assemblée nationale est la chambre qui représente les citoyens au Parlement."
-},
-
-{
-    question: "Comment appelle-t-on les membres élus de l'Assemblée nationale ?",
-    reponses: ["Députés", "Sénateurs", "Ministres"],
-    bonne: 0,
-    explication: "Les membres de l'Assemblée nationale sont appelés députés."
-},
-
-{
-    question: "Quelle institution contrôle la conformité des lois à la Constitution au Congo ?",
-    reponses: ["Cour constitutionnelle", "Banque centrale", "Mairie"],
-    bonne: 0,
-    explication: "La Cour constitutionnelle veille au respect de la Constitution."
-},
-
-{
-    question: "Quel est le nom de l'hymne national de la République du Congo ?",
-    reponses: ["La Congolaise", "Le Chant du départ", "Debout Congolais"],
-    bonne: 0,
-    explication: "L'hymne national du Congo s'appelle La Congolaise."
-},
-
-{
-    question: "Quelle est la capitale politique de la République du Congo ?",
-    reponses: ["Brazzaville", "Pointe-Noire", "Ouesso"],
-    bonne: 0,
-    explication: "Brazzaville est la capitale politique et administrative du pays."
-},
-
-{
-    question: "Quel président congolais est associé à la période de la révolution de 1963 ?",
-    reponses: ["Alphonse Massamba-Débat", "Fulbert Youlou", "Pascal Lissouba"],
-    bonne: 0,
-    explication: "Alphonse Massamba-Débat a dirigé le Congo après les événements de 1963."
-},
-
-{
-    question: "Quel événement historique a marqué le Congo en 1997 ?",
-    reponses: ["Une guerre civile", "Une indépendance", "Une nouvelle monnaie"],
-    bonne: 0,
-    explication: "Une guerre civile a marqué le Congo en 1997."
-},
-
-{
-    question: "Quel est le nom du chef du gouvernement congolais ?",
-    reponses: ["Premier ministre", "Président du Sénat", "Maire"],
-    bonne: 0,
-    explication: "Le Premier ministre est le chef du gouvernement."
-},
-
-{
-    question: "Quel est le siège du gouvernement de la République du Congo ?",
-    reponses: ["Brazzaville", "Pointe-Noire", "Oyo"],
-    bonne: 0,
-    explication: "Le gouvernement siège dans la capitale, Brazzaville."
-},
-
-{
-    question: "Quel président dirige la République du Congo depuis 1997 avec une interruption entre 1992 et 1997 ?",
-    reponses: ["Denis Sassou-Nguesso", "Pascal Lissouba", "Fulbert Youlou"],
-    bonne: 0,
-    explication: "Denis Sassou-Nguesso est revenu au pouvoir en 1997 après une période d'interruption. "
-},
-
-{
-    question: "Quel est le nom de la monnaie commune utilisée par plusieurs pays d'Afrique centrale dont le Congo ?",
-    reponses: ["Franc CFA d'Afrique centrale", "Franc congolais", "Naira"],
-    bonne: 0,
-    explication: "Le Congo utilise le franc CFA d'Afrique centrale."
-},
-
-{
-    question: "Quelle organisation regroupe plusieurs pays d'Afrique centrale dont le Congo ?",
-    reponses: ["CEMAC", "CEDEAO", "UMA"],
-    bonne: 0,
-    explication: "La République du Congo est membre de la CEMAC."
-},
-
-{
-    question: "Quel est le nom de la chambre haute du Parlement congolais ?",
-    reponses: ["Sénat", "Assemblée nationale", "Cour suprême"],
-    bonne: 0,
-    explication: "Le Sénat est la chambre haute du Parlement."
-},
-
-{
-    question: "Quel secteur économique est historiquement très important pour le Congo ?",
-    reponses: ["Pétrole", "Café uniquement", "Textile uniquement"],
-    bonne: 0,
-    explication: "Le pétrole occupe une place importante dans l'économie congolaise."
-},
-
-{
-    question: "Quel président congolais a été élu lors de la présidentielle de 2021 selon les résultats définitifs annoncés par la Cour constitutionnelle ?",
-    reponses: ["Denis Sassou-Nguesso", "Pascal Lissouba", "Fulbert Youlou"],
-    bonne: 0,
-    explication: "Denis Sassou-Nguesso a été déclaré élu lors de la présidentielle de 2021."
-},
-{
-    question: "Quel département a pour chef-lieu Dolisie ?",
-    reponses: ["Niari", "Bouenza", "Lékoumou"],
-    bonne: 0,
-    explication: "Dolisie est le chef-lieu du département du Niari."
-},
-
-{
-    question: "Quelle ville est le chef-lieu du département de la Cuvette-Ouest ?",
-    reponses: ["Ewo", "Owando", "Ouesso"],
-    bonne: 0,
-    explication: "Ewo est le chef-lieu de la Cuvette-Ouest."
-},
-
-{
-    question: "Quel est le plus grand département de la République du Congo en superficie ?",
-    reponses: ["Likouala", "Sangha", "Plateaux"],
-    bonne: 0,
-    explication: "La Likouala est le plus vaste département du Congo."
-},
-
-{
-    question: "Quelle ville est située à la frontière entre la République du Congo et la RDC ?",
-    reponses: ["Brazzaville", "Kinkala", "Owando"],
-    bonne: 0,
-    explication: "Brazzaville est située en face de Kinshasa, séparée par le fleuve Congo."
-},
-
-{
-    question: "Quel fleuve traverse la ville de Brazzaville ?",
-    reponses: ["Le Congo", "La Sangha", "L'Alima"],
-    bonne: 0,
-    explication: "Brazzaville est située sur la rive droite du fleuve Congo."
-},
-
-{
-    question: "Quel département a pour chef-lieu Madingou ?",
-    reponses: ["Bouenza", "Pool", "Niari"],
-    bonne: 0,
-    explication: "Madingou est le chef-lieu de la Bouenza."
-},
-
-{
-    question: "Quelle ville est le chef-lieu du département des Plateaux ?",
-    reponses: ["Djambala", "Gamboma", "Ngo"],
-    bonne: 0,
-    explication: "Djambala est le chef-lieu du département des Plateaux."
-},
-
-{
-    question: "Quelle couleur n'apparaît pas sur le drapeau de la République du Congo ?",
-    reponses: ["Bleu", "Vert", "Jaune"],
-    bonne: 0,
-    explication: "Le drapeau congolais est composé du vert, du jaune et du rouge."
-},
-
-{
-    question: "Quel département a pour chef-lieu Sibiti ?",
-    reponses: ["Lékoumou", "Bouenza", "Pool"],
-    bonne: 0,
-    explication: "Sibiti est le chef-lieu de la Lékoumou."
-},
-
-{
-    question: "Quel est le chef-lieu du département de la Likouala ?",
-    reponses: ["Impfondo", "Ouesso", "Owando"],
-    bonne: 0,
-    explication: "Impfondo est le chef-lieu du département de la Likouala."
-},
-{
-    question: "Quel est le chef-lieu du département du Pool ?",
-    reponses: ["Kinkala", "Kindamba", "Mindouli"],
-    bonne: 0,
-    explication: "Kinkala est le chef-lieu du département du Pool."
-},
-
-{
-    question: "Quel président a proclamé l'indépendance de la République du Congo en 1960 ?",
-    reponses: ["Alphonse Massamba-Débat", "Fulbert Youlou", "Marien Ngouabi"],
-    bonne: 1,
-    explication: "Fulbert Youlou était le premier président de la République du Congo."
-},
-
-{
-    question: "Quel est le plus haut sommet du Congo ?",
-    reponses: ["Mont Fouari", "Mont Mavoumbou", "Mont Nabemba"],
-    bonne: 2,
-    explication: "Le mont Nabemba est le point culminant de la République du Congo."
-},
-
-{
-    question: "Dans quel département se trouve la ville de Boundji ?",
-    reponses: ["Cuvette", "Likouala", "Plateaux"],
-    bonne: 0,
-    explication: "Boundji est une commune du département de la Cuvette."
-},
-
-{
-    question: "Quelle est la devise officielle de la République du Congo ?",
-    reponses: ["Unité – Travail – Progres", "Travail – Progrès – Humanité", "Paix – Travail – Patrie"],
-    bonne: 1,
-    explication: "La devise officielle est « Unité – Travail – Progres »."
-},
-
-{
-    question: "Quel département a pour chef-lieu Sibiti ?",
-    reponses: ["Bouenza", "Niari", "Lékoumou"],
-    bonne: 2,
-    explication: "Sibiti est le chef-lieu du département de la Lékoumou."
-},
-
-{
-    question: "Quel est le principal aéroport international de Brazzaville ?",
-    reponses: ["Maya-Maya", "Agostinho-Neto", "Ollombo"],
-    bonne: 0,
-    explication: "L'aéroport international Maya-Maya est situé à Brazzaville."
-},
-
-{
-    question: "Quel fleuve est un affluent du fleuve Congo ?",
-    reponses: ["Kouilou", "Sangha", "Niari"],
-    bonne: 1,
-    explication: "La Sangha est l'un des principaux affluents du fleuve Congo."
-},
-
-{
-    question: "Dans quel département se trouve la ville de Zanaga ?",
-    reponses: ["Bouenza", "Lékoumou", "Niari"],
-    bonne: 1,
-    explication: "Zanaga est située dans le département de la Lékoumou."
-},
-
-{
-    question: "Quelle équipe a remporté le plus de championnats nationaux au Congo ?",
-    reponses: ["Diables Noirs", "Étoile du Congo", "CARA Brazzaville"],
-    bonne: 2,
-    explication: "Le CARA Brazzaville fait partie des clubs les plus titrés du pays."
-},
-
-{
-    question: "Quel département possède le parc national de Nouabalé-Ndoki ?",
-    reponses: ["Sangha", "Likouala", "Cuvette"],
-    bonne: 0,
-    explication: "Le parc national de Nouabalé-Ndoki est situé dans la Sangha."
-},
-
-{
-    question: "Quelle ville est la capitale du département du Niari ?",
-    reponses: ["Loudima", "Dolisie", "Mossendjo"],
-    bonne: 1,
-    explication: "Dolisie est le chef-lieu du département du Niari."
-},
-
-{
-    question: "Quel écrivain congolais est l'auteur de « Verre Cassé » ?",
-    reponses: ["Emmanuel Dongala", "Henri Lopes", "Alain Mabanckou"],
-    bonne: 2,
-    explication: "Alain Mabanckou est l'auteur du roman « Verre Cassé »."
-},
-
-{
-    question: "Quel département est le moins peuplé du Congo ?",
-    reponses: ["Cuvette-Ouest", "Likouala", "Lékoumou"],
-    bonne: 0,
-    explication: "La Cuvette-Ouest est l'un des départements les moins peuplés du pays."
-},
-
-{
-    question: "Quelle ville est connue pour ses gorges de Diosso ?",
-    reponses: ["Loango", "Diosso", "Pointe-Noire"],
-    bonne: 1,
-    explication: "Les gorges de Diosso sont situées près de la ville de Diosso."
-},
-
-{
-    question: "Quelle couleur traverse le drapeau congolais en diagonale ?",
-    reponses: ["Rouge", "Vert", "Jaune"],
-    bonne: 2,
-    explication: "La bande jaune traverse le drapeau en diagonale."
-},
-
-{
-    question: "Dans quel département se trouve la ville de Kindamba ?",
-    reponses: ["Pool", "Bouenza", "Plateaux"],
-    bonne: 0,
-    explication: "Kindamba est située dans le département du Pool."
-},
-
-{
-    question: "Quelle langue est la plus utilisée dans le nord du Congo ?",
-    reponses: ["Kituba", "Lingala", "Lari"],
-    bonne: 1,
-    explication: "Le lingala est très utilisé dans le nord du pays."
-},
-
-{
-    question: "Quel département a pour chef-lieu Djambala ?",
-    reponses: ["Cuvette", "Plateaux", "Pool"],
-    bonne: 1,
-    explication: "Djambala est le chef-lieu des Plateaux."
-},
-
-{
-    question: "Quel parc national est réputé pour ses gorilles de plaine ?",
-    reponses: ["Conkouati-Douli", "Odzala-Kokoua", "Lefini"],
-    bonne: 1,
-    explication: "Le parc national d'Odzala-Kokoua est mondialement connu pour ses gorilles de plaine."
-},
-{
-    question: "Quel département a pour chef-lieu Loango ?",
-    reponses: ["Pointe-Noire", "Loango", "Mvouti"],
-    bonne: 1,
-    explication: "Loango est le chef-lieu du département du Kouilou."
-},
-
-{
-    question: "Quel président est à l'origine de la devise « Travail, Progrès, Humanité » ?",
-    reponses: ["Fulbert Youlou", "Marien Ngouabi", "Aucun président"],
-    bonne: 2,
-    explication: "La devise est inscrite dans la Constitution et n'est pas attribuée à un président en particulier."
-},
-
-{
-    question: "Quelle ville est située en face de Kinshasa ?",
-    reponses: ["Brazzaville", "Pointe-Noire", "Owando"],
-    bonne: 0,
-    explication: "Brazzaville fait face à Kinshasa, de l'autre côté du fleuve Congo."
-},
-
-{
-    question: "Quel département possède la ville de Kimongo ?",
-    reponses: ["Niari", "Lékoumou", "Kouilou"],
-    bonne: 0,
-    explication: "Kimongo est une commune du département du Niari."
-},
-
-{
-    question: "Quel est le principal port maritime du Congo ?",
-    reponses: ["Loango", "Pointe-Noire", "Brazzaville"],
-    bonne: 1,
-    explication: "Le port autonome de Pointe-Noire est le principal port maritime du pays."
-},
-
-{
-    question: "Quel département a pour chef-lieu Madingou ?",
-    reponses: ["Pool", "Bouenza", "Niari"],
-    bonne: 1,
-    explication: "Madingou est le chef-lieu de la Bouenza."
-},
-
-{
-    question: "Quel est le plus long affluent congolais du fleuve Congo ?",
-    reponses: ["La Sangha", "La Léfini", "La Bouenza"],
-    bonne: 0,
-    explication: "La Sangha est l'un des plus importants affluents du fleuve Congo."
-},
-
-{
-    question: "Quel écrivain congolais a écrit « Mémoires de porc-épic » ?",
-    reponses: ["Henri Lopes", "Alain Mabanckou", "Emmanuel Dongala"],
-    bonne: 1,
-    explication: "« Mémoires de porc-épic » est un roman d'Alain Mabanckou."
-},
-
-{
-    question: "Dans quel département se trouve la ville d'Etoumbi ?",
-    reponses: ["Cuvette-Ouest", "Sangha", "Likouala"],
-    bonne: 0,
-    explication: "Etoumbi est une commune de la Cuvette-Ouest."
-},
-
-{
-    question: "Quel département est le plus au nord du Congo ?",
-    reponses: ["Sangha", "Likouala", "Cuvette"],
-    bonne: 1,
-    explication: "La Likouala est le département le plus septentrional du pays."
-},
-
-{
-    question: "Quel est le siège du Parlement congolais ?",
-    reponses: ["Brazzaville", "Pointe-Noire", "Dolisie"],
-    bonne: 0,
-    explication: "Le Parlement de la République du Congo siège à Brazzaville."
-},
-
-{
-    question: "Quel département possède la ville de Lékana ?",
-    reponses: ["Plateaux", "Pool", "Cuvette"],
-    bonne: 0,
-    explication: "Lékana est située dans le département des Plateaux."
-},
-
-{
-    question: "Quel parc national est situé près de l'océan Atlantique ?",
-    reponses: ["Odzala-Kokoua", "Conkouati-Douli", "Nouabalé-Ndoki"],
-    bonne: 1,
-    explication: "Le parc national de Conkouati-Douli borde l'océan Atlantique."
-},
-
-{
-    question: "Quelle ville est connue pour le musée de Diosso ?",
-    reponses: ["Diosso", "Loango", "Pointe-Noire"],
-    bonne: 0,
-    explication: "Le musée de Diosso est installé dans l'ancien palais royal de Diosso."
-},
-
-{
-    question: "Quel département possède la ville de Mbinda ?",
-    reponses: ["Bouenza", "Niari", "Lékoumou"],
-    bonne: 1,
-    explication: "Mbinda est située dans le département du Niari."
-},
-
-{
-    question: "Quelle est la langue officielle de la République du Congo ?",
-    reponses: ["Kituba", "Lingala", "Français"],
-    bonne: 2,
-    explication: "Le français est la langue officielle du pays."
-},
-
-{
-    question: "Quel département a pour chef-lieu Djambala ?",
-    reponses: ["Plateaux", "Cuvette", "Pool"],
-    bonne: 0,
-    explication: "Djambala est le chef-lieu des Plateaux."
-},
-
-{
-    question: "Quelle ville est surnommée la capitale économique du Congo ?",
-    reponses: ["Brazzaville", "Pointe-Noire", "Dolisie"],
-    bonne: 1,
-    explication: "Pointe-Noire est la capitale économique du Congo."
-},
-
-{
-    question: "Quel département possède la ville de Ngoko ?",
-    reponses: ["Sangha", "Likouala", "Cuvette"],
-    bonne: 1,
-    explication: "Ngoko est une localité de la Likouala."
-},
-
-{
-    question: "Quel monument est considéré comme l'un des symboles de Brazzaville ?",
-    reponses: ["Le Mausolée Marien Ngouabi", "La Basilique Sainte-Anne", "Le Palais du Parlement"],
-    bonne: 1,
-    explication: "La Basilique Sainte-Anne est l'un des monuments les plus emblématiques de Brazzaville."
-},
-{
-    question: "Quel président est associé à la devise « Travail, Progrès, Humanité » ?",
-    reponses: ["Marien Ngouabi", "Aucun président", "Denis Sassou N'Guesso"],
-    bonne: 1,
-    explication: "Cette devise est celle de la République et n'est pas attribuée à un président en particulier."
-},
-
-{
-    question: "Quel est le nom de l'équipe nationale masculine de football du Congo ?",
-    reponses: ["Les Fauves", "Les Diables Rouges", "Les Panthères"],
-    bonne: 1,
-    explication: "L'équipe nationale est surnommée les Diables Rouges."
-},
-
-{
-    question: "En quelle année les Diables Rouges ont-ils remporté leur seul titre de champion d'Afrique (CAN) ?",
-    reponses: ["1968", "1972", "1974"],
-    bonne: 1,
-    explication: "Le Congo a remporté la Coupe d'Afrique des Nations en 1972."
-},
-
-{
-    question: "Quel ancien footballeur congolais est devenu président de la FIFA ?",
-    reponses: ["François Mpelé", "Jean-Michel Mbono", "Aucun"],
-    bonne: 2,
-    explication: "Aucun ancien footballeur congolais n'a été président de la FIFA."
-},
-
-{
-    question: "Quel club est basé à Brazzaville ?",
-    reponses: ["Diables Noirs", "AS Cheminots", "JS Talangaï"],
-    bonne: 0,
-    explication: "Les Diables Noirs sont un club historique de Brazzaville."
-},
-
-{
-    question: "Quel artiste est connu pour la chanson « Ancien combattant » ?",
-    reponses: ["Zao", "Aurlus Mabélé", "Pamelo Mounk'a"],
-    bonne: 0,
-    explication: "Zao est célèbre pour sa chanson satirique « Ancien combattant »."
-},
-
-{
-    question: "Quel chanteur est surnommé le roi du soukous ?",
-    reponses: ["Pamelo Mounk'a", "Aurlus Mabélé", "Jean Serge Essous"],
-    bonne: 1,
-    explication: "Aurlus Mabélé est considéré comme l'un des grands noms du soukous."
-},
-
-{
-    question: "Quel écrivain congolais a reçu le Grand Prix de littérature Henri-Gal ?",
-    reponses: ["Henri Lopes", "Alain Mabanckou", "Emmanuel Dongala"],
-    bonne: 1,
-    explication: "Alain Mabanckou a reçu plusieurs distinctions littéraires internationales."
-},
-
-{
-    question: "Qui est l'auteur du roman « Le Pleurer-rire » ?",
-    reponses: ["Henri Lopes", "Tchicaya U Tam'si", "Emmanuel Dongala"],
-    bonne: 0,
-    explication: "« Le Pleurer-rire » est un roman d'Henri Lopes."
-},
-
-{
-    question: "Quelle danse traditionnelle est connue dans la région du Pool ?",
-    reponses: ["Kebe-kebe", "Mouyondzi", "Likembe"],
-    bonne: 0,
-    explication: "Le Kebe-kebe est une danse traditionnelle connue dans cette région."
-},
-
-{
-    question: "Quel instrument est très utilisé dans les musiques traditionnelles congolaises ?",
-    reponses: ["Likembe", "Violon", "Cornemuse"],
-    bonne: 0,
-    explication: "Le likembe est un instrument traditionnel à lamelles métalliques."
-},
-
-{
-    question: "Quel plat est préparé avec des feuilles de manioc ?",
-    reponses: ["Saka-saka", "Ntaba", "Mbika"],
-    bonne: 0,
-    explication: "Le saka-saka est un plat à base de feuilles de manioc pilées."
-},
-
-{
-    question: "Quel est le siège du gouvernement de la République du Congo ?",
-    reponses: ["Brazzaville", "Pointe-Noire", "Dolisie"],
-    bonne: 0,
-    explication: "Les principales institutions de l'État siègent à Brazzaville."
-},
-
-{
-    question: "Combien de chambres compose le Parlement congolais ?",
-    reponses: ["Deux", "Une", "Trois"],
-    bonne: 0,
-    explication: "Le Parlement comprend l'Assemblée nationale et le Sénat."
-},
-
-{
-    question: "Quel est le nom de l'hymne national du Congo ?",
-    reponses: ["La Congolaise", "Le Chant de la Patrie", "Terre d'Espérance"],
-    bonne: 0,
-    explication: "« La Congolaise » est l'hymne national de la République du Congo."
-},
-
-{
-    question: "Quel poète congolais est considéré comme l'une des grandes figures de la littérature africaine ?",
-    reponses: ["Tchicaya U Tam'si", "Henri Lopes", "Sony Labou Tansi"],
-    bonne: 0,
-    explication: "Tchicaya U Tam'si est l'un des plus grands poètes congolais."
-},
-
-{
-    question: "Quelle couleur symbolise l'espoir sur le drapeau de la République du Congo ?",
-    reponses: ["Vert", "Rouge", "Jaune"],
-    bonne: 0,
-    explication: "Le vert représente la nature et l'espoir."
-}
-    ];
+    },
+
+    {
+        question: "En quelle année la République du Congo a-t-elle obtenu son indépendance ?",
+        reponses: ["1960", "1958", "1965"],
+        bonne: 0,
+        explication: "La République du Congo est devenue indépendante le 15 août 1960."
+    },
+    
+    {
+        question: "Quelles sont les deux langues nationales les plus parlées au Congo ?",
+        reponses: ["Lingala et Kituba", "Français et Anglais", "Kikongo et Swahili"],
+        bonne: 0,
+        explication: "Le lingala et le kituba sont les deux principales langues nationales."
+    },
+    
+    {
+        question: "Quelle est la fête nationale de la République du Congo ?",
+        reponses: ["15 août", "30 juin", "1er janvier"],
+        bonne: 0,
+        explication: "Le 15 août célèbre l'indépendance du pays."
+    },
+    
+    {
+        question: "Quelle ville est surnommée la capitale économique du Congo ?",
+        reponses: ["Brazzaville", "Pointe-Noire", "Dolisie"],
+        bonne: 1,
+        explication: "Pointe-Noire est la capitale économique grâce à son port et à son activité pétrolière."
+    },
+    
+    {
+        question: "Quel département abrite la ville de Brazzaville ?",
+        reponses: ["Pool", "Brazzaville", "Kouilou"],
+        bonne: 1,
+        explication: "Brazzaville est à la fois une ville et un département."
+    },
+    
+    {
+        question: "Quel est le plus long fleuve de la République du Congo ?",
+        reponses: ["Le fleuve Congo", "Le Kouilou", "L'Alima"],
+        bonne: 0,
+        explication: "Le fleuve Congo est le plus grand fleuve du pays."
+    },
+    
+    {
+        question: "Quelle est la devise officielle de la République du Congo ?",
+        reponses: ["Unité - Travail - Progrès", "Paix - Travail - Patrie", "Liberté - Égalité - Fraternité"],
+        bonne: 0,
+        explication: "La devise officielle est : « Unité - Travail - Progrès »."
+    },
+    
+    {
+        question: "Quelle est la couleur située au milieu du drapeau congolais ?",
+        reponses: ["Rouge", "Jaune", "Vert"],
+        bonne: 1,
+        explication: "Le drapeau est composé d'une bande jaune en diagonale entre le vert et le rouge."
+    },
+    
+    {
+        question: "Quel est le plus haut sommet de la République du Congo ?",
+        reponses: ["Mont Nabemba", "Mont Chaillu", "Mont Cameroun"],
+        bonne: 0,
+        explication: "Le mont Nabemba est le point culminant du pays."
+    },
+    
+    {
+        question: "Dans quelle ville se trouve le principal port pétrolier du Congo ?",
+        reponses: ["Pointe-Noire", "Ouesso", "Nkayi"],
+        bonne: 0,
+        explication: "Pointe-Noire est le principal port maritime et pétrolier du pays."
+    },
+    
+    {
+        question: "Quel océan borde la République du Congo ?",
+        reponses: ["Océan Indien", "Océan Atlantique", "Océan Pacifique"],
+        bonne: 1,
+        explication: "Le pays possède une façade sur l'océan Atlantique."
+    },
+    
+    {
+        question: "Quelle est la capitale du département de la Cuvette ?",
+        reponses: ["Owando", "Ouesso", "Oyo"],
+        bonne: 0,
+        explication: "Owando est le chef-lieu du département de la Cuvette."
+    },
+    
+    {
+        question: "Combien de pays frontaliers la République du Congo possède-t-elle ?",
+        reponses: ["4", "5", "6"],
+        bonne: 1,
+        explication: "Le Congo est frontalier du Cameroun, de la République centrafricaine, de la RDC, de l'Angola (Cabinda) et du Gabon."
+    },
+    
+    {
+        question: "Quelle est la principale langue officielle de l'administration congolaise ?",
+        reponses: ["Français", "Lingala", "Kituba"],
+        bonne: 0,
+        explication: "Le français est la langue officielle utilisée dans l'administration et l'enseignement."
+    },
+    {
+        question: "Quel département a pour chef-lieu Djambala ?",
+        reponses: ["Plateaux", "Cuvette", "Pool"],
+        bonne: 0,
+        explication: "Djambala est le chef-lieu du département des Plateaux."
+    },
+    
+    {
+        question: "Quel département a pour chef-lieu Sibiti ?",
+        reponses: ["Niari", "Lékoumou", "Bouenza"],
+        bonne: 1,
+        explication: "Sibiti est le chef-lieu du département de la Lékoumou."
+    },
+    
+    {
+        question: "Quel département a pour chef-lieu Impfondo ?",
+        reponses: ["Likouala", "Sangha", "Cuvette-Ouest"],
+        bonne: 0,
+        explication: "Impfondo est le chef-lieu du département de la Likouala."
+    },
+    
+    {
+        question: "Quel département a pour chef-lieu EWO ?",
+        reponses: ["Niari", "Kouilou", "Cuvette-Ouest"],
+        bonne: 2,
+        explication: "Ewo est le chef-lieu de la Cuvette-Ouest."
+    },
+    
+    {
+        question: "Quel département a pour chef-lieu Ouesso ?",
+        reponses: ["Sangha", "Likouala", "Pool"],
+        bonne: 0,
+        explication: "Ouesso est le chef-lieu du département de la Sangha."
+    },
+    
+    {
+        question: "Quel département a pour chef-lieu Loango ?",
+        reponses: ["Kouilou", "Niari", "Bouenza"],
+        bonne: 0,
+        explication: "Loango est le chef-lieu du département du Kouilou."
+    },
+    
+    {
+        question: "Quelle est la couleur située en haut du drapeau de la République du Congo ?",
+        reponses: ["Rouge", "Vert", "Jaune"],
+        bonne: 1,
+        explication: "Le vert occupe la partie supérieure gauche du drapeau."
+    },
+    
+    {
+        question: "Quel est le nom de l'hymne national de la République du Congo ?",
+        reponses: ["La Congolaise", "Debout Congolais", "En ce jour"],
+        bonne: 0,
+        explication: "L'hymne national de la République du Congo est « La Congolaise »."
+    },
+    
+    {
+        question: "Quel est le plus grand affluent du fleuve Congo situé en République du Congo ?",
+        reponses: ["La Sangha", "Le Niari", "La Loufoulakari"],
+        bonne: 0,
+        explication: "La Sangha est l'un des plus importants affluents du fleuve Congo."
+    },
+    
+    {
+        question: "Dans quelle communauté économique régionale la République du Congo est-elle membre ?",
+        reponses: ["CEMAC", "CEDEAO", "SADC"],
+        bonne: 0,
+        explication: "La République du Congo fait partie de la Communauté économique et monétaire de l'Afrique centrale (CEMAC)."
+    },
+    
+    {
+        question: "Quel était le nom de l'ancien parti unique de la République du Congo à partir de 1969 ?",
+        reponses: ["PCT", "UPADS", "MCDDI"],
+        bonne: 0,
+        explication: "Le Parti Congolais du Travail (PCT) a été créé en 1969."
+    },
+    
+    {
+        question: "Quelle ville a accueilli la conférence de Brazzaville en 1944 ?",
+        reponses: ["Brazzaville", "Pointe-Noire", "Dolisie"],
+        bonne: 0,
+        explication: "La conférence de Brazzaville s'est tenue à Brazzaville en 1944."
+    },
+    
+    {
+        question: "Quel est le nom du premier président de la République du Congo après l'indépendance ?",
+        reponses: ["Fulbert Youlou", "Pascal Lissouba", "Alphonse Massamba-Débat"],
+        bonne: 0,
+        explication: "Fulbert Youlou a été le premier président du Congo indépendant."
+    },
+    
+    {
+        question: "Quel président congolais a dirigé le pays de 1992 à 1997 ?",
+        reponses: ["Pascal Lissouba", "Marien Ngouabi", "Denis Sassou-Nguesso"],
+        bonne: 0,
+        explication: "Pascal Lissouba a été président de la République du Congo de 1992 à 1997."
+    },
+    
+    {
+        question: "Quel est le nom du parlement qui représente le peuple congolais ?",
+        reponses: ["Assemblée nationale", "Cour constitutionnelle", "Conseil économique"],
+        bonne: 0,
+        explication: "L'Assemblée nationale est la chambre qui représente les citoyens au Parlement."
+    },
+    
+    {
+        question: "Comment appelle-t-on les membres élus de l'Assemblée nationale ?",
+        reponses: ["Députés", "Sénateurs", "Ministres"],
+        bonne: 0,
+        explication: "Les membres de l'Assemblée nationale sont appelés députés."
+    },
+    
+    {
+        question: "Quelle institution contrôle la conformité des lois à la Constitution au Congo ?",
+        reponses: ["Cour constitutionnelle", "Banque centrale", "Mairie"],
+        bonne: 0,
+        explication: "La Cour constitutionnelle veille au respect de la Constitution."
+    },
+    
+    {
+        question: "Quel est le nom de l'hymne national de la République du Congo ?",
+        reponses: ["La Congolaise", "Le Chant du départ", "Debout Congolais"],
+        bonne: 0,
+        explication: "L'hymne national du Congo s'appelle La Congolaise."
+    },
+    
+    {
+        question: "Quelle est la capitale politique de la République du Congo ?",
+        reponses: ["Brazzaville", "Pointe-Noire", "Ouesso"],
+        bonne: 0,
+        explication: "Brazzaville est la capitale politique et administrative du pays."
+    },
+    
+    {
+        question: "Quel président congolais est associé à la période de la révolution de 1963 ?",
+        reponses: ["Alphonse Massamba-Débat", "Fulbert Youlou", "Pascal Lissouba"],
+        bonne: 0,
+        explication: "Alphonse Massamba-Débat a dirigé le Congo après les événements de 1963."
+    },
+    
+    {
+        question: "Quel événement historique a marqué le Congo en 1997 ?",
+        reponses: ["Une guerre civile", "Une indépendance", "Une nouvelle monnaie"],
+        bonne: 0,
+        explication: "Une guerre civile a marqué le Congo en 1997."
+    },
+    
+    {
+        question: "Quel est le nom du chef du gouvernement congolais ?",
+        reponses: ["Premier ministre", "Président du Sénat", "Maire"],
+        bonne: 0,
+        explication: "Le Premier ministre est le chef du gouvernement."
+    },
+    
+    {
+        question: "Quel est le siège du gouvernement de la République du Congo ?",
+        reponses: ["Brazzaville", "Pointe-Noire", "Oyo"],
+        bonne: 0,
+        explication: "Le gouvernement siège dans la capitale, Brazzaville."
+    },
+    
+    {
+        question: "Quel président dirige la République du Congo depuis 1997 avec une interruption entre 1992 et 1997 ?",
+        reponses: ["Denis Sassou-Nguesso", "Pascal Lissouba", "Fulbert Youlou"],
+        bonne: 0,
+        explication: "Denis Sassou-Nguesso est revenu au pouvoir en 1997 après une période d'interruption. "
+    },
+    
+    {
+        question: "Quel est le nom de la monnaie commune utilisée par plusieurs pays d'Afrique centrale dont le Congo ?",
+        reponses: ["Franc CFA d'Afrique centrale", "Franc congolais", "Naira"],
+        bonne: 0,
+        explication: "Le Congo utilise le franc CFA d'Afrique centrale."
+    },
+    
+    {
+        question: "Quelle organisation regroupe plusieurs pays d'Afrique centrale dont le Congo ?",
+        reponses: ["CEMAC", "CEDEAO", "UMA"],
+        bonne: 0,
+        explication: "La République du Congo est membre de la CEMAC."
+    },
+    
+    {
+        question: "Quel est le nom de la chambre haute du Parlement congolais ?",
+        reponses: ["Sénat", "Assemblée nationale", "Cour suprême"],
+        bonne: 0,
+        explication: "Le Sénat est la chambre haute du Parlement."
+    },
+    
+    {
+        question: "Quel secteur économique est historiquement très important pour le Congo ?",
+        reponses: ["Pétrole", "Café uniquement", "Textile uniquement"],
+        bonne: 0,
+        explication: "Le pétrole occupe une place importante dans l'économie congolaise."
+    },
+    
+    {
+        question: "Quel président congolais a été élu lors de la présidentielle de 2021 selon les résultats définitifs annoncés par la Cour constitutionnelle ?",
+        reponses: ["Denis Sassou-Nguesso", "Pascal Lissouba", "Fulbert Youlou"],
+        bonne: 0,
+        explication: "Denis Sassou-Nguesso a été déclaré élu lors de la présidentielle de 2021."
+    },
+    {
+        question: "Quel département a pour chef-lieu Dolisie ?",
+        reponses: ["Niari", "Bouenza", "Lékoumou"],
+        bonne: 0,
+        explication: "Dolisie est le chef-lieu du département du Niari."
+    },
+    
+    {
+        question: "Quelle ville est le chef-lieu du département de la Cuvette-Ouest ?",
+        reponses: ["Ewo", "Owando", "Ouesso"],
+        bonne: 0,
+        explication: "Ewo est le chef-lieu de la Cuvette-Ouest."
+    },
+    
+    {
+        question: "Quel est le plus grand département de la République du Congo en superficie ?",
+        reponses: ["Likouala", "Sangha", "Plateaux"],
+        bonne: 0,
+        explication: "La Likouala est le plus vaste département du Congo."
+    },
+    
+    {
+        question: "Quelle ville est située à la frontière entre la République du Congo et la RDC ?",
+        reponses: ["Brazzaville", "Kinkala", "Owando"],
+        bonne: 0,
+        explication: "Brazzaville est située en face de Kinshasa, séparée par le fleuve Congo."
+    },
+    
+    {
+        question: "Quel fleuve traverse la ville de Brazzaville ?",
+        reponses: ["Le Congo", "La Sangha", "L'Alima"],
+        bonne: 0,
+        explication: "Brazzaville est située sur la rive droite du fleuve Congo."
+    },
+    
+    {
+        question: "Quel département a pour chef-lieu Madingou ?",
+        reponses: ["Bouenza", "Pool", "Niari"],
+        bonne: 0,
+        explication: "Madingou est le chef-lieu de la Bouenza."
+    },
+    
+    {
+        question: "Quelle ville est le chef-lieu du département des Plateaux ?",
+        reponses: ["Djambala", "Gamboma", "Ngo"],
+        bonne: 0,
+        explication: "Djambala est le chef-lieu du département des Plateaux."
+    },
+    
+    {
+        question: "Quelle couleur n'apparaît pas sur le drapeau de la République du Congo ?",
+        reponses: ["Bleu", "Vert", "Jaune"],
+        bonne: 0,
+        explication: "Le drapeau congolais est composé du vert, du jaune et du rouge."
+    },
+    
+    {
+        question: "Quel département a pour chef-lieu Sibiti ?",
+        reponses: ["Lékoumou", "Bouenza", "Pool"],
+        bonne: 0,
+        explication: "Sibiti est le chef-lieu de la Lékoumou."
+    },
+    
+    {
+        question: "Quel est le chef-lieu du département de la Likouala ?",
+        reponses: ["Impfondo", "Ouesso", "Owando"],
+        bonne: 0,
+        explication: "Impfondo est le chef-lieu du département de la Likouala."
+    },
+    {
+        question: "Quel est le chef-lieu du département du Pool ?",
+        reponses: ["Kinkala", "Kindamba", "Mindouli"],
+        bonne: 0,
+        explication: "Kinkala est le chef-lieu du département du Pool."
+    },
+    
+    {
+        question: "Quel président a proclamé l'indépendance de la République du Congo en 1960 ?",
+        reponses: ["Alphonse Massamba-Débat", "Fulbert Youlou", "Marien Ngouabi"],
+        bonne: 1,
+        explication: "Fulbert Youlou était le premier président de la République du Congo."
+    },
+    
+    {
+        question: "Quel est le plus haut sommet du Congo ?",
+        reponses: ["Mont Fouari", "Mont Mavoumbou", "Mont Nabemba"],
+        bonne: 2,
+        explication: "Le mont Nabemba est le point culminant de la République du Congo."
+    },
+    
+    {
+        question: "Dans quel département se trouve la ville de Boundji ?",
+        reponses: ["Cuvette", "Likouala", "Plateaux"],
+        bonne: 0,
+        explication: "Boundji est une commune du département de la Cuvette."
+    },
+    
+    {
+        question: "Quelle est la devise officielle de la République du Congo ?",
+        reponses: ["Unité – Travail – Progres", "Travail – Progrès – Humanité", "Paix – Travail – Patrie"],
+        bonne: 0,
+        explication: "La devise officielle est « Unité – Travail – Progres »."
+    },
+    
+    {
+        question: "Quel département a pour chef-lieu Sibiti ?",
+        reponses: ["Bouenza", "Niari", "Lékoumou"],
+        bonne: 2,
+        explication: "Sibiti est le chef-lieu du département de la Lékoumou."
+    },
+    
+    {
+        question: "Quel est le principal aéroport international de Brazzaville ?",
+        reponses: ["Maya-Maya", "Agostinho-Neto", "Ollombo"],
+        bonne: 0,
+        explication: "L'aéroport international Maya-Maya est situé à Brazzaville."
+    },
+    
+    {
+        question: "Quel fleuve est un affluent du fleuve Congo ?",
+        reponses: ["Kouilou", "Sangha", "Niari"],
+        bonne: 1,
+        explication: "La Sangha est l'un des principaux affluents du fleuve Congo."
+    },
+    
+    {
+        question: "Dans quel département se trouve la ville de Zanaga ?",
+        reponses: ["Bouenza", "Lékoumou", "Niari"],
+        bonne: 1,
+        explication: "Zanaga est située dans le département de la Lékoumou."
+    },
+    
+    {
+        question: "Quelle équipe a remporté le plus de championnats nationaux au Congo ?",
+        reponses: ["Diables Noirs", "Étoile du Congo", "CARA Brazzaville"],
+        bonne: 2,
+        explication: "Le CARA Brazzaville fait partie des clubs les plus titrés du pays."
+    },
+    
+    {
+        question: "Quel département possède le parc national de Nouabalé-Ndoki ?",
+        reponses: ["Sangha", "Likouala", "Cuvette"],
+        bonne: 0,
+        explication: "Le parc national de Nouabalé-Ndoki est situé dans la Sangha."
+    },
+    
+    {
+        question: "Quelle ville est la capitale du département du Niari ?",
+        reponses: ["Loudima", "Dolisie", "Mossendjo"],
+        bonne: 1,
+        explication: "Dolisie est le chef-lieu du département du Niari."
+    },
+    
+    {
+        question: "Quel écrivain congolais est l'auteur de « Verre Cassé » ?",
+        reponses: ["Emmanuel Dongala", "Henri Lopes", "Alain Mabanckou"],
+        bonne: 2,
+        explication: "Alain Mabanckou est l'auteur du roman « Verre Cassé »."
+    },
+    
+    {
+        question: "Quel département est le moins peuplé du Congo ?",
+        reponses: ["Cuvette-Ouest", "Likouala", "Lékoumou"],
+        bonne: 0,
+        explication: "La Cuvette-Ouest est l'un des départements les moins peuplés du pays."
+    },
+    
+    {
+        question: "Quelle ville est connue pour ses gorges de Diosso ?",
+        reponses: ["Loango", "Diosso", "Pointe-Noire"],
+        bonne: 1,
+        explication: "Les gorges de Diosso sont situées près de la ville de Diosso."
+    },
+    
+    {
+        question: "Quelle couleur traverse le drapeau congolais en diagonale ?",
+        reponses: ["Rouge", "Vert", "Jaune"],
+        bonne: 2,
+        explication: "La bande jaune traverse le drapeau en diagonale."
+    },
+    
+    {
+        question: "Dans quel département se trouve la ville de Kindamba ?",
+        reponses: ["Pool", "Bouenza", "Plateaux"],
+        bonne: 0,
+        explication: "Kindamba est située dans le département du Pool."
+    },
+    
+    {
+        question: "Quelle langue est la plus utilisée dans le nord du Congo ?",
+        reponses: ["Kituba", "Lingala", "Lari"],
+        bonne: 1,
+        explication: "Le lingala est très utilisé dans le nord du pays."
+    },
+    
+    {
+        question: "Quel département a pour chef-lieu Djambala ?",
+        reponses: ["Cuvette", "Plateaux", "Pool"],
+        bonne: 1,
+        explication: "Djambala est le chef-lieu des Plateaux."
+    },
+    
+    {
+        question: "Quel parc national est réputé pour ses gorilles de plaine ?",
+        reponses: ["Conkouati-Douli", "Odzala-Kokoua", "Lefini"],
+        bonne: 1,
+        explication: "Le parc national d'Odzala-Kokoua est mondialement connu pour ses gorilles de plaine."
+    },
+    {
+        question: "Quel département a pour chef-lieu Loango ?",
+        reponses: ["Pointe-Noire", "Loango", "Mvouti"],
+        bonne: 1,
+        explication: "Loango est le chef-lieu du département du Kouilou."
+    },
+    
+    {
+        question: "Quel président est à l'origine de la devise « Travail, Progrès, Humanité » ?",
+        reponses: ["Fulbert Youlou", "Marien Ngouabi", "Aucun président"],
+        bonne: 2,
+        explication: "La devise est inscrite dans la Constitution et n'est pas attribuée à un président en particulier."
+    },
+    
+    {
+        question: "Quelle ville est située en face de Kinshasa ?",
+        reponses: ["Brazzaville", "Pointe-Noire", "Owando"],
+        bonne: 0,
+        explication: "Brazzaville fait face à Kinshasa, de l'autre côté du fleuve Congo."
+    },
+    
+    {
+        question: "Quel département possède la ville de Kimongo ?",
+        reponses: ["Niari", "Lékoumou", "Kouilou"],
+        bonne: 0,
+        explication: "Kimongo est une commune du département du Niari."
+    },
+    
+    {
+        question: "Quel est le principal port maritime du Congo ?",
+        reponses: ["Loango", "Pointe-Noire", "Brazzaville"],
+        bonne: 1,
+        explication: "Le port autonome de Pointe-Noire est le principal port maritime du pays."
+    },
+    
+    {
+        question: "Quel département a pour chef-lieu Madingou ?",
+        reponses: ["Pool", "Bouenza", "Niari"],
+        bonne: 1,
+        explication: "Madingou est le chef-lieu de la Bouenza."
+    },
+    
+    {
+        question: "Quel est le plus long affluent congolais du fleuve Congo ?",
+        reponses: ["La Sangha", "La Léfini", "La Bouenza"],
+        bonne: 0,
+        explication: "La Sangha est l'un des plus importants affluents du fleuve Congo."
+    },
+    
+    {
+        question: "Quel écrivain congolais a écrit « Mémoires de porc-épic » ?",
+        reponses: ["Henri Lopes", "Alain Mabanckou", "Emmanuel Dongala"],
+        bonne: 1,
+        explication: "« Mémoires de porc-épic » est un roman d'Alain Mabanckou."
+    },
+    
+    {
+        question: "Dans quel département se trouve la ville d'Etoumbi ?",
+        reponses: ["Cuvette-Ouest", "Sangha", "Likouala"],
+        bonne: 0,
+        explication: "Etoumbi est une commune de la Cuvette-Ouest."
+    },
+    
+    {
+        question: "Quel département est le plus au nord du Congo ?",
+        reponses: ["Sangha", "Likouala", "Cuvette"],
+        bonne: 1,
+        explication: "La Likouala est le département le plus septentrional du pays."
+    },
+    
+    {
+        question: "Quel est le siège du Parlement congolais ?",
+        reponses: ["Brazzaville", "Pointe-Noire", "Dolisie"],
+        bonne: 0,
+        explication: "Le Parlement de la République du Congo siège à Brazzaville."
+    },
+    
+    {
+        question: "Quel département possède la ville de Lékana ?",
+        reponses: ["Plateaux", "Pool", "Cuvette"],
+        bonne: 0,
+        explication: "Lékana est située dans le département des Plateaux."
+    },
+    
+    {
+        question: "Quel parc national est situé près de l'océan Atlantique ?",
+        reponses: ["Odzala-Kokoua", "Conkouati-Douli", "Nouabalé-Ndoki"],
+        bonne: 1,
+        explication: "Le parc national de Conkouati-Douli borde l'océan Atlantique."
+    },
+    
+    {
+        question: "Quelle ville est connue pour le musée de Diosso ?",
+        reponses: ["Diosso", "Loango", "Pointe-Noire"],
+        bonne: 0,
+        explication: "Le musée de Diosso est installé dans l'ancien palais royal de Diosso."
+    },
+    
+    {
+        question: "Quel département possède la ville de Mbinda ?",
+        reponses: ["Bouenza", "Niari", "Lékoumou"],
+        bonne: 1,
+        explication: "Mbinda est située dans le département du Niari."
+    },
+    
+    {
+        question: "Quelle est la langue officielle de la République du Congo ?",
+        reponses: ["Kituba", "Lingala", "Français"],
+        bonne: 2,
+        explication: "Le français est la langue officielle du pays."
+    },
+    
+    {
+        question: "Quel département a pour chef-lieu Djambala ?",
+        reponses: ["Plateaux", "Cuvette", "Pool"],
+        bonne: 0,
+        explication: "Djambala est le chef-lieu des Plateaux."
+    },
+    
+    {
+        question: "Quelle ville est surnommée la capitale économique du Congo ?",
+        reponses: ["Brazzaville", "Pointe-Noire", "Dolisie"],
+        bonne: 1,
+        explication: "Pointe-Noire est la capitale économique du Congo."
+    },
+    
+    {
+        question: "Quel département possède la ville de Ngoko ?",
+        reponses: ["Sangha", "Likouala", "Cuvette"],
+        bonne: 1,
+        explication: "Ngoko est une localité de la Likouala."
+    },
+    
+    {
+        question: "Quel monument est considéré comme l'un des symboles de Brazzaville ?",
+        reponses: ["Le Mausolée Marien Ngouabi", "La Basilique Sainte-Anne", "Le Palais du Parlement"],
+        bonne: 1,
+        explication: "La Basilique Sainte-Anne est l'un des monuments les plus emblématiques de Brazzaville."
+    },
+    {
+        question: "Quel président est associé à la devise « Travail, Progrès, Humanité » ?",
+        reponses: ["Marien Ngouabi", "Aucun président", "Denis Sassou N'Guesso"],
+        bonne: 1,
+        explication: "Cette devise est celle de la République et n'est pas attribuée à un président en particulier."
+    },
+    
+    {
+        question: "Quel est le nom de l'équipe nationale masculine de football du Congo ?",
+        reponses: ["Les Fauves", "Les Diables Rouges", "Les Panthères"],
+        bonne: 1,
+        explication: "L'équipe nationale est surnommée les Diables Rouges."
+    },
+    
+    {
+        question: "En quelle année les Diables Rouges ont-ils remporté leur seul titre de champion d'Afrique (CAN) ?",
+        reponses: ["1968", "1972", "1974"],
+        bonne: 1,
+        explication: "Le Congo a remporté la Coupe d'Afrique des Nations en 1972."
+    },
+    
+    {
+        question: "Quel ancien footballeur congolais est devenu président de la FIFA ?",
+        reponses: ["François Mpelé", "Jean-Michel Mbono", "Aucun"],
+        bonne: 2,
+        explication: "Aucun ancien footballeur congolais n'a été président de la FIFA."
+    },
+    
+    {
+        question: "Quel club est basé à Brazzaville ?",
+        reponses: ["Diables Noirs", "AS Cheminots", "JS Talangaï"],
+        bonne: 0,
+        explication: "Les Diables Noirs sont un club historique de Brazzaville."
+    },
+    
+    {
+        question: "Quel artiste est connu pour la chanson « Ancien combattant » ?",
+        reponses: ["Zao", "Aurlus Mabélé", "Pamelo Mounk'a"],
+        bonne: 0,
+        explication: "Zao est célèbre pour sa chanson satirique « Ancien combattant »."
+    },
+    
+    {
+        question: "Quel chanteur est surnommé le roi du soukous ?",
+        reponses: ["Pamelo Mounk'a", "Aurlus Mabélé", "Jean Serge Essous"],
+        bonne: 1,
+        explication: "Aurlus Mabélé est considéré comme l'un des grands noms du soukous."
+    },
+    
+    {
+        question: "Quel écrivain congolais a reçu le Grand Prix de littérature Henri-Gal ?",
+        reponses: ["Henri Lopes", "Alain Mabanckou", "Emmanuel Dongala"],
+        bonne: 1,
+        explication: "Alain Mabanckou a reçu plusieurs distinctions littéraires internationales."
+    },
+    
+    {
+        question: "Qui est l'auteur du roman « Le Pleurer-rire » ?",
+        reponses: ["Henri Lopes", "Tchicaya U Tam'si", "Emmanuel Dongala"],
+        bonne: 0,
+        explication: "« Le Pleurer-rire » est un roman d'Henri Lopes."
+    },
+    
+    {
+        question: "Quelle danse traditionnelle est connue dans la région du Pool ?",
+        reponses: ["Kebe-kebe", "Mouyondzi", "Likembe"],
+        bonne: 0,
+        explication: "Le Kebe-kebe est une danse traditionnelle connue dans cette région."
+    },
+    
+    {
+        question: "Quel instrument est très utilisé dans les musiques traditionnelles congolaises ?",
+        reponses: ["Likembe", "Violon", "Cornemuse"],
+        bonne: 0,
+        explication: "Le likembe est un instrument traditionnel à lamelles métalliques."
+    },
+    
+    {
+        question: "Quel plat est préparé avec des feuilles de manioc ?",
+        reponses: ["Saka-saka", "Ntaba", "Mbika"],
+        bonne: 0,
+        explication: "Le saka-saka est un plat à base de feuilles de manioc pilées."
+    },
+    
+    {
+        question: "Quel est le siège du gouvernement de la République du Congo ?",
+        reponses: ["Brazzaville", "Pointe-Noire", "Dolisie"],
+        bonne: 0,
+        explication: "Les principales institutions de l'État siègent à Brazzaville."
+    },
+    
+    {
+        question: "Combien de chambres compose le Parlement congolais ?",
+        reponses: ["Deux", "Une", "Trois"],
+        bonne: 0,
+        explication: "Le Parlement comprend l'Assemblée nationale et le Sénat."
+    },
+    
+    {
+        question: "Quel est le nom de l'hymne national du Congo ?",
+        reponses: ["La Congolaise", "Le Chant de la Patrie", "Terre d'Espérance"],
+        bonne: 0,
+        explication: "« La Congolaise » est l'hymne national de la République du Congo."
+    },
+    
+    {
+        question: "Quel poète congolais est considéré comme l'une des grandes figures de la littérature africaine ?",
+        reponses: ["Tchicaya U Tam'si", "Henri Lopes", "Sony Labou Tansi"],
+        bonne: 0,
+        explication: "Tchicaya U Tam'si est l'un des plus grands poètes congolais."
+    },
+    
+    {
+        question: "Quelle couleur symbolise l'espoir sur le drapeau de la République du Congo ?",
+        reponses: ["Vert", "Rouge", "Jaune"],
+        bonne: 0,
+        explication: "Le vert représente la nature et l'espoir."
+    },
+    {
+        question: "Quel site naturel du Congo est inscrit au patrimoine mondial de l'UNESCO depuis 2023 ?",
+        reponses: ["Le massif forestier d'Odzala-Kokoua", "Le parc national de Conkouati-Douli", "Le mont Nabemba"],
+        bonne: 0,
+        explication: "Le massif forestier d'Odzala-Kokoua est inscrit sur la Liste du patrimoine mondial de l'UNESCO depuis 2023."
+    },
+    
+    {
+        question: "Quels sont les trois pays qui composent le site du Trinational de la Sangha ?",
+        reponses: ["Congo, Gabon et Cameroun", "Congo, Cameroun et République centrafricaine", "Congo, Tchad et République centrafricaine"],
+        bonne: 1,
+        explication: "Le Trinational de la Sangha réunit des espaces protégés du Congo, du Cameroun et de la République centrafricaine."
+    },
+    
+    {
+        question: "Quel parc national congolais fait partie du site du Trinational de la Sangha ?",
+        reponses: ["Nouabalé-Ndoki", "Conkouati-Douli", "Lefini"],
+        bonne: 0,
+        explication: "Le parc national de Nouabalé-Ndoki, situé au Congo, fait partie du Trinational de la Sangha."
+    },
+    
+    {
+        question: "Quelle est la langue officielle du Congo selon la Constitution de 2015 ?",
+        reponses: ["Le lingala", "Le kituba", "Le français"],
+        bonne: 2,
+        explication: "La Constitution de 2015 établit le français comme langue officielle."
+    },
+    
+    {
+        question: "Quelles langues sont reconnues comme langues nationales véhiculaires dans la Constitution congolaise de 2015 ?",
+        reponses: ["Le lingala et le kituba", "Le lari et le mbochi", "Le français et le lingala"],
+        bonne: 0,
+        explication: "La Constitution de 2015 cite le lingala et le kituba comme langues nationales véhiculaires."
+    },
+    
+    {
+        question: "Quel article de la Constitution de 2015 précise la devise et l'hymne national du Congo ?",
+        reponses: ["L'article 2", "L'article 4", "L'article 10"],
+        bonne: 1,
+        explication: "L'article 4 précise notamment que l'hymne est « La Congolaise » et que la devise est « Unité, Travail, Progrès »."
+    },
+    
+    {
+        question: "Quelle couleur du drapeau congolais représente l'espérance dans l'avenir économique et social du pays ?",
+        reponses: ["Le rouge", "Le jaune", "Le vert"],
+        bonne: 2,
+        explication: "Selon la Présidence de la République, le vert symbolise l'espérance dans l'avenir économique et social du pays."
+    },
+    
+    {
+        question: "Quelle couleur du drapeau congolais symbolise la volonté d'union et le sens de l'hospitalité ?",
+        reponses: ["Le jaune", "Le rouge", "Le vert"],
+        bonne: 0,
+        explication: "Le jaune symbolise la volonté d'union et le traditionnel sens de l'hospitalité."
+    },
+    
+    {
+        question: "Quelle année marque l'inscription du Trinational de la Sangha au patrimoine mondial de l'UNESCO ?",
+        reponses: ["2008", "2012", "2023"],
+        bonne: 1,
+        explication: "Le Trinational de la Sangha a été inscrit au patrimoine mondial en 2012."
+    },
+    
+    {
+        question: "Combien de biens du Congo figurent actuellement sur la Liste du patrimoine mondial de l'UNESCO ?",
+        reponses: ["Deux", "Trois", "Quatre"],
+        bonne: 0,
+        explication: "Le Congo compte actuellement deux biens naturels inscrits : le Trinational de la Sangha et le massif forestier d'Odzala-Kokoua."
+    },
+    {
+        question: "Quel club congolais est surnommé « les Fauves du Niari » ?",
+        reponses: ["AC Léopards de Dolisie", "Diables Noirs", "Étoile du Congo"],
+        bonne: 0,
+        explication: "L'AC Léopards de Dolisie est surnommé les Fauves du Niari."
+    },
+    
+    {
+        question: "Quel musicien est considéré par l'UNESCO comme l'une des figures à l'origine de la rumba congolaise à Brazzaville ?",
+        reponses: ["Paul Kamba", "Zao", "Aurlus Mabélé"],
+        bonne: 0,
+        explication: "L'UNESCO présente Paul Kamba, avec l'Orchestre Bantous de la Capitale, comme une figure liée aux débuts de la rumba congolaise à Brazzaville."
+    },
+    
+    {
+        question: "Quel événement politique a conduit au renversement de Fulbert Youlou en 1963 ?",
+        reponses: ["Les Trois Glorieuses", "La Conférence nationale souveraine", "La guerre civile"],
+        bonne: 0,
+        explication: "Les événements d'août 1963, connus sous le nom des Trois Glorieuses, ont conduit à la chute de Fulbert Youlou."
+    },
+    
+    {
+        question: "Quel intellectuel congolais est particulièrement connu comme égyptologue, historien et linguiste ?",
+        reponses: ["Théophile Obenga", "Henri Lopes", "Sony Labou Tansi"],
+        bonne: 0,
+        explication: "Théophile Obenga est un intellectuel congolais ayant travaillé notamment en histoire, linguistique et égyptologie."
+    },
+    
+    {
+        question: "Quel élément culturel traditionnel du Congo est associé à des masques et à des danses rituelles dans certaines communautés ?",
+        reponses: ["Le Kébé-Kébé", "Le soukous", "La rumba"],
+        bonne: 0,
+        explication: "Le Kébé-Kébé est une expression culturelle traditionnelle associée notamment à des danses et à des masques."
+    },
+    
+    {
+        question: "Quelle institution constitue la chambre haute du Parlement de la République du Congo ?",
+        reponses: ["Le Conseil économique", "Le Sénat", "La Cour suprême"],
+        bonne: 1,
+        explication: "Le Sénat constitue la chambre haute du Parlement congolais."
+    },
+    
+    {
+        question: "Quel cours d'eau traverse notamment la ville de Mossaka avant de rejoindre le réseau du fleuve Congo ?",
+        reponses: ["La Likouala-Mossaka", "Le Kouilou", "Le Niari"],
+        bonne: 0,
+        explication: "La Likouala-Mossaka est un important cours d'eau du nord de la République du Congo, associé à la ville de Mossaka."
+    },
+    
+    {
+        question: "Quel écrivain congolais est l'auteur du roman « La Vie et demie » ?",
+        reponses: ["Sony Labou Tansi", "Alain Mabanckou", "Henri Lopes"],
+        bonne: 0,
+        explication: "« La Vie et demie » est un roman de l'écrivain congolais Sony Labou Tansi."
+    },
+    
+    {
+        question: "Quel site naturel du Congo fait partie du patrimoine mondial avec des aires protégées du Cameroun et de la République centrafricaine ?",
+        reponses: ["Le parc national de Conkouati-Douli", "Le site du Trinational de la Sangha", "Le massif du Chaillu"],
+        bonne: 1,
+        explication: "Le Trinational de la Sangha regroupe des aires protégées du Congo, du Cameroun et de la République centrafricaine."
+    },
+    
+    {
+        question: "Quel personnage congolais a fondé en 1926 l'Amicale des Originaires de l'Afrique-Équatoriale Française ?",
+        reponses: ["André Matsoua", "Marien Ngouabi", "Alphonse Massamba-Débat"],
+        bonne: 0,
+        explication: "André Grenard Matsoua a fondé l'Amicale des Originaires de l'Afrique-Équatoriale Française à Paris en 1926."
+    },
+    {
+        question: "Quel club de football congolais est basé à Dolisie ?",
+        reponses: ["Étoile du Congo", "Diables Noirs", "AC Léopards"],
+        bonne: 2,
+        explication: "L'AC Léopards est un club de football basé à Dolisie, dans le département du Niari."
+    },
+    
+    {
+        question: "Quel musicien est à l'origine de l'orchestre Les Bantous de la Capitale avec d'autres grands musiciens de Brazzaville ?",
+        reponses: ["Zao", "Paul Kamba", "Aurlus Mabélé"],
+        bonne: 1,
+        explication: "Paul Kamba est présenté par l'UNESCO comme une figure majeure des débuts de la rumba à Brazzaville et des Bantous de la Capitale."
+    },
+    
+    {
+        question: "En quelle année Fulbert Youlou a-t-il été renversé ?",
+        reponses: ["1960", "1968", "1963"],
+        bonne: 2,
+        explication: "Fulbert Youlou a été renversé en 1963 lors des événements connus sous le nom des Trois Glorieuses."
+    },
+    
+    {
+        question: "Quel intellectuel congolais est notamment connu pour ses travaux en égyptologie et en linguistique ?",
+        reponses: ["Alain Mabanckou", "Théophile Obenga", "Henri Lopes"],
+        bonne: 1,
+        explication: "Théophile Obenga est un intellectuel congolais connu notamment pour ses travaux en histoire, linguistique et égyptologie."
+    },
+    
+    {
+        question: "Quel terme désigne une ancienne danse dont la rumba congolaise est issue selon l'UNESCO ?",
+        reponses: ["Kébé-kébé", "Nkumba", "Likembe"],
+        bonne: 1,
+        explication: "L'UNESCO indique que la rumba congolaise est issue d'une ancienne danse appelée nkumba, terme lié au kikongo."
+    },
+    
+    {
+        question: "Quelle institution exerce le pouvoir législatif avec l'Assemblée nationale au Congo ?",
+        reponses: ["Le Sénat", "La Cour constitutionnelle", "Le Conseil d'État"],
+        bonne: 0,
+        explication: "Le Parlement congolais est composé de l'Assemblée nationale et du Sénat."
+    },
+    
+    {
+        question: "Quelle ville congolaise est située au bord du fleuve Congo et est connue comme un important centre de pêche ?",
+        reponses: ["Mossaka", "Sibiti", "Djambala"],
+        bonne: 0,
+        explication: "Mossaka, dans le département de la Cuvette, est située dans la région du fleuve Congo et est notamment connue pour ses activités liées à la pêche."
+    },
+    
+    {
+        question: "Quel écrivain congolais a écrit « La Vie et demie » ?",
+        reponses: ["Henri Lopes", "Sony Labou Tansi", "Alain Mabanckou"],
+        bonne: 1,
+        explication: "« La Vie et demie » est un roman de l'écrivain congolais Sony Labou Tansi."
+    },
+    
+    {
+        question: "En quelle année la rumba congolaise a-t-elle été inscrite au patrimoine culturel immatériel de l'humanité ?",
+        reponses: ["2018", "2021", "2023"],
+        bonne: 1,
+        explication: "La rumba congolaise a été inscrite en 2021 sur la Liste représentative du patrimoine culturel immatériel de l'humanité de l'UNESCO."
+    },
+    
+    {
+        question: "Quel est le nom de l'événement qui a conduit à la chute de Fulbert Youlou en août 1963 ?",
+        reponses: ["La Conférence de Brazzaville", "La Conférence nationale souveraine", "Les Trois Glorieuses"],
+        bonne: 2,
+        explication: "Les Trois Glorieuses d'août 1963 ont conduit à la chute du président Fulbert Youlou."
+    },
+    {
+        question: "Quel orchestre est étroitement associé aux débuts de la rumba congolaise à Brazzaville ?",
+        reponses: ["Les Bantous de la Capitale", "Extra Musica", "Les Nzoys"],
+        bonne: 0,
+        explication: "L'UNESCO associe les débuts de la rumba congolaise à Brazzaville à Paul Kamba et à l'Orchestre Bantous de la Capitale."
+    },
+    
+    {
+        question: "Quelle ville congolaise a été désignée Ville créative de l'UNESCO dans le domaine de la musique ?",
+        reponses: ["Pointe-Noire", "Brazzaville", "Dolisie"],
+        bonne: 1,
+        explication: "Brazzaville fait partie du Réseau des villes créatives de l'UNESCO dans le domaine de la musique."
+    },
+    
+    {
+        question: "Quel établissement artistique créé en 1951 est associé au développement des arts plastiques à Brazzaville ?",
+        reponses: ["L'École de peinture de Poto-Poto", "L'Académie des beaux-arts de Bacongo", "Le Conservatoire de musique de Brazzaville"],
+        bonne: 0,
+        explication: "L'École de peinture de Poto-Poto a été créée en 1951 et a joué un rôle important dans le développement artistique de Brazzaville."
+    },
+    
+    {
+        question: "Quel ancien président de la République du Congo a été remplacé par Alphonse Massamba-Débat après les événements de 1963 ?",
+        reponses: ["Marien Ngouabi", "Fulbert Youlou", "Pascal Lissouba"],
+        bonne: 1,
+        explication: "Fulbert Youlou a été renversé en 1963 et Alphonse Massamba-Débat lui a succédé."
+    },
+    
+    {
+        question: "Quel type de forêt couvre une grande partie du territoire de la République du Congo ?",
+        reponses: ["La forêt tropicale humide", "La forêt méditerranéenne", "La forêt boréale"],
+        bonne: 0,
+        explication: "Une grande partie du territoire congolais est couverte par des forêts tropicales humides du bassin du Congo."
+    },
+    
+    {
+        question: "Quel peuple est notamment associé au royaume de Loango dans l'histoire du Congo ?",
+        reponses: ["Les Téké", "Les Vili", "Les Sanga"],
+        bonne: 1,
+        explication: "Le royaume de Loango était historiquement lié aux populations vili de la façade atlantique."
+    },
+    
+    {
+        question: "Quel élément culturel congolais a été inscrit en 2021 au patrimoine culturel immatériel de l'humanité ?",
+        reponses: ["Le Kébé-Kébé", "La rumba congolaise", "Le likembe"],
+        bonne: 1,
+        explication: "La rumba congolaise a été inscrite par l'UNESCO en 2021 sur la Liste représentative du patrimoine culturel immatériel de l'humanité."
+    },
+    
+    {
+        question: "Dans quelle ville se trouve le quartier historique associé à l'École de peinture de Poto-Poto ?",
+        reponses: ["Brazzaville", "Pointe-Noire", "Nkayi"],
+        bonne: 0,
+        explication: "L'École de peinture de Poto-Poto se trouve à Brazzaville, dans le quartier de Poto-Poto."
+    },
+    
+    {
+        question: "Quel instrument traditionnel est constitué de lamelles fixées sur une caisse ou un support de résonance ?",
+        reponses: ["La sanza", "Le tam-tam", "La trompette"],
+        bonne: 0,
+        explication: "La sanza, également appelée likembe dans plusieurs régions d'Afrique centrale, est un instrument à lamelles."
+    },
+    
+    {
+        question: "Quel fleuve joue un rôle majeur dans la géographie et l'histoire de Brazzaville ?",
+        reponses: ["Le Kouilou", "Le fleuve Congo", "Le Niari"],
+        bonne: 1,
+        explication: "Brazzaville est située sur la rive droite du fleuve Congo, face à Kinshasa."
+    },
+    {
+        question: "Quel site naturel de la République du Congo a été inscrit au patrimoine mondial de l'UNESCO en 2023 ?",
+        reponses: ["Le parc national de Conkouati-Douli", "Le Massif forestier d'Odzala-Kokoua", "Le domaine royal de Mbé"],
+        bonne: 1,
+        explication: "Le Massif forestier d'Odzala-Kokoua a été inscrit sur la Liste du patrimoine mondial en 2023."
+    },
+    
+    {
+        question: "Quel musée de Brazzaville est consacré à la peinture et porte le nom d'un quartier de la capitale ?",
+        reponses: ["Le Musée du Cercle africain", "Le Musée de Loango", "Le Musée de peinture de Poto-Poto"],
+        bonne: 2,
+        explication: "Le Musée de peinture de Poto-Poto se trouve à Brazzaville et porte le nom du quartier de Poto-Poto."
+    },
+    
+    {
+        question: "Dans quel complexe du patrimoine mondial se trouve le parc national de Nouabalé-Ndoki ?",
+        reponses: ["Le Trinational de la Sangha", "Le complexe du Niari", "Le massif du Kouilou"],
+        bonne: 0,
+        explication: "Le parc national de Nouabalé-Ndoki fait partie du Trinational de la Sangha, avec des parcs situés au Cameroun et en République centrafricaine."
+    },
+    
+    {
+        question: "Quel est le nom de l'équipe nationale masculine de football de la République du Congo ?",
+        reponses: ["Les Léopards", "Les Diables Rouges", "Les Panthères"],
+        bonne: 1,
+        explication: "L'équipe nationale masculine de football de la République du Congo est surnommée les Diables Rouges."
+    },
+    
+    {
+        question: "Quelle institution constitue la chambre haute du Parlement congolais ?",
+        reponses: ["L'Assemblée nationale", "Le Conseil économique", "Le Sénat"],
+        bonne: 2,
+        explication: "Le Sénat constitue la chambre haute du Parlement de la République du Congo."
+    },
+    
+    {
+        question: "Quelle ville congolaise est reconnue par l'UNESCO comme ville créative dans le domaine de la musique ?",
+        reponses: ["Brazzaville", "Dolisie", "Owando"],
+        bonne: 0,
+        explication: "Brazzaville fait partie du Réseau des villes créatives de l'UNESCO dans le domaine de la musique."
+    },
+    
+    {
+        question: "Quel musée régional consacré notamment aux arts africains se trouve à Pointe-Noire ?",
+        reponses: ["Le Musée de peinture de Poto-Poto", "Le Musée du Cercle africain", "Le Musée national du Congo"],
+        bonne: 1,
+        explication: "Le Musée du Cercle africain est un musée régional situé à Pointe-Noire."
+    },
+    
+    {
+        question: "Quel parc national congolais fait partie du Trinational de la Sangha inscrit au patrimoine mondial ?",
+        reponses: ["Le parc national de Conkouati-Douli", "Le parc national de Lefini", "Le parc national de Nouabalé-Ndoki"],
+        bonne: 2,
+        explication: "Le parc national de Nouabalé-Ndoki constitue la partie congolaise du Trinational de la Sangha."
+    },
+    
+    {
+        question: "Qui a écrit le roman « Le Pleurer-rire » ?",
+        reponses: ["Henri Lopes", "Alain Mabanckou", "Tchicaya U Tam'si"],
+        bonne: 0,
+        explication: "« Le Pleurer-rire » est un roman de l'écrivain congolais Henri Lopes."
+    },
+    
+    {
+        question: "Quel élément du drapeau congolais représente l'espérance dans l'avenir économique et social du pays selon la Présidence de la République ?",
+        reponses: ["Le jaune", "Le vert", "Le rouge"],
+        bonne: 1,
+        explication: "Selon la Présidence de la République du Congo, le vert symbolise l'espérance dans l'avenir économique et social du pays."
+    },
+    {
+        question: "En quelle année les premiers Jeux africains ont-ils été organisés au Congo-Brazzaville ?",
+        reponses: ["1972", "1965", "1978"],
+        bonne: 1,
+        explication: "Les premiers Jeux africains ont été organisés à Brazzaville en 1965."
+    },
+    
+    {
+        question: "Quel club congolais a remporté la Coupe d'Afrique des clubs champions en 1974 ?",
+        reponses: ["Étoile du Congo", "Diables Noirs", "CARA Brazzaville"],
+        bonne: 2,
+        explication: "Le CARA Brazzaville a remporté la Coupe d'Afrique des clubs champions en 1974."
+    },
+    
+    {
+        question: "Quel festival consacré à la musique africaine a été créé au Congo en 1996 ?",
+        reponses: ["FESPAM", "FESPACO", "Masa"],
+        bonne: 0,
+        explication: "Le Festival panafricain de musique (FESPAM) a été créé en 1996 au Congo."
+    },
+    
+    {
+        question: "Quel écrivain congolais a remporté le prix Renaudot en 2006 pour « Mémoires de porc-épic » ?",
+        reponses: ["Henri Lopes", "Alain Mabanckou", "Emmanuel Dongala"],
+        bonne: 1,
+        explication: "Alain Mabanckou a remporté le prix Renaudot 2006 pour « Mémoires de porc-épic »."
+    },
+    
+    {
+        question: "Comment s'appelle l'école artistique congolaise connue pour avoir marqué la peinture de Brazzaville ?",
+        reponses: ["École de Peinture de Poto-Poto", "École des Arts de Loango", "École de Peinture de Pointe-Noire"],
+        bonne: 0,
+        explication: "L'École de Peinture de Poto-Poto est un courant artistique important de Brazzaville."
+    },
+    
+    {
+        question: "Quel groupe musical congolais fait partie des formations historiques citées parmi celles ayant marqué plusieurs générations ?",
+        reponses: ["Les Bantous de la Capitale", "Les Tambours de Dakar", "Les Étoiles du Sahel"],
+        bonne: 0,
+        explication: "Les Bantous de la Capitale sont l'un des groupes historiques majeurs de la musique congolaise."
+    },
+    
+    {
+        question: "Dans quelle ville le Congo a-t-il accueilli les 11es Jeux africains en 2015 ?",
+        reponses: ["Pointe-Noire", "Dolisie", "Brazzaville"],
+        bonne: 2,
+        explication: "Les 11es Jeux africains se sont déroulés à Brazzaville en 2015."
+    },
+    
+    {
+        question: "Quel auteur congolais est associé au roman « Le Pleurer-rire » ?",
+        reponses: ["Sony Labou Tansi", "Henri Lopes", "Tchicaya U Tam'si"],
+        bonne: 1,
+        explication: "« Le Pleurer-rire » est un roman d'Henri Lopes."
+    },
+    
+    {
+        question: "Quel secteur représente une part importante de l'économie congolaise et figure parmi les principales ressources du pays ?",
+        reponses: ["Le pétrole", "La production de thé", "La culture du coton uniquement"],
+        bonne: 0,
+        explication: "L'industrie pétrolière occupe une place importante dans l'économie de la République du Congo."
+    },
+    
+    {
+        question: "Quel organisme international a organisé une exposition consacrée à l'École de Peinture de Poto-Poto à Brazzaville en 2023 ?",
+        reponses: ["L'UNESCO", "La FIFA", "L'OMC"],
+        bonne: 0,
+        explication: "L'UNESCO Brazzaville a organisé en 2023 une exposition consacrée aux artistes formés à l'École de Peinture de Poto-Poto."
+    },
+    
+ ];
 function melangerQuestions(tableau) {
 
     for (let i = tableau.length - 1; i > 0; i--) {
