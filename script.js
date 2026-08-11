@@ -1221,7 +1221,7 @@ const questions = [
         bonne: 0,
         explication: "L'UNESCO Brazzaville a organisé en 2023 une exposition consacrée aux artistes formés à l'École de Peinture de Poto-Poto."
     },
-    
+
  ];
 function melangerQuestions(tableau) {
 
@@ -1447,7 +1447,7 @@ function choisirQuestions(nombre) {
             sauvegarderJoueur(joueur);
             
             // Meilleur score Quiz général
-            joueur.points += score;
+            
             {
             
                 if (categorieChoisie === "sport" && score > joueur.sport)
