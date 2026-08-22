@@ -1,95 +1,381 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-    <title>Document</title>
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>CongoQuiz - Classement</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css">
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
 </head>
+
 <body>
+
     <nav class="navbar">
-        <div class="logo">🇨🇬 <strong>CongoQuiz</strong></div>
-    
-        <div class="menu">
-            <a href="index.html?accueil=1">Accueil</a>
+
+        <div class="logo">
+            🇨🇬 <strong>CongoQuiz</strong>
         </div>
+
+        <div class="menu">
+
+            <a href="index.html?accueil=1">
+                Accueil
+            </a>
+
+        </div>
+
     </nav>
-    
+
+
     <div class="accueil">
+
         <h1>🏆 Classement</h1>
+
+
+        <!-- SCORE DU JOUEUR -->
 
         <div class="classement-card">
 
-            <div class="trophee">🏆</div>
-        
-            <h2>Total des points</h2>
-        
-            <div id="pointsTotal" class="grandScore">0</div>
-        
-            <div class="libellePoints">POINTS</div>
-        
-            <div id="niveau" class="niveauClassement">
+            <div class="trophee">
+                🏆
+            </div>
+
+            <h2>Mon score</h2>
+
+            <div
+                id="pointsTotal"
+                class="grandScore">
+                0
+            </div>
+
+            <div class="libellePoints">
+                POINTS
+            </div>
+
+            <div
+                id="niveau"
+                class="niveauClassement">
                 🌱 Débutant
             </div>
-        
+
             <div class="barreNiveau">
-                <div id="progressionNiveau"></div>
+
+                <div
+                    id="progressionNiveau">
+                </div>
+
             </div>
-        
+
             <p id="texteProgression">
-                0 / 100 points
+                0 / 1000 points
             </p>
-        
-            <p class="descriptionClassement">
-                Continue de jouer pour monter dans le classement.
-            </p>
-        
+
         </div>
-        <button class="rejouer"
-    onclick="window.location.href='index.html?accueil=1'">
-     🏠 Retour à l'accueil
+
+
+        <!-- CLASSEMENT GLOBAL -->
+
+        <div class="classement-card">
+
+            <h2>🌍 Classement général</h2>
+
+            <p id="messageClassement">
+                Chargement du classement...
+            </p>
+
+            <div id="listeClassement"></div>
+
+        </div>
+
+
+        <button
+            class="rejouer"
+            onclick="window.location.href='index.html?accueil=1'">
+
+            🏠 Retour à l'accueil
+
         </button>
+
     </div>
+
+
+    <!-- SUPABASE -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+    <!-- TON SCRIPT PRINCIPAL -->
+
     <script src="script.js"></script>
-<script>
-     const joueur = chargerJoueur();
 
-document.getElementById("pointsTotal").textContent = joueur.points;
 
-let niveau = "🌱 Débutant";
-let objectif = 1000;
+    <!-- CLASSEMENT SUPABASE -->
 
-if(joueur.points >= 1000){
-    niveau = "📚 Connaisseur";
-    objectif = 10000;
-}
+    <script>
 
-if(joueur.points >= 10000){
-    niveau = "🏆 Expert";
-    objectif = 100000;
-}
+        async function chargerClassementSupabase(){
 
-if(joueur.points >= 100000){
-    niveau = "👑 Maître";
-    objectif = 1000000;
-}
+            const message =
+                document.getElementById("messageClassement");
 
-if(joueur.points >= 1000000){
-    niveau = "💎 Légende";
-    objectif = joueur.points;
-}
+            const liste =
+                document.getElementById("listeClassement");
 
-document.getElementById("niveau").textContent = niveau;
 
-let progression = Math.min((joueur.points / objectif) * 100,100);
+            const { data, error } = await supabaseClient
 
-document.getElementById("progressionNiveau").style.width =
-progression + "%";
+                .from("joueur")
 
-document.getElementById("texteProgression").textContent =
-joueur.points + " / " + objectif + " points";
-</script>
+                .select(
+                    "id,pseudo,points,parties_jouees,parties_gagnees"
+                )
+
+                .order("points", {
+                    ascending: false
+                });
+
+
+            if(error){
+
+                console.error(
+                    "❌ Erreur chargement classement :",
+                    error
+                );
+
+                message.textContent =
+                    "❌ Impossible de charger le classement.";
+
+                return;
+
+            }
+
+
+            message.textContent = "";
+
+
+            if(!data || data.length === 0){
+
+                liste.innerHTML = `
+                    <p>
+                        Aucun joueur dans le classement.
+                    </p>
+                `;
+
+                return;
+
+            }
+
+
+            const joueurLocal =
+                chargerJoueur();
+
+
+            liste.innerHTML = "";
+
+
+            data.forEach(function(joueur, index){
+
+                const rang = index + 1;
+
+                const estMoi =
+                    joueur.id === joueurLocal.id;
+
+
+                let medaille = "";
+
+                if(rang === 1){
+                    medaille = "🥇";
+                }
+                else if(rang === 2){
+                    medaille = "🥈";
+                }
+                else if(rang === 3){
+                    medaille = "🥉";
+                }
+                else{
+                    medaille = rang + "e";
+                }
+
+
+                const carte =
+                    document.createElement("div");
+
+
+                carte.style.padding = "15px";
+                carte.style.marginBottom = "10px";
+                carte.style.borderRadius = "12px";
+                carte.style.background = estMoi
+                    ? "#fff3cd"
+                    : "#f5f5f5";
+                carte.style.fontWeight =
+                    estMoi ? "bold" : "normal";
+
+
+                carte.innerHTML = `
+
+                    <div style="
+                        display:flex;
+                        justify-content:space-between;
+                        align-items:center;
+                        gap:10px;
+                    ">
+
+                        <span>
+                            ${medaille}
+                            ${joueur.pseudo || "Joueur"}
+                            ${estMoi ? " 👤" : ""}
+                        </span>
+
+                        <strong>
+                            ${joueur.points || 0} pts
+                        </strong>
+
+                    </div>
+
+                    <div style="
+                        margin-top:7px;
+                        font-size:13px;
+                        opacity:0.75;
+                    ">
+
+                        🎮
+                        ${joueur.parties_jouees || 0}
+                        parties
+
+                        &nbsp; • &nbsp;
+
+                        🏆
+                        ${joueur.parties_gagnees || 0}
+                        victoires
+
+                    </div>
+
+                `;
+
+
+                liste.appendChild(carte);
+
+            });
+
+        }
+
+
+        // ==========================================
+        // SCORE PERSONNEL
+        // ==========================================
+
+        function afficherScorePersonnel(){
+
+            const joueur =
+                chargerJoueur();
+
+
+            document.getElementById(
+                "pointsTotal"
+            ).textContent =
+                joueur.points;
+
+
+            let niveau = "🌱 Débutant";
+
+            let objectif = 1000;
+
+
+            if(joueur.points >= 1000){
+
+                niveau = "📚 Connaisseur";
+
+                objectif = 10000;
+
+            }
+
+
+            if(joueur.points >= 10000){
+
+                niveau = "🏆 Expert";
+
+                objectif = 100000;
+
+            }
+
+
+            if(joueur.points >= 100000){
+
+                niveau = "👑 Maître";
+
+                objectif = 1000000;
+
+            }
+
+
+            if(joueur.points >= 1000000){
+
+                niveau = "💎 Légende";
+
+                objectif = joueur.points;
+
+            }
+
+
+            document.getElementById(
+                "niveau"
+            ).textContent = niveau;
+
+
+            let progression =
+                Math.min(
+                    (joueur.points / objectif) * 100,
+                    100
+                );
+
+
+            document.getElementById(
+                "progressionNiveau"
+            ).style.width =
+                progression + "%";
+
+
+            document.getElementById(
+                "texteProgression"
+            ).textContent =
+                joueur.points +
+                " / " +
+                objectif +
+                " points";
+
+        }
+
+
+        // ==========================================
+        // CHARGEMENT DE LA PAGE
+        // ==========================================
+
+        window.addEventListener(
+            "load",
+            function(){
+
+                afficherScorePersonnel();
+
+                chargerClassementSupabase();
+
+            }
+        );
+
+    </script>
+
 </body>
+
 </html>

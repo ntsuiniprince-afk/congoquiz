@@ -1,252 +1,673 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
     <title>Profil - CongoQuiz</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link
+        rel="stylesheet"
+        href="style.css">
+
 </head>
+
 
 <body>
 
+
 <nav class="navbar">
 
-    <div class="logo">🇨🇬 <strong>CongoQuiz</strong></div>
+    <div class="logo">
+        🇨🇬 <strong>CongoQuiz</strong>
+    </div>
 
     <div class="menu">
-        <a href="index.html?accueil=1">Accueil</a>
+
+        <a href="index.html?accueil=1">
+            Accueil
+        </a>
+
     </div>
 
 </nav>
 
+
 <div class="accueil">
 
-    <h1 class="titrePage">👤 Profil</h1>
 
-    <!-- Carte Profil -->
+    <h1 class="titrePage">
+        👤 Profil
+    </h1>
+
+
+    <!-- ==========================================
+         CARTE PROFIL
+         ========================================== -->
+
     <div class="profil-card">
 
-        <div class="avatar" id="avatarInitiales">
+
+        <div
+            class="avatar"
+            id="avatarInitiales">
+
             JM
+
         </div>
 
-        <h2 id="pseudo">Joueur</h2>
+
+        <h2 id="pseudo">
+            Joueur
+        </h2>
+
 
         <p class="profil-sous-titre">
+
             Membre officiel de CongoQuiz 🇨🇬
+
         </p>
 
+
         <button
-        id="btnPseudo"
-        class="modifierPseudo"
-        onclick="modifierPseudo()">
-        
-        ✏️ Modifier mon pseudo
-        
+            id="btnPseudo"
+            class="modifierPseudo"
+            onclick="modifierPseudo()">
+
+            ✏️ Modifier mon pseudo
+
         </button>
 
+
     </div>
 
-    <!-- Carte Informations -->
+
+    <!-- ==========================================
+         INFORMATIONS
+         ========================================== -->
+
     <div class="profil-card">
 
-        <div class="profil-info">
-            <span>🏆 Niveau</span>
-            <strong id="niveau">Débutant</strong>
-        </div>
 
         <div class="profil-info">
-            <span>⭐ Points</span>
-            <strong id="points">0</strong>
+
+            <span>
+                🏆 Niveau
+            </span>
+
+            <strong id="niveau">
+                Débutant
+            </strong>
+
         </div>
 
+
         <div class="profil-info">
-            <span>📈 Taux de réussite</span>
-            <strong id="taux">0%</strong>
+
+            <span>
+                ⭐ Points
+            </span>
+
+            <strong id="points">
+                0
+            </strong>
+
         </div>
+
+
+        <div class="profil-info">
+
+            <span>
+                📈 Taux de réussite
+            </span>
+
+            <strong id="taux">
+                0%
+            </strong>
+
+        </div>
+
 
     </div>
 
-    <button class="rejouer"
-      onclick="window.location.href='index.html?accueil=1'">
+
+    <p
+        id="messageProfil"
+        style="
+            text-align:center;
+            font-weight:bold;
+            margin:20px;
+        ">
+    </p>
+
+
+    <button
+        class="rejouer"
+        onclick="window.location.href='index.html?accueil=1'">
+
         🏠 Retour à l'accueil
+
     </button>
+
 
 </div>
 
+
+<!-- ==========================================
+     SUPABASE
+     ========================================== -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+<!-- SCRIPT PRINCIPAL -->
+
 <script src="script.js"></script>
+
 
 <script>
 
-const joueur = chargerJoueur();
 
-document.getElementById("pseudo").textContent =
-joueur.pseudo || "Joueur";
-const pseudo = joueur.pseudo || "Joueur";
+let joueur = null;
 
-const mots = pseudo.trim().split(" ");
 
-let initiales = "";
+/* ==========================================
+   AFFICHER LE PROFIL
+   ========================================== */
 
-if(mots.length === 1){
+function afficherProfil(){
 
-    initiales = mots[0].substring(0,2);
+    if(!joueur){
+        return;
+    }
 
-}else{
 
-    initiales =
-    mots[0][0] + mots[1][0];
+    const pseudo =
+        joueur.pseudo || "Joueur";
+
+
+    document.getElementById(
+        "pseudo"
+    ).textContent = pseudo;
+
+
+    /* Initiales */
+
+    const mots =
+        pseudo.trim().split(/\s+/);
+
+
+    let initiales = "";
+
+
+    if(mots.length === 1){
+
+        initiales =
+            mots[0].substring(0,2);
+
+    }else{
+
+        initiales =
+            mots[0][0] +
+            mots[1][0];
+
+    }
+
+
+    document.getElementById(
+        "avatarInitiales"
+    ).textContent =
+        initiales.toUpperCase();
+
+
+    /* Points */
+
+    document.getElementById(
+        "points"
+    ).textContent =
+        joueur.points || 0;
+
+
+    /* Taux de réussite */
+
+    let taux = 0;
+
+
+    if((joueur.partiesJouees || 0) > 0){
+
+        taux = Math.round(
+
+            (
+                (joueur.partiesGagnees || 0) /
+                joueur.partiesJouees
+            ) * 100
+
+        );
+
+    }
+
+
+    document.getElementById(
+        "taux"
+    ).textContent =
+        taux + "%";
+
+
+    /* Niveau */
+
+    let niveau =
+        "🌱 Débutant";
+
+
+    if(joueur.points >= 100){
+
+        niveau =
+            "📚 Connaisseur";
+
+    }
+
+
+    if(joueur.points >= 300){
+
+        niveau =
+            "🏆 Expert";
+
+    }
+
+
+    if(joueur.points >= 700){
+
+        niveau =
+            "👑 Maître";
+
+    }
+
+
+    if(joueur.points >= 1500){
+
+        niveau =
+            "💎 Légende";
+
+    }
+
+
+    document.getElementById(
+        "niveau"
+    ).textContent =
+        niveau;
+
+
+    verifierBoutonPseudo();
 
 }
 
-document.getElementById("avatarInitiales").textContent =
-initiales.toUpperCase();
 
-document.getElementById("points").textContent =
-joueur.points;
+/* ==========================================
+   CHARGER LES DONNÉES DEPUIS SUPABASE
+   ========================================== */
 
-let taux = 0;
+async function chargerProfilSupabase(){
 
-if(joueur.partiesJouees > 0){
+    joueur = chargerJoueur();
 
-    taux = Math.round(
-        (joueur.partiesGagnees /
-        joueur.partiesJouees) * 100
+
+    if(!joueur.id){
+
+        console.error(
+            "❌ Aucun ID Supabase trouvé pour le joueur."
+        );
+
+        afficherProfil();
+
+        return;
+
+    }
+
+
+    const {
+        data,
+        error
+    } = await supabaseClient
+
+        .from("joueur")
+
+        .select(`
+            id,
+            pseudo,
+            points,
+            parties_jouees,
+            parties_gagnees,
+            sport,
+            histoire,
+            culture,
+            institutions,
+            geographie,
+            personnalites
+        `)
+
+        .eq("id", joueur.id)
+
+        .single();
+
+
+    if(error){
+
+        console.error(
+            "❌ Erreur chargement profil Supabase :",
+            error
+        );
+
+        document.getElementById(
+            "messageProfil"
+        ).textContent =
+            "⚠️ Impossible de charger les données Supabase.";
+
+        afficherProfil();
+
+        return;
+
+    }
+
+
+    /* Synchronisation locale */
+
+    joueur.id =
+        data.id;
+
+    joueur.pseudo =
+        data.pseudo;
+
+    joueur.points =
+        data.points || 0;
+
+    joueur.partiesJouees =
+        data.parties_jouees || 0;
+
+    joueur.partiesGagnees =
+        data.parties_gagnees || 0;
+
+    joueur.sport =
+        data.sport || 0;
+
+    joueur.histoire =
+        data.histoire || 0;
+
+    joueur.culture =
+        data.culture || 0;
+
+    joueur.institutions =
+        data.institutions || 0;
+
+    joueur.geographie =
+        data.geographie || 0;
+
+    joueur.personnalites =
+        data.personnalites || 0;
+
+
+    sauvegarderJoueur(joueur);
+
+
+    afficherProfil();
+
+
+    console.log(
+        "✅ Profil chargé depuis Supabase :",
+        data
     );
 
 }
 
-document.getElementById("taux").textContent =
-taux + "%";
 
-let niveau = "🌱 Débutant";
+/* ==========================================
+   MODIFIER LE PSEUDO
+   ========================================== */
 
-if(joueur.points >= 100)
-niveau = "📚 Connaisseur";
+async function modifierPseudo(){
 
-if(joueur.points >= 300)
-niveau = "🏆 Expert";
+    if(!joueur){
 
-if(joueur.points >= 700)
-niveau = "👑 Maître";
+        return;
 
-if(joueur.points >= 1500)
-niveau = "💎 Légende";
+    }
 
-document.getElementById("niveau").textContent =
-niveau;
 
-function modifierPseudo(){
+    const maintenant =
+        Date.now();
 
-const maintenant = Date.now();
 
-const attente = 4 * 24 * 60 * 60 * 1000;
+    const attente =
+        4 * 24 * 60 * 60 * 1000;
 
-if(joueur.dernierChangementPseudo !== 0){
 
-    const tempsPasse =
-    maintenant - joueur.dernierChangementPseudo;
+    if(
+        joueur.dernierChangementPseudo !== 0
+    ){
 
-    if(tempsPasse < attente){
+        const tempsPasse =
+            maintenant -
+            joueur.dernierChangementPseudo;
 
-        const joursRestants = Math.ceil(
 
-            (attente - tempsPasse) /
+        if(tempsPasse < attente){
 
-            (1000*60*60*24)
+            const joursRestants =
+                Math.ceil(
+
+                    (
+                        attente -
+                        tempsPasse
+                    ) /
+                    (1000 * 60 * 60 * 24)
+
+                );
+
+
+            alert(
+
+                "Vous pourrez modifier votre pseudo dans " +
+                joursRestants +
+                " jour(s)."
+
+            );
+
+
+            return;
+
+        }
+
+    }
+
+
+    let nouveauPseudo =
+        prompt(
+
+            "Entrez votre nouveau pseudo :",
+            joueur.pseudo
 
         );
 
+
+    if(nouveauPseudo === null){
+
+        return;
+
+    }
+
+
+    nouveauPseudo =
+        nouveauPseudo.trim();
+
+
+    if(nouveauPseudo === ""){
+
         alert(
-
-            "Vous pourrez modifier votre pseudo dans "
-
-            + joursRestants +
-
-            " jour(s)."
-
+            "Le pseudo ne peut pas être vide."
         );
 
         return;
 
     }
 
-}
 
-let nouveauPseudo = prompt(
+    if(nouveauPseudo === joueur.pseudo){
 
-    "Entrez votre nouveau pseudo :",
+        return;
 
-    joueur.pseudo
+    }
 
-);
 
-if(!nouveauPseudo) return;
+    /* Modification locale */
 
-joueur.pseudo = nouveauPseudo;
+    joueur.pseudo =
+        nouveauPseudo;
 
-joueur.dernierChangementPseudo = maintenant;
 
-sauvegarderJoueur(joueur);
+    joueur.dernierChangementPseudo =
+        maintenant;
 
-document.getElementById("pseudo").textContent = nouveauPseudo;
 
-verifierBoutonPseudo();
+    sauvegarderJoueur(joueur);
 
-}
-function verifierBoutonPseudo(){
 
-const bouton = document.getElementById("btnPseudo");
+    /*
+     * Mise à jour de LA MÊME ligne
+     * grâce à l'ID Supabase.
+     */
 
-const maintenant = Date.now();
+    const resultat =
+        await mettreAJourJoueurSupabase(joueur);
 
-const attente = 4 * 24 * 60 * 60 * 1000;
 
-if(joueur.dernierChangementPseudo === 0){
+    if(!resultat){
 
-    bouton.disabled = false;
+        alert(
+            "❌ Impossible de mettre à jour le pseudo dans Supabase."
+        );
 
-    bouton.textContent = "✏️ Modifier mon pseudo";
+        return;
 
-    return;
+    }
 
-}
 
-const tempsPasse =
-maintenant - joueur.dernierChangementPseudo;
+    document.getElementById(
+        "messageProfil"
+    ).textContent =
+        "✅ Pseudo mis à jour avec succès.";
 
-if(tempsPasse >= attente){
 
-    bouton.disabled = false;
+    afficherProfil();
 
-    bouton.textContent = "✏️ Modifier mon pseudo";
 
-}
-
-else{
-
-    const joursRestants = Math.ceil(
-
-        (attente - tempsPasse) /
-
-        (1000*60*60*24)
-
+    console.log(
+        "✅ Pseudo mis à jour dans Supabase :",
+        nouveauPseudo
     );
 
-    bouton.disabled = true;
+}
 
-    bouton.textContent =
-    "🔒 Disponible dans " +
-    joursRestants +
-    " jour(s)";
+
+/* ==========================================
+   BOUTON MODIFICATION PSEUDO
+   ========================================== */
+
+function verifierBoutonPseudo(){
+
+    if(!joueur){
+
+        return;
+
+    }
+
+
+    const bouton =
+        document.getElementById(
+            "btnPseudo"
+        );
+
+
+    const maintenant =
+        Date.now();
+
+
+    const attente =
+        4 * 24 * 60 * 60 * 1000;
+
+
+    if(
+        joueur.dernierChangementPseudo === 0
+    ){
+
+        bouton.disabled =
+            false;
+
+        bouton.textContent =
+            "✏️ Modifier mon pseudo";
+
+        return;
+
+    }
+
+
+    const tempsPasse =
+        maintenant -
+        joueur.dernierChangementPseudo;
+
+
+    if(tempsPasse >= attente){
+
+        bouton.disabled =
+            false;
+
+        bouton.textContent =
+            "✏️ Modifier mon pseudo";
+
+    }else{
+
+        const joursRestants =
+            Math.ceil(
+
+                (
+                    attente -
+                    tempsPasse
+                ) /
+                (1000 * 60 * 60 * 24)
+
+            );
+
+
+        bouton.disabled =
+            true;
+
+
+        bouton.textContent =
+            "🔒 Disponible dans " +
+            joursRestants +
+            " jour(s)";
+
+    }
 
 }
 
-}
-verifierBoutonPseudo();
+
+/* ==========================================
+   CHARGEMENT
+   ========================================== */
+
+window.addEventListener(
+    "load",
+    chargerProfilSupabase
+);
+
 
 </script>
 
+
 </body>
+
 </html>

@@ -1223,6 +1223,28 @@ const questions = [
     },
 
  ];
+ const SUPABASE_URL = "https://ccxbknqqfwlusiprtwbs.supabase.co";
+
+const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_CdvCSecR8dOp0UfZwW82UQ_y5LBGGsJ";
+
+const supabaseClient = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_PUBLISHABLE_KEY
+);
+supabaseClient
+    .from("joueur")
+    .select("id")
+    .limit(1)
+    .then(({ data, error }) => {
+
+        if (error) {
+            console.error("❌ Connexion Supabase échouée :", error);
+        } else {
+            console.log("✅ CongoQuiz est connecté à Supabase !");
+            console.log(data);
+        }
+
+    });
 function melangerQuestions(tableau) {
 
     for (let i = tableau.length - 1; i > 0; i--) {
@@ -1407,8 +1429,10 @@ function choisirQuestions(nombre) {
         let radios = document.querySelectorAll('input[name="rep"]');
         radios.forEach(radio => radio.disabled = true);
     }
-    function questionSuivante(){
-        document.getElementById("messageErreur").textContent = "";
+    async function questionSuivante(){
+
+        document.getElementById ("messageErreur").textContent = "";
+    
         numeroQuestion++;
     
         if(numeroQuestion < nombreQuestions){
@@ -1420,121 +1444,172 @@ function choisirQuestions(nombre) {
             document.getElementById("btnSuivant").style.display = "none";
     
         }else{
-             
+    
             let joueur = chargerJoueur();
-
+    
+            // ==========================================
+            // FIN DE LA PARTIE
+            // ==========================================
+    
             // Une partie terminée = une partie jouée
             joueur.partiesJouees++;
-            
+    
             // Ajout des points gagnés
             joueur.points += score;
-            
-            // Vérification de la victoire parfaite
-            if (score === nombreQuestions) {
+    
+            // Victoire parfaite
+            if(score === nombreQuestions){
                 joueur.partiesGagnees++;
             }
-            
-            // Sanction si le joueur est en dessous de la moyenne
-            if (score < (nombreQuestions / 2)) {
+    
+            // Sanction si le joueur est sous la moyenne
+            if(score < (nombreQuestions / 2)){
                 joueur.points -= nombreQuestions;
             }
-            
+    
             // Empêcher les points négatifs
-            if (joueur.points < 0) {
+            if(joueur.points < 0){
                 joueur.points = 0;
             }
-            
-            sauvegarderJoueur(joueur);
-            
-            // Meilleur score Quiz général
-            
-            {
-            
-                if (categorieChoisie === "sport" && score > joueur.sport)
-                    joueur.sport = score;
-            
-                if(categorieChoisie === "histoire" && score > joueur.histoire)
-                    joueur.histoire = score;
-            
-                if(categorieChoisie === "culture" && score > joueur.culture)
-                    joueur.culture = score;
-            
-                if(categorieChoisie === "institutions" && score > joueur.institutions)
-                    joueur.institutions = score;
-            
-                if(categorieChoisie === "geographie" && score > joueur.geographie)
-                    joueur.geographie = score;
-            
-                if(categorieChoisie === "personnalites" && score > joueur.personnalites)
-                    joueur.personnalites = score;
+    
+            // ==========================================
+            // MEILLEUR SCORE PAR CATÉGORIE
+            // ==========================================
+    
+            if(categorieChoisie === "sport" && score > joueur.sport){
+                joueur.sport = score;
             }
-            
+    
+            if(categorieChoisie === "histoire" && score > joueur.histoire){
+                joueur.histoire = score;
+            }
+    
+            if(categorieChoisie === "culture" && score > joueur.culture){
+                joueur.culture = score;
+            }
+    
+            if(categorieChoisie === "institutions" && score > joueur.institutions){
+                joueur.institutions = score;
+            }
+    
+            if(categorieChoisie === "geographie" && score > joueur.geographie){
+                joueur.geographie = score;
+            }
+    
+            if(categorieChoisie === "personnalites" && score > joueur.personnalites){
+                joueur.personnalites = score;
+            }
+    
+            // ==========================================
+            // SAUVEGARDE LOCALE
+            // ==========================================
+    
             sauvegarderJoueur(joueur);
-             
-            let pourcentage = Math.round((score / nombreQuestions) * 100);
-
+    
+            // ==========================================
+            // MISE À JOUR AUTOMATIQUE SUPABASE
+            // ==========================================
+    
+            await mettreAJourJoueurSupabase(joueur);
+    
+            // ==========================================
+            // AFFICHAGE DU RÉSULTAT
+            // ==========================================
+    
+            let pourcentage = Math.round(
+                (score / nombreQuestions) * 100
+            );
+    
             let niveau = "";
-
-            if (pourcentage >= 90) {
-            niveau = "👑 Expert de la culture congolaise";
-            }  else if (pourcentage >= 70) {
-            niveau = "🏆 Très bon connaisseur";
-            } else if (pourcentage >= 50) {
-            niveau = "📚 Bon niveau";
-            } else if (pourcentage >= 30) {
-            niveau = "🌱 Continue à apprendre";
-            } else {
-            niveau = "💪 Débutant";
-            }
-
-            let etoiles = "";
-
-            if (pourcentage >= 90){
-                etoiles = "⭐⭐⭐⭐⭐";
-            }else if (pourcentage >= 70){
-                etoiles = "⭐⭐⭐⭐";
-            }else if (pourcentage >= 50){
-                etoiles = "⭐⭐⭐";
-            }else if (pourcentage >= 30){
-    etoiles = "⭐⭐";
+    
+            if(pourcentage >= 90){
+    
+                niveau = "👑 Expert de la culture congolaise";
+    
+            }else if(pourcentage >= 70){
+    
+                niveau = "🏆 Très bon connaisseur";
+    
+            }else if(pourcentage >= 50){
+    
+                niveau = "📚 Bon niveau";
+    
+            }else if(pourcentage >= 30){
+    
+                niveau = "🌱 Continue à apprendre";
+    
             }else{
-             etoiles = "⭐";
+    
+                niveau = "💪 Débutant";
+    
             }
-
+    
+            let etoiles = "";
+    
+            if(pourcentage >= 90){
+    
+                etoiles = "⭐⭐⭐⭐⭐";
+    
+            }else if(pourcentage >= 70){
+    
+                etoiles = "⭐⭐⭐⭐";
+    
+            }else if(pourcentage >= 50){
+    
+                etoiles = "⭐⭐⭐";
+    
+            }else if(pourcentage >= 30){
+    
+                etoiles = "⭐⭐";
+    
+            }else{
+    
+                etoiles = "⭐";
+    
+            }
+    
             document.querySelector(".accueil").innerHTML = `
-            <div class="finQuizContainer">
-
-                 <h1 class="finQuizTitre">🎉 Quiz terminé !</h1>
-
-                <div class="scoreCard">
-
-                 <h2>${score}/${nombreQuestions}</h2>
-
-                 <p>📊 ${pourcentage}%</p>
-
-                <h3>${niveau}</h3>
-
-                 <div class="etoiles">${etoiles}</div>
-
+    
+                <div class="finQuizContainer">
+    
+                    <h1 class="finQuizTitre">
+                        🎉 Quiz terminé !
+                    </h1>
+    
+                    <div class="scoreCard">
+    
+                        <h2>${score}/${nombreQuestions}</h2>
+    
+                        <p>📊 ${pourcentage}%</p>
+    
+                        <h3>${niveau}</h3>
+    
+                        <div class="etoiles">
+                            ${etoiles}
+                        </div>
+    
+                    </div>
+    
+                    <button
+                        class="rejouer"
+                        onclick="rejouer()">
+                        🔄 Rejouer
+                    </button>
+    
+                    <button
+                        class="retourAccueil"
+                        onclick="window.location.href='index.html?accueil=1'">
+                        🏠 Retour au menu
+                    </button>
+    
                 </div>
-
-               <button class="rejouer" onclick="rejouer()">
-                🔄 Rejouer
-              </button>
-
-              <button class="retourAccueil"
-               onclick="window.location.href='index.html?accueil=1'">
-               🏠 Retour au menu
-              </button>
-
-            </div>
+    
             `;
     
         }
-        
-        
     
     }
+   
     function demarrerChrono(){
 
         clearInterval(intervalle);
@@ -1788,20 +1863,27 @@ function chargerJoueur(){
     let joueur = JSON.parse(localStorage.getItem("joueur"));
 
     if(!joueur){
-
         joueur = {
 
-            pseudo:"",
-            points:0,
-
-            partiesJouees:0,
-            partiesGagnees:0,
-
-            tempsJeu:0,
-
-            dernierChangementPseudo:0
-
+            pseudo: "",
+            points: 0,
+        
+            partiesJouees: 0,
+            partiesGagnees: 0,
+        
+            sport: 0,
+            histoire: 0,
+            culture: 0,
+            institutions: 0,
+            geographie: 0,
+            personnalites: 0,
+        
+            tempsJeu: 0,
+        
+            dernierChangementPseudo: 0
         };
+
+      
 
         sauvegarderJoueur(joueur);
 
@@ -1840,8 +1922,73 @@ function verifierProfil(){
     }
 
 }
+async function enregistrerJoueurSupabase(joueur) {
 
-function creerProfil(){
+    const { data, error } = await supabaseClient
+        .from("joueur")
+        .insert({
+            pseudo: joueur.pseudo,
+            points: joueur.points,
+            parties_jouees: joueur.partiesJouees,
+            parties_gagnees: joueur.partiesGagnees,
+            sport: joueur.sport || 0,
+            histoire: joueur.histoire || 0,
+            culture: joueur.culture || 0,
+            institutions: joueur.institutions || 0,
+            geographie: joueur.geographie || 0,
+            personnalites: joueur.personnalites || 0
+        })
+        .select()
+        .single();
+
+    if (error) {
+
+        console.error("❌ Erreur création joueur :", error);
+
+        return null;
+    }
+
+    console.log("✅ Joueur enregistré dans Supabase :", data);
+
+    return data;
+}
+async function mettreAJourJoueurSupabase(joueur){
+
+    if(!joueur.id){
+        console.error("❌ Aucun ID Supabase pour ce joueur.");
+        return false;
+    }
+
+    const { data, error } = await supabaseClient
+        .from("joueur")
+        .update({
+            pseudo: joueur.pseudo,
+            points: joueur.points,
+            parties_jouees: joueur.partiesJouees,
+            parties_gagnees: joueur.partiesGagnees,
+            sport: joueur.sport || 0,
+            histoire: joueur.histoire || 0,
+            culture: joueur.culture || 0,
+            institutions: joueur.institutions || 0,
+            geographie: joueur.geographie || 0,
+            personnalites: joueur.personnalites || 0
+        })
+        .eq("id", joueur.id)
+        .select()
+        .single();
+
+    if(error){
+
+        console.error("❌ Erreur mise à jour Supabase :", error);
+
+        return false;
+    }
+
+    console.log("✅ Joueur mis à jour dans Supabase :", data);
+
+    return true;
+}
+async function creerProfil(){
 
     const champ = document.getElementById("pseudoDepart");
 
@@ -1855,20 +2002,29 @@ function creerProfil(){
 
     }
 
+    // Enregistrement local
     let joueur = chargerJoueur();
 
     joueur.pseudo = pseudo;
 
     sauvegarderJoueur(joueur);
 
+    // Enregistrement dans Supabase
+    const joueurSupabase = await enregistrerJoueurSupabase(joueur);
+    if (joueurSupabase) {
+        joueur.id = joueurSupabase.id;
+        sauvegarderJoueur(joueur);
+    }
+
     const fenetre = document.getElementById("creationProfil");
 
     fenetre.classList.add("fermerProfil");
+
     setTimeout(() => {
 
         fenetre.style.display = "none";
-    
+
         document.getElementById("accueilSite").style.display = "block";
-    
+
     },400);
 }
