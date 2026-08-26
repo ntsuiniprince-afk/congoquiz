@@ -1863,168 +1863,443 @@ function chargerJoueur(){
     let joueur = JSON.parse(localStorage.getItem("joueur"));
 
     if(!joueur){
+
         joueur = {
 
             pseudo: "",
             points: 0,
-        
+
             partiesJouees: 0,
             partiesGagnees: 0,
-        
+
             sport: 0,
             histoire: 0,
             culture: 0,
             institutions: 0,
             geographie: 0,
             personnalites: 0,
-        
+
             tempsJeu: 0,
-        
+
             dernierChangementPseudo: 0
         };
 
-      
-
         sauvegarderJoueur(joueur);
-
     }
+
+
     if(joueur.dernierChangementPseudo === undefined){
 
         joueur.dernierChangementPseudo = 0;
-    
+
         sauvegarderJoueur(joueur);
-    
     }
 
-    return joueur;
 
+    return joueur;
 }
+
 
 function sauvegarderJoueur(joueur){
 
-    localStorage.setItem("joueur", JSON.stringify(joueur));
-
+    localStorage.setItem(
+        "joueur",
+        JSON.stringify(joueur)
+    );
 }
-window.addEventListener("load", verifierProfil);
 
-function verifierProfil(){
 
-    const joueur = chargerJoueur();
+/* ==========================================
+   CRÉATION D'UN JOUEUR DANS SUPABASE
+   ========================================== */
 
-    const fenetre = document.getElementById("creationProfil");
+async function enregistrerJoueurSupabase(joueur){
 
-    if(!fenetre) return;
+    const { data, error } =
+        await supabaseClient
 
-    if(joueur.pseudo && joueur.pseudo.trim() !== ""){
+            .from("joueur")
 
-        fenetre.style.display = "none";
+            .insert({
 
-    }
+                pseudo: joueur.pseudo,
 
-}
-async function enregistrerJoueurSupabase(joueur) {
+                points: joueur.points || 0,
 
-    const { data, error } = await supabaseClient
-        .from("joueur")
-        .insert({
-            pseudo: joueur.pseudo,
-            points: joueur.points,
-            parties_jouees: joueur.partiesJouees,
-            parties_gagnees: joueur.partiesGagnees,
-            sport: joueur.sport || 0,
-            histoire: joueur.histoire || 0,
-            culture: joueur.culture || 0,
-            institutions: joueur.institutions || 0,
-            geographie: joueur.geographie || 0,
-            personnalites: joueur.personnalites || 0
-        })
-        .select()
-        .single();
+                parties_jouees:
+                    joueur.partiesJouees || 0,
 
-    if (error) {
+                parties_gagnees:
+                    joueur.partiesGagnees || 0,
 
-        console.error("❌ Erreur création joueur :", error);
+                sport:
+                    joueur.sport || 0,
+
+                histoire:
+                    joueur.histoire || 0,
+
+                culture:
+                    joueur.culture || 0,
+
+                institutions:
+                    joueur.institutions || 0,
+
+                geographie:
+                    joueur.geographie || 0,
+
+                personnalites:
+                    joueur.personnalites || 0
+
+            })
+
+            .select()
+
+            .single();
+
+
+    if(error){
+
+        console.error(
+            "❌ Erreur création joueur :",
+            error
+        );
 
         return null;
     }
 
-    console.log("✅ Joueur enregistré dans Supabase :", data);
+
+    console.log(
+        "✅ Joueur enregistré dans Supabase :",
+        data
+    );
+
 
     return data;
 }
+
+
+/* ==========================================
+   MISE À JOUR D'UN JOUEUR
+   ========================================== */
+
 async function mettreAJourJoueurSupabase(joueur){
 
     if(!joueur.id){
-        console.error("❌ Aucun ID Supabase pour ce joueur.");
+
+        console.error(
+            "❌ Aucun ID Supabase pour ce joueur."
+        );
+
         return false;
     }
 
-    const { data, error } = await supabaseClient
-        .from("joueur")
-        .update({
-            pseudo: joueur.pseudo,
-            points: joueur.points,
-            parties_jouees: joueur.partiesJouees,
-            parties_gagnees: joueur.partiesGagnees,
-            sport: joueur.sport || 0,
-            histoire: joueur.histoire || 0,
-            culture: joueur.culture || 0,
-            institutions: joueur.institutions || 0,
-            geographie: joueur.geographie || 0,
-            personnalites: joueur.personnalites || 0
-        })
-        .eq("id", joueur.id)
-        .select()
-        .single();
+
+    const { data, error } =
+        await supabaseClient
+
+            .from("joueur")
+
+            .update({
+
+                pseudo:
+                    joueur.pseudo,
+
+                points:
+                    joueur.points || 0,
+
+                parties_jouees:
+                    joueur.partiesJouees || 0,
+
+                parties_gagnees:
+                    joueur.partiesGagnees || 0,
+
+                sport:
+                    joueur.sport || 0,
+
+                histoire:
+                    joueur.histoire || 0,
+
+                culture:
+                    joueur.culture || 0,
+
+                institutions:
+                    joueur.institutions || 0,
+
+                geographie:
+                    joueur.geographie || 0,
+
+                personnalites:
+                    joueur.personnalites || 0
+
+            })
+
+            .eq("id", joueur.id)
+
+            .select()
+
+            .single();
+
 
     if(error){
 
-        console.error("❌ Erreur mise à jour Supabase :", error);
+        console.error(
+            "❌ Erreur mise à jour Supabase :",
+            error
+        );
 
         return false;
     }
 
-    console.log("✅ Joueur mis à jour dans Supabase :", data);
+
+    console.log(
+        "✅ Joueur mis à jour dans Supabase :",
+        data
+    );
+
 
     return true;
 }
-async function creerProfil(){
 
-    const champ = document.getElementById("pseudoDepart");
 
-    const pseudo = champ.value.trim();
+/* ==========================================
+   MIGRATION DES ANCIENS JOUEURS
+   ========================================== */
 
-    if(pseudo === ""){
+async function migrerAncienJoueurSupabase(){
 
-        alert("Veuillez entrer votre pseudo.");
+    const joueur = chargerJoueur();
 
-        return;
 
+    /*
+     * Pas de pseudo = aucun profil à migrer.
+     */
+
+    if(
+        !joueur.pseudo ||
+        joueur.pseudo.trim() === ""
+    ){
+
+        return joueur;
     }
 
-    // Enregistrement local
-    let joueur = chargerJoueur();
 
-    joueur.pseudo = pseudo;
+    /*
+     * Le joueur possède déjà un ID.
+     * Il est donc déjà lié à Supabase.
+     */
+
+    if(joueur.id){
+
+        return joueur;
+    }
+
+
+    console.log(
+        "🔄 Ancien joueur détecté. Migration vers Supabase..."
+    );
+
+
+    /*
+     * Création du joueur dans Supabase
+     * avec toutes ses anciennes données.
+     */
+
+    const joueurSupabase =
+        await enregistrerJoueurSupabase(joueur);
+
+
+    /*
+     * Si la création échoue,
+     * on ne détruit aucune donnée locale.
+     */
+
+    if(!joueurSupabase){
+
+        console.error(
+            "❌ Migration impossible. Les données locales sont conservées."
+        );
+
+        return joueur;
+    }
+
+
+    /*
+     * Récupération de l'ID généré
+     * automatiquement par Supabase.
+     */
+
+    joueur.id =
+        joueurSupabase.id;
+
+
+    /*
+     * Sauvegarde définitive de l'ID
+     * dans le navigateur.
+     */
 
     sauvegarderJoueur(joueur);
 
-    // Enregistrement dans Supabase
-    const joueurSupabase = await enregistrerJoueurSupabase(joueur);
-    if (joueurSupabase) {
-        joueur.id = joueurSupabase.id;
-        sauvegarderJoueur(joueur);
+
+    console.log(
+        "✅ Migration terminée. ID Supabase :",
+        joueur.id
+    );
+
+
+    return joueur;
+}
+
+
+/* ==========================================
+   VÉRIFICATION DU PROFIL
+   ========================================== */
+
+async function verifierProfil(){
+
+    const joueur =
+        await migrerAncienJoueurSupabase();
+
+
+    const fenetre =
+        document.getElementById(
+            "creationProfil"
+        );
+
+
+    if(!fenetre){
+
+        return;
     }
 
-    const fenetre = document.getElementById("creationProfil");
 
-    fenetre.classList.add("fermerProfil");
+    if(
+        joueur.pseudo &&
+        joueur.pseudo.trim() !== ""
+    ){
+
+        fenetre.style.display =
+            "none";
+    }
+
+}
+
+
+/* ==========================================
+   CRÉATION DU PROFIL
+   ========================================== */
+
+async function creerProfil(){
+
+    const champ =
+        document.getElementById(
+            "pseudoDepart"
+        );
+
+
+    const pseudo =
+        champ.value.trim();
+
+
+    if(pseudo === ""){
+
+        alert(
+            "Veuillez entrer votre pseudo."
+        );
+
+        return;
+    }
+
+
+    /*
+     * Récupération du joueur local.
+     */
+
+    let joueur =
+        chargerJoueur();
+
+
+    joueur.pseudo =
+        pseudo;
+
+
+    /*
+     * Sauvegarde locale.
+     */
+
+    sauvegarderJoueur(joueur);
+
+
+    /*
+     * Création dans Supabase.
+     */
+
+    const joueurSupabase =
+        await enregistrerJoueurSupabase(joueur);
+
+
+    if(!joueurSupabase){
+
+        alert(
+            "❌ Impossible de créer votre profil en ligne."
+        );
+
+        return;
+    }
+
+
+    /*
+     * Récupération de l'ID Supabase.
+     */
+
+    joueur.id =
+        joueurSupabase.id;
+
+
+    /*
+     * Sauvegarde de l'ID.
+     */
+
+    sauvegarderJoueur(joueur);
+
+
+    console.log(
+        "✅ Profil créé avec l'ID Supabase :",
+        joueur.id
+    );
+
+
+    const fenetre =
+        document.getElementById(
+            "creationProfil"
+        );
+
+
+    fenetre.classList.add(
+        "fermerProfil"
+    );
+
 
     setTimeout(() => {
 
-        fenetre.style.display = "none";
+        fenetre.style.display =
+            "none";
 
-        document.getElementById("accueilSite").style.display = "block";
+
+        document.getElementById(
+            "accueilSite"
+        ).style.display =
+            "block";
 
     },400);
+
 }
+
+
+/* ==========================================
+   VÉRIFICATION DU PROFIL AU CHARGEMENT
+   ========================================== */
+
+window.addEventListener(
+    "load",
+    verifierProfil
+);
