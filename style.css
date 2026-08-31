@@ -1844,3 +1844,180 @@ VERSION MOBILE CONGOQUIZ
     }
 
 }
+
+/* ==========================================
+   MODE EN LIGNE - CONGOQUIZ
+========================================== */
+
+.modeEnLigne {
+    width: 100%;
+    max-width: 850px;
+    margin: 0 auto;
+    padding: 30px 20px 50px;
+    text-align: center;
+}
+
+.sousTitreModeEnLigne {
+    margin-bottom: 30px;
+    font-size: 18px;
+}
+
+.carteModeEnLigne {
+    width: 100%;
+    max-width: 650px;
+    margin: 20px auto;
+    padding: 25px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.10);
+}
+
+.carteModeEnLigne h2 {
+    margin-top: 0;
+}
+
+.boutonModeEnLigne,
+.boutonSecondaire {
+    display: block;
+    width: 100%;
+    max-width: 400px;
+    margin: 15px auto;
+    padding: 14px 20px;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.boutonModeEnLigne {
+    background: #009543;
+    color: white;
+}
+
+.boutonSecondaire {
+    background: #eeeeee;
+    color: #333;
+}
+
+.boutonModeEnLigne:hover,
+.boutonSecondaire:hover {
+    transform: translateY(-2px);
+}
+
+.carteModeEnLigne label {
+    display: block;
+    margin: 18px 0 8px;
+    font-weight: bold;
+}
+
+.carteModeEnLigne select,
+.carteModeEnLigne input {
+    width: 100%;
+    max-width: 400px;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 16px;
+}
+
+.codePartie {
+    margin: 20px auto;
+    padding: 18px;
+    max-width: 300px;
+    border-radius: 12px;
+    background: #f3f3f3;
+    font-size: 28px;
+    font-weight: bold;
+    letter-spacing: 4px;
+}
+
+.joueursConfrontation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.joueurConfrontation {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.joueurConfrontation span {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.vs {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.reponsesEnLigne {
+    display: grid;
+    gap: 12px;
+    margin-top: 25px;
+}
+
+.reponsesEnLigne button {
+    padding: 14px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.messageModeEnLigne {
+    margin: 20px auto;
+    font-weight: bold;
+}
+
+@media (max-width: 600px) {
+
+    .modeEnLigne {
+        padding: 20px 12px 40px;
+    }
+
+    .carteModeEnLigne {
+        padding: 20px 15px;
+    }
+
+    .joueursConfrontation {
+        gap: 12px;
+    }
+
+    .vs {
+        font-size: 18px;
+    }
+
+}
+.boutonModeEnLigne {
+    display: block;
+    width: 100%;
+    max-width: 400px;
+    margin: 15px auto;
+    padding: 14px 20px;
+
+    box-sizing: border-box;
+
+    border-radius: 12px;
+    border: none;
+
+    background: #009543;
+    color: white;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    text-decoration: none;
+    text-align: center;
+
+    cursor: pointer;
+}
+
+.boutonModeEnLigne:hover {
+    transform: translateY(-2px);
+}
