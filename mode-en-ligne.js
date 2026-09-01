@@ -29,11 +29,24 @@ const messageModeEnLigne =
 ========================================== */
 
 const joueur = chargerJoueur();
+
+
 /* ==========================================
    PARTIE ACTUELLE
 ========================================== */
 
 let partieEnLigneActuelle = null;
+
+
+/* ==========================================
+   SURVEILLANCES
+========================================== */
+
+let surveillancePartie = null;
+
+let surveillanceReponses = null;
+
+
 /* ==========================================
    BASE DE QUESTIONS DU MODE EN LIGNE
 ========================================== */
@@ -72,12 +85,18 @@ function obtenirQuestionsCategorie(categorie){
 
             return [];
     }
+
 }
+
+
 /* ==========================================
    PRÉPARER LES QUESTIONS DE LA PARTIE
 ========================================== */
 
-function preparerQuestionsPartie(categorie, nombreQuestions){
+function preparerQuestionsPartie(
+    categorie,
+    nombreQuestions
+){
 
     const base =
         obtenirQuestionsCategorie(categorie);
@@ -94,14 +113,18 @@ function preparerQuestionsPartie(categorie, nombreQuestions){
     }
 
 
-    /* Copie de la base pour ne pas modifier
-       les questions originales */
+    /*
+     * Copie de la base pour ne pas modifier
+     * les questions originales.
+     */
 
     const questionsMelangees =
         [...base];
 
 
-    /* Mélange aléatoire */
+    /*
+     * Mélange Fisher-Yates
+     */
 
     for(
         let i = questionsMelangees.length - 1;
@@ -114,6 +137,7 @@ function preparerQuestionsPartie(categorie, nombreQuestions){
                 Math.random() * (i + 1)
             );
 
+
         [
             questionsMelangees[i],
             questionsMelangees[j]
@@ -125,8 +149,6 @@ function preparerQuestionsPartie(categorie, nombreQuestions){
 
     }
 
-
-    /* Nombre de questions demandé */
 
     return questionsMelangees.slice(
         0,
@@ -146,10 +168,15 @@ function preparerQuestionsPartie(categorie, nombreQuestions){
 function afficherProfilEnLigne(){
 
     const pseudo =
-        document.getElementById("pseudoEnLigne");
+        document.getElementById(
+            "pseudoEnLigne"
+        );
 
     const points =
-        document.getElementById("pointsEnLigne");
+        document.getElementById(
+            "pointsEnLigne"
+        );
+
 
     if(pseudo){
 
@@ -157,6 +184,7 @@ function afficherProfilEnLigne(){
             joueur.pseudo || "Joueur";
 
     }
+
 
     if(points){
 
@@ -174,7 +202,12 @@ function afficherProfilEnLigne(){
 
 function afficherMessage(message){
 
-    if(!messageModeEnLigne) return;
+    if(!messageModeEnLigne){
+
+        return;
+
+    }
+
 
     messageModeEnLigne.textContent =
         message;
@@ -191,7 +224,10 @@ function genererCodePartie(){
     const caracteres =
         "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
 
-    let code = "CQ-";
+
+    let code =
+        "CQ-";
+
 
     for(let i = 0; i < 4; i++){
 
@@ -200,9 +236,12 @@ function genererCodePartie(){
                 Math.random() * caracteres.length
             );
 
-        code += caracteres[position];
+
+        code +=
+            caracteres[position];
 
     }
+
 
     return code;
 
@@ -215,20 +254,30 @@ function genererCodePartie(){
 
 async function genererCodeUnique(){
 
-    for(let tentative = 0; tentative < 10; tentative++){
+    for(
+        let tentative = 0;
+        tentative < 10;
+        tentative++
+    ){
 
         const code =
             genererCodePartie();
 
 
-        const { data, error } =
+        const {
+            data,
+            error
+        } =
             await supabaseClient
 
                 .from("parties_en_ligne")
 
                 .select("id")
 
-                .eq("code", code)
+                .eq(
+                    "code",
+                    code
+                )
 
                 .limit(1);
 
@@ -245,7 +294,10 @@ async function genererCodeUnique(){
         }
 
 
-        if(!data || data.length === 0){
+        if(
+            !data ||
+            data.length === 0
+        ){
 
             return code;
 
@@ -257,6 +309,7 @@ async function genererCodeUnique(){
     console.error(
         "❌ Impossible de générer un code unique."
     );
+
 
     return null;
 
@@ -304,18 +357,19 @@ function afficherMenuPartie(){
     salleAttente.style.display =
         "none";
 
+
     afficherMessage("");
 
 }
-
-
 /* ==========================================
    CRÉER LA PARTIE
 ========================================== */
 
 async function creerPartieEnLigne(){
 
-    /* Vérification du joueur */
+    /* ==========================================
+       VÉRIFICATION DU JOUEUR
+    ========================================== */
 
     if(!joueur.id){
 
@@ -328,11 +382,12 @@ async function creerPartieEnLigne(){
         );
 
         return;
-
     }
 
 
-    /* Récupération des choix */
+    /* ==========================================
+       RÉCUPÉRATION DES CHOIX
+    ========================================== */
 
     const categorie =
         document.getElementById(
@@ -347,20 +402,10 @@ async function creerPartieEnLigne(){
             ).value
         );
 
-    const questionsPartie =
-    preparerQuestionsPartie(
-        categorie,
-        nombreQuestions
-    );
-    if(questionsPartie.length < nombreQuestions){
 
-    afficherMessage(
-        "❌ Pas assez de questions disponibles dans cette catégorie."
-    );
-
-    return;
-    }
-    /* Vérification */
+    /* ==========================================
+       VÉRIFICATION DU NOMBRE
+    ========================================== */
 
     if(![5, 10, 20].includes(nombreQuestions)){
 
@@ -373,12 +418,40 @@ async function creerPartieEnLigne(){
     }
 
 
-    /* Désactivation du bouton */
+    /* ==========================================
+       PRÉPARATION DES QUESTIONS
+    ========================================== */
+
+    const questionsPartie =
+        preparerQuestionsPartie(
+            categorie,
+            nombreQuestions
+        );
+
+
+    if(
+        questionsPartie.length <
+        nombreQuestions
+    ){
+
+        afficherMessage(
+            "❌ Pas assez de questions disponibles dans cette catégorie."
+        );
+
+        return;
+
+    }
+
+
+    /* ==========================================
+       DÉSACTIVATION DU BOUTON
+    ========================================== */
 
     const bouton =
         document.getElementById(
             "confirmerCreationPartie"
         );
+
 
     bouton.disabled = true;
 
@@ -388,7 +461,9 @@ async function creerPartieEnLigne(){
 
     try{
 
-        /* Génération du code */
+        /* ==========================================
+           GÉNÉRATION DU CODE
+        ========================================== */
 
         const code =
             await genererCodeUnique();
@@ -405,9 +480,14 @@ async function creerPartieEnLigne(){
         }
 
 
-        /* Création dans Supabase */
+        /* ==========================================
+           CRÉATION SUPABASE
+        ========================================== */
 
-        const { data, error } =
+        const {
+            data,
+            error
+        } =
             await supabaseClient
 
                 .from("parties_en_ligne")
@@ -416,23 +496,44 @@ async function creerPartieEnLigne(){
 
                     code: code,
 
-                    joueur1_id: joueur.id,
+                    joueur1_id:
+                        joueur.id,
 
-                    joueur2_id: null,
+                    joueur2_id:
+                        null,
 
-                    statut: "attente",
+                    statut:
+                        "attente",
 
-                    categorie: categorie,
+                    categorie:
+                        categorie,
 
-                    nombre_questions: nombreQuestions,
-                    
-                    questions: questionsPartie,
+                    nombre_questions:
+                        nombreQuestions,
 
-                    score_joueur1: 0,
+                    questions:
+                        questionsPartie,
 
-                    score_joueur2: 0,
+                    score_joueur1:
+                        0,
 
-                    gagnant_id: null
+                    score_joueur2:
+                        0,
+
+                    gagnant_id:
+                        null,
+
+                    question_actuelle:
+                        0,
+
+                    reponse_joueur1:
+                        null,
+
+                    reponse_joueur2:
+                        null,
+
+                    traitement_question:
+                        false
 
                 })
 
@@ -463,14 +564,20 @@ async function creerPartieEnLigne(){
         );
 
 
-        /* Affichage de la salle d'attente */
+        /* ==========================================
+           SALLE D'ATTENTE
+        ========================================== */
 
-          afficherSalleAttente(data);
+        afficherSalleAttente(data);
 
 
-         /* Surveillance de l'arrivée du joueur 2 */
+        /* ==========================================
+           SURVEILLER JOUEUR 2
+        ========================================== */
 
-         surveillerArriveeAdversaire(data.id);
+        surveillerArriveeAdversaire(
+            data.id
+        );
 
     }
 
@@ -540,37 +647,24 @@ function afficherSalleAttente(partie){
 
 async function annulerPartieEnLigne(){
 
+    if(
+        surveillancePartie
+    ){
+
+        clearInterval(
+            surveillancePartie
+        );
+
+        surveillancePartie =
+            null;
+
+    }
+
+
     afficherMenuPartie();
 
 }
 
-
-/* ==========================================
-   BOUTONS
-========================================== */
-
-document
-    .getElementById("btnCreerPartie")
-    ?.addEventListener(
-        "click",
-        afficherCreationPartie
-    );
-
-
-document
-    .getElementById("confirmerCreationPartie")
-    ?.addEventListener(
-        "click",
-        creerPartieEnLigne
-    );
-
-
-document
-    .getElementById("annulerCreationPartie")
-    ?.addEventListener(
-        "click",
-        afficherMenuPartie
-    );
 
 /* ==========================================
    AFFICHER REJOINDRE UNE PARTIE
@@ -578,19 +672,37 @@ document
 
 function afficherRejoindrePartie(){
 
-    menuPartieEnLigne.style.display = "none";
-    creationPartie.style.display = "none";
-    rejoindrePartie.style.display = "block";
-    salleAttente.style.display = "none";
+    menuPartieEnLigne.style.display =
+        "none";
+
+    creationPartie.style.display =
+        "none";
+
+    rejoindrePartie.style.display =
+        "block";
+
+    salleAttente.style.display =
+        "none";
+
 
     afficherMessage("");
 
-    const champ = document.getElementById("codePartie");
+
+    const champ =
+        document.getElementById(
+            "codePartie"
+        );
+
 
     if(champ){
-        champ.value = "";
+
+        champ.value =
+            "";
+
         champ.focus();
+
     }
+
 }
 
 
@@ -623,10 +735,15 @@ async function rejoindrePartieEnLigne(){
     ========================================== */
 
     const champ =
-        document.getElementById("codePartie");
+        document.getElementById(
+            "codePartie"
+        );
+
 
     const code =
-        champ.value.trim().toUpperCase();
+        champ.value
+            .trim()
+            .toUpperCase();
 
 
     if(code === ""){
@@ -636,20 +753,24 @@ async function rejoindrePartieEnLigne(){
         );
 
         return;
+
     }
 
 
     /* ==========================================
-       VÉRIFICATION DU FORMAT
+       FORMAT DU CODE
     ========================================== */
 
-    if ( !/^CQ-[A-Z0-9]{4}$/.test(code)){
+    if(
+        !/^CQ-[A-Z0-9]{4}$/.test(code)
+    ){
 
         afficherMessage(
             "❌ Code de partie invalide."
         );
 
         return;
+
     }
 
 
@@ -671,18 +792,30 @@ async function rejoindrePartieEnLigne(){
            RECHERCHE DE LA PARTIE
         ========================================== */
 
-        const { data: partie, error } =
+        const {
+            data: partie,
+            error
+        } =
             await supabaseClient
 
                 .from("parties_en_ligne")
 
                 .select("*")
 
-                .eq("code", code)
+                .eq(
+                    "code",
+                    code
+                )
 
-                .eq("statut", "attente")
+                .eq(
+                    "statut",
+                    "attente"
+                )
 
-                .is("joueur2_id", null)
+                .is(
+                    "joueur2_id",
+                    null
+                )
 
                 .maybeSingle();
 
@@ -699,12 +832,9 @@ async function rejoindrePartieEnLigne(){
             );
 
             return;
+
         }
 
-
-        /* ==========================================
-           PARTIE INTROUVABLE
-        ========================================== */
 
         if(!partie){
 
@@ -713,20 +843,25 @@ async function rejoindrePartieEnLigne(){
             );
 
             return;
+
         }
 
 
         /* ==========================================
-           EMPÊCHER DE REJOINDRE SA PROPRE PARTIE
+           EMPÊCHER SA PROPRE PARTIE
         ========================================== */
 
-        if(partie.joueur1_id === joueur.id){
+        if(
+            partie.joueur1_id ===
+            joueur.id
+        ){
 
             afficherMessage(
                 "❌ Vous ne pouvez pas rejoindre votre propre partie."
             );
 
             return;
+
         }
 
 
@@ -744,19 +879,30 @@ async function rejoindrePartieEnLigne(){
 
                 .update({
 
-                    joueur2_id: joueur.id,
-                     statut: "en_cours"
+                    joueur2_id:
+                        joueur.id,
+
+                    statut:
+                        "en_cours"
 
                 })
 
-                .eq("id", partie.id)
+                .eq(
+                    "id",
+                    partie.id
+                )
 
-                .eq("statut", "attente")
+                .eq(
+                    "statut",
+                    "attente"
+                )
 
-                .is("joueur2_id", null)
+                .is(
+                    "joueur2_id",
+                    null
+                )
 
                 .select()
-
                 .maybeSingle();
 
 
@@ -772,12 +918,9 @@ async function rejoindrePartieEnLigne(){
             );
 
             return;
+
         }
 
-
-        /* ==========================================
-           PARTIE DÉJÀ PRISE
-        ========================================== */
 
         if(!partieRejointe){
 
@@ -786,6 +929,7 @@ async function rejoindrePartieEnLigne(){
             );
 
             return;
+
         }
 
 
@@ -796,7 +940,7 @@ async function rejoindrePartieEnLigne(){
 
 
         /* ==========================================
-           RÉCUPÉRATION DU PSEUDO DE L'ADVERSAIRE
+           RÉCUPÉRATION DU PSEUDO
         ========================================== */
 
         const {
@@ -809,7 +953,10 @@ async function rejoindrePartieEnLigne(){
 
                 .select("pseudo")
 
-                .eq("id", partieRejointe.joueur1_id)
+                .eq(
+                    "id",
+                    partieRejointe.joueur1_id
+                )
 
                 .maybeSingle();
 
@@ -820,11 +967,12 @@ async function rejoindrePartieEnLigne(){
                 "⚠️ Impossible de récupérer le pseudo de l'adversaire :",
                 erreurAdversaire
             );
+
         }
 
 
         /* ==========================================
-           AFFICHAGE DE LA SALLE D'ATTENTE
+           AFFICHAGE
         ========================================== */
 
         menuPartieEnLigne.style.display =
@@ -855,7 +1003,8 @@ async function rejoindrePartieEnLigne(){
         document.getElementById(
             "pseudoAdversaire"
         ).textContent =
-            adversaire?.pseudo || "Adversaire";
+            adversaire?.pseudo ||
+            "Adversaire";
 
 
         document.getElementById(
@@ -867,7 +1016,16 @@ async function rejoindrePartieEnLigne(){
         afficherMessage(
             "✅ Vous avez rejoint la partie."
         );
-        afficherConfrontation(partieRejointe);
+
+
+        /*
+         * On récupère une nouvelle fois
+         * la partie complète.
+         */
+
+        await chargerPartieEtAfficher(
+            partieRejointe.id
+        );
 
     }
 
@@ -881,9 +1039,35 @@ async function rejoindrePartieEnLigne(){
     }
 
 }
+
+
 /* ==========================================
-   BOUTONS REJOINDRE
+   BOUTONS
 ========================================== */
+
+document
+    .getElementById("btnCreerPartie")
+    ?.addEventListener(
+        "click",
+        afficherCreationPartie
+    );
+
+
+document
+    .getElementById("confirmerCreationPartie")
+    ?.addEventListener(
+        "click",
+        creerPartieEnLigne
+    );
+
+
+document
+    .getElementById("annulerCreationPartie")
+    ?.addEventListener(
+        "click",
+        afficherMenuPartie
+    );
+
 
 document
     .getElementById("btnRejoindrePartie")
@@ -907,29 +1091,97 @@ document
         "click",
         afficherMenuPartie
     );
+
+
 /* ==========================================
    INITIALISATION
 ========================================== */
 
 afficherProfilEnLigne();
 /* ==========================================
-   SURVEILLANCE DE LA SALLE D'ATTENTE
+   CHARGER UNE PARTIE COMPLÈTE
 ========================================== */
 
-let surveillancePartie = null;
+async function chargerPartieEtAfficher(partieId){
+
+    try{
+
+        const {
+            data: partie,
+            error
+        } =
+            await supabaseClient
+
+                .from("parties_en_ligne")
+
+                .select("*")
+
+                .eq(
+                    "id",
+                    partieId
+                )
+
+                .maybeSingle();
+
+
+        if(error){
+
+            console.error(
+                "❌ Erreur récupération partie :",
+                error
+            );
+
+            return;
+
+        }
+
+
+        if(!partie){
+
+            console.error(
+                "❌ Partie introuvable."
+            );
+
+            return;
+
+        }
+
+
+        console.log(
+            "🔄 Partie actualisée :",
+            partie
+        );
+
+
+        afficherConfrontation(
+            partie
+        );
+
+    }
+
+    catch(erreur){
+
+        console.error(
+            "❌ Erreur inattendue récupération partie :",
+            erreur
+        );
+
+    }
+
+}
 
 
 /* ==========================================
-   ATTENDRE L'ARRIVÉE DU JOUEUR 2
+   SURVEILLER L'ARRIVÉE DU JOUEUR 2
 ========================================== */
 
 function surveillerArriveeAdversaire(partieId){
 
-    /* Évite plusieurs surveillances en même temps */
-
     if(surveillancePartie){
 
-        clearInterval(surveillancePartie);
+        clearInterval(
+            surveillancePartie
+        );
 
     }
 
@@ -953,11 +1205,8 @@ function surveillerArriveeAdversaire(partieId){
                         await supabaseClient
 
                             .from("parties_en_ligne")
-                            .select(
-                             "id, joueur1_id, joueur2_id, statut, code, questions, score_joueur1, score_joueur2"
-                            ) 
 
-                            
+                            .select("*")
 
                             .eq(
                                 "id",
@@ -975,6 +1224,7 @@ function surveillerArriveeAdversaire(partieId){
                         );
 
                         return;
+
                     }
 
 
@@ -985,12 +1235,9 @@ function surveillerArriveeAdversaire(partieId){
                         );
 
                         return;
+
                     }
 
-
-                    /*
-                     * Le joueur 2 est arrivé
-                     */
 
                     if(
                         partie.joueur2_id
@@ -1010,10 +1257,9 @@ function surveillerArriveeAdversaire(partieId){
                         );
 
 
-                        /*
-                         * Récupération du pseudo
-                         * du joueur 2
-                         */
+                        /* ==========================================
+                           RÉCUPÉRATION DU PSEUDO
+                        ========================================== */
 
                         const {
                             data: adversaire,
@@ -1043,9 +1289,9 @@ function surveillerArriveeAdversaire(partieId){
                         }
 
 
-                        /*
-                         * Affichage
-                         */
+                        /* ==========================================
+                           AFFICHAGE ADVERSAIRE
+                        ========================================== */
 
                         document.getElementById(
                             "statutPartie"
@@ -1069,7 +1315,16 @@ function surveillerArriveeAdversaire(partieId){
                         afficherMessage(
                             "✅ Votre adversaire a rejoint la partie !"
                         );
-                        afficherConfrontation(partie);
+
+
+                        /*
+                         * On récupère la partie complète
+                         * et on démarre la confrontation.
+                         */
+
+                        afficherConfrontation(
+                            partie
+                        );
 
                     }
 
@@ -1085,16 +1340,36 @@ function surveillerArriveeAdversaire(partieId){
                 }
 
             },
-            2000
+            1500
         );
 
 }
+
+
 /* ==========================================
    AFFICHER LA CONFRONTATION
 ========================================== */
 
 function afficherConfrontation(partie){
-    partieEnLigneActuelle = partie;
+
+    if(!partie){
+
+        console.error(
+            "❌ Aucune partie reçue."
+        );
+
+        return;
+
+    }
+
+
+    partieEnLigneActuelle =
+        partie;
+
+
+    /* ==========================================
+       AFFICHAGE DES ZONES
+    ========================================== */
 
     menuPartieEnLigne.style.display =
         "none";
@@ -1108,11 +1383,16 @@ function afficherConfrontation(partie){
     salleAttente.style.display =
         "none";
 
+
     document.getElementById(
         "confrontation"
     ).style.display =
         "block";
 
+
+    /* ==========================================
+       PSEUDOS
+    ========================================== */
 
     document.getElementById(
         "pseudoJoueur1"
@@ -1126,23 +1406,47 @@ function afficherConfrontation(partie){
         "Joueur 2";
 
 
+    /* ==========================================
+       SCORES
+    ========================================== */
+
     document.getElementById(
         "scoreJoueur1"
     ).textContent =
-        partie.score_joueur1 || 0;
+        partie.score_joueur1 ?? 0;
 
 
     document.getElementById(
         "scoreJoueur2"
     ).textContent =
-        partie.score_joueur2 || 0;
+        partie.score_joueur2 ?? 0;
 
 
     afficherMessage("");
-    afficherQuestionEnLigne(partie);
-    surveillerReponsesPartie();
+
+
+    /* ==========================================
+       AFFICHER LA QUESTION ACTUELLE
+    ========================================== */
+
+    afficherQuestionEnLigne(
+        partie
+    );
+
+
+    /* ==========================================
+       DÉMARRER LA SURVEILLANCE
+    ========================================== */
+
+    if(!surveillanceReponses){
+
+        surveillerReponsesPartie();
+
+    }
 
 }
+
+
 /* ==========================================
    AFFICHER UNE QUESTION EN LIGNE
 ========================================== */
@@ -1207,31 +1511,53 @@ function afficherQuestionEnLigne(partie){
 
 
     /* ==========================================
-       RÉCUPÉRER LA PREMIÈRE QUESTION
+       INDEX QUESTION
     ========================================== */
 
+    const indexQuestion =
+        Number(
+            partie.question_actuelle ?? 0
+        );
+
+
     const question =
-        partie.questions[0];
+        partie.questions[indexQuestion];
+
+
+    if(!question){
+
+        console.error(
+            "❌ Question introuvable :",
+            indexQuestion
+        );
+
+        return;
+
+    }
 
 
     console.log(
-        "✅ Question 1 récupérée :",
+        "✅ Question récupérée :",
+        indexQuestion + 1,
         question
     );
 
 
     /* ==========================================
-       AFFICHER LE NUMÉRO
+       NUMÉRO
     ========================================== */
 
     document.getElementById(
         "numeroQuestionEnLigne"
     ).textContent =
-        "Question 1";
+        "Question " +
+        (indexQuestion + 1) +
+        " / " +
+        partie.questions.length;
 
 
     /* ==========================================
-       AFFICHER LA QUESTION
+       TEXTE DE LA QUESTION
     ========================================== */
 
     document.getElementById(
@@ -1241,7 +1567,7 @@ function afficherQuestionEnLigne(partie){
 
 
     /* ==========================================
-       RÉCUPÉRER LA ZONE DES RÉPONSES
+       ZONE DES RÉPONSES
     ========================================== */
 
     const zoneReponses =
@@ -1250,59 +1576,111 @@ function afficherQuestionEnLigne(partie){
         );
 
 
-    zoneReponses.innerHTML = "";
+    if(!zoneReponses){
+
+        console.error(
+            "❌ Zone des réponses introuvable."
+        );
+
+        return;
+
+    }
+
+
+    zoneReponses.innerHTML =
+        "";
 
 
     /* ==========================================
-       CRÉER LES RÉPONSES
+       CRÉATION DES RÉPONSES
     ========================================== */
 
-    question.reponses.forEach(
-    (reponse, index) => {
+    if(
+        !Array.isArray(
+            question.reponses
+        )
+    ){
 
-        const bouton =
-            document.createElement("button");
-
-
-        bouton.type =
-            "button";
-
-
-        bouton.className =
-            "boutonReponseEnLigne";
-
-
-        bouton.textContent =
-            reponse;
-
-
-        bouton.addEventListener(
-            "click",
-            () => {
-
-                enregistrerReponseEnLigne(
-                    index
-                );
-
-            }
+        console.error(
+            "❌ Les réponses de la question sont incorrectes :",
+            question
         );
 
-
-        zoneReponses.appendChild(
-            bouton
-        );
+        return;
 
     }
-);
+
+
+    question.reponses.forEach(
+        (reponse, index) => {
+
+            const bouton =
+                document.createElement(
+                    "button"
+                );
+
+
+            bouton.type =
+                "button";
+
+
+            bouton.className =
+                "boutonReponseEnLigne";
+
+
+            bouton.textContent =
+                reponse;
+
+
+            bouton.addEventListener(
+                "click",
+                () => {
+
+                    enregistrerReponseEnLigne(
+                        index
+                    );
+
+                }
+            );
+
+
+            zoneReponses.appendChild(
+                bouton
+            );
+
+        }
+    );
+
+
+    /* ==========================================
+       MESSAGE RÉPONSE
+    ========================================== */
+
+    const statut =
+        document.getElementById(
+            "statutReponseEnLigne"
+        );
+
+
+    if(statut){
+
+        statut.textContent =
+            "";
+
+    }
 
 }
 /* ==========================================
    ENREGISTRER UNE RÉPONSE EN LIGNE
 ========================================== */
 
-async function enregistrerReponseEnLigne(indexReponse){
+async function enregistrerReponseEnLigne(
+    indexReponse
+){
 
-    /* Vérification de la partie */
+    /* ==========================================
+       VÉRIFICATION PARTIE
+    ========================================== */
 
     if(!partieEnLigneActuelle){
 
@@ -1311,18 +1689,16 @@ async function enregistrerReponseEnLigne(indexReponse){
         );
 
         return;
+
     }
 
 
-    /* Vérification de la question */
+    /* ==========================================
+       DÉTERMINER LA COLONNE DU JOUEUR
+    ========================================== */
 
-    const indexQuestion =
-        partieEnLigneActuelle.question_actuelle || 0;
-
-
-    /* Vérification du joueur */
-
-    let colonneReponse = null;
+    let colonneReponse =
+        null;
 
 
     if(
@@ -1350,10 +1726,13 @@ async function enregistrerReponseEnLigne(indexReponse){
         );
 
         return;
+
     }
 
 
-    /* Empêcher une deuxième réponse */
+    /* ==========================================
+       EMPÊCHER UNE DEUXIÈME RÉPONSE
+    ========================================== */
 
     const boutons =
         document.querySelectorAll(
@@ -1364,16 +1743,18 @@ async function enregistrerReponseEnLigne(indexReponse){
     boutons.forEach(
         bouton => {
 
-            bouton.disabled = true;
+            bouton.disabled =
+                true;
 
         }
     );
 
 
-    /* Enregistrement dans Supabase */
+    /* ==========================================
+       ENREGISTRER LA RÉPONSE
+    ========================================== */
 
     const {
-        data,
         error
     } =
         await supabaseClient
@@ -1390,15 +1771,7 @@ async function enregistrerReponseEnLigne(indexReponse){
             .eq(
                 "id",
                 partieEnLigneActuelle.id
-            )
-            .select()
-            .maybeSingle();
-            console.log(
-             "🔎 Résultat de la mise à jour :",
-               data
             );
-
-            
 
 
     if(error){
@@ -1409,12 +1782,11 @@ async function enregistrerReponseEnLigne(indexReponse){
         );
 
 
-        /* Réactiver les boutons */
-
         boutons.forEach(
             bouton => {
 
-                bouton.disabled = false;
+                bouton.disabled =
+                    false;
 
             }
         );
@@ -1425,13 +1797,8 @@ async function enregistrerReponseEnLigne(indexReponse){
         );
 
         return;
+
     }
-
-
-    /* Mise à jour de la partie locale */
-
-    partieEnLigneActuelle =
-        data;
 
 
     console.log(
@@ -1440,28 +1807,100 @@ async function enregistrerReponseEnLigne(indexReponse){
     );
 
 
-    document.getElementById(
-        "statutReponseEnLigne"
-    ).textContent =
-        "✅ Réponse enregistrée. En attente de l'adversaire...";
+    /* ==========================================
+       RELIRE LA PARTIE COMPLÈTE
+    ========================================== */
+
+    const {
+        data: partieActualisee,
+        error: erreurActualisation
+    } =
+        await supabaseClient
+
+            .from("parties_en_ligne")
+
+            .select("*")
+
+            .eq(
+                "id",
+                partieEnLigneActuelle.id
+            )
+
+            .maybeSingle();
+
+
+    if(erreurActualisation){
+
+        console.error(
+            "❌ Erreur récupération partie après réponse :",
+            erreurActualisation
+        );
+
+        return;
+
+    }
+
+
+    if(partieActualisee){
+
+        partieEnLigneActuelle =
+            partieActualisee;
+
+
+        /* ==========================================
+           MISE À JOUR DES SCORES
+        ========================================== */
+
+        document.getElementById(
+            "scoreJoueur1"
+        ).textContent =
+            partieActualisee.score_joueur1 ?? 0;
+
+
+        document.getElementById(
+            "scoreJoueur2"
+        ).textContent =
+            partieActualisee.score_joueur2 ?? 0;
+
+    }
+
+
+    /* ==========================================
+       MESSAGE
+    ========================================== */
+
+    const statut =
+        document.getElementById(
+            "statutReponseEnLigne"
+        );
+
+
+    if(statut){
+
+        statut.textContent =
+            "✅ Réponse enregistrée. En attente de l'adversaire...";
+
+    }
 
 }
+
+
 /* ==========================================
    SURVEILLANCE DES RÉPONSES
 ========================================== */
-
-let surveillanceReponses = null;
-
 
 function surveillerReponsesPartie(){
 
     if(surveillanceReponses){
 
-        clearInterval(
-            surveillanceReponses
-        );
+        return;
 
     }
+
+
+    console.log(
+        "👀 Surveillance des réponses démarrée."
+    );
 
 
     surveillanceReponses =
@@ -1475,149 +1914,288 @@ function surveillerReponsesPartie(){
                 }
 
 
-                const {
-                    data: partie,
-                    error
-                } =
-                    await supabaseClient
+                try{
 
-                        .from("parties_en_ligne")
-
-                        .select(
-                            "id, joueur1_id, joueur2_id, questions, question_actuelle, reponse_joueur1, reponse_joueur2, traitement_question, score_joueur1, score_joueur2, statut"
-                        )
-
-                        .eq(
-                            "id",
-                            partieEnLigneActuelle.id
-                        )
-
-                        .maybeSingle();
-
-
-                if(error){
-
-                    console.error(
-                        "❌ Erreur surveillance réponses :",
+                    const {
+                        data: partie,
                         error
+                    } =
+                        await supabaseClient
+
+                            .from("parties_en_ligne")
+
+                            .select(
+                                "id, joueur1_id, joueur2_id, questions, question_actuelle, reponse_joueur1, reponse_joueur2, traitement_question, score_joueur1, score_joueur2, statut"
+                            )
+
+                            .eq(
+                                "id",
+                                partieEnLigneActuelle.id
+                            )
+
+                            .maybeSingle();
+
+
+                    if(error){
+
+                        console.error(
+                            "❌ Erreur surveillance réponses :",
+                            error
+                        );
+
+                        return;
+
+                    }
+
+
+                    if(!partie){
+
+                        return;
+
+                    }
+
+
+                    /* ==========================================
+                       ANCIEN INDEX
+                    ========================================== */
+
+                    const ancienIndex =
+                        Number(
+                            partieEnLigneActuelle.question_actuelle ?? 0
+                        );
+
+
+                    /* ==========================================
+                       NOUVEL INDEX
+                    ========================================== */
+
+                    const nouvelIndex =
+                        Number(
+                            partie.question_actuelle ?? 0
+                        );
+
+
+                    /* ==========================================
+                       MISE À JOUR LOCALE
+                    ========================================== */
+
+                    partieEnLigneActuelle =
+                        partie;
+
+
+                    /* ==========================================
+                       MISE À JOUR DES SCORES
+                    ========================================== */
+
+                    document.getElementById(
+                        "scoreJoueur1"
+                    ).textContent =
+                        partie.score_joueur1 ?? 0;
+
+
+                    document.getElementById(
+                        "scoreJoueur2"
+                    ).textContent =
+                        partie.score_joueur2 ?? 0;
+
+
+                    /* ==========================================
+                       ⭐ CORRECTION PRINCIPALE ⭐
+                       
+                       Si l'autre navigateur a fait avancer
+                       la question, on l'affiche aussi.
+                    ========================================== */
+
+                    if(
+                        nouvelIndex !==
+                        ancienIndex
+                    ){
+
+                        console.log(
+                            "➡️ Nouvelle question détectée :",
+                            nouvelIndex + 1
+                        );
+
+
+                        if(
+                            nouvelIndex >=
+                            partie.questions.length
+                        ){
+
+                            afficherResultatPartie(
+                                partie
+                            );
+
+                            return;
+
+                        }
+
+
+                        afficherQuestionEnLigne(
+                            partie
+                        );
+
+
+                        const statut =
+                            document.getElementById(
+                                "statutReponseEnLigne"
+                            );
+
+
+                        if(statut){
+
+                            statut.textContent =
+                                "";
+
+                        }
+
+                    }
+
+
+                    /* ==========================================
+                       PARTIE TERMINÉE
+                    ========================================== */
+
+                    if(
+                        partie.statut ===
+                        "terminee"
+                    ){
+
+                        afficherResultatPartie(
+                            partie
+                        );
+
+                        return;
+
+                    }
+
+
+                    /* ==========================================
+                       VÉRIFIER LES DEUX RÉPONSES
+                    ========================================== */
+
+                    if(
+                        partie.reponse_joueur1 === null ||
+                        partie.reponse_joueur2 === null
+                    ){
+
+                        return;
+
+                    }
+
+
+                    /* ==========================================
+                       QUESTION DÉJÀ EN TRAITEMENT
+                    ========================================== */
+
+                    if(
+                        partie.traitement_question === true
+                    ){
+
+                        return;
+
+                    }
+
+
+                    /* ==========================================
+                       TENTATIVE DE VERROUILLAGE
+                    ========================================== */
+
+                    const {
+                        data: verrou,
+                        error: erreurVerrou
+                    } =
+                        await supabaseClient
+
+                            .from("parties_en_ligne")
+
+                            .update({
+
+                                traitement_question:
+                                    true
+
+                            })
+
+                            .eq(
+                                "id",
+                                partie.id
+                            )
+
+                            .eq(
+                                "traitement_question",
+                                false
+                            )
+
+                            .select(
+                                "id"
+                            )
+
+                            .maybeSingle();
+
+
+                    if(erreurVerrou){
+
+                        console.error(
+                            "❌ Erreur verrouillage question :",
+                            erreurVerrou
+                        );
+
+                        return;
+
+                    }
+
+
+                    /*
+                     * Si aucun résultat :
+                     * un autre navigateur a pris le verrou.
+                     */
+
+                    if(!verrou){
+
+                        return;
+
+                    }
+
+
+                    console.log(
+                        "🔒 Verrou obtenu pour le traitement."
                     );
 
-                    return;
+
+                    await traiterQuestionPartie(
+                        partie
+                    );
 
                 }
 
-
-                if(!partie){
-
-                    return;
-
-                }
-
-
-                partieEnLigneActuelle =
-                    partie;
-
-
-                /*
-                 * Les deux joueurs doivent avoir répondu.
-                 */
-
-                if(
-                    partie.reponse_joueur1 === null ||
-                    partie.reponse_joueur2 === null
-                ){
-
-                    return;
-
-                }
-
-
-                /*
-                 * La question est déjà en cours
-                 * de traitement.
-                 */
-
-                if(
-                    partie.traitement_question === true
-                ){
-
-                    return;
-
-                }
-
-
-                /*
-                 * On tente de prendre le verrou.
-                 */
-
-                const {
-                    data: partieVerrouillee,
-                    error: erreurVerrou
-                } =
-                    await supabaseClient
-
-                        .from("parties_en_ligne")
-
-                        .update({
-
-                            traitement_question: true
-
-                        })
-
-                        .eq(
-                            "id",
-                            partie.id
-                        )
-
-                        .eq(
-                            "traitement_question",
-                            false
-                        )
-
-                        .select()
-                        .maybeSingle();
-
-
-                if(erreurVerrou){
+                catch(erreur){
 
                     console.error(
-                        "❌ Erreur verrouillage question :",
-                        erreurVerrou
+                        "❌ Erreur inattendue surveillance réponses :",
+                        erreur
                     );
 
-                    return;
-
                 }
-
-
-                /*
-                 * Un seul navigateur obtient le verrou.
-                 */
-
-                if(!partieVerrouillee){
-
-                    return;
-
-                }
-
-
-                await traiterQuestionPartie(
-                    partieVerrouillee
-                );
 
             },
             1000
         );
 
 }
+
+
 /* ==========================================
    TRAITER LA QUESTION
 ========================================== */
 
-async function traiterQuestionPartie(partie){
+async function traiterQuestionPartie(
+    partie
+){
 
     const indexQuestion =
-        partie.question_actuelle || 0;
+        Number(
+            partie.question_actuelle ?? 0
+        );
 
 
     const question =
@@ -1636,55 +2214,72 @@ async function traiterQuestionPartie(partie){
     }
 
 
-    /*
-     * Vérification des bonnes réponses
-     */
+    /* ==========================================
+       VÉRIFICATION DES RÉPONSES
+    ========================================== */
 
     const joueur1Correct =
-        partie.reponse_joueur1 === question.bonne;
+        Number(partie.reponse_joueur1) ===
+        Number(question.bonne);
 
 
     const joueur2Correct =
-        partie.reponse_joueur2 === question.bonne;
+        Number(partie.reponse_joueur2) ===
+        Number(question.bonne);
 
 
-    /*
-     * Calcul des nouveaux scores
-     */
+    console.log(
+        "Réponse joueur 1 :",
+        partie.reponse_joueur1,
+        "Correcte :",
+        joueur1Correct
+    );
+
+
+    console.log(
+        "Réponse joueur 2 :",
+        partie.reponse_joueur2,
+        "Correcte :",
+        joueur2Correct
+    );
+
+
+    /* ==========================================
+       CALCUL DES SCORES
+    ========================================== */
 
     const nouveauScoreJoueur1 =
-        partie.score_joueur1 +
+        Number(partie.score_joueur1 || 0) +
         (joueur1Correct ? 1 : 0);
 
 
     const nouveauScoreJoueur2 =
-        partie.score_joueur2 +
+        Number(partie.score_joueur2 || 0) +
         (joueur2Correct ? 1 : 0);
 
 
-    /*
-     * Question suivante
-     */
+    /* ==========================================
+       QUESTION SUIVANTE
+    ========================================== */
 
     const prochaineQuestion =
         indexQuestion + 1;
 
 
-    /*
-     * Vérifier si la partie est terminée
-     */
+    /* ==========================================
+       FIN DE PARTIE ?
+    ========================================== */
 
     const partieTerminee =
         prochaineQuestion >=
         partie.questions.length;
 
 
-    /*
-     * Mise à jour de Supabase
-     */
+    /* ==========================================
+       MISE À JOUR SUPABASE
+    ========================================== */
 
     const {
-        data,
         error
     } =
         await supabaseClient
@@ -1726,10 +2321,7 @@ async function traiterQuestionPartie(partie){
             .eq(
                 "traitement_question",
                 true
-            )
-
-            .select()
-            .single();
+            );
 
 
     if(error){
@@ -1762,20 +2354,60 @@ async function traiterQuestionPartie(partie){
     );
 
 
-    /*
-     * Mise à jour locale
-     */
+    /* ==========================================
+       RÉCUPÉRATION DE LA PARTIE ACTUALISÉE
+    ========================================== */
+
+    const {
+        data: partieActualisee,
+        error: erreurLecture
+    } =
+        await supabaseClient
+
+            .from("parties_en_ligne")
+
+            .select("*")
+
+            .eq(
+                "id",
+                partie.id
+            )
+
+            .maybeSingle();
+
+
+    if(erreurLecture){
+
+        console.error(
+            "❌ Erreur récupération partie après traitement :",
+            erreurLecture
+        );
+
+        return;
+
+    }
+
+
+    if(!partieActualisee){
+
+        return;
+
+    }
+
 
     partieEnLigneActuelle =
-        data;
+        partieActualisee;
 
 
-    /*
-     * Si la partie est terminée,
-     * on arrête la surveillance.
-     */
+    /* ==========================================
+       PARTIE TERMINÉE
+    ========================================== */
 
     if(partieTerminee){
+
+        afficherResultatPartie(
+            partieActualisee
+        );
 
         if(surveillanceReponses){
 
@@ -1793,12 +2425,221 @@ async function traiterQuestionPartie(partie){
     }
 
 
-    /*
-     * Afficher la question suivante.
-     */
+    /* ==========================================
+       AFFICHER LA QUESTION SUIVANTE
+       
+       Le navigateur qui a traité la question
+       l'affiche immédiatement.
+       
+       L'autre navigateur la détectera grâce
+       à surveillerReponsesPartie().
+    ========================================== */
 
-    afficherConfrontation(
-        data
+    afficherQuestionEnLigne(
+        partieActualisee
     );
 
+
+    const statut =
+        document.getElementById(
+            "statutReponseEnLigne"
+        );
+
+
+    if(statut){
+
+        statut.textContent =
+            "";
+
+    }
+
 }
+
+
+/* ==========================================
+   AFFICHER LE RÉSULTAT FINAL
+========================================== */
+
+function afficherResultatPartie(
+    partie
+){
+
+    if(!partie){
+
+        return;
+
+    }
+
+
+    /* ==========================================
+       ARRÊTER LA SURVEILLANCE
+    ========================================== */
+
+    if(surveillanceReponses){
+
+        clearInterval(
+            surveillanceReponses
+        );
+
+        surveillanceReponses =
+            null;
+
+    }
+
+
+    partieEnLigneActuelle =
+        partie;
+
+
+    /* ==========================================
+       MASQUER LA CONFRONTATION
+    ========================================== */
+
+    const confrontation =
+        document.getElementById(
+            "confrontation"
+        );
+
+
+    if(confrontation){
+
+        confrontation.style.display =
+            "none";
+
+    }
+
+
+    /* ==========================================
+       AFFICHER LE RÉSULTAT
+    ========================================== */
+
+    const resultat =
+        document.getElementById(
+            "resultatPartie"
+        );
+
+
+    if(resultat){
+
+        resultat.style.display =
+            "block";
+
+    }
+
+
+    /* ==========================================
+       AFFICHER LES SCORES
+    ========================================== */
+
+    const scoreJoueur1 =
+        Number(
+            partie.score_joueur1 || 0
+        );
+
+
+    const scoreJoueur2 =
+        Number(
+            partie.score_joueur2 || 0
+        );
+
+
+    const resultatFinal =
+        document.getElementById(
+            "resultatFinal"
+        );
+
+
+    if(!resultatFinal){
+
+        return;
+
+    }
+
+
+    if(
+        scoreJoueur1 >
+        scoreJoueur2
+    ){
+
+        resultatFinal.innerHTML = `
+            <p>🏆 Joueur 1 gagne !</p>
+            <p>Joueur 1 : ${scoreJoueur1}</p>
+            <p>Joueur 2 : ${scoreJoueur2}</p>
+        `;
+
+    }
+    else if(
+        scoreJoueur2 >
+        scoreJoueur1
+    ){
+
+        resultatFinal.innerHTML = `
+            <p>🏆 Joueur 2 gagne !</p>
+            <p>Joueur 1 : ${scoreJoueur1}</p>
+            <p>Joueur 2 : ${scoreJoueur2}</p>
+        `;
+
+    }
+    else{
+
+        resultatFinal.innerHTML = `
+            <p>🤝 Égalité !</p>
+            <p>Joueur 1 : ${scoreJoueur1}</p>
+            <p>Joueur 2 : ${scoreJoueur2}</p>
+        `;
+
+    }
+
+}
+
+
+/* ==========================================
+   NOUVELLE PARTIE
+========================================== */
+
+document
+    .getElementById("btnNouvellePartie")
+    ?.addEventListener(
+        "click",
+        () => {
+
+            const resultat =
+                document.getElementById(
+                    "resultatPartie"
+                );
+
+
+            if(resultat){
+
+                resultat.style.display =
+                    "none";
+
+            }
+
+
+            partieEnLigneActuelle =
+                null;
+
+
+            afficherMenuPartie();
+
+        }
+    );
+
+
+/* ==========================================
+   RETOUR ACCUEIL
+========================================== */
+
+document
+    .getElementById("btnRetourAccueil")
+    ?.addEventListener(
+        "click",
+        () => {
+
+            window.location.href =
+                "index.html?accueil=1";
+
+        }
+    );
+    
