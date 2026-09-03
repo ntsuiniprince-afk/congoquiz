@@ -28,27 +28,42 @@ const messageModeEnLigne =
    JOUEUR CONNECTÉ
 ========================================== */
 
-const joueur = chargerJoueur();
+const joueur =
+    chargerJoueur();
 
 
 /* ==========================================
    PARTIE ACTUELLE
 ========================================== */
 
-let partieEnLigneActuelle = null;
+let partieEnLigneActuelle =
+    null;
+
+
+/* ==========================================
+   CHRONO
+========================================== */
+
+const DUREE_QUESTION =
+    15;
+
+let intervalleChrono =
+    null;
 
 
 /* ==========================================
    SURVEILLANCES
 ========================================== */
 
-let surveillancePartie = null;
+let surveillancePartie =
+    null;
 
-let surveillanceReponses = null;
+let surveillanceReponses =
+    null;
 
 
 /* ==========================================
-   BASE DE QUESTIONS DU MODE EN LIGNE
+   BASE DE QUESTIONS
 ========================================== */
 
 function obtenirQuestionsCategorie(categorie){
@@ -84,13 +99,14 @@ function obtenirQuestionsCategorie(categorie){
             );
 
             return [];
+
     }
 
 }
 
 
 /* ==========================================
-   PRÉPARER LES QUESTIONS DE LA PARTIE
+   PRÉPARER LES QUESTIONS
 ========================================== */
 
 function preparerQuestionsPartie(
@@ -99,10 +115,15 @@ function preparerQuestionsPartie(
 ){
 
     const base =
-        obtenirQuestionsCategorie(categorie);
+        obtenirQuestionsCategorie(
+            categorie
+        );
 
 
-    if(!base || base.length === 0){
+    if(
+        !base ||
+        base.length === 0
+    ){
 
         console.error(
             "❌ Aucune question disponible pour la catégorie :",
@@ -110,21 +131,15 @@ function preparerQuestionsPartie(
         );
 
         return [];
+
     }
 
-
-    /*
-     * Copie de la base pour ne pas modifier
-     * les questions originales.
-     */
 
     const questionsMelangees =
         [...base];
 
 
-    /*
-     * Mélange Fisher-Yates
-     */
+    /* Mélange Fisher-Yates */
 
     for(
         let i = questionsMelangees.length - 1;
@@ -162,7 +177,7 @@ function preparerQuestionsPartie(
 
 
 /* ==========================================
-   AFFICHAGE DU PROFIL
+   AFFICHER LE PROFIL
 ========================================== */
 
 function afficherProfilEnLigne(){
@@ -181,7 +196,8 @@ function afficherProfilEnLigne(){
     if(pseudo){
 
         pseudo.textContent =
-            joueur.pseudo || "Joueur";
+            joueur?.pseudo ||
+            "Joueur";
 
     }
 
@@ -189,7 +205,8 @@ function afficherProfilEnLigne(){
     if(points){
 
         points.textContent =
-            joueur.points || 0;
+            joueur?.points ||
+            0;
 
     }
 
@@ -216,7 +233,7 @@ function afficherMessage(message){
 
 
 /* ==========================================
-   GÉNÉRATION DU CODE DE PARTIE
+   GÉNÉRER LE CODE
 ========================================== */
 
 function genererCodePartie(){
@@ -229,11 +246,16 @@ function genererCodePartie(){
         "CQ-";
 
 
-    for(let i = 0; i < 4; i++){
+    for(
+        let i = 0;
+        i < 4;
+        i++
+    ){
 
         const position =
             Math.floor(
-                Math.random() * caracteres.length
+                Math.random() *
+                caracteres.length
             );
 
 
@@ -249,7 +271,7 @@ function genererCodePartie(){
 
 
 /* ==========================================
-   CRÉATION D'UN CODE UNIQUE
+   CODE UNIQUE
 ========================================== */
 
 async function genererCodeUnique(){
@@ -269,16 +291,9 @@ async function genererCodeUnique(){
             error
         } =
             await supabaseClient
-
                 .from("parties_en_ligne")
-
                 .select("id")
-
-                .eq(
-                    "code",
-                    code
-                )
-
+                .eq("code", code)
                 .limit(1);
 
 
@@ -317,22 +332,46 @@ async function genererCodeUnique(){
 
 
 /* ==========================================
-   AFFICHER LA CRÉATION
+   AFFICHER CRÉATION
 ========================================== */
 
 function afficherCreationPartie(){
 
-    menuPartieEnLigne.style.display =
-        "none";
+    arreterChronoEnLigne();
+    arreterSurveillancesEnLigne();
 
-    creationPartie.style.display =
-        "block";
 
-    rejoindrePartie.style.display =
-        "none";
+    if(menuPartieEnLigne){
 
-    salleAttente.style.display =
-        "none";
+        menuPartieEnLigne.style.display =
+            "none";
+
+    }
+
+
+    if(creationPartie){
+
+        creationPartie.style.display =
+            "block";
+
+    }
+
+
+    if(rejoindrePartie){
+
+        rejoindrePartie.style.display =
+            "none";
+
+    }
+
+
+    if(salleAttente){
+
+        salleAttente.style.display =
+            "none";
+
+    }
+
 
     afficherMessage("");
 
@@ -340,38 +379,59 @@ function afficherCreationPartie(){
 
 
 /* ==========================================
-   AFFICHER LE MENU PRINCIPAL
+   AFFICHER MENU
 ========================================== */
 
 function afficherMenuPartie(){
 
-    menuPartieEnLigne.style.display =
-        "block";
+    arreterChronoEnLigne();
+    arreterSurveillancesEnLigne();
 
-    creationPartie.style.display =
-        "none";
 
-    rejoindrePartie.style.display =
-        "none";
+    if(menuPartieEnLigne){
 
-    salleAttente.style.display =
-        "none";
+        menuPartieEnLigne.style.display =
+            "block";
+
+    }
+
+
+    if(creationPartie){
+
+        creationPartie.style.display =
+            "none";
+
+    }
+
+
+    if(rejoindrePartie){
+
+        rejoindrePartie.style.display =
+            "none";
+
+    }
+
+
+    if(salleAttente){
+
+        salleAttente.style.display =
+            "none";
+
+    }
 
 
     afficherMessage("");
 
 }
+
+
 /* ==========================================
-   CRÉER LA PARTIE
+   CRÉATION DE LA PARTIE
 ========================================== */
 
 async function creerPartieEnLigne(){
 
-    /* ==========================================
-       VÉRIFICATION DU JOUEUR
-    ========================================== */
-
-    if(!joueur.id){
+    if(!joueur || !joueur.id){
 
         afficherMessage(
             "❌ Votre profil n'est pas correctement enregistré en ligne."
@@ -382,35 +442,39 @@ async function creerPartieEnLigne(){
         );
 
         return;
+
     }
 
 
-    /* ==========================================
-       RÉCUPÉRATION DES CHOIX
-    ========================================== */
-
-    const categorie =
+    const selectCategorie =
         document.getElementById(
             "categoriePartie"
-        ).value;
+        );
+
+
+    const selectNombreQuestions =
+        document.getElementById(
+            "nombreQuestionsPartie"
+        );
+
+
+    const categorie =
+        selectCategorie?.value;
 
 
     const nombreQuestions =
         Number(
-            document.getElementById(
-                "nombreQuestionsPartie"
-            ).value
+            selectNombreQuestions?.value
         );
 
 
-    /* ==========================================
-       VÉRIFICATION DU NOMBRE
-    ========================================== */
-
-    if(![5, 10, 20].includes(nombreQuestions)){
+    if(
+        !categorie ||
+        ![5, 10, 20].includes(nombreQuestions)
+    ){
 
         afficherMessage(
-            "❌ Nombre de questions invalide."
+            "❌ Paramètres de partie invalides."
         );
 
         return;
@@ -419,7 +483,7 @@ async function creerPartieEnLigne(){
 
 
     /* ==========================================
-       PRÉPARATION DES QUESTIONS
+       PRÉPARER LES QUESTIONS
     ========================================== */
 
     const questionsPartie =
@@ -443,26 +507,27 @@ async function creerPartieEnLigne(){
     }
 
 
-    /* ==========================================
-       DÉSACTIVATION DU BOUTON
-    ========================================== */
-
     const bouton =
         document.getElementById(
             "confirmerCreationPartie"
         );
 
 
-    bouton.disabled = true;
+    if(bouton){
 
-    bouton.textContent =
-        "⏳ Création en cours...";
+        bouton.disabled =
+            true;
+
+        bouton.textContent =
+            "⏳ Création en cours...";
+
+    }
 
 
     try{
 
         /* ==========================================
-           GÉNÉRATION DU CODE
+           GÉNÉRER UN CODE UNIQUE
         ========================================== */
 
         const code =
@@ -481,7 +546,7 @@ async function creerPartieEnLigne(){
 
 
         /* ==========================================
-           CRÉATION SUPABASE
+           CRÉER LA PARTIE
         ========================================== */
 
         const {
@@ -489,12 +554,11 @@ async function creerPartieEnLigne(){
             error
         } =
             await supabaseClient
-
                 .from("parties_en_ligne")
-
                 .insert({
 
-                    code: code,
+                    code:
+                        code,
 
                     joueur1_id:
                         joueur.id,
@@ -533,12 +597,13 @@ async function creerPartieEnLigne(){
                         null,
 
                     traitement_question:
-                        false
+                        false,
+
+                    fin_question:
+                        null
 
                 })
-
-                .select()
-
+                .select("*")
                 .single();
 
 
@@ -564,16 +629,14 @@ async function creerPartieEnLigne(){
         );
 
 
-        /* ==========================================
-           SALLE D'ATTENTE
-        ========================================== */
-
-        afficherSalleAttente(data);
+        partieEnLigneActuelle =
+            data;
 
 
-        /* ==========================================
-           SURVEILLER JOUEUR 2
-        ========================================== */
+        afficherSalleAttente(
+            data
+        );
+
 
         surveillerArriveeAdversaire(
             data.id
@@ -581,12 +644,30 @@ async function creerPartieEnLigne(){
 
     }
 
+    catch(erreur){
+
+        console.error(
+            "❌ Erreur inattendue création partie :",
+            erreur
+        );
+
+        afficherMessage(
+            "❌ Une erreur est survenue."
+        );
+
+    }
+
     finally{
 
-        bouton.disabled = false;
+        if(bouton){
 
-        bouton.textContent =
-            "🚀 Créer la partie";
+            bouton.disabled =
+                false;
+
+            bouton.textContent =
+                "🚀 Créer la partie";
+
+        }
 
     }
 
@@ -594,46 +675,101 @@ async function creerPartieEnLigne(){
 
 
 /* ==========================================
-   AFFICHER LA SALLE D'ATTENTE
+   AFFICHER SALLE D'ATTENTE
 ========================================== */
 
 function afficherSalleAttente(partie){
 
-    menuPartieEnLigne.style.display =
-        "none";
-
-    creationPartie.style.display =
-        "none";
-
-    rejoindrePartie.style.display =
-        "none";
-
-    salleAttente.style.display =
-        "block";
+    arreterChronoEnLigne();
 
 
-    document.getElementById(
-        "codePartieAffiche"
-    ).textContent =
-        partie.code;
+    if(menuPartieEnLigne){
+
+        menuPartieEnLigne.style.display =
+            "none";
+
+    }
 
 
-    document.getElementById(
-        "statutPartie"
-    ).textContent =
-        "En attente d'un joueur...";
+    if(creationPartie){
+
+        creationPartie.style.display =
+            "none";
+
+    }
 
 
-    document.getElementById(
-        "pseudoAdversaire"
-    ).textContent =
-        "---";
+    if(rejoindrePartie){
+
+        rejoindrePartie.style.display =
+            "none";
+
+    }
 
 
-    document.getElementById(
-        "adversaireInfo"
-    ).style.display =
-        "none";
+    if(salleAttente){
+
+        salleAttente.style.display =
+            "block";
+
+    }
+
+
+    const code =
+        document.getElementById(
+            "codePartieAffiche"
+        );
+
+
+    const statut =
+        document.getElementById(
+            "statutPartie"
+        );
+
+
+    const pseudoAdversaire =
+        document.getElementById(
+            "pseudoAdversaire"
+        );
+
+
+    const adversaireInfo =
+        document.getElementById(
+            "adversaireInfo"
+        );
+
+
+    if(code){
+
+        code.textContent =
+            partie?.code ||
+            "----";
+
+    }
+
+
+    if(statut){
+
+        statut.textContent =
+            "En attente d'un joueur...";
+
+    }
+
+
+    if(pseudoAdversaire){
+
+        pseudoAdversaire.textContent =
+            "---";
+
+    }
+
+
+    if(adversaireInfo){
+
+        adversaireInfo.style.display =
+            "none";
+
+    }
 
 
     afficherMessage("");
@@ -642,23 +778,17 @@ function afficherSalleAttente(partie){
 
 
 /* ==========================================
-   ANNULER LA CRÉATION
+   ANNULER CRÉATION
 ========================================== */
 
 async function annulerPartieEnLigne(){
 
-    if(
-        surveillancePartie
-    ){
+    arreterChronoEnLigne();
+    arreterSurveillancesEnLigne();
 
-        clearInterval(
-            surveillancePartie
-        );
 
-        surveillancePartie =
-            null;
-
-    }
+    partieEnLigneActuelle =
+        null;
 
 
     afficherMenuPartie();
@@ -667,22 +797,45 @@ async function annulerPartieEnLigne(){
 
 
 /* ==========================================
-   AFFICHER REJOINDRE UNE PARTIE
+   AFFICHER REJOINDRE
 ========================================== */
 
 function afficherRejoindrePartie(){
 
-    menuPartieEnLigne.style.display =
-        "none";
+    arreterChronoEnLigne();
+    arreterSurveillancesEnLigne();
 
-    creationPartie.style.display =
-        "none";
 
-    rejoindrePartie.style.display =
-        "block";
+    if(menuPartieEnLigne){
 
-    salleAttente.style.display =
-        "none";
+        menuPartieEnLigne.style.display =
+            "none";
+
+    }
+
+
+    if(creationPartie){
+
+        creationPartie.style.display =
+            "none";
+
+    }
+
+
+    if(rejoindrePartie){
+
+        rejoindrePartie.style.display =
+            "block";
+
+    }
+
+
+    if(salleAttente){
+
+        salleAttente.style.display =
+            "none";
+
+    }
 
 
     afficherMessage("");
@@ -712,11 +865,7 @@ function afficherRejoindrePartie(){
 
 async function rejoindrePartieEnLigne(){
 
-    /* ==========================================
-       VÉRIFICATION DU JOUEUR
-    ========================================== */
-
-    if(!joueur.id){
+    if(!joueur || !joueur.id){
 
         afficherMessage(
             "❌ Votre profil n'est pas correctement enregistré en ligne."
@@ -727,12 +876,9 @@ async function rejoindrePartieEnLigne(){
         );
 
         return;
+
     }
 
-
-    /* ==========================================
-       RÉCUPÉRATION DU CODE
-    ========================================== */
 
     const champ =
         document.getElementById(
@@ -741,12 +887,12 @@ async function rejoindrePartieEnLigne(){
 
 
     const code =
-        champ.value
+        champ?.value
             .trim()
             .toUpperCase();
 
 
-    if(code === ""){
+    if(!code){
 
         afficherMessage(
             "❌ Entrez le code de la partie."
@@ -757,13 +903,7 @@ async function rejoindrePartieEnLigne(){
     }
 
 
-    /* ==========================================
-       FORMAT DU CODE
-    ========================================== */
-
-    if(
-        !/^CQ-[A-Z0-9]{4}$/.test(code)
-    ){
+    if(!/^CQ-[A-Z0-9]{4}$/.test(code)){
 
         afficherMessage(
             "❌ Code de partie invalide."
@@ -780,43 +920,29 @@ async function rejoindrePartieEnLigne(){
         );
 
 
-    bouton.disabled = true;
+    if(bouton){
 
-    bouton.textContent =
-        "⏳ Vérification...";
+        bouton.disabled =
+            true;
+
+        bouton.textContent =
+            "⏳ Vérification...";
+
+    }
 
 
     try{
-
-        /* ==========================================
-           RECHERCHE DE LA PARTIE
-        ========================================== */
 
         const {
             data: partie,
             error
         } =
             await supabaseClient
-
                 .from("parties_en_ligne")
-
                 .select("*")
-
-                .eq(
-                    "code",
-                    code
-                )
-
-                .eq(
-                    "statut",
-                    "attente"
-                )
-
-                .is(
-                    "joueur2_id",
-                    null
-                )
-
+                .eq("code", code)
+                .eq("statut", "attente")
+                .is("joueur2_id", null)
                 .maybeSingle();
 
 
@@ -847,10 +973,6 @@ async function rejoindrePartieEnLigne(){
         }
 
 
-        /* ==========================================
-           EMPÊCHER SA PROPRE PARTIE
-        ========================================== */
-
         if(
             partie.joueur1_id ===
             joueur.id
@@ -865,44 +987,40 @@ async function rejoindrePartieEnLigne(){
         }
 
 
-        /* ==========================================
-           AJOUT DU JOUEUR 2
-        ========================================== */
+        /*
+         * Le chrono démarre au moment où le deuxième
+         * joueur rejoint la partie.
+         */
+
+        const finQuestion =
+            new Date(
+                Date.now() +
+                DUREE_QUESTION * 1000
+            ).toISOString();
+
 
         const {
             data: partieRejointe,
             error: erreurRejoindre
         } =
             await supabaseClient
-
                 .from("parties_en_ligne")
-
                 .update({
 
                     joueur2_id:
                         joueur.id,
 
                     statut:
-                        "en_cours"
+                        "en_cours",
+
+                    fin_question:
+                        finQuestion
 
                 })
-
-                .eq(
-                    "id",
-                    partie.id
-                )
-
-                .eq(
-                    "statut",
-                    "attente"
-                )
-
-                .is(
-                    "joueur2_id",
-                    null
-                )
-
-                .select()
+                .eq("id", partie.id)
+                .eq("statut", "attente")
+                .is("joueur2_id", null)
+                .select("*")
                 .maybeSingle();
 
 
@@ -939,25 +1057,21 @@ async function rejoindrePartieEnLigne(){
         );
 
 
-        /* ==========================================
-           RÉCUPÉRATION DU PSEUDO
-        ========================================== */
+        partieEnLigneActuelle =
+            partieRejointe;
+
 
         const {
             data: adversaire,
             error: erreurAdversaire
         } =
             await supabaseClient
-
                 .from("joueur")
-
                 .select("pseudo")
-
                 .eq(
                     "id",
                     partieRejointe.joueur1_id
                 )
-
                 .maybeSingle();
 
 
@@ -971,46 +1085,93 @@ async function rejoindrePartieEnLigne(){
         }
 
 
-        /* ==========================================
-           AFFICHAGE
-        ========================================== */
+        if(menuPartieEnLigne){
 
-        menuPartieEnLigne.style.display =
-            "none";
+            menuPartieEnLigne.style.display =
+                "none";
 
-        creationPartie.style.display =
-            "none";
-
-        rejoindrePartie.style.display =
-            "none";
-
-        salleAttente.style.display =
-            "block";
+        }
 
 
-        document.getElementById(
-            "codePartieAffiche"
-        ).textContent =
-            partieRejointe.code;
+        if(creationPartie){
+
+            creationPartie.style.display =
+                "none";
+
+        }
 
 
-        document.getElementById(
-            "statutPartie"
-        ).textContent =
-            "✅ Adversaire trouvé !";
+        if(rejoindrePartie){
+
+            rejoindrePartie.style.display =
+                "none";
+
+        }
 
 
-        document.getElementById(
-            "pseudoAdversaire"
-        ).textContent =
-            adversaire?.pseudo ||
-            "Adversaire";
+        if(salleAttente){
+
+            salleAttente.style.display =
+                "block";
+
+        }
 
 
-        document.getElementById(
-            "adversaireInfo"
-        ).style.display =
-            "block";
+        const codeAffiche =
+            document.getElementById(
+                "codePartieAffiche"
+            );
+
+
+        const statutPartie =
+            document.getElementById(
+                "statutPartie"
+            );
+
+
+        const pseudo =
+            document.getElementById(
+                "pseudoAdversaire"
+            );
+
+
+        const adversaireInfo =
+            document.getElementById(
+                "adversaireInfo"
+            );
+
+
+        if(codeAffiche){
+
+            codeAffiche.textContent =
+                partieRejointe.code;
+
+        }
+
+
+        if(statutPartie){
+
+            statutPartie.textContent =
+                "✅ Adversaire trouvé !";
+
+        }
+
+
+        if(pseudo){
+
+            pseudo.textContent =
+                adversaire?.pseudo ||
+                "Adversaire";
+
+        }
+
+
+        if(adversaireInfo){
+
+            adversaireInfo.style.display =
+                "block";
+
+        }
 
 
         afficherMessage(
@@ -1018,29 +1179,40 @@ async function rejoindrePartieEnLigne(){
         );
 
 
-        /*
-         * On récupère une nouvelle fois
-         * la partie complète.
-         */
+        afficherConfrontation(
+            partieRejointe
+        );
 
-        await chargerPartieEtAfficher(
-            partieRejointe.id
+    }
+
+    catch(erreur){
+
+        console.error(
+            "❌ Erreur inattendue pour rejoindre la partie :",
+            erreur
+        );
+
+        afficherMessage(
+            "❌ Une erreur est survenue."
         );
 
     }
 
     finally{
 
-        bouton.disabled = false;
+        if(bouton){
 
-        bouton.textContent =
-            "🎮 Rejoindre";
+            bouton.disabled =
+                false;
+
+            bouton.textContent =
+                "🎮 Rejoindre";
+
+        }
 
     }
 
 }
-
-
 /* ==========================================
    BOUTONS
 ========================================== */
@@ -1093,16 +1265,28 @@ document
     );
 
 
+document
+    .getElementById("annulerPartie")
+    ?.addEventListener(
+        "click",
+        annulerPartieEnLigne
+    );
+
+
 /* ==========================================
    INITIALISATION
 ========================================== */
 
 afficherProfilEnLigne();
+
+
 /* ==========================================
    CHARGER UNE PARTIE COMPLÈTE
 ========================================== */
 
-async function chargerPartieEtAfficher(partieId){
+async function chargerPartieEtAfficher(
+    partieId
+){
 
     try{
 
@@ -1111,16 +1295,9 @@ async function chargerPartieEtAfficher(partieId){
             error
         } =
             await supabaseClient
-
                 .from("parties_en_ligne")
-
                 .select("*")
-
-                .eq(
-                    "id",
-                    partieId
-                )
-
+                .eq("id", partieId)
                 .maybeSingle();
 
 
@@ -1153,6 +1330,24 @@ async function chargerPartieEtAfficher(partieId){
         );
 
 
+        partieEnLigneActuelle =
+            partie;
+
+
+        if(
+            partie.statut ===
+            "terminee"
+        ){
+
+            afficherResultatPartie(
+                partie
+            );
+
+            return;
+
+        }
+
+
         afficherConfrontation(
             partie
         );
@@ -1172,10 +1367,12 @@ async function chargerPartieEtAfficher(partieId){
 
 
 /* ==========================================
-   SURVEILLER L'ARRIVÉE DU JOUEUR 2
+   SURVEILLER JOUEUR 2
 ========================================== */
 
-function surveillerArriveeAdversaire(partieId){
+function surveillerArriveeAdversaire(
+    partieId
+){
 
     if(surveillancePartie){
 
@@ -1203,16 +1400,9 @@ function surveillerArriveeAdversaire(partieId){
                         error
                     } =
                         await supabaseClient
-
                             .from("parties_en_ligne")
-
                             .select("*")
-
-                            .eq(
-                                "id",
-                                partieId
-                            )
-
+                            .eq("id", partieId)
                             .maybeSingle();
 
 
@@ -1230,18 +1420,12 @@ function surveillerArriveeAdversaire(partieId){
 
                     if(!partie){
 
-                        console.warn(
-                            "⚠️ Partie introuvable."
-                        );
-
                         return;
 
                     }
 
 
-                    if(
-                        partie.joueur2_id
-                    ){
+                    if(partie.joueur2_id){
 
                         clearInterval(
                             surveillancePartie
@@ -1257,70 +1441,81 @@ function surveillerArriveeAdversaire(partieId){
                         );
 
 
-                        /* ==========================================
-                           RÉCUPÉRATION DU PSEUDO
-                        ========================================== */
+                        partieEnLigneActuelle =
+                            partie;
+
 
                         const {
                             data: adversaire,
                             error: erreurAdversaire
                         } =
                             await supabaseClient
-
                                 .from("joueur")
-
                                 .select("pseudo")
-
                                 .eq(
                                     "id",
                                     partie.joueur2_id
                                 )
-
                                 .maybeSingle();
 
 
                         if(erreurAdversaire){
 
                             console.warn(
-                                "⚠️ Impossible de récupérer le pseudo de l'adversaire :",
+                                "⚠️ Impossible de récupérer le pseudo :",
                                 erreurAdversaire
                             );
 
                         }
 
 
-                        /* ==========================================
-                           AFFICHAGE ADVERSAIRE
-                        ========================================== */
-
-                        document.getElementById(
-                            "statutPartie"
-                        ).textContent =
-                            "✅ Adversaire trouvé !";
+                        const statut =
+                            document.getElementById(
+                                "statutPartie"
+                            );
 
 
-                        document.getElementById(
-                            "pseudoAdversaire"
-                        ).textContent =
-                            adversaire?.pseudo ||
-                            "Adversaire";
+                        const pseudo =
+                            document.getElementById(
+                                "pseudoAdversaire"
+                            );
 
 
-                        document.getElementById(
-                            "adversaireInfo"
-                        ).style.display =
-                            "block";
+                        const adversaireInfo =
+                            document.getElementById(
+                                "adversaireInfo"
+                            );
+
+
+                        if(statut){
+
+                            statut.textContent =
+                                "✅ Adversaire trouvé !";
+
+                        }
+
+
+                        if(pseudo){
+
+                            pseudo.textContent =
+                                adversaire?.pseudo ||
+                                "Adversaire";
+
+                        }
+
+
+                        if(adversaireInfo){
+
+                            adversaireInfo.style.display =
+                                "block";
+
+                        }
 
 
                         afficherMessage(
                             "✅ Votre adversaire a rejoint la partie !"
                         );
 
-
-                        /*
-                         * On récupère la partie complète
-                         * et on démarre la confrontation.
-                         */
 
                         afficherConfrontation(
                             partie
@@ -1333,14 +1528,14 @@ function surveillerArriveeAdversaire(partieId){
                 catch(erreur){
 
                     console.error(
-                        "❌ Erreur inattendue pendant la surveillance :",
+                        "❌ Erreur inattendue surveillance :",
                         erreur
                     );
 
                 }
 
             },
-            1500
+            1000
         );
 
 }
@@ -1350,12 +1545,14 @@ function surveillerArriveeAdversaire(partieId){
    AFFICHER LA CONFRONTATION
 ========================================== */
 
-function afficherConfrontation(partie){
+function afficherConfrontation(
+    partie
+){
 
     if(!partie){
 
         console.error(
-            "❌ Aucune partie reçue."
+            "❌ Partie en ligne absente."
         );
 
         return;
@@ -1368,79 +1565,195 @@ function afficherConfrontation(partie){
 
 
     /* ==========================================
-       AFFICHAGE DES ZONES
+       IMPORTANT :
+       Ton HTML utilise "confrontation"
+       et NON "confrontationEnLigne".
     ========================================== */
 
-    menuPartieEnLigne.style.display =
-        "none";
-
-    creationPartie.style.display =
-        "none";
-
-    rejoindrePartie.style.display =
-        "none";
-
-    salleAttente.style.display =
-        "none";
+    const confrontation =
+        document.getElementById(
+            "confrontation"
+        );
 
 
-    document.getElementById(
-        "confrontation"
-    ).style.display =
+    if(!confrontation){
+
+        console.error(
+            "❌ Élément HTML #confrontation introuvable."
+        );
+
+        return;
+
+    }
+
+
+    const accueil =
+        document.getElementById(
+            "accueil"
+        );
+
+
+    if(accueil){
+
+        accueil.style.display =
+            "none";
+
+    }
+
+
+    confrontation.style.display =
         "block";
 
 
-    /* ==========================================
-       PSEUDOS
-    ========================================== */
+    if(menuPartieEnLigne){
 
-    document.getElementById(
-        "pseudoJoueur1"
-    ).textContent =
-        "Joueur 1";
+        menuPartieEnLigne.style.display =
+            "none";
+
+    }
 
 
-    document.getElementById(
-        "pseudoJoueur2"
-    ).textContent =
-        "Joueur 2";
+    if(creationPartie){
+
+        creationPartie.style.display =
+            "none";
+
+    }
 
 
-    /* ==========================================
-       SCORES
-    ========================================== */
+    if(rejoindrePartie){
 
-    document.getElementById(
-        "scoreJoueur1"
-    ).textContent =
-        partie.score_joueur1 ?? 0;
+        rejoindrePartie.style.display =
+            "none";
+
+    }
 
 
-    document.getElementById(
-        "scoreJoueur2"
-    ).textContent =
-        partie.score_joueur2 ?? 0;
+    if(salleAttente){
+
+        salleAttente.style.display =
+            "none";
+
+    }
 
 
-    afficherMessage("");
+    const codePartie =
+        document.getElementById(
+            "codePartieEnLigne"
+        );
 
 
-    /* ==========================================
-       AFFICHER LA QUESTION ACTUELLE
-    ========================================== */
+    if(codePartie){
+
+        codePartie.textContent =
+            partie.code ||
+            "";
+
+    }
+
+
+    mettreAJourScoresEnLigne(
+        partie
+    );
+
 
     afficherQuestionEnLigne(
         partie
     );
 
 
-    /* ==========================================
-       DÉMARRER LA SURVEILLANCE
-    ========================================== */
+    surveillerReponsesPartie();
 
-    if(!surveillanceReponses){
+}
 
-        surveillerReponsesPartie();
+
+/* ==========================================
+   METTRE À JOUR LES SCORES
+========================================== */
+
+function mettreAJourScoresEnLigne(
+    partie
+){
+
+    if(!partie){
+
+        return;
+
+    }
+
+
+    const score1 =
+        Number(
+            partie.score_joueur1 ?? 0
+        );
+
+
+    const score2 =
+        Number(
+            partie.score_joueur2 ?? 0
+        );
+
+
+    const scoreJoueur1 =
+        document.getElementById(
+            "scoreJoueur1EnLigne"
+        );
+
+
+    const scoreJoueur2 =
+        document.getElementById(
+            "scoreJoueur2EnLigne"
+        );
+
+
+    if(scoreJoueur1){
+
+        scoreJoueur1.textContent =
+            score1;
+
+    }
+
+
+    if(scoreJoueur2){
+
+        scoreJoueur2.textContent =
+            score2;
+
+    }
+
+
+    /*
+     * Ton HTML actuel utilise :
+     * scoreJoueur1
+     * scoreJoueur2
+     *
+     * On met donc également ces éléments à jour.
+     */
+
+    const ancienScore1 =
+        document.getElementById(
+            "scoreJoueur1"
+        );
+
+
+    const ancienScore2 =
+        document.getElementById(
+            "scoreJoueur2"
+        );
+
+
+    if(ancienScore1){
+
+        ancienScore1.textContent =
+            score1;
+
+    }
+
+
+    if(ancienScore2){
+
+        ancienScore2.textContent =
+            score2;
 
     }
 
@@ -1448,15 +1761,20 @@ function afficherConfrontation(partie){
 
 
 /* ==========================================
-   AFFICHER UNE QUESTION EN LIGNE
+   AFFICHER LA QUESTION + CHRONO
 ========================================== */
 
-function afficherQuestionEnLigne(partie){
+function afficherQuestionEnLigne(
+    partie
+){
 
-    if(!partie){
+    if(
+        !partie ||
+        !partie.questions
+    ){
 
         console.error(
-            "❌ Aucune partie reçue."
+            "❌ Partie ou questions absentes."
         );
 
         return;
@@ -1464,146 +1782,72 @@ function afficherQuestionEnLigne(partie){
     }
 
 
-    if(!partie.questions){
-
-        console.error(
-            "❌ Aucune question enregistrée dans cette partie."
-        );
-
-        afficherMessage(
-            "❌ Impossible de récupérer les questions de la partie."
-        );
-
-        return;
-
-    }
-
-
-    if(!Array.isArray(partie.questions)){
-
-        console.error(
-            "❌ Le format des questions est incorrect :",
+    const questions =
+        Array.isArray(
             partie.questions
-        );
-
-        afficherMessage(
-            "❌ Le format des questions est incorrect."
-        );
-
-        return;
-
-    }
+        )
+            ? partie.questions
+            : [];
 
 
-    if(partie.questions.length === 0){
-
-        console.error(
-            "❌ La partie ne contient aucune question."
-        );
-
-        afficherMessage(
-            "❌ Aucune question disponible."
-        );
-
-        return;
-
-    }
-
-
-    /* ==========================================
-       INDEX QUESTION
-    ========================================== */
-
-    const indexQuestion =
+    const index =
         Number(
             partie.question_actuelle ?? 0
         );
 
 
     const question =
-        partie.questions[indexQuestion];
+        questions[index];
 
 
     if(!question){
 
         console.error(
-            "❌ Question introuvable :",
-            indexQuestion
+            "❌ Question introuvable à l'index :",
+            index
         );
+
+        if(
+            index >=
+            questions.length
+        ){
+
+            afficherResultatPartie(
+                partie
+            );
+
+        }
 
         return;
 
     }
 
 
-    console.log(
-        "✅ Question récupérée :",
-        indexQuestion + 1,
-        question
-    );
+    const elementQuestion =
+        document.getElementById(
+            "questionEnLigne"
+        );
 
 
-    /* ==========================================
-       NUMÉRO
-    ========================================== */
-
-    document.getElementById(
-        "numeroQuestionEnLigne"
-    ).textContent =
-        "Question " +
-        (indexQuestion + 1) +
-        " / " +
-        partie.questions.length;
-
-
-    /* ==========================================
-       TEXTE DE LA QUESTION
-    ========================================== */
-
-    document.getElementById(
-        "questionEnLigne"
-    ).textContent =
-        question.question;
-
-
-    /* ==========================================
-       ZONE DES RÉPONSES
-    ========================================== */
-
-    const zoneReponses =
+    const conteneurReponses =
         document.getElementById(
             "reponsesEnLigne"
         );
 
 
-    if(!zoneReponses){
-
-        console.error(
-            "❌ Zone des réponses introuvable."
+    const numeroQuestion =
+        document.getElementById(
+            "numeroQuestionEnLigne"
         );
 
-        return;
-
-    }
-
-
-    zoneReponses.innerHTML =
-        "";
-
-
-    /* ==========================================
-       CRÉATION DES RÉPONSES
-    ========================================== */
 
     if(
-        !Array.isArray(
-            question.reponses
-        )
+        !elementQuestion ||
+        !conteneurReponses
     ){
 
         console.error(
-            "❌ Les réponses de la question sont incorrectes :",
-            question
+            "❌ Éléments HTML du quiz en ligne introuvables."
         );
 
         return;
@@ -1611,8 +1855,35 @@ function afficherQuestionEnLigne(partie){
     }
 
 
-    question.reponses.forEach(
-        (reponse, index) => {
+    elementQuestion.textContent =
+        question.question;
+
+
+    if(numeroQuestion){
+
+        numeroQuestion.textContent =
+            `Question ${index + 1}/${questions.length}`;
+
+    }
+
+
+    conteneurReponses.innerHTML =
+        "";
+
+
+    const reponses =
+        Array.isArray(
+            question.reponses
+        )
+            ? question.reponses
+            : [];
+
+
+    reponses.forEach(
+        (
+            reponse,
+            indexReponse
+        ) => {
 
             const bouton =
                 document.createElement(
@@ -1620,16 +1891,16 @@ function afficherQuestionEnLigne(partie){
                 );
 
 
-            bouton.type =
-                "button";
-
-
             bouton.className =
-                "boutonReponseEnLigne";
+                "bouton-reponse";
 
 
             bouton.textContent =
                 reponse;
+
+
+            bouton.type =
+                "button";
 
 
             bouton.addEventListener(
@@ -1637,14 +1908,14 @@ function afficherQuestionEnLigne(partie){
                 () => {
 
                     enregistrerReponseEnLigne(
-                        index
+                        indexReponse
                     );
 
                 }
             );
 
 
-            zoneReponses.appendChild(
+            conteneurReponses.appendChild(
                 bouton
             );
 
@@ -1652,9 +1923,8 @@ function afficherQuestionEnLigne(partie){
     );
 
 
-    /* ==========================================
-       MESSAGE RÉPONSE
-    ========================================== */
+    afficherMessage("");
+
 
     const statut =
         document.getElementById(
@@ -1664,23 +1934,64 @@ function afficherQuestionEnLigne(partie){
 
     if(statut){
 
-        statut.textContent =
-            "";
+        const maReponse =
+            joueur.id ===
+            partie.joueur1_id
+                ? partie.reponse_joueur1
+                : joueur.id ===
+                    partie.joueur2_id
+                        ? partie.reponse_joueur2
+                        : null;
+
+
+        if(
+            maReponse !== null &&
+            maReponse !== undefined
+        ){
+
+            statut.textContent =
+                "✅ Réponse enregistrée. En attente de l'adversaire...";
+
+        }
+        else{
+
+            statut.textContent =
+                "";
+
+        }
+
+    }
+
+
+    /*
+     * Le chrono est commun aux deux joueurs.
+     * Il est calculé à partir de fin_question
+     * stocké dans Supabase.
+     */
+
+    if(partie.fin_question){
+
+        demarrerChronoEnLigne(
+            partie
+        );
+
+    }
+    else{
+
+        initialiserChronoQuestion(
+            partie
+        );
 
     }
 
 }
 /* ==========================================
-   ENREGISTRER UNE RÉPONSE EN LIGNE
+   ENREGISTRER UNE RÉPONSE
 ========================================== */
 
 async function enregistrerReponseEnLigne(
     indexReponse
 ){
-
-    /* ==========================================
-       VÉRIFICATION PARTIE
-    ========================================== */
 
     if(!partieEnLigneActuelle){
 
@@ -1693,9 +2004,9 @@ async function enregistrerReponseEnLigne(
     }
 
 
-    /* ==========================================
-       DÉTERMINER LA COLONNE DU JOUEUR
-    ========================================== */
+    const partie =
+        partieEnLigneActuelle;
+
 
     let colonneReponse =
         null;
@@ -1703,7 +2014,7 @@ async function enregistrerReponseEnLigne(
 
     if(
         joueur.id ===
-        partieEnLigneActuelle.joueur1_id
+        partie.joueur1_id
     ){
 
         colonneReponse =
@@ -1712,7 +2023,7 @@ async function enregistrerReponseEnLigne(
     }
     else if(
         joueur.id ===
-        partieEnLigneActuelle.joueur2_id
+        partie.joueur2_id
     ){
 
         colonneReponse =
@@ -1722,7 +2033,7 @@ async function enregistrerReponseEnLigne(
     else{
 
         console.error(
-            "❌ Le joueur ne fait pas partie de cette partie."
+            "❌ Joueur non reconnu dans cette partie."
         );
 
         return;
@@ -1730,13 +2041,49 @@ async function enregistrerReponseEnLigne(
     }
 
 
-    /* ==========================================
-       EMPÊCHER UNE DEUXIÈME RÉPONSE
-    ========================================== */
+    /*
+     * Empêcher une deuxième réponse.
+     */
+
+    if(
+        partie[colonneReponse] !== null &&
+        partie[colonneReponse] !== undefined
+    ){
+
+        return;
+
+    }
+
+
+    /*
+     * Vérifier que le temps n'est pas déjà écoulé.
+     */
+
+    if(partie.fin_question){
+
+        const fin =
+            new Date(
+                partie.fin_question
+            ).getTime();
+
+
+        if(
+            Number.isFinite(fin) &&
+            Date.now() >= fin
+        ){
+
+            await gererFinChronoEnLigne();
+
+            return;
+
+        }
+
+    }
+
 
     const boutons =
         document.querySelectorAll(
-            ".boutonReponseEnLigne"
+            "#reponsesEnLigne .bouton-reponse"
         );
 
 
@@ -1750,28 +2097,25 @@ async function enregistrerReponseEnLigne(
     );
 
 
-    /* ==========================================
-       ENREGISTRER LA RÉPONSE
-    ========================================== */
-
     const {
+        data,
         error
     } =
         await supabaseClient
-
             .from("parties_en_ligne")
-
             .update({
 
                 [colonneReponse]:
                     indexReponse
 
             })
-
-            .eq(
-                "id",
-                partieEnLigneActuelle.id
-            );
+            .eq("id", partie.id)
+            .is(
+                colonneReponse,
+                null
+            )
+            .select("*")
+            .maybeSingle();
 
 
     if(error){
@@ -1801,39 +2145,10 @@ async function enregistrerReponseEnLigne(
     }
 
 
-    console.log(
-        "✅ Réponse enregistrée :",
-        indexReponse
-    );
+    if(!data){
 
-
-    /* ==========================================
-       RELIRE LA PARTIE COMPLÈTE
-    ========================================== */
-
-    const {
-        data: partieActualisee,
-        error: erreurActualisation
-    } =
-        await supabaseClient
-
-            .from("parties_en_ligne")
-
-            .select("*")
-
-            .eq(
-                "id",
-                partieEnLigneActuelle.id
-            )
-
-            .maybeSingle();
-
-
-    if(erreurActualisation){
-
-        console.error(
-            "❌ Erreur récupération partie après réponse :",
-            erreurActualisation
+        console.warn(
+            "⚠️ La réponse existait déjà ou le temps est terminé."
         );
 
         return;
@@ -1841,33 +2156,12 @@ async function enregistrerReponseEnLigne(
     }
 
 
-    if(partieActualisee){
-
-        partieEnLigneActuelle =
-            partieActualisee;
+    partieEnLigneActuelle =
+        data;
 
 
-        /* ==========================================
-           MISE À JOUR DES SCORES
-        ========================================== */
+    arreterChronoEnLigne();
 
-        document.getElementById(
-            "scoreJoueur1"
-        ).textContent =
-            partieActualisee.score_joueur1 ?? 0;
-
-
-        document.getElementById(
-            "scoreJoueur2"
-        ).textContent =
-            partieActualisee.score_joueur2 ?? 0;
-
-    }
-
-
-    /* ==========================================
-       MESSAGE
-    ========================================== */
 
     const statut =
         document.getElementById(
@@ -1882,11 +2176,397 @@ async function enregistrerReponseEnLigne(
 
     }
 
+
+    console.log(
+        "✅ Réponse enregistrée :",
+        indexReponse
+    );
+
 }
 
 
 /* ==========================================
-   SURVEILLANCE DES RÉPONSES
+   DÉMARRER LE CHRONO
+========================================== */
+
+function demarrerChronoEnLigne(
+    partie
+){
+
+    arreterChronoEnLigne();
+
+
+    const affichage =
+        document.getElementById(
+            "tempsRestantEnLigne"
+        );
+
+
+    if(!affichage){
+
+        console.error(
+            "❌ Élément #tempsRestantEnLigne introuvable."
+        );
+
+        return;
+
+    }
+
+
+    if(
+        !partie ||
+        !partie.fin_question
+    ){
+
+        affichage.textContent =
+            DUREE_QUESTION;
+
+        return;
+
+    }
+
+
+    const fin =
+        new Date(
+            partie.fin_question
+        ).getTime();
+
+
+    if(
+        !Number.isFinite(fin)
+    ){
+
+        console.error(
+            "❌ fin_question invalide :",
+            partie.fin_question
+        );
+
+        affichage.textContent =
+            DUREE_QUESTION;
+
+        return;
+
+    }
+
+
+    function actualiserChrono(){
+
+        const millisecondesRestantes =
+            fin -
+            Date.now();
+
+
+        const secondes =
+            Math.max(
+                0,
+                Math.ceil(
+                    millisecondesRestantes /
+                    1000
+                )
+            );
+
+
+        affichage.textContent =
+            secondes;
+
+
+        if(
+            secondes <= 0
+        ){
+
+            arreterChronoEnLigne();
+
+
+            afficherMessage(
+                "⏰ Temps écoulé !"
+            );
+
+
+            gererFinChronoEnLigne();
+
+        }
+
+    }
+
+
+    actualiserChrono();
+
+
+    intervalleChrono =
+        setInterval(
+            actualiserChrono,
+            200
+        );
+
+}
+
+
+/* ==========================================
+   ARRÊTER LE CHRONO
+========================================== */
+
+function arreterChronoEnLigne(){
+
+    if(intervalleChrono){
+
+        clearInterval(
+            intervalleChrono
+        );
+
+        intervalleChrono =
+            null;
+
+    }
+
+}
+
+
+/* ==========================================
+   INITIALISER LE CHRONO
+========================================== */
+
+async function initialiserChronoQuestion(
+    partie
+){
+
+    if(!partie){
+
+        return;
+
+    }
+
+
+    /*
+     * Si un autre joueur a déjà créé
+     * le chrono, on l'utilise.
+     */
+
+    if(partie.fin_question){
+
+        demarrerChronoEnLigne(
+            partie
+        );
+
+        return;
+
+    }
+
+
+    /*
+     * On tente de créer le chrono.
+     *
+     * Le .is("fin_question", null)
+     * garantit qu'un seul joueur
+     * peut réellement l'initialiser.
+     */
+
+    const finQuestion =
+        new Date(
+            Date.now() +
+            DUREE_QUESTION * 1000
+        ).toISOString();
+
+
+    const {
+        data,
+        error
+    } =
+        await supabaseClient
+            .from("parties_en_ligne")
+            .update({
+
+                fin_question:
+                    finQuestion
+
+            })
+            .eq("id", partie.id)
+            .is(
+                "fin_question",
+                null
+            )
+            .select("*")
+            .maybeSingle();
+
+
+    if(error){
+
+        console.error(
+            "❌ Erreur initialisation chrono :",
+            error
+        );
+
+        return;
+
+    }
+
+
+    if(data){
+
+        partieEnLigneActuelle =
+            data;
+
+
+        demarrerChronoEnLigne(
+            data
+        );
+
+        return;
+
+    }
+
+
+    /*
+     * Quelqu'un d'autre a probablement
+     * initialisé le chrono.
+     *
+     * On récupère alors la partie.
+     */
+
+    const {
+        data: partieActualisee,
+        error: erreurLecture
+    } =
+        await supabaseClient
+            .from("parties_en_ligne")
+            .select("*")
+            .eq("id", partie.id)
+            .maybeSingle();
+
+
+    if(erreurLecture){
+
+        console.error(
+            "❌ Erreur récupération chrono :",
+            erreurLecture
+        );
+
+        return;
+
+    }
+
+
+    if(
+        partieActualisee &&
+        partieActualisee.fin_question
+    ){
+
+        partieEnLigneActuelle =
+            partieActualisee;
+
+
+        demarrerChronoEnLigne(
+            partieActualisee
+        );
+
+    }
+
+}
+
+
+/* ==========================================
+   GÉRER LA FIN DU CHRONO
+========================================== */
+
+async function gererFinChronoEnLigne(){
+
+    if(!partieEnLigneActuelle){
+
+        return;
+
+    }
+
+
+    const partie =
+        partieEnLigneActuelle;
+
+
+    const colonneReponse =
+        partie.joueur1_id ===
+        joueur.id
+            ? "reponse_joueur1"
+            : partie.joueur2_id ===
+                joueur.id
+                    ? "reponse_joueur2"
+                    : null;
+
+
+    if(!colonneReponse){
+
+        console.error(
+            "❌ Le joueur actuel ne participe pas à cette partie."
+        );
+
+        return;
+
+    }
+
+
+    /*
+     * Si une réponse existe déjà,
+     * rien à faire.
+     */
+
+    if(
+        partie[colonneReponse] !== null &&
+        partie[colonneReponse] !== undefined
+    ){
+
+        return;
+
+    }
+
+
+    const {
+        data,
+        error
+    } =
+        await supabaseClient
+            .from("parties_en_ligne")
+            .update({
+
+                [colonneReponse]:
+                    -1
+
+            })
+            .eq("id", partie.id)
+            .is(
+                colonneReponse,
+                null
+            )
+            .select("*")
+            .maybeSingle();
+
+
+    if(error){
+
+        console.error(
+            "❌ Erreur lors de l'enregistrement du temps écoulé :",
+            error
+        );
+
+        return;
+
+    }
+
+
+    if(data){
+
+        partieEnLigneActuelle =
+            data;
+
+
+        console.log(
+            "⏰ Temps écoulé enregistré pour :",
+            colonneReponse
+        );
+
+    }
+
+}
+
+
+/* ==========================================
+   SURVEILLER LES RÉPONSES
 ========================================== */
 
 function surveillerReponsesPartie(){
@@ -1921,18 +2601,14 @@ function surveillerReponsesPartie(){
                         error
                     } =
                         await supabaseClient
-
                             .from("parties_en_ligne")
-
                             .select(
-                                "id, joueur1_id, joueur2_id, questions, question_actuelle, reponse_joueur1, reponse_joueur2, traitement_question, score_joueur1, score_joueur2, statut"
+                                "id, code, joueur1_id, joueur2_id, questions, question_actuelle, reponse_joueur1, reponse_joueur2, traitement_question, score_joueur1, score_joueur2, statut, fin_question"
                             )
-
                             .eq(
                                 "id",
                                 partieEnLigneActuelle.id
                             )
-
                             .maybeSingle();
 
 
@@ -1955,19 +2631,11 @@ function surveillerReponsesPartie(){
                     }
 
 
-                    /* ==========================================
-                       ANCIEN INDEX
-                    ========================================== */
-
                     const ancienIndex =
                         Number(
                             partieEnLigneActuelle.question_actuelle ?? 0
                         );
 
-
-                    /* ==========================================
-                       NOUVEL INDEX
-                    ========================================== */
 
                     const nouvelIndex =
                         Number(
@@ -1975,35 +2643,39 @@ function surveillerReponsesPartie(){
                         );
 
 
-                    /* ==========================================
-                       MISE À JOUR LOCALE
-                    ========================================== */
-
                     partieEnLigneActuelle =
                         partie;
 
 
                     /* ==========================================
-                       MISE À JOUR DES SCORES
+                       METTRE À JOUR LES SCORES
                     ========================================== */
 
-                    document.getElementById(
-                        "scoreJoueur1"
-                    ).textContent =
-                        partie.score_joueur1 ?? 0;
-
-
-                    document.getElementById(
-                        "scoreJoueur2"
-                    ).textContent =
-                        partie.score_joueur2 ?? 0;
+                    mettreAJourScoresEnLigne(
+                        partie
+                    );
 
 
                     /* ==========================================
-                       ⭐ CORRECTION PRINCIPALE ⭐
-                       
-                       Si l'autre navigateur a fait avancer
-                       la question, on l'affiche aussi.
+                       PARTIE TERMINÉE
+                    ========================================== */
+
+                    if(
+                        partie.statut ===
+                        "terminee"
+                    ){
+
+                        afficherResultatPartie(
+                            partie
+                        );
+
+                        return;
+
+                    }
+
+
+                    /* ==========================================
+                       NOUVELLE QUESTION
                     ========================================== */
 
                     if(
@@ -2012,7 +2684,7 @@ function surveillerReponsesPartie(){
                     ){
 
                         console.log(
-                            "➡️ Nouvelle question détectée :",
+                            "➡️ Nouvelle question :",
                             nouvelIndex + 1
                         );
 
@@ -2035,48 +2707,121 @@ function surveillerReponsesPartie(){
                             partie
                         );
 
-
-                        const statut =
-                            document.getElementById(
-                                "statutReponseEnLigne"
-                            );
-
-
-                        if(statut){
-
-                            statut.textContent =
-                                "";
-
-                        }
-
-                    }
-
-
-                    /* ==========================================
-                       PARTIE TERMINÉE
-                    ========================================== */
-
-                    if(
-                        partie.statut ===
-                        "terminee"
-                    ){
-
-                        afficherResultatPartie(
-                            partie
-                        );
-
                         return;
 
                     }
 
 
                     /* ==========================================
-                       VÉRIFIER LES DEUX RÉPONSES
+                       CHRONO EXPIRÉ
+                    ========================================== */
+
+                    if(partie.fin_question){
+
+                        const fin =
+                            new Date(
+                                partie.fin_question
+                            ).getTime();
+
+
+                        if(
+                            Number.isFinite(fin) &&
+                            Date.now() >= fin
+                        ){
+
+                            const misesAJour =
+                                {};
+
+
+                            if(
+                                partie.reponse_joueur1 ===
+                                null
+                            ){
+
+                                misesAJour.reponse_joueur1 =
+                                    -1;
+
+                            }
+
+
+                            if(
+                                partie.reponse_joueur2 ===
+                                null
+                            ){
+
+                                misesAJour.reponse_joueur2 =
+                                    -1;
+
+                            }
+
+
+                            if(
+                                Object.keys(
+                                    misesAJour
+                                ).length > 0
+                            ){
+
+                                const {
+                                    data:
+                                        partieApresTemps,
+                                    error:
+                                        erreurTemps
+                                } =
+                                    await supabaseClient
+                                        .from(
+                                            "parties_en_ligne"
+                                        )
+                                        .update(
+                                            misesAJour
+                                        )
+                                        .eq(
+                                            "id",
+                                            partie.id
+                                        )
+                                        .select("*")
+                                        .maybeSingle();
+
+
+                                if(erreurTemps){
+
+                                    console.error(
+                                        "❌ Erreur traitement du chrono :",
+                                        erreurTemps
+                                    );
+
+                                    return;
+
+                                }
+
+
+                                if(
+                                    partieApresTemps
+                                ){
+
+                                    partieEnLigneActuelle =
+                                        partieApresTemps;
+
+                                }
+
+                            }
+
+                        }
+
+                    }
+
+
+                    const partieActuelle =
+                        partieEnLigneActuelle;
+
+
+                    /* ==========================================
+                       ATTENDRE LES DEUX RÉPONSES
                     ========================================== */
 
                     if(
-                        partie.reponse_joueur1 === null ||
-                        partie.reponse_joueur2 === null
+                        !partieActuelle ||
+                        partieActuelle.reponse_joueur1 === null ||
+                        partieActuelle.reponse_joueur2 === null
                     ){
 
                         return;
@@ -2089,7 +2834,8 @@ function surveillerReponsesPartie(){
                     ========================================== */
 
                     if(
-                        partie.traitement_question === true
+                        partieActuelle.traitement_question ===
+                        true
                     ){
 
                         return;
@@ -2098,7 +2844,7 @@ function surveillerReponsesPartie(){
 
 
                     /* ==========================================
-                       TENTATIVE DE VERROUILLAGE
+                       VERROUILLER LA QUESTION
                     ========================================== */
 
                     const {
@@ -2106,37 +2852,31 @@ function surveillerReponsesPartie(){
                         error: erreurVerrou
                     } =
                         await supabaseClient
-
-                            .from("parties_en_ligne")
-
+                            .from(
+                                "parties_en_ligne"
+                            )
                             .update({
 
                                 traitement_question:
                                     true
 
                             })
-
                             .eq(
                                 "id",
-                                partie.id
+                                partieActuelle.id
                             )
-
                             .eq(
                                 "traitement_question",
                                 false
                             )
-
-                            .select(
-                                "id"
-                            )
-
+                            .select("*")
                             .maybeSingle();
 
 
                     if(erreurVerrou){
 
                         console.error(
-                            "❌ Erreur verrouillage question :",
+                            "❌ Erreur verrouillage :",
                             erreurVerrou
                         );
 
@@ -2144,11 +2884,6 @@ function surveillerReponsesPartie(){
 
                     }
 
-
-                    /*
-                     * Si aucun résultat :
-                     * un autre navigateur a pris le verrou.
-                     */
 
                     if(!verrou){
 
@@ -2158,12 +2893,15 @@ function surveillerReponsesPartie(){
 
 
                     console.log(
-                        "🔒 Verrou obtenu pour le traitement."
+                        "🔒 Verrou obtenu."
                     );
 
 
+                    arreterChronoEnLigne();
+
+
                     await traiterQuestionPartie(
-                        partie
+                        verrou
                     );
 
                 }
@@ -2171,19 +2909,49 @@ function surveillerReponsesPartie(){
                 catch(erreur){
 
                     console.error(
-                        "❌ Erreur inattendue surveillance réponses :",
+                        "❌ Erreur surveillance réponses :",
                         erreur
                     );
 
                 }
 
             },
-            1000
+            500
         );
 
 }
 
 
+/* ==========================================
+   ARRÊTER LES SURVEILLANCES
+========================================== */
+
+function arreterSurveillancesEnLigne(){
+
+    if(surveillancePartie){
+
+        clearInterval(
+            surveillancePartie
+        );
+
+        surveillancePartie =
+            null;
+
+    }
+
+
+    if(surveillanceReponses){
+
+        clearInterval(
+            surveillanceReponses
+        );
+
+        surveillanceReponses =
+            null;
+
+    }
+
+}
 /* ==========================================
    TRAITER LA QUESTION
 ========================================== */
@@ -2199,7 +2967,9 @@ async function traiterQuestionPartie(
 
 
     const question =
-        partie.questions[indexQuestion];
+        partie.questions[
+            indexQuestion
+        ];
 
 
     if(!question){
@@ -2215,64 +2985,77 @@ async function traiterQuestionPartie(
 
 
     /* ==========================================
-       VÉRIFICATION DES RÉPONSES
+       VÉRIFIER LES RÉPONSES
     ========================================== */
 
     const joueur1Correct =
-        Number(partie.reponse_joueur1) ===
-        Number(question.bonne);
+        Number(
+            partie.reponse_joueur1
+        ) ===
+        Number(
+            question.bonne
+        );
 
 
     const joueur2Correct =
-        Number(partie.reponse_joueur2) ===
-        Number(question.bonne);
-
-
-    console.log(
-        "Réponse joueur 1 :",
-        partie.reponse_joueur1,
-        "Correcte :",
-        joueur1Correct
-    );
-
-
-    console.log(
-        "Réponse joueur 2 :",
-        partie.reponse_joueur2,
-        "Correcte :",
-        joueur2Correct
-    );
+        Number(
+            partie.reponse_joueur2
+        ) ===
+        Number(
+            question.bonne
+        );
 
 
     /* ==========================================
-       CALCUL DES SCORES
+       CALCULER LES SCORES
     ========================================== */
 
     const nouveauScoreJoueur1 =
-        Number(partie.score_joueur1 || 0) +
-        (joueur1Correct ? 1 : 0);
+        Number(
+            partie.score_joueur1 || 0
+        ) +
+        (
+            joueur1Correct
+                ? 1
+                : 0
+        );
 
 
     const nouveauScoreJoueur2 =
-        Number(partie.score_joueur2 || 0) +
-        (joueur2Correct ? 1 : 0);
+        Number(
+            partie.score_joueur2 || 0
+        ) +
+        (
+            joueur2Correct
+                ? 1
+                : 0
+        );
 
-
-    /* ==========================================
-       QUESTION SUIVANTE
-    ========================================== */
 
     const prochaineQuestion =
         indexQuestion + 1;
 
 
-    /* ==========================================
-       FIN DE PARTIE ?
-    ========================================== */
-
     const partieTerminee =
         prochaineQuestion >=
         partie.questions.length;
+
+
+    /*
+     * Si la partie continue,
+     * on crée immédiatement la nouvelle échéance.
+     *
+     * Si la partie est terminée,
+     * fin_question devient null.
+     */
+
+    const finQuestion =
+        partieTerminee
+            ? null
+            : new Date(
+                Date.now() +
+                DUREE_QUESTION * 1000
+            ).toISOString();
 
 
     /* ==========================================
@@ -2280,12 +3063,11 @@ async function traiterQuestionPartie(
     ========================================== */
 
     const {
+        data: partieMiseAJour,
         error
     } =
         await supabaseClient
-
             .from("parties_en_ligne")
-
             .update({
 
                 score_joueur1:
@@ -2296,6 +3078,9 @@ async function traiterQuestionPartie(
 
                 question_actuelle:
                     prochaineQuestion,
+
+                fin_question:
+                    finQuestion,
 
                 reponse_joueur1:
                     null,
@@ -2312,16 +3097,16 @@ async function traiterQuestionPartie(
                         : "en_cours"
 
             })
-
             .eq(
                 "id",
                 partie.id
             )
-
             .eq(
                 "traitement_question",
                 true
-            );
+            )
+            .select("*")
+            .maybeSingle();
 
 
     if(error){
@@ -2336,6 +3121,17 @@ async function traiterQuestionPartie(
     }
 
 
+    if(!partieMiseAJour){
+
+        console.warn(
+            "⚠️ La question avait déjà été traitée."
+        );
+
+        return;
+
+    }
+
+
     console.log(
         "✅ Question traitée :",
         indexQuestion + 1
@@ -2343,82 +3139,30 @@ async function traiterQuestionPartie(
 
 
     console.log(
-        "Score joueur 1 :",
+        "📊 Score joueur 1 :",
         nouveauScoreJoueur1
     );
 
 
     console.log(
-        "Score joueur 2 :",
+        "📊 Score joueur 2 :",
         nouveauScoreJoueur2
     );
 
 
-    /* ==========================================
-       RÉCUPÉRATION DE LA PARTIE ACTUALISÉE
-    ========================================== */
-
-    const {
-        data: partieActualisee,
-        error: erreurLecture
-    } =
-        await supabaseClient
-
-            .from("parties_en_ligne")
-
-            .select("*")
-
-            .eq(
-                "id",
-                partie.id
-            )
-
-            .maybeSingle();
-
-
-    if(erreurLecture){
-
-        console.error(
-            "❌ Erreur récupération partie après traitement :",
-            erreurLecture
-        );
-
-        return;
-
-    }
-
-
-    if(!partieActualisee){
-
-        return;
-
-    }
-
-
     partieEnLigneActuelle =
-        partieActualisee;
+        partieMiseAJour;
 
 
     /* ==========================================
-       PARTIE TERMINÉE
+       FIN DE PARTIE
     ========================================== */
 
     if(partieTerminee){
 
         afficherResultatPartie(
-            partieActualisee
+            partieMiseAJour
         );
-
-        if(surveillanceReponses){
-
-            clearInterval(
-                surveillanceReponses
-            );
-
-            surveillanceReponses =
-                null;
-
-        }
 
         return;
 
@@ -2427,31 +3171,11 @@ async function traiterQuestionPartie(
 
     /* ==========================================
        AFFICHER LA QUESTION SUIVANTE
-       
-       Le navigateur qui a traité la question
-       l'affiche immédiatement.
-       
-       L'autre navigateur la détectera grâce
-       à surveillerReponsesPartie().
     ========================================== */
 
     afficherQuestionEnLigne(
-        partieActualisee
+        partieMiseAJour
     );
-
-
-    const statut =
-        document.getElementById(
-            "statutReponseEnLigne"
-        );
-
-
-    if(statut){
-
-        statut.textContent =
-            "";
-
-    }
 
 }
 
@@ -2471,29 +3195,13 @@ function afficherResultatPartie(
     }
 
 
-    /* ==========================================
-       ARRÊTER LA SURVEILLANCE
-    ========================================== */
-
-    if(surveillanceReponses){
-
-        clearInterval(
-            surveillanceReponses
-        );
-
-        surveillanceReponses =
-            null;
-
-    }
+    arreterChronoEnLigne();
+    arreterSurveillancesEnLigne();
 
 
     partieEnLigneActuelle =
         partie;
 
-
-    /* ==========================================
-       MASQUER LA CONFRONTATION
-    ========================================== */
 
     const confrontation =
         document.getElementById(
@@ -2509,10 +3217,6 @@ function afficherResultatPartie(
     }
 
 
-    /* ==========================================
-       AFFICHER LE RÉSULTAT
-    ========================================== */
-
     const resultat =
         document.getElementById(
             "resultatPartie"
@@ -2526,10 +3230,6 @@ function afficherResultatPartie(
 
     }
 
-
-    /* ==========================================
-       AFFICHER LES SCORES
-    ========================================== */
 
     const scoreJoueur1 =
         Number(
@@ -2598,10 +3298,17 @@ function afficherResultatPartie(
 ========================================== */
 
 document
-    .getElementById("btnNouvellePartie")
+    .getElementById(
+        "btnNouvellePartie"
+    )
     ?.addEventListener(
         "click",
         () => {
+
+            arreterChronoEnLigne();
+
+            arreterSurveillancesEnLigne();
+
 
             const resultat =
                 document.getElementById(
@@ -2612,6 +3319,20 @@ document
             if(resultat){
 
                 resultat.style.display =
+                    "none";
+
+            }
+
+
+            const confrontation =
+                document.getElementById(
+                    "confrontation"
+                );
+
+
+            if(confrontation){
+
+                confrontation.style.display =
                     "none";
 
             }
@@ -2632,14 +3353,24 @@ document
 ========================================== */
 
 document
-    .getElementById("btnRetourAccueil")
+    .getElementById(
+        "btnRetourAccueil"
+    )
     ?.addEventListener(
         "click",
         () => {
+
+            arreterChronoEnLigne();
+
+            arreterSurveillancesEnLigne();
+
+
+            partieEnLigneActuelle =
+                null;
+
 
             window.location.href =
                 "index.html?accueil=1";
 
         }
     );
-    

@@ -93,7 +93,6 @@
                 Choisis comment tu veux jouer.
             </p>
 
-
             <button
                 id="btnCreerPartie"
                 class="boutonModeEnLigne">
@@ -101,7 +100,6 @@
                 ⚔️ Créer une partie
 
             </button>
-
 
             <button
                 id="btnRejoindrePartie"
@@ -121,10 +119,10 @@
         <section
             id="creationPartie"
             class="carteModeEnLigne"
-            style="display:none;">
+            style="display: none;">
 
             <h2>
-             ⚔️ Créer une partie
+                ⚔️ Créer une partie
             </h2>
 
             <label for="categoriePartie">
@@ -212,7 +210,7 @@
         <section
             id="rejoindrePartie"
             class="carteModeEnLigne"
-            style="display:none;">
+            style="display: none;">
 
             <h2>
                 🔑 Rejoindre une partie
@@ -231,7 +229,7 @@
                 type="text"
                 id="codePartie"
                 placeholder="Exemple : CQ-4821"
-                maxlength="10"
+                maxlength="7"
                 autocomplete="off">
 
 
@@ -262,7 +260,7 @@
         <section
             id="salleAttente"
             class="carteModeEnLigne"
-            style="display:none;">
+            style="display: none;">
 
             <h2>
                 ⏳ En attente de l'adversaire
@@ -289,7 +287,7 @@
 
             <div
                 id="adversaireInfo"
-                style="display:none;">
+                style="display: none;">
 
                 <p>
                     ⚔️ Adversaire :
@@ -319,7 +317,11 @@
         <section
             id="confrontation"
             class="carteModeEnLigne"
-            style="display:none;">
+            style="display: none;">
+
+            <!-- ==============================
+                 JOUEURS ET SCORES
+            =============================== -->
 
             <div class="joueursConfrontation">
 
@@ -356,23 +358,53 @@
             </div>
 
 
+            <!-- ==============================
+                 ZONE QUESTION
+            =============================== -->
+
             <div id="zoneQuestionEnLigne">
 
                 <p id="numeroQuestionEnLigne">
                     Question 1
                 </p>
 
+
+                <!-- ==============================
+                     CHRONO
+                =============================== -->
+
+                <div
+                    id="chronoEnLigne"
+                    class="chronoEnLigne">
+
+                    ⏱️
+                    <span id="tempsRestantEnLigne">
+                        15
+                    </span>
+                    s
+
+                </div>
+
+
+                <!-- ==============================
+                     QUESTION
+                =============================== -->
+
                 <h2 id="questionEnLigne">
                     La question apparaîtra ici.
                 </h2>
 
+
+                <!-- ==============================
+                     RÉPONSES
+                =============================== -->
 
                 <div
                     id="reponsesEnLigne"
                     class="reponsesEnLigne">
 
                     <!--
-                        Les réponses seront créées
+                        Les réponses sont créées
                         automatiquement par JavaScript.
                     -->
 
@@ -380,6 +412,10 @@
 
             </div>
 
+
+            <!-- ==============================
+                 STATUT DE LA RÉPONSE
+            =============================== -->
 
             <p id="statutReponseEnLigne"></p>
 
@@ -393,7 +429,7 @@
         <section
             id="resultatPartie"
             class="carteModeEnLigne"
-            style="display:none;">
+            style="display: none;">
 
             <h2>
                 🏆 Partie terminée
@@ -437,7 +473,7 @@
             id="messageModeEnLigne"
             class="messageModeEnLigne">
         </div>
-        
+
 
     </main>
 
@@ -445,26 +481,20 @@
     <!-- ==============================
          SCRIPTS
     =============================== -->
-   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-   <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-   <script src="questions/histoire.js"></script>
-   <script src="questions/culture.js"></script>
-   <script src="questions/institutions.js"></script>
-   <script src="questions/geographie.js"></script>
-   <script src="questions/sport.js"></script>
-   <script src="questions/personnalites.js"></script>
+    <script src="script.js"></script>
 
-   <script src="mode-en-ligne.js"></script>
+    <script src="questions/histoire.js"></script>
+    <script src="questions/culture.js"></script>
+    <script src="questions/institutions.js"></script>
+    <script src="questions/geographie.js"></script>
+    <script src="questions/sport.js"></script>
+    <script src="questions/personnalites.js"></script>
 
-    <!--
-        Le JavaScript spécifique au mode en ligne
-        sera ajouté ici après la construction
-        de la structure et du CSS.
-    -->
+    <script src="mode-en-ligne.js"></script>
 
 </body>
 
 </html>
-```
