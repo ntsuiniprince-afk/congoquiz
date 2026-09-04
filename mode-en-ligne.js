@@ -45,7 +45,7 @@ let partieEnLigneActuelle =
 ========================================== */
 
 const DUREE_QUESTION =
-    15;
+    20;
 
 let intervalleChrono =
     null;
