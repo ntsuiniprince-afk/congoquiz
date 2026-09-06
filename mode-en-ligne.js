@@ -1539,13 +1539,115 @@ function surveillerArriveeAdversaire(
         );
 
 }
-
-
 /* ==========================================
-   AFFICHER LA CONFRONTATION
+   RÉCUPÉRER LES PSEUDOS DE LA PARTIE
 ========================================== */
 
-function afficherConfrontation(
+async function obtenirPseudosPartie(partie){
+
+    const pseudos = {
+        joueur1:
+            joueur?.pseudo ||
+            "Joueur 1",
+
+        joueur2:
+            "Joueur 2"
+    };
+
+
+    if(!partie){
+
+        return pseudos;
+
+    }
+
+
+    const ids =
+        [
+            partie.joueur1_id,
+            partie.joueur2_id
+        ]
+        .filter(Boolean);
+
+
+    if(ids.length === 0){
+
+        return pseudos;
+
+    }
+
+
+    try{
+
+        const {
+            data,
+            error
+        } =
+            await supabaseClient
+                .from("joueur")
+                .select("id, pseudo")
+                .in("id", ids);
+
+
+        if(error){
+
+            console.warn(
+                "⚠️ Impossible de récupérer les pseudos :",
+                error
+            );
+
+            return pseudos;
+
+        }
+
+
+        if(Array.isArray(data)){
+
+            const joueur1 =
+                data.find(
+                    utilisateur =>
+                        utilisateur.id ===
+                        partie.joueur1_id
+                );
+
+
+            const joueur2 =
+                data.find(
+                    utilisateur =>
+                        utilisateur.id ===
+                        partie.joueur2_id
+                );
+
+
+            pseudos.joueur1 =
+                joueur1?.pseudo ||
+                pseudos.joueur1;
+
+
+            pseudos.joueur2 =
+                joueur2?.pseudo ||
+                pseudos.joueur2;
+
+        }
+
+    }
+
+    catch(erreur){
+
+        console.warn(
+            "⚠️ Erreur récupération des pseudos :",
+            erreur
+        );
+
+    }
+
+
+    return pseudos;
+
+}
+
+
+async function afficherConfrontation(
     partie
 ){
 
@@ -1563,12 +1665,6 @@ function afficherConfrontation(
     partieEnLigneActuelle =
         partie;
 
-
-    /* ==========================================
-       IMPORTANT :
-       Ton HTML utilise "confrontation"
-       et NON "confrontationEnLigne".
-    ========================================== */
 
     const confrontation =
         document.getElementById(
@@ -1648,6 +1744,44 @@ function afficherConfrontation(
         codePartie.textContent =
             partie.code ||
             "";
+
+    }
+
+
+    /* ==========================================
+       AFFICHER LES VRAIS PSEUDOS
+    ========================================== */
+
+    const pseudos =
+        await obtenirPseudosPartie(
+            partie
+        );
+
+
+    const pseudoJoueur1 =
+        document.getElementById(
+            "pseudoJoueur1"
+        );
+
+
+    const pseudoJoueur2 =
+        document.getElementById(
+            "pseudoJoueur2"
+        );
+
+
+    if(pseudoJoueur1){
+
+        pseudoJoueur1.textContent =
+            pseudos.joueur1;
+
+    }
+
+
+    if(pseudoJoueur2){
+
+        pseudoJoueur2.textContent =
+            pseudos.joueur2;
 
     }
 
@@ -3184,7 +3318,7 @@ async function traiterQuestionPartie(
    AFFICHER LE RÉSULTAT FINAL
 ========================================== */
 
-function afficherResultatPartie(
+async function afficherResultatPartie(
     partie
 ){
 
@@ -3256,15 +3390,77 @@ function afficherResultatPartie(
     }
 
 
+    /* ==========================================
+       RÉCUPÉRER LES VRAIS PSEUDOS
+    ========================================== */
+
+    const pseudos =
+        await obtenirPseudosPartie(
+            partie
+        );
+
+
+    const nomJoueur1 =
+        String(
+            pseudos.joueur1
+        )
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+        .replace(
+            /</g,
+            "&lt;"
+        )
+        .replace(
+            />/g,
+            "&gt;"
+        )
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+
+    const nomJoueur2 =
+        String(
+            pseudos.joueur2
+        )
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+        .replace(
+            /</g,
+            "&lt;"
+        )
+        .replace(
+            />/g,
+            "&gt;"
+        )
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+
     if(
         scoreJoueur1 >
         scoreJoueur2
     ){
 
         resultatFinal.innerHTML = `
-            <p>🏆 Joueur 1 gagne !</p>
-            <p>Joueur 1 : ${scoreJoueur1}</p>
-            <p>Joueur 2 : ${scoreJoueur2}</p>
+            <p>🏆 ${nomJoueur1} gagne !</p>
+            <p>${nomJoueur1} : ${scoreJoueur1}</p>
+            <p>${nomJoueur2} : ${scoreJoueur2}</p>
         `;
 
     }
@@ -3274,9 +3470,9 @@ function afficherResultatPartie(
     ){
 
         resultatFinal.innerHTML = `
-            <p>🏆 Joueur 2 gagne !</p>
-            <p>Joueur 1 : ${scoreJoueur1}</p>
-            <p>Joueur 2 : ${scoreJoueur2}</p>
+            <p>🏆 ${nomJoueur2} gagne !</p>
+            <p>${nomJoueur1} : ${scoreJoueur1}</p>
+            <p>${nomJoueur2} : ${scoreJoueur2}</p>
         `;
 
     }
@@ -3284,8 +3480,8 @@ function afficherResultatPartie(
 
         resultatFinal.innerHTML = `
             <p>🤝 Égalité !</p>
-            <p>Joueur 1 : ${scoreJoueur1}</p>
-            <p>Joueur 2 : ${scoreJoueur2}</p>
+            <p>${nomJoueur1} : ${scoreJoueur1}</p>
+            <p>${nomJoueur2} : ${scoreJoueur2}</p>
         `;
 
     }
