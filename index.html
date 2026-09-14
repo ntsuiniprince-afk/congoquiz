@@ -214,6 +214,18 @@
     
     <!-- Ton JavaScript -->
     <script src="script.js"></script>
-    
+ <script>
+    if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+            navigator.serviceWorker.register("/service-worker.js")
+                .then(() => {
+                    console.log("Service worker enregistré avec succès.");
+                })
+                .catch(error => {
+                    console.error("Erreur d'enregistrement du service worker :", error);
+                });
+        });
+    }
+</script>   
 </body>
 </html>

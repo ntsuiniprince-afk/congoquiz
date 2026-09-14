@@ -64,11 +64,11 @@ const questionsHistoire = [
         question: "Quelle localité est devenue le site de la station française qui allait donner naissance à Brazzaville ?",
         reponses: [
             "Bwali",
-            "Mfoa",
             "Mbé",
-            "Diosso"
+            "Diosso",
+            "Mfoa"
         ],
-        bonne: 1,
+        bonne: 3,
         explication: "La station française fut établie à Mfoa, aussi appelée Ncouna dans les documents de l'époque, avant de devenir Brazzaville."
     },
 
@@ -99,12 +99,12 @@ const questionsHistoire = [
     {
         question: "Entre quelles années Pierre Savorgnan de Brazza effectua-t-il sa première grande série d'explorations dans cette partie de l'Afrique centrale ?",
         reponses: [
-            "1875 et 1878",
             "1880 et 1883",
             "1890 et 1893",
-            "1900 et 1903"
+            "1900 et 1903",
+            "1875 et 1878"
         ],
-        bonne: 0,
+        bonne: 3,
         explication: "Avant son accord avec le Makoko en 1880, Brazza avait effectué une première série d'explorations entre 1875 et 1878."
     },
 
@@ -185,22 +185,22 @@ const questionsHistoire = [
         reponses: [
             "Congo belge",
             "Congo français",
-            "Moyen-Congo",
-            "Congo portugais"
+            "Congo portugais",
+            "Moyen-Congo"
         ],
-        bonne: 2,
+        bonne: 3,
         explication: "Le territoire correspondant à l'actuelle République du Congo était appelé Moyen-Congo pendant une grande partie de la période coloniale française."
     },
 
     {
         question: "À partir de quel type d'activité économique l'exploitation coloniale du Congo s'est-elle notamment développée au début du XXe siècle ?",
         reponses: [
-            "L'exploitation des ressources naturelles par des compagnies privées",
             "La production automobile",
             "L'industrie électronique",
-            "La construction aéronautique"
+            "La construction aéronautique",
+            "L'exploitation des ressources naturelles par des compagnies privées"
         ],
-        bonne: 0,
+        bonne: 3,
         explication: "L'économie coloniale reposait largement sur l'exploitation des ressources naturelles, notamment dans le cadre du système des concessions."
     },
 
@@ -268,11 +268,11 @@ const questionsHistoire = [
         question: "Quelle personnalité française dirigeait la France libre lors de la Conférence de Brazzaville de 1944 ?",
         reponses: [
             "Philippe Pétain",
-            "Charles de Gaulle",
             "Georges Clemenceau",
-            "René Coty"
+            "René Coty",
+            "Charles de Gaulle"
         ],
-        bonne: 1,
+        bonne: 3,
         explication: "Le général Charles de Gaulle était à la tête de la France libre et ouvrit la Conférence de Brazzaville."
     },
 
@@ -496,11 +496,11 @@ const questionsHistoire = [
         question: "Quel homme politique dirigeait le Mouvement socialiste africain (MSA) ?",
         reponses: [
             "Fulbert Youlou",
-            "Jacques Opangault",
             "Jean-Félix Tchicaya",
-            "Marien Ngouabi"
+            "Marien Ngouabi",
+            "Jacques Opangault"
         ],
-        bonne: 1,
+        bonne: 3,
         explication: "Jacques Opangault était le principal dirigeant du Mouvement socialiste africain."
     },
 
@@ -531,12 +531,12 @@ const questionsHistoire = [
     {
         question: "Quelle fonction Fulbert Youlou occupait-il avant de devenir président du Congo ?",
         reponses: [
-            "Maire de Brazzaville",
             "Gouverneur général de l'AEF",
             "Roi du Loango",
-            "Premier secrétaire du PCT"
+            "Premier secrétaire du PCT",
+            "Maire de Brazzaville"
         ],
-        bonne: 0,
+        bonne: 3,
         explication: "Fulbert Youlou fut élu maire de Brazzaville en 1956 avant d'accéder aux plus hautes fonctions de l'État."
     },
 
@@ -748,11 +748,11 @@ const questionsHistoire = [
         question: "Que peut-on affirmer avec certitude concernant les circonstances politiques de l'assassinat de Marien Ngouabi ?",
         reponses: [
             "Toutes les responsabilités sont définitivement établies",
-            "L'affaire reste entourée de controverses historiques",
             "Il est mort lors d'une guerre avec le Gabon",
-            "Il est mort de maladie"
+            "Il est mort de maladie",
+            "L'affaire reste entourée de controverses historiques"
         ],
-        bonne: 1,
+        bonne: 3,
         explication: "Des personnes furent poursuivies après son assassinat, mais les motivations et responsabilités exactes restent discutées par les sources historiques."
     },
 
@@ -916,11 +916,11 @@ const questionsHistoire = [
         question: "Quel parti politique était dirigé par Bernard Kolélas ?",
         reponses: [
             "Le PCT",
-            "Le MCDDI",
             "L'UPADS",
-            "Le MNR"
+            "Le MNR",
+            "Le MCDDI"
         ],
-        bonne: 1,
+        bonne: 3,
         explication: "Bernard Kolélas dirigeait le Mouvement congolais pour la démocratie et le développement intégral, ou MCDDI."
     },
 
