@@ -2,7 +2,7 @@ const questions = [
 
     {
         question: "Quelle est la capitale de la République du Congo ?",
-        reponses: ["Brazzaville", "Pointe-Noire", "Owando"],
+        reponses: [ "Brazzaville", "Pointe-Noire", "Owando"],
         bonne: 0,
         explication: "Brazzaville est la capitale politique de la République du Congo."
     },
@@ -183,7 +183,7 @@ const questions = [
     },
         {
         question: "Quel est le nom du premier président de la République du Congo après l'indépendance ?",
-        reponses: ["Fulbert Youlou", "Pascal Lissouba", "Alphonse Massamba-Débat"],
+        reponses: [ "Fulbert Youlou", "Pascal Lissouba", "Alphonse Massamba-Débat"],
         bonne: 0,
         explication: "Fulbert Youlou a été le premier président de la République du Congo après l'indépendance."
     },
