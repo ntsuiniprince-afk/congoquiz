@@ -2,8 +2,8 @@ const questions = [
 
     {
         question: "Quelle est la capitale de la République du Congo ?",
-        reponses: [ "Brazzaville", "Pointe-Noire", "Owando"],
-        bonne: 0,
+        reponses: ["Pointe-Noire", "Brazzaville", "Owando"],
+        bonne: 1,
         explication: "Brazzaville est la capitale politique de la République du Congo."
     },
 
@@ -23,8 +23,8 @@ const questions = [
 
     {
         question: "Quel grand fleuve borde Brazzaville ?",
-        reponses: ["Le fleuve Congo", "Le Nil", "Le fleuve Niger"],
-        bonne: 0,
+        reponses: ["Le Nil", "Le fleuve Congo", "Le fleuve Niger"],
+        bonne: 1,
         explication: "Brazzaville est située sur la rive droite du fleuve Congo, face à Kinshasa."
     },
 
@@ -44,8 +44,8 @@ const questions = [
 
     {
         question: "Quelle est la fête nationale de la République du Congo ?",
-        reponses: ["15 août", "30 juin", "1er janvier"],
-        bonne: 0,
+        reponses: ["30 juin", "15 août", "1er janvier"],
+        bonne: 1,
         explication: "Le 15 août est la fête nationale et commémore l'indépendance du Congo."
     },
 
@@ -65,8 +65,8 @@ const questions = [
 
     {
         question: "Quel est le plus long fleuve de la République du Congo ?",
-        reponses: ["Le fleuve Congo", "L'Alima", "Le Kouilou"],
-        bonne: 0,
+        reponses: ["L'Alima", "Le fleuve Congo", "Le Kouilou"],
+        bonne: 1,
         explication: "Le fleuve Congo est le principal et le plus long grand cours d'eau associé au territoire de la République du Congo."
     },
 
@@ -121,15 +121,15 @@ const questions = [
 
     {
         question: "Quel département a pour chef-lieu Sibiti ?",
-        reponses: ["Lékoumou", "Niari", "Bouenza"],
-        bonne: 0,
+        reponses: ["Niari", "Bouenza", "Lékoumou"],
+        bonne: 2,
         explication: "Sibiti est le chef-lieu du département de la Lékoumou."
     },
 
     {
         question: "Quel département a pour chef-lieu Impfondo ?",
-        reponses: ["Likouala", "Sangha", "Cuvette"],
-        bonne: 0,
+        reponses: ["Sangha", "Cuvette", "Likouala"],
+        bonne: 2,
         explication: "Impfondo est le chef-lieu du département de la Likouala."
     },
 
@@ -149,8 +149,8 @@ const questions = [
 
     {
         question: "Quel département a pour chef-lieu Loango ?",
-        reponses: ["Kouilou", "Niari", "Lékoumou"],
-        bonne: 0,
+        reponses: ["Niari", "Lékoumou", "Kouilou"],
+        bonne: 2,
         explication: "Loango est le chef-lieu du département du Kouilou."
     },
 
@@ -163,8 +163,8 @@ const questions = [
 
     {
         question: "Dans quelle communauté économique régionale la République du Congo est-elle membre ?",
-        reponses: ["CEMAC", "CEDEAO", "SADC"],
-        bonne: 0,
+        reponses: ["CEDEAO", "SADC", "CEMAC"],
+        bonne: 2,
         explication: "La République du Congo est membre de la Communauté économique et monétaire de l'Afrique centrale (CEMAC)."
     },
 
@@ -181,9 +181,10 @@ const questions = [
         bonne: 0,
         explication: "La conférence de Brazzaville s'est tenue à Brazzaville en 1944."
     },
-        {
+
+    {
         question: "Quel est le nom du premier président de la République du Congo après l'indépendance ?",
-        reponses: [ "Fulbert Youlou", "Pascal Lissouba", "Alphonse Massamba-Débat"],
+        reponses: ["Fulbert Youlou", "Pascal Lissouba", "Alphonse Massamba-Débat"],
         bonne: 0,
         explication: "Fulbert Youlou a été le premier président de la République du Congo après l'indépendance."
     },
@@ -200,13 +201,6 @@ const questions = [
         reponses: ["La Conférence nationale souveraine", "Les Trois Glorieuses", "La guerre civile de 1997"],
         bonne: 1,
         explication: "Les événements d'août 1963, connus sous le nom des Trois Glorieuses, ont conduit à la chute de Fulbert Youlou."
-    },
-
-    {
-        question: "Quel était le nom du parti unique instauré au Congo à partir de 1969 ?",
-        reponses: ["UPADS", "MCDDI", "PCT"],
-        bonne: 2,
-        explication: "Le Parti congolais du travail (PCT) a été créé en 1969 et est devenu le parti unique du pays."
     },
 
     {
@@ -355,7 +349,8 @@ const questions = [
         bonne: 0,
         explication: "La République du Congo compte actuellement deux biens inscrits sur la Liste du patrimoine mondial de l'UNESCO : le Trinational de la Sangha et le massif forestier d'Odzala-Kokoua."
     },
-        {
+
+    {
         question: "Quel est le nom du président qui a dirigé la République du Congo après Alphonse Massamba-Débat à partir de 1968 ?",
         reponses: ["Marien Ngouabi", "Pascal Lissouba", "Fulbert Youlou"],
         bonne: 0,
@@ -434,9 +429,9 @@ const questions = [
 
     {
         question: "Quel groupe musical a été fondé à Brazzaville autour de Paul Kamba en 1942 ?",
-        reponses: ["Bantous de la Capitale", "Loketo", "Extra Musica"],
+        reponses: ["Victoria Brazza", "Loketo", "Extra Musica"],
         bonne: 0,
-        explication: "Les Bantous de la Capitale sont un groupe majeur de la musique congolaise créé à Brazzaville en 1959, dans la continuité de la scène musicale développée autour de Paul Kamba."
+        explication: "Paul Kamba fonde en 1941-1942 à Poto-Poto (Brazzaville) le groupe Victoria Brazza, l'un des tout premiers orchestres légendaires de la rumba congolaise. Les Bantous de la Capitale, autre orchestre historique, seront fondés plus tard, en 1959."
     },
 
     {
@@ -524,93 +519,10 @@ const questions = [
     },
 
     {
-        question: "Quelle ville est le chef-lieu du département de la Lékoumou ?",
-        reponses: ["Sibiti", "Mossendjo", "Madingou"],
-        bonne: 0,
-        explication: "Sibiti est le chef-lieu du département de la Lékoumou."
-    },
-        {
         question: "Quel est le chef-lieu du département du Pool ?",
         reponses: ["Kinkala", "Madingou", "Djambala"],
         bonne: 0,
         explication: "Kinkala est le chef-lieu du département du Pool."
-    },
-
-    {
-        question: "Quel est le chef-lieu du département de la Cuvette-Ouest ?",
-        reponses: ["Ewo", "Owando", "Ouesso"],
-        bonne: 0,
-        explication: "Ewo est le chef-lieu du département de la Cuvette-Ouest."
-    },
-
-    {
-        question: "Quel est le chef-lieu du département des Plateaux ?",
-        reponses: ["Gamboma", "Djambala", "Oyo"],
-        bonne: 1,
-        explication: "Djambala est le chef-lieu du département des Plateaux."
-    },
-
-    {
-        question: "Quel est le chef-lieu du département de la Sangha ?",
-        reponses: ["Impfondo", "Ewo", "Ouesso"],
-        bonne: 2,
-        explication: "Ouesso est le chef-lieu du département de la Sangha."
-    },
-
-    {
-        question: "Quel est le chef-lieu du département de la Likouala ?",
-        reponses: ["Ouesso", "Impfondo", "Owando"],
-        bonne: 1,
-        explication: "Impfondo est le chef-lieu du département de la Likouala."
-    },
-
-    {
-        question: "Quel est le chef-lieu du département du Niari ?",
-        reponses: ["Sibiti", "Dolisie", "Mossendjo"],
-        bonne: 1,
-        explication: "Dolisie est le chef-lieu du département du Niari."
-    },
-
-    {
-        question: "Quel est le chef-lieu du département de la Bouenza ?",
-        reponses: ["Madingou", "Nkayi", "Dolisie"],
-        bonne: 0,
-        explication: "Madingou est le chef-lieu du département de la Bouenza."
-    },
-
-    {
-        question: "Quel est le chef-lieu du département de la Lékoumou ?",
-        reponses: ["Dolisie", "Sibiti", "Madingou"],
-        bonne: 1,
-        explication: "Sibiti est le chef-lieu du département de la Lékoumou."
-    },
-
-    {
-        question: "Quel est le chef-lieu du département du Kouilou ?",
-        reponses: ["Pointe-Noire", "Loango", "Dolisie"],
-        bonne: 1,
-        explication: "Loango est le chef-lieu du département du Kouilou."
-    },
-
-    {
-        question: "Quel est le chef-lieu du département de la Cuvette ?",
-        reponses: ["Owando", "Oyo", "Makoua"],
-        bonne: 0,
-        explication: "Owando est le chef-lieu du département de la Cuvette."
-    },
-
-    {
-        question: "Quel est le nom de l'hymne national de la République du Congo ?",
-        reponses: ["La Congolaise", "Debout Congolais", "Le Chant de l'Unité"],
-        bonne: 0,
-        explication: "« La Congolaise » est l'hymne national de la République du Congo."
-    },
-
-    {
-        question: "Quelle est la devise officielle de la République du Congo ?",
-        reponses: ["Unité - Travail - Progrès", "Paix - Travail - Patrie", "Liberté - Égalité - Fraternité"],
-        bonne: 0,
-        explication: "La devise de la République du Congo est « Unité - Travail - Progrès »."
     },
 
     {
@@ -621,66 +533,10 @@ const questions = [
     },
 
     {
-        question: "Quelle ville congolaise est membre du Réseau des villes créatives de l'UNESCO dans le domaine de la musique ?",
-        reponses: ["Pointe-Noire", "Brazzaville", "Dolisie"],
-        bonne: 1,
-        explication: "Brazzaville fait partie du Réseau des villes créatives de l'UNESCO dans le domaine de la musique."
-    },
-
-    {
-        question: "En quelle année l'École de peinture de Poto-Poto a-t-elle été créée ?",
-        reponses: ["1948", "1951", "1960"],
-        bonne: 1,
-        explication: "L'École de peinture de Poto-Poto a été créée en 1951 par Pierre Lods."
-    },
-
-    {
-        question: "En quelle année la rumba congolaise a-t-elle été inscrite au patrimoine culturel immatériel de l'humanité ?",
-        reponses: ["2015", "2021", "2024"],
-        bonne: 1,
-        explication: "La rumba congolaise a été inscrite en 2021 sur la Liste représentative du patrimoine culturel immatériel de l'humanité."
-    },
-
-    {
-        question: "Selon l'UNESCO, de quelle ancienne danse la rumba congolaise est-elle issue ?",
-        reponses: ["Nkumba", "Kébé-Kébé", "Likembe"],
-        bonne: 0,
-        explication: "L'UNESCO indique que la rumba congolaise est issue d'une ancienne danse appelée nkumba."
-    },
-
-    {
-        question: "Quels sont les trois pays concernés par le site du Trinational de la Sangha ?",
-        reponses: ["Congo, Cameroun et République centrafricaine", "Congo, Gabon et Cameroun", "Congo, Angola et Gabon"],
-        bonne: 0,
-        explication: "Le Trinational de la Sangha réunit des aires protégées situées au Congo, au Cameroun et en République centrafricaine."
-    },
-
-    {
         question: "En quelle année le Trinational de la Sangha a-t-il été inscrit au patrimoine mondial de l'UNESCO ?",
         reponses: ["2005", "2012", "2020"],
         bonne: 1,
         explication: "Le Trinational de la Sangha a été inscrit au patrimoine mondial de l'UNESCO en 2012."
-    },
-
-    {
-        question: "Quel parc national constitue la partie congolaise du Trinational de la Sangha ?",
-        reponses: ["Nouabalé-Ndoki", "Conkouati-Douli", "Odzala-Kokoua"],
-        bonne: 0,
-        explication: "Le parc national de Nouabalé-Ndoki constitue la partie congolaise du Trinational de la Sangha."
-    },
-
-    {
-        question: "Quel site naturel congolais a été inscrit au patrimoine mondial de l'UNESCO en 2023 ?",
-        reponses: ["Le massif forestier d'Odzala-Kokoua", "Le parc national de Conkouati-Douli", "Le mont Nabemba"],
-        bonne: 0,
-        explication: "Le massif forestier d'Odzala-Kokoua a été inscrit au patrimoine mondial de l'UNESCO en 2023."
-    },
-
-    {
-        question: "Combien de biens de la République du Congo sont inscrits sur la Liste du patrimoine mondial de l'UNESCO ?",
-        reponses: ["Deux", "Trois", "Quatre"],
-        bonne: 0,
-        explication: "La République du Congo compte deux biens inscrits sur la Liste du patrimoine mondial de l'UNESCO."
     },
 
     {
@@ -702,11 +558,149 @@ const questions = [
         reponses: ["Dolisie", "Brazzaville", "Pointe-Noire"],
         bonne: 1,
         explication: "Le Parlement de la République du Congo siège à Brazzaville, la capitale."
+    },
+
+    {
+        question: "Quelle est la superficie approximative de la République du Congo ?",
+        reponses: ["150 000 km²", "500 000 km²", "342 000 km²"],
+        bonne: 2,
+        explication: "La République du Congo couvre une superficie d'environ 342 000 km²."
+    },
+
+    {
+        question: "Quelle était la population totale de la République du Congo selon le recensement de 2023 ?",
+        reponses: ["3 millions", "6,1 millions", "10 millions"],
+        bonne: 1,
+        explication: "Le recensement de 2023 a dénombré environ 6,1 millions d'habitants en République du Congo."
+    },
+
+    {
+        question: "Quelle était la population de Brazzaville selon le recensement de 2023 ?",
+        reponses: ["1 million", "1,5 million", "2,1 millions"],
+        bonne: 2,
+        explication: "Brazzaville comptait environ 2,1 millions d'habitants lors du recensement de 2023."
+    },
+
+    {
+        question: "Quel rang occupe le fleuve Congo parmi les plus longs fleuves d'Afrique ?",
+        reponses: ["1er", "3e", "2e, après le Nil"],
+        bonne: 2,
+        explication: "Le fleuve Congo est le deuxième plus long fleuve d'Afrique, après le Nil."
+    },
+
+    {
+        question: "Quelles villes le chemin de fer Congo-Océan relie-t-il ?",
+        reponses: ["Brazzaville et Ouesso", "Pointe-Noire et Brazzaville", "Dolisie et Owando"],
+        bonne: 1,
+        explication: "Le chemin de fer Congo-Océan (CFCO) relie Pointe-Noire à Brazzaville."
+    },
+
+    {
+        question: "Combien de départements comptait la République du Congo avant la réforme administrative de 2024 ?",
+        reponses: ["10", "15", "12"],
+        bonne: 2,
+        explication: "Avant la réforme de 2024, la République du Congo comptait 12 départements."
+    },
+
+    {
+        question: "Combien de départements compte la République du Congo après la réforme administrative de 2024 ?",
+        reponses: ["12", "13", "15"],
+        bonne: 2,
+        explication: "La réforme de 2024 a créé trois nouveaux départements, portant le total à 15."
+    },
+
+    {
+        question: "Dans quelle localité Denis Sassou Nguesso est-il né ?",
+        reponses: ["Oyo", "Edou", "Owando"],
+        bonne: 1,
+        explication: "Denis Sassou Nguesso est né à Edou, dans le département de la Cuvette."
+    },
+
+    {
+        question: "Dans quelle ville se tient le Festival panafricain de musique (FESPAM) ?",
+        reponses: ["Pointe-Noire", "Dolisie", "Brazzaville"],
+        bonne: 2,
+        explication: "Le FESPAM, créé en 1996, se tient à Brazzaville."
+    },
+
+    {
+        question: "Qui préside l'Assemblée nationale de la République du Congo ?",
+        reponses: ["Pierre Ngolo", "André Milongo", "Isidore Mvouba"],
+        bonne: 2,
+        explication: "Isidore Mvouba préside l'Assemblée nationale de la République du Congo depuis 2017."
+    },
+
+    {
+        question: "Qui préside le Sénat de la République du Congo ?",
+        reponses: ["Isidore Mvouba", "Pierre Ngolo", "André Obami-Itou"],
+        bonne: 1,
+        explication: "Pierre Ngolo préside le Sénat de la République du Congo depuis 2017."
+    },
+
+    {
+        question: "Combien de députés compte l'Assemblée nationale de la République du Congo ?",
+        reponses: ["72", "100", "151"],
+        bonne: 2,
+        explication: "L'Assemblée nationale de la République du Congo compte 151 députés."
+    },
+
+    {
+        question: "Combien de sénateurs compte le Sénat de la République du Congo ?",
+        reponses: ["60", "72", "90"],
+        bonne: 1,
+        explication: "Le Sénat de la République du Congo compte 72 sénateurs."
+    },
+
+    {
+        question: "Dans quelle ville est né le mouvement vestimentaire de la SAPE ?",
+        reponses: ["Pointe-Noire", "Dolisie", "Brazzaville"],
+        bonne: 2,
+        explication: "Le mouvement de la SAPE (Société des Ambianceurs et des Personnes Élégantes) est né à Brazzaville."
+    },
+
+    {
+        question: "Comment appelle-t-on un adepte du mouvement de la SAPE ?",
+        reponses: ["Un ambianceur", "Un dandy", "Un sapeur"],
+        bonne: 2,
+        explication: "Un adepte de la SAPE est appelé un sapeur (ou une sapeuse)."
+    },
+
+    {
+        question: "Quel quartier de Brazzaville est historiquement associé à la sapologie ?",
+        reponses: ["Poto-Poto", "Bacongo", "Moungali"],
+        bonne: 1,
+        explication: "Bacongo, le plus vieil arrondissement de Brazzaville, est historiquement associé à la sapologie."
+    },
+
+    {
+        question: "Quel est le surnom du club de football AC Léopards de Dolisie ?",
+        reponses: ["Les Lions du Niari", "Les Aigles", "Les Fauves du Niari"],
+        bonne: 2,
+        explication: "L'AC Léopards de Dolisie est surnommé les Fauves du Niari."
+    },
+
+    {
+        question: "Quelle institution régionale émet le franc CFA utilisé en République du Congo ?",
+        reponses: ["La Banque de France", "La Banque mondiale", "La BEAC (Banque des États de l'Afrique centrale)"],
+        bonne: 2,
+        explication: "Le franc CFA d'Afrique centrale est émis par la BEAC, la Banque des États de l'Afrique centrale."
+    },
+
+    {
+        question: "Quel type de climat domine la République du Congo ?",
+        reponses: ["Un climat désertique", "Un climat méditerranéen", "Un climat équatorial et tropical humide"],
+        bonne: 2,
+        explication: "La République du Congo connaît un climat équatorial et tropical humide."
+    },
+
+    {
+        question: "Quelle est la principale ressource d'exportation de l'économie congolaise ?",
+        reponses: ["Le café", "Le coton", "Le pétrole"],
+        bonne: 2,
+        explication: "Le pétrole constitue la principale ressource d'exportation de la République du Congo."
     }
-    
 
-
-]
+];
     const SUPABASE_URL = "https://ccxbknqqfwlusiprtwbs.supabase.co";
 
 const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_CdvCSecR8dOp0UfZwW82UQ_y5LBGGsJ";
