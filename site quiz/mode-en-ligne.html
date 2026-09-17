@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Mode en ligne - CongoQuiz</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ==============================
+         NAVIGATION
+    =============================== -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            🇨🇬 <strong>CongoQuiz</strong>
+        </div>
+
+        <div class="menu">
+
+            <a href="index.html?accueil=1">
+                Accueil
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- ==============================
+         CONTENU PRINCIPAL
+    =============================== -->
+
+    <main class="modeEnLigne">
+
+        <h1 class="titrePage">
+            ⚔️ Mode en ligne
+        </h1>
+
+        <p class="sousTitreModeEnLigne">
+            Affronte un autre joueur dans une confrontation en ligne.
+        </p>
+
+
+        <!-- ==============================
+             PROFIL DU JOUEUR
+        =============================== -->
+
+        <section
+            id="profilEnLigne"
+            class="carteModeEnLigne">
+
+            <h2>
+                👤 Mon profil
+            </h2>
+
+            <p>
+                Joueur :
+                <strong id="pseudoEnLigne">
+                    Joueur
+                </strong>
+            </p>
+
+            <p>
+                ⭐ Points :
+                <strong id="pointsEnLigne">
+                    0
+                </strong>
+            </p>
+
+        </section>
+
+
+        <!-- ==============================
+             MENU PRINCIPAL DU MODE EN LIGNE
+        =============================== -->
+
+        <section
+            id="menuPartieEnLigne"
+            class="carteModeEnLigne">
+
+            <h2>
+                🎮 Nouvelle confrontation
+            </h2>
+
+            <p>
+                Choisis comment tu veux jouer.
+            </p>
+
+            <button
+                id="btnCreerPartie"
+                class="boutonModeEnLigne">
+
+                ⚔️ Créer une partie
+
+            </button>
+
+            <button
+                id="btnRejoindrePartie"
+                class="boutonModeEnLigne">
+
+                🔑 Rejoindre une partie
+
+            </button>
+
+        </section>
+
+
+        <!-- ==============================
+             CRÉATION D'UNE PARTIE
+        =============================== -->
+
+        <section
+            id="creationPartie"
+            class="carteModeEnLigne"
+            style="display: none;">
+
+            <h2>
+                ⚔️ Créer une partie
+            </h2>
+
+            <label for="categoriePartie">
+                Catégorie
+            </label>
+
+            <select id="categoriePartie">
+
+                <option value="general">
+                    Quiz général
+                </option>
+
+                <option value="sport">
+                    Sport
+                </option>
+
+                <option value="histoire">
+                    Histoire
+                </option>
+
+                <option value="culture">
+                    Culture
+                </option>
+
+                <option value="institutions">
+                    Institutions
+                </option>
+
+                <option value="geographie">
+                    Géographie
+                </option>
+
+                <option value="personnalites">
+                    Personnalités
+                </option>
+
+            </select>
+
+
+            <label for="nombreQuestionsPartie">
+                Nombre de questions
+            </label>
+
+            <select id="nombreQuestionsPartie">
+
+                <option value="5">
+                    5 questions
+                </option>
+
+                <option value="10">
+                    10 questions
+                </option>
+
+                <option value="20">
+                    20 questions
+                </option>
+
+            </select>
+
+
+            <button
+                id="confirmerCreationPartie"
+                class="boutonModeEnLigne">
+
+                🚀 Créer la partie
+
+            </button>
+
+
+            <button
+                id="annulerCreationPartie"
+                class="boutonSecondaire">
+
+                Retour
+
+            </button>
+
+        </section>
+
+
+        <!-- ==============================
+             REJOINDRE UNE PARTIE
+        =============================== -->
+
+        <section
+            id="rejoindrePartie"
+            class="carteModeEnLigne"
+            style="display: none;">
+
+            <h2>
+                🔑 Rejoindre une partie
+            </h2>
+
+            <p>
+                Entre le code communiqué par l'autre joueur.
+            </p>
+
+
+            <label for="codePartie">
+                Code de la partie
+            </label>
+
+            <input
+                type="text"
+                id="codePartie"
+                placeholder="Exemple : CQ-4821"
+                maxlength="7"
+                autocomplete="off">
+
+
+            <button
+                id="confirmerRejoindrePartie"
+                class="boutonModeEnLigne">
+
+                🎮 Rejoindre
+
+            </button>
+
+
+            <button
+                id="annulerRejoindrePartie"
+                class="boutonSecondaire">
+
+                Retour
+
+            </button>
+
+        </section>
+
+
+        <!-- ==============================
+             SALLE D'ATTENTE
+        =============================== -->
+
+        <section
+            id="salleAttente"
+            class="carteModeEnLigne"
+            style="display: none;">
+
+            <h2>
+                ⏳ En attente de l'adversaire
+            </h2>
+
+            <p>
+                Partage ce code avec ton adversaire :
+            </p>
+
+
+            <div
+                id="codePartieAffiche"
+                class="codePartie">
+
+                ----
+
+            </div>
+
+
+            <p id="statutPartie">
+                En attente d'un joueur...
+            </p>
+
+
+            <div
+                id="adversaireInfo"
+                style="display: none;">
+
+                <p>
+                    ⚔️ Adversaire :
+                    <strong id="pseudoAdversaire">
+                        ---
+                    </strong>
+                </p>
+
+            </div>
+
+
+            <button
+                id="annulerPartie"
+                class="boutonSecondaire">
+
+                Annuler la partie
+
+            </button>
+
+        </section>
+
+
+        <!-- ==============================
+             CONFRONTATION
+        =============================== -->
+
+        <section
+            id="confrontation"
+            class="carteModeEnLigne"
+            style="display: none;">
+
+            <!-- ==============================
+                 JOUEURS ET SCORES
+            =============================== -->
+
+            <div class="joueursConfrontation">
+
+                <div class="joueurConfrontation">
+
+                    <strong id="pseudoJoueur1">
+                        Joueur 1
+                    </strong>
+
+                    <span id="scoreJoueur1">
+                        0
+                    </span>
+
+                </div>
+
+
+                <div class="vs">
+                    VS
+                </div>
+
+
+                <div class="joueurConfrontation">
+
+                    <strong id="pseudoJoueur2">
+                        Joueur 2
+                    </strong>
+
+                    <span id="scoreJoueur2">
+                        0
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- ==============================
+                 ZONE QUESTION
+            =============================== -->
+
+            <div id="zoneQuestionEnLigne">
+
+                <p id="numeroQuestionEnLigne">
+                    Question 1
+                </p>
+
+
+                <!-- ==============================
+                     CHRONO
+                =============================== -->
+
+                <div
+                    id="chronoEnLigne"
+                    class="chronoEnLigne">
+
+                    ⏱️
+                    <span id="tempsRestantEnLigne">
+                        20
+                    </span>
+                    s
+
+                </div>
+
+
+                <!-- ==============================
+                     QUESTION
+                =============================== -->
+
+                <h2 id="questionEnLigne">
+                    La question apparaîtra ici.
+                </h2>
+
+
+                <!-- ==============================
+                     RÉPONSES
+                =============================== -->
+
+                <div
+                    id="reponsesEnLigne"
+                    class="reponsesEnLigne">
+
+                    <!--
+                        Les réponses sont créées
+                        automatiquement par JavaScript.
+                    -->
+
+                </div>
+
+            </div>
+
+
+            <!-- ==============================
+                 STATUT DE LA RÉPONSE
+            =============================== -->
+
+            <p id="statutReponseEnLigne"></p>
+
+        </section>
+
+
+        <!-- ==============================
+             FIN DE LA PARTIE
+        =============================== -->
+
+        <section
+            id="resultatPartie"
+            class="carteModeEnLigne"
+            style="display: none;">
+
+            <h2>
+                🏆 Partie terminée
+            </h2>
+
+
+            <div id="resultatFinal">
+
+                <p>
+                    Résultat
+                </p>
+
+            </div>
+
+
+            <button
+                id="btnNouvellePartie"
+                class="boutonModeEnLigne">
+
+                🔄 Nouvelle confrontation
+
+            </button>
+
+
+            <button
+                id="btnRetourAccueil"
+                class="boutonSecondaire">
+
+                🏠 Retour à l'accueil
+
+            </button>
+
+        </section>
+
+
+        <!-- ==============================
+             MESSAGES
+        =============================== -->
+
+        <div
+            id="messageModeEnLigne"
+            class="messageModeEnLigne">
+        </div>
+
+
+    </main>
+
+
+    <!-- ==============================
+         SCRIPTS
+    =============================== -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script src="script.js"></script>
+
+    <script src="questions/histoire.js"></script>
+    <script src="questions/culture.js"></script>
+    <script src="questions/institutions.js"></script>
+    <script src="questions/geographie.js"></script>
+    <script src="questions/sport.js"></script>
+    <script src="questions/personnalites.js"></script>
+
+    <script src="mode-en-ligne.js"></script>
+
+</body>
+
+</html>

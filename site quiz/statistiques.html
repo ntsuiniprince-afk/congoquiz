@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <link
+        rel="stylesheet"
+        href="style.css">
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <title>CongoQuiz - Statistiques</title>
+
+    <style>
+
+        body{
+
+            display:block;
+
+            padding-top:100px;
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <div class="logo">
+            🇨🇬 <strong>CongoQuiz</strong>
+        </div>
+
+        <div class="menu">
+
+            <a href="index.html?accueil=1">
+                Accueil
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <h1 class="titrePage">
+        📊 Statistiques
+    </h1>
+
+
+    <div class="stats-container">
+
+
+        <!-- PARTIES JOUÉES -->
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                🎮
+            </div>
+
+            <div
+                class="stat-valeur"
+                id="partiesJouees">
+
+                0
+
+            </div>
+
+            <div class="stat-titre">
+                Parties jouées
+            </div>
+
+        </div>
+
+
+        <!-- PARTIES GAGNÉES -->
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                🏆
+            </div>
+
+            <div
+                class="stat-valeur"
+                id="partiesGagnees">
+
+                0
+
+            </div>
+
+            <div class="stat-titre">
+                Parties gagnées
+            </div>
+
+        </div>
+
+
+        <!-- TAUX DE RÉUSSITE -->
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                📈
+            </div>
+
+            <div
+                class="stat-valeur"
+                id="tauxReussite">
+
+                0%
+
+            </div>
+
+            <div class="stat-titre">
+                Taux de réussite
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <div class="infoStat">
+
+        <h3>
+            ℹ Informations
+        </h3>
+
+        <p>
+
+            Une partie est considérée comme gagnée uniquement si
+            vous obtenez un score parfait :
+
+            <br><br>
+
+            ✅ 5/5
+
+            <br>
+
+            ✅ 10/10
+
+            <br>
+
+            ✅ 20/20
+
+        </p>
+
+    </div>
+
+
+    <p
+        id="messageStats"
+        style="
+            text-align:center;
+            font-weight:bold;
+            margin:20px;
+        ">
+    </p>
+
+
+    <button
+        class="rejouer"
+        onclick="window.location.href='index.html?accueil=1'">
+
+        🏠 Retour à l'accueil
+
+    </button>
+
+
+    <!-- SUPABASE -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+    <!-- SCRIPT PRINCIPAL -->
+
+    <script src="script.js"></script>
+
+
+    <!-- STATISTIQUES SUPABASE -->
+
+    <script>
+
+        async function chargerStatistiques(){
+
+            const joueurLocal = chargerJoueur();
+
+            const message =
+                document.getElementById("messageStats");
+
+
+            /*
+             * L'ID Supabase est indispensable.
+             * Il permet de récupérer exactement
+             * le bon joueur.
+             */
+
+            if(!joueurLocal.id){
+
+                message.textContent =
+                    "❌ Impossible d'identifier votre joueur.";
+
+                console.error(
+                    "❌ Aucun ID Supabase trouvé pour le joueur."
+                );
+
+                return;
+
+            }
+
+
+            const { data, error } =
+                await supabaseClient
+
+                    .from("joueur")
+
+                    .select(
+                        "id,parties_jouees,parties_gagnees"
+                    )
+
+                    .eq("id", joueurLocal.id)
+
+                    .single();
+
+
+            if(error){
+
+                console.error(
+                    "❌ Erreur chargement statistiques :",
+                    error
+                );
+
+                message.textContent =
+                    "❌ Impossible de charger les statistiques.";
+
+                return;
+
+            }
+
+
+            /*
+             * On récupère les vraies données
+             * présentes dans Supabase.
+             */
+
+            const partiesJouees =
+                data.parties_jouees || 0;
+
+            const partiesGagnees =
+                data.parties_gagnees || 0;
+
+
+            /*
+             * Calcul du taux de réussite.
+             */
+
+            let taux = 0;
+
+            if(partiesJouees > 0){
+
+                taux = Math.round(
+                    (partiesGagnees / partiesJouees) * 100
+                );
+
+            }
+
+
+            /*
+             * Affichage.
+             */
+
+            document.getElementById(
+                "partiesJouees"
+            ).textContent =
+                partiesJouees;
+
+
+            document.getElementById(
+                "partiesGagnees"
+            ).textContent =
+                partiesGagnees;
+
+
+            document.getElementById(
+                "tauxReussite"
+            ).textContent =
+                taux + "%";
+
+
+            /*
+             * On synchronise également
+             * les données locales avec Supabase.
+             */
+
+            joueurLocal.partiesJouees =
+                partiesJouees;
+
+            joueurLocal.partiesGagnees =
+                partiesGagnees;
+
+            sauvegarderJoueur(joueurLocal);
+
+
+            console.log(
+                "✅ Statistiques chargées depuis Supabase :",
+                data
+            );
+
+        }
+
+
+        /*
+         * Chargement automatique
+         * lorsque la page est prête.
+         */
+
+        window.addEventListener(
+            "load",
+            chargerStatistiques
+        );
+
+    </script>
+
+</body>
+
+</html>

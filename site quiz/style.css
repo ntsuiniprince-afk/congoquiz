@@ -1,0 +1,2023 @@
+/* ===========================
+   STYLE GÉNÉRAL
+=========================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    font-family:Arial, Helvetica, sans-serif;
+
+    background:
+    radial-gradient(circle at 20% 30%, rgba(0,149,67,.35), transparent 35%),
+    radial-gradient(circle at 80% 70%, rgba(252,209,22,.30), transparent 35%),
+    radial-gradient(circle at 90% 20%, rgba(220,36,31,.25), transparent 30%),
+    linear-gradient(135deg,#006b34,#fcd116,#b51f1f);
+
+    background-size:cover;
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding-top:90px;
+
+    overflow-x:hidden;
+
+}
+/* ===========================
+   BARRE DE NAVIGATION
+=========================== */
+
+.navbar{
+
+    position:fixed;
+
+    top:0;
+
+    left:0;
+
+    width:100%;
+
+    height:65px;
+
+    background:white;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:0 35px;
+
+    box-shadow:0 3px 12px rgba(0,0,0,.15);
+
+    z-index:1000;
+
+}
+
+.logo{
+
+    font-size:28px;
+
+    font-weight:bold;
+
+    color:#00853f;
+
+    letter-spacing:2px;
+
+}
+
+.menu{
+
+    display:flex;
+
+    gap:20px;
+
+}
+
+.menu a:hover{
+    background:#009543;
+    color:#ffffff;
+}
+
+.menu a:hover{
+
+    background:#00853f;
+
+    color:white;
+
+}
+
+/* ===========================
+   CARTE D'ACCUEIL
+=========================== */
+
+.accueil{
+
+    width:560px;
+
+    max-width:95vw;
+
+    margin:90px auto 30px;
+
+    padding:45px 40px;
+
+    background:rgba(255,255,255,.98);
+
+    border-radius:32px;
+
+    padding:45px 40px;
+
+    text-align:center;
+
+    box-shadow:
+        0 25px 70px rgba(0,0,0,.22),
+        0 8px 25px rgba(255,255,255,.35);
+
+    border:1px solid rgba(255,255,255,.75);
+
+    backdrop-filter:blur(15px);
+
+    animation:apparitionAccueil .8s ease;
+
+    transition:.3s;
+
+}
+
+.hero{
+
+    margin-bottom:20px;
+
+}
+
+.hero p{
+
+    font-size:22px;
+
+    color:#444;
+
+    line-height:1.6;
+
+}
+
+.sous-titre{
+
+    font-size:17px;
+
+    color:#666;
+
+    margin-bottom:30px;
+
+}
+/* ===========================
+   BOUTONS
+=========================== */
+
+button{
+
+    width:100%;
+
+    height:55px;
+
+    margin:10px 0;
+
+    border:none;
+
+    border-radius:14px;
+
+    background:#009543;
+
+    color:white;
+
+    font-size:19px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:all .3s ease;
+
+}
+
+button:hover{
+
+    background:#007a36;
+
+    transform:translateY(-3px);
+
+    box-shadow:0 8px 20px rgba(0,149,67,.35);
+
+}
+
+button:active{
+
+    transform:scale(.98);
+
+}
+
+
+@keyframes apparition {
+
+    from{
+        opacity:0;
+        transform:scale(0.5);
+    }
+
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
+
+}
+
+.finQuiz{
+
+    animation: apparition 1s ease;
+
+}
+
+.niveau{
+
+    animation: clignoter 1.5s infinite;
+
+    font-weight:bold;
+
+    color:#0b8f3a;
+
+}
+
+@keyframes clignoter{
+
+    0%{
+        opacity:1;
+    }
+
+    50%{
+        opacity:0.6;
+    }
+
+    100%{
+        opacity:1;
+    }
+
+}
+
+.rejouer{
+
+    padding:12px 25px;
+    border:none;
+    border-radius:10px;
+    background:#0b8f3a;
+    color:white;
+    cursor:pointer;
+    font-size:18px;
+    transition:0.3s;
+}
+
+.rejouer:hover{
+
+    transform:scale(1.1);
+
+}
+h1{
+    font-size:42px;
+    color:#009543;
+    margin-bottom:10px;
+}
+
+@keyframes titre{
+
+    from{
+        opacity:0;
+        transform:translateY(-20px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+h1{
+
+    font-size:42px;
+    color:#009543;
+    animation:titre 1s ease;
+
+}
+
+
+
+/* Barre de navigation */
+
+
+.menu a{
+
+    text-decoration:none;
+
+    color:#444;
+
+    font-size:17px;
+
+    font-weight:600;
+
+    transition:.3s;
+
+    padding:8px 15px;
+
+    border-radius:30px;
+
+}
+.menu a:hover{
+
+    background:#009543;
+
+    color:white;
+
+}
+
+
+
+
+
+
+/* ===========================
+   PIED DE PAGE
+=========================== */
+
+.footer{
+
+    position:fixed;
+
+    bottom:15px;
+
+    right:20px;
+
+    font-size:13px;
+
+    color:white;
+
+    text-align:right;
+
+    opacity:0.9;
+
+}
+
+/* ===========================
+   ANIMATION D'ACCUEIL
+=========================== */
+
+@keyframes apparitionAccueil{
+
+    from{
+        opacity:0;
+        transform:translateY(25px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+.accueil{
+
+    animation:apparitionAccueil .8s ease;
+    margin:40px auto;
+
+}
+
+/* ===========================
+   PAGE À PROPOS
+=========================== */
+
+.apropos{
+
+    width:750px;
+    max-width:90%;
+
+    background:white;
+
+    padding:55px;
+
+    border-radius:20px;
+
+    box-shadow:0 20px 50px rgba(0,0,0,.2);
+
+    margin:120px auto 50px;
+
+}
+
+.apropos h1{
+
+    text-align:left;
+
+    color:#009543;
+
+    font-size:40px;
+
+    margin-bottom:30px;
+
+    padding-bottom:12px;
+
+    border-bottom:3px solid #009543;
+
+}
+
+.apropos h2{
+
+    color:#009543;
+
+    font-size:28px;
+
+    margin-top:40px;
+
+    margin-bottom:18px;
+
+    padding-left:12px;
+
+    border-left:6px solid #009543;
+
+}
+
+.apropos p{
+
+    text-align:justify;
+
+    line-height:1.9;
+
+    font-size:18px;
+
+    color:#444;
+
+    margin-bottom:22px;
+
+}
+
+.themes{
+
+    list-style:none;
+
+    padding:0;
+
+}
+
+.themes li{
+
+    background:#fafafa;
+
+    padding:15px 20px;
+
+    margin:12px 0;
+
+    border-left:6px solid #009543;
+
+    border-radius:10px;
+
+    font-size:17px;
+
+}
+
+.citation{
+
+    margin:35px 0;
+
+    text-align:center;
+
+    font-style:italic;
+
+    color:#555;
+
+    font-size:20px;
+
+}
+
+/* ===========================
+   VERSION MOBILE
+=========================== */
+
+@media (max-width:768px){
+
+    .navbar{
+
+        height:60px;
+
+        padding:0 12px;
+
+    }
+
+    .logo{
+
+        font-size:20px;
+
+        white-space:nowrap;
+
+    }
+
+    .logo strong{
+
+        font-size:20px;
+
+    }
+
+    .menu{
+
+        gap:10px;
+
+    }
+
+    .menu a{
+
+        font-size:14px;
+
+        padding:6px 8px;
+
+        white-space:nowrap;
+
+    }
+
+    /* ===== À propos ===== */
+
+    .apropos{
+
+        width:95%;
+
+        margin:90px auto 25px;
+
+        padding:28px 20px;
+
+        border-radius:18px;
+
+    }
+
+    .apropos h1{
+
+        font-size:30px;
+
+        margin-bottom:22px;
+
+    }
+
+    .apropos h2{
+
+        font-size:22px;
+
+        margin-top:28px;
+
+    }
+
+    .apropos p{
+
+        text-align:left;
+
+        font-size:17px;
+
+        line-height:1.7;
+
+    }
+
+    .themes li{
+
+        padding:14px 16px;
+
+        font-size:16px;
+
+    }
+
+    .citation{
+
+        font-size:18px;
+
+        line-height:1.6;
+
+    }
+
+}              
+
+/* ======================================
+   CINÉMATIQUE D'INTRODUCTION
+====================================== */
+
+#intro{
+
+    position:fixed;
+
+    top:0;
+
+    left:0;
+
+    width:100%;
+
+    height:100%;
+
+    background:#000;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    overflow:hidden;
+
+    z-index:99999;
+
+}
+
+.intro-light{
+
+    position:absolute;
+    width:0;
+    height:0;
+    border-radius:50%;
+
+    background:radial-gradient(circle,
+        rgba(255,255,255,1) 0%,
+        rgba(255,255,255,.55) 45%,
+        rgba(255,255,255,0) 80%);
+
+    animation:lumiere 3s forwards;
+
+}
+
+#introLogo{
+
+    width:240px;
+    height:auto;
+
+    opacity:0;
+
+    animation:logoIntro 3s forwards;
+    animation-delay:1s;
+
+}
+
+@keyframes lumiere{
+
+    0%{
+        width:0;
+        height:0;
+        opacity:0;
+    }
+
+    35%{
+        width:500px;
+        height:500px;
+        opacity:1;
+    }
+
+    70%{
+        width:500px;
+        height:500px;
+        opacity:.8;
+    }
+
+    100%{
+        width:650px;
+        height:650px;
+        opacity:0;
+    }
+
+}
+
+@keyframes logoIntro{
+
+    0%{
+        opacity:0;
+        transform:scale(.6);
+    }
+
+    45%{
+        opacity:0;
+    }
+
+    60%{
+        opacity:1;
+        transform:scale(1.08);
+    }
+
+    100%{
+        opacity:1;
+        transform:scale(1);
+    }
+
+}
+.intro-fin{
+
+    animation:disparition .8s forwards;
+
+}
+
+@keyframes disparition{
+
+    to{
+
+        opacity:0;
+
+        visibility:hidden;
+
+    }
+
+}
+/* ==========================
+   MENU JOUER
+========================== */
+
+.menu-jeu{
+
+    display:none;
+
+    margin-top:20px;
+
+    animation:apparitionAccueil .4s ease;
+
+}
+
+#btnJouer{
+
+    font-size:24px;
+
+    height:65px;
+
+    margin-bottom:15px;
+
+}
+
+button:disabled{
+
+    background:#666;
+
+    cursor:not-allowed;
+
+    opacity:.8;
+
+}
+
+button small{
+
+    font-size:13px;
+
+    font-weight:normal;
+
+}
+/* ==========================
+   BARRE DE NAVIGATION BAS
+========================== */
+
+/* ==========================
+   BARRE DE NAVIGATION MODERNE
+========================== */
+
+.bottom-nav{
+
+    display:flex;
+
+    justify-content:space-evenly;
+
+    align-items:center;
+
+    margin-top:30px;
+
+    padding:15px 10px 5px;
+
+    border-top:1px solid #e5e5e5;
+
+}
+
+.nav-btn{
+
+    background:transparent;
+
+    border:none;
+
+    width:70px;
+
+    height:auto;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+    color:#666;
+
+    cursor:pointer;
+
+    transition:all .25s ease;
+
+    box-shadow:none;
+
+}
+
+.nav-btn:hover{
+
+    color:#009543;
+
+    background:rgba(0,149,67,.08);
+
+    border-radius:14px;
+
+    transform:translateY(-3px);
+
+}
+.nav-btn:hover span{
+
+    color:#009543;
+
+}
+
+.nav-btn span{
+
+    color:#666;
+
+    transition:.25s;
+
+}
+
+.nav-btn span{
+
+    margin-top:6px;
+
+    font-size:11px;
+
+    font-weight:600;
+
+}
+
+.nav-btn i{
+
+    font-size:26px;
+
+}
+body{
+
+    font-family:Arial, Helvetica, sans-serif;
+
+    background:
+    radial-gradient(circle at 20% 30%, rgba(0,149,67,.35), transparent 35%),
+    radial-gradient(circle at 80% 70%, rgba(252,209,22,.30), transparent 35%),
+    radial-gradient(circle at 90% 20%, rgba(220,36,31,.25), transparent 30%),
+    linear-gradient(135deg,#006b34,#fcd116,#b51f1f);
+
+    background-size:cover;
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding-top:90px;
+
+    overflow-x:hidden;
+
+}
+@keyframes fondAnime{
+
+    from{
+
+        transform:scale(1);
+
+    }
+
+    to{
+
+        transform:scale(1.15);
+
+    }
+
+}
+/* ==========================
+   ANIMATION DES MENUS
+========================== */
+
+.menu-page{
+
+    animation:slideMenu .35s ease;
+
+}
+
+@keyframes slideMenu{
+
+    from{
+
+        opacity:0;
+        transform:translateX(40px);
+
+    }
+
+    to{
+
+        opacity:1;
+        transform:translateX(0);
+
+    }
+
+}
+/* ===========================
+   CARTES DE RÉPONSES
+=========================== */
+
+.carte-reponse{
+
+    display:flex;
+    align-items:center;
+
+    width:100%;
+
+    padding:18px 22px;
+
+    margin:15px 0;
+
+    background:white;
+
+    border:2px solid #e7e7e7;
+
+    border-radius:18px;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+    font-size:20px;
+
+    font-weight:600;
+
+}
+
+.carte-reponse:hover{
+
+    transform:translateY(-3px);
+
+    border-color:#009543;
+
+    box-shadow:0 10px 25px rgba(0,149,67,.18);
+
+}
+
+.carte-reponse input{
+
+    margin-right:18px;
+
+    transform:scale(1.4);
+
+}
+
+.carte-reponse span{
+
+    flex:1;
+
+    text-align:left;
+
+}
+.carte-reponse{
+
+    user-select:none;
+
+}
+
+.carte-reponse:active{
+
+    transform:scale(.98);
+
+}
+.carte-reponse.bonne{
+
+    background:#d8f5df;
+
+    border-color:#009543;
+
+    color:#006b2f;
+
+}
+
+.carte-reponse.mauvaise{
+
+    background:#ffe2e2;
+
+    border-color:#d62828;
+
+    color:#a30000;
+
+}
+/* ===========================
+   BARRE DE PROGRESSION
+=========================== */
+
+.barreProgression{
+
+    width:100%;
+    height:10px;
+
+    background:#e5e5e5;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    margin:15px 0 25px;
+
+}
+
+#progression{
+
+    width:0;
+
+    height:100%;
+
+    background:linear-gradient(90deg,#009543,#00c853);
+
+    border-radius:20px;
+
+    transition:.4s;
+
+}
+.finQuizContainer{
+
+    animation: apparitionAccueil .7s ease;
+
+}
+
+.scoreCard{
+
+    background:white;
+
+    border-radius:25px;
+
+    padding:25px;
+
+    margin:25px 0;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.15);
+
+}
+
+.finQuizTitre{
+
+    font-size:34px;
+
+    color:#009543;
+
+}
+
+.scoreCard h2{
+
+    font-size:55px;
+
+    margin:10px 0;
+
+    color:#009543;
+
+}
+
+.scoreCard p{
+
+    font-size:24px;
+
+    font-weight:bold;
+
+}
+
+.scoreCard h3{
+
+    color:#444;
+
+    margin-top:15px;
+
+}
+
+.etoiles{
+
+    font-size:40px;
+
+    margin-top:15px;
+
+}
+
+.retourAccueil{
+
+    margin-top:15px;
+
+    background:#444;
+
+    color:white;
+
+}
+.classement-card{
+
+    background:white;
+
+    border-radius:20px;
+
+    padding:20px;
+
+    margin:20px 0;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.15);
+
+    text-align:left;
+
+}
+
+.classement-card p{
+
+    font-size:20px;
+
+    margin:12px 0;
+
+}
+.ligne-classement{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:12px 0;
+
+    border-bottom:1px solid #e5e5e5;
+
+    font-size:18px;
+
+}
+
+.ligne-classement:last-child{
+
+    border-bottom:none;
+
+}
+
+.ligne-classement strong{
+
+    background:#009543;
+
+    color:white;
+
+    padding:6px 15px;
+
+    border-radius:20px;
+
+    min-width:60px;
+
+    text-align:center;
+
+}
+.grandScore{
+
+    font-size:70px;
+
+    font-weight:bold;
+
+    color:#009543;
+
+    margin:25px 0;
+
+}
+.trophee{
+
+    font-size:55px;
+
+    margin-bottom:10px;
+
+}
+
+.libellePoints{
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    letter-spacing:3px;
+
+    color:#777;
+
+}
+
+.niveauClassement{
+
+    margin-top:20px;
+
+    font-size:22px;
+
+    font-weight:bold;
+
+    color:#009543;
+
+}
+
+.barreNiveau{
+
+    width:100%;
+
+    height:14px;
+
+    background:#e5e5e5;
+
+    border-radius:30px;
+
+    margin:20px 0;
+
+    overflow:hidden;
+
+}
+
+#progressionNiveau{
+
+    height:100%;
+
+    width:0%;
+
+    background:linear-gradient(90deg,#009543,#38d66b);
+
+    border-radius:30px;
+
+    transition:.5s;
+
+}
+
+.descriptionClassement{
+
+    margin-top:20px;
+
+    color:#666;
+
+    line-height:25px;
+
+}
+.stat-card{
+
+    background:white;
+
+    border-radius:25px;
+
+    padding:35px;
+
+    margin:25px auto;
+
+    width:90%;
+    max-width:520px;
+
+    text-align:center;
+
+    box-shadow:0 12px 30px rgba(0,0,0,.15);
+
+    transition:.3s;
+
+}
+
+.stat-card:hover{
+
+    transform:translateY(-5px);
+
+}
+.stat-icon{
+
+    font-size:55px;
+
+    margin-bottom:15px;
+
+}
+.stat-valeur{
+
+    font-size:75px;
+
+    font-weight:900;
+
+    color:#009543;
+
+    margin:15px 0;
+
+    text-shadow:0 4px 12px rgba(0,149,67,.2);
+
+}
+.stat-titre{
+
+    font-size:22px;
+
+    color:#555;
+
+    font-weight:bold;
+
+    margin-top:10px;
+
+}
+.titrePage{
+
+    text-align:center;
+
+    color:#009543;
+
+    font-size:42px;
+
+    margin:40px 0 30px;
+
+}
+
+.stats-container{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:25px;
+
+    flex-wrap:wrap;
+
+    margin-bottom:40px;
+
+}
+
+.infoStat{
+
+    background:white;
+
+    max-width:700px;
+
+    margin:30px auto;
+
+    padding:25px;
+
+    border-radius:20px;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.15);
+
+    text-align:center;
+
+}
+
+.infoStat h3{
+
+    color:#009543;
+
+    margin-bottom:15px;
+
+}
+
+.infoStat p{
+
+    color:#555;
+
+    line-height:28px;
+
+}
+.profil-card{
+
+    background:white;
+
+    border-radius:25px;
+
+    padding:30px;
+
+    margin:25px 0;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.15);
+
+}
+
+
+.profil-sous-titre{
+
+    color:#777;
+
+    margin-top:8px;
+
+    margin-bottom:20px;
+
+    font-size:17px;
+
+}
+
+.profil-info{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:18px 0;
+
+    border-bottom:1px solid #ececec;
+
+}
+
+.profil-info:last-child{
+
+    border-bottom:none;
+
+}
+
+.profil-info span{
+
+    color:#555;
+
+    font-size:18px;
+
+}
+
+.profil-info strong{
+
+    color:#009543;
+
+    font-size:22px;
+
+}
+
+.modifierPseudo{
+
+    margin-top:25px;
+
+}
+.avatar{
+
+    width:120px;
+    height:120px;
+
+    margin:0 auto 20px;
+
+    border-radius:50%;
+
+    background:linear-gradient(135deg,#009543,#00c853);
+
+    color:white;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:48px;
+
+    font-weight:bold;
+
+    letter-spacing:2px;
+
+    box-shadow:0 10px 25px rgba(0,149,67,.35);
+
+}
+.overlayProfil{
+
+    position:fixed;
+
+    top:0;
+    left:0;
+
+    width:100%;
+    height:100%;
+
+    background:rgba(0,0,0,.65);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    z-index:999999;
+
+}
+
+.carteProfil{
+
+    width:450px;
+    max-width:90%;
+
+    background:white;
+
+    border-radius:25px;
+
+    padding:35px;
+
+    text-align:center;
+
+    box-shadow:0 20px 60px rgba(0,0,0,.35);
+
+}
+
+.carteProfil input{
+
+    width:100%;
+
+    padding:16px;
+
+    margin:25px 0;
+
+    border:2px solid #ddd;
+
+    border-radius:12px;
+
+    font-size:18px;
+
+}
+@keyframes fermerProfil{
+
+    from{
+
+        opacity:1;
+        transform:scale(1);
+
+    }
+
+    to{
+
+        opacity:0;
+        transform:scale(.9);
+
+    }
+
+}
+
+.fermerProfil{
+
+    animation:fermerProfil .4s forwards;
+
+}
+#creationProfil{
+
+    position:fixed;
+
+    top:0;
+    left:0;
+
+    width:100%;
+    height:100%;
+
+    display:none;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:rgba(0,0,0,.65);
+
+    z-index:999998;
+
+}
+.boutonRetour{
+
+    width:280px;
+
+    height:55px;
+
+    margin:30px auto;
+
+    display:block;
+
+}
+.rejouer{
+
+    width:280px;
+
+    max-width:90%;
+
+    display:block;
+
+    margin:30px auto;
+
+}
+/* =======================================================
+VERSION MOBILE CONGOQUIZ
+======================================================= */
+
+@media screen and (max-width:768px){
+
+    body{
+        padding-top:75px;
+        padding-left:12px;
+        padding-right:12px;
+    }
+
+    .navbar{
+
+        padding:15px 18px;
+
+    }
+
+    .logo{
+
+        font-size:22px;
+
+    }
+
+    .menu{
+
+        gap:15px;
+
+    }
+
+    .menu a{
+
+        font-size:15px;
+
+    }
+
+    .accueil{
+
+        width:100%;
+        max-width:100%;
+
+        margin:0;
+
+        padding:22px;
+
+        border-radius:25px;
+
+        box-sizing:border-box;
+    }
+
+    .hero p{
+
+        font-size:32px;
+
+        line-height:42px;
+
+    }
+
+    .sous-titre{
+
+        font-size:18px;
+
+        line-height:28px;
+
+    }
+
+    button{
+
+        width:100%;
+
+        font-size:22px;
+
+    }
+
+    .bottom-nav{
+
+        gap:5px;
+
+        padding-top:18px;
+
+    }
+
+    .nav-btn{
+
+        width:58px;
+
+    }
+
+    .nav-btn span{
+
+        font-size:10px;
+
+    }
+
+    .nav-btn i{
+
+        font-size:22px;
+
+    }
+
+    footer{
+
+        text-align:center;
+
+        font-size:15px;
+
+        margin-top:20px;
+
+    }
+
+}
+/* =====================================================
+   VERSION MOBILE CONGOQUIZ
+===================================================== */
+
+@media screen and (max-width:768px){
+
+    body{
+        padding-top:75px;
+        padding-left:12px;
+        padding-right:12px;
+        align-items:flex-start;
+    }
+
+    .navbar{
+        height:60px;
+        padding:0 15px;
+    }
+
+    .logo{
+        font-size:22px;
+        letter-spacing:1px;
+    }
+
+    .menu{
+        gap:8px;
+    }
+
+    .menu a{
+        font-size:14px;
+        padding:6px 10px;
+    }
+
+    .accueil{
+        width:100%;
+        max-width:100%;
+        margin:20px auto;
+        padding:25px 18px;
+        border-radius:25px;
+    }
+
+    .hero p{
+        font-size:18px;
+        line-height:1.5;
+    }
+
+    .sous-titre{
+        font-size:15px;
+        margin-bottom:22px;
+    }
+
+    button{
+        height:52px;
+        font-size:18px;
+    }
+
+    .bottom-nav{
+        gap:0;
+        padding:15px 0 5px;
+    }
+
+    .nav-btn{
+        width:60px;
+    }
+
+    .nav-btn:hover{
+        transform:translateY(-2px);
+    }
+
+    .nav-btn i{
+        font-size:22px;
+    }
+
+    .nav-btn span{
+        font-size:10px;
+        margin-top:4px;
+    }
+
+    .footer{
+        position:static;
+        margin-top:20px;
+        text-align:center;
+        font-size:12px;
+        color:white;
+    }
+
+}
+@media (max-width: 768px){
+
+    .apropos-card{
+
+        width:95%;
+        padding:25px 20px;
+
+    }
+
+    .apropos-card p{
+
+        text-align:left;
+        line-height:1.7;
+        font-size:17px;
+
+        word-break:normal;
+        overflow-wrap:break-word;
+        white-space:normal;
+
+    }
+
+}
+/* =====================================
+   RESPONSIVE - ÉTAPE 1
+===================================== */
+
+@media (max-width:768px){
+
+    body{
+
+        padding-top:70px;
+
+        display:block;
+
+    }
+
+    .accueil{
+
+        width:calc(100% - 20px);
+
+        max-width:none;
+
+        margin:15px auto;
+
+        padding:25px 18px;
+
+        border-radius:22px;
+
+    }
+
+}
+@media (max-width:768px){
+
+    body{
+        padding-top:120px;      /* Avant 90px : descend toute la carte */
+        padding-bottom:40px;    /* Laisse un peu d'espace en bas */
+        align-items:flex-start; /* La carte commence en haut sans être collée */
+    }
+
+    .accueil{
+        margin-top:30px;
+        margin-bottom:80px;
+    }
+
+    .footer{
+        position:relative;      /* Au lieu de fixed sur téléphone */
+        right:auto;
+        bottom:auto;
+        text-align:center;
+        margin:25px 0;
+    }
+
+}
+
+/* ==========================================
+   MODE EN LIGNE - CONGOQUIZ
+========================================== */
+
+.modeEnLigne {
+    width: 100%;
+    max-width: 850px;
+    margin: 0 auto;
+    padding: 30px 20px 50px;
+    text-align: center;
+}
+
+.sousTitreModeEnLigne {
+    margin-bottom: 30px;
+    font-size: 18px;
+}
+
+.carteModeEnLigne {
+    width: 100%;
+    max-width: 650px;
+    margin: 20px auto;
+    padding: 25px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.10);
+}
+
+.carteModeEnLigne h2 {
+    margin-top: 0;
+}
+
+.boutonModeEnLigne,
+.boutonSecondaire {
+    display: block;
+    width: 100%;
+    max-width: 400px;
+    margin: 15px auto;
+    padding: 14px 20px;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.boutonModeEnLigne {
+    background: #009543;
+    color: white;
+}
+
+.boutonSecondaire {
+    background: #eeeeee;
+    color: #333;
+}
+
+.boutonModeEnLigne:hover,
+.boutonSecondaire:hover {
+    transform: translateY(-2px);
+}
+
+.carteModeEnLigne label {
+    display: block;
+    margin: 18px 0 8px;
+    font-weight: bold;
+}
+
+.carteModeEnLigne select,
+.carteModeEnLigne input {
+    width: 100%;
+    max-width: 400px;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 16px;
+}
+
+.codePartie {
+    margin: 20px auto;
+    padding: 18px;
+    max-width: 300px;
+    border-radius: 12px;
+    background: #f3f3f3;
+    font-size: 28px;
+    font-weight: bold;
+    letter-spacing: 4px;
+}
+
+.joueursConfrontation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.joueurConfrontation {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.joueurConfrontation span {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.vs {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.reponsesEnLigne {
+    display: grid;
+    gap: 12px;
+    margin-top: 25px;
+}
+
+.reponsesEnLigne button {
+    padding: 14px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.messageModeEnLigne {
+    margin: 20px auto;
+    font-weight: bold;
+}
+
+@media (max-width: 600px) {
+
+    .modeEnLigne {
+        padding: 20px 12px 40px;
+    }
+
+    .carteModeEnLigne {
+        padding: 20px 15px;
+    }
+
+    .joueursConfrontation {
+        gap: 12px;
+    }
+
+    .vs {
+        font-size: 18px;
+    }
+
+}
+.boutonModeEnLigne {
+    display: block;
+    width: 100%;
+    max-width: 400px;
+    margin: 15px auto;
+    padding: 14px 20px;
+
+    box-sizing: border-box;
+
+    border-radius: 12px;
+    border: none;
+
+    background: #009543;
+    color: white;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    text-decoration: none;
+    text-align: center;
+
+    cursor: pointer;
+}
+
+.boutonModeEnLigne:hover {
+    transform: translateY(-2px);
+}

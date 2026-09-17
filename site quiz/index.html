@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Congoquiz</title>
+    <link rel="manifest" href="/manifest.json">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+<body>
+    <div id="creationProfil" style="display:none;">
+
+        <div class="carteProfil">
+    
+            <h1>🇨🇬 Bienvenue dans CongoQuiz</h1>
+    
+            <p>
+                Avant de commencer,
+                crée ton profil.
+            </p>
+    
+            <input
+            type="text"
+            id="pseudoDepart"
+            placeholder="Entrez votre pseudo">
+    
+            <button onclick="creerProfil()">
+    
+                Continuer
+    
+            </button>
+    
+        </div>
+    
+    </div>
+
+        <div id="intro">
+        
+            <div class="intro-light"></div>
+        
+            <img src="images/logo1.png" alt="Logo CongoQuiz" id="introLogo">
+        
+        </div>
+    <div id="accueilSite" style="display:none;">
+        
+    <nav class="navbar">
+
+        <div class="logo">
+            🇨🇬 <strong>CongoQuiz</strong>
+        </div>
+    
+        <div class="menu">
+            <a href="index.html">Accueil</a>
+            <a href="apropos.html">À propos</a>
+        </div>
+    
+    </nav>
+    <div class="accueil">
+        <div id="menuPrincipal" class="menu-page">
+
+
+        <div class="hero">
+
+    
+            <p>
+                Testez vos connaissances sur la République du Congo
+            </p>
+        
+        </div>
+        
+    
+    
+        <p class="sous-titre">
+            Découvrez la République du Congo autrement.
+            </p>
+            
+            <button id="btnJouer" onclick="ouvrirMenuJeu()">
+            ▶ JOUER
+            </button>
+            <a href="mode-en-ligne.html" class="boutonModeEnLigne">
+              🌍 Mode en ligne
+            </a>
+            
+           
+        </div>
+        <div id="menuJeu" class="menu-page" style="display:none;">
+
+            <h2>Choisissez un mode</h2>
+        
+            <button onclick="ouvrirQuizGeneral()">
+                🎲 Quiz général
+            </button>
+        
+            <button onclick="ouvrirCategories()">
+                📚 Quiz par catégorie
+            </button>
+        
+            <button onclick="fermerMenuJeu()">
+                ⬅ Retour
+            </button>
+        
+        </div>
+        <div id="menuQuestions" class="menu-page" style="display:none;">
+
+            <h2>Quiz général</h2>
+        
+            <button onclick="demarrerQuiz(5)">
+                🎯 5 Questions
+            </button>
+        
+            <button onclick="demarrerQuiz(10)">
+                📘 10 Questions
+            </button>
+        
+            <button onclick="demarrerQuiz(20)">
+                🏆 20 Questions
+            </button>
+        
+            <button onclick="retourMenuJeu()">
+                ⬅ Retour
+            </button>
+        
+        </div>
+        <div id="menuCategories" class="menu-page" style="display:none;">
+
+            <h2>Choisissez une catégorie</h2>
+        
+            <button onclick="ouvrirQuestionsCategorie('histoire')">
+                📜 Histoire
+            </button>
+        
+            <button onclick="ouvrirQuestionsCategorie('culture')">
+                🎭 Culture
+            </button>
+        
+            <button onclick="ouvrirQuestionsCategorie('institutions')">
+                🏛 Institutions
+            </button>
+        
+            <button onclick="ouvrirQuestionsCategorie('geographie')">
+                🌍 Géographie
+            </button>
+        
+            <button onclick="ouvrirQuestionsCategorie('sport')">
+                ⚽ Sport
+            </button>
+        
+            <button onclick="ouvrirQuestionsCategorie('personnalites')">
+                👤 Grandes personnalités
+            </button>
+        
+            <button onclick="retourMenuPrincipalJeu()">
+                ⬅ Retour
+            </button>
+        
+        </div>
+        <div id="menuCategorieQuestions" class="menu-page" style="display:none;">
+
+            <h2 id="titreCategorie">Catégorie</h2>
+        
+            <button onclick="demarrerCategorie(10)">
+                📘 10 Questions
+            </button>
+        
+            <button onclick="demarrerCategorie(20)">
+                🏆 20 Questions
+            </button>
+        
+            <button onclick="retourCategories()">
+                ⬅ Retour
+            </button>
+        
+        </div>
+            <div class="bottom-nav">
+
+                <button class="nav-btn" onclick="window.location.href='classement.html'">
+                    🏆
+                    <span>Classement</span>
+                </button>
+            
+                <button class="nav-btn" onclick="window.location.href='statistiques.html'">
+                    📊
+                    <span>Stats</span>
+                </button>
+            
+                <button class="nav-btn" onclick="window.location.href='profil.html'">
+                    👤
+                    <span>Profil</span>
+                </button>
+                
+            
+            </div>
+    </div>
+    <footer class="footer">
+
+        CongoQuiz • Version 1.0
+    
+        <br>
+    
+        © 2026 Royal LIM
+    
+    </footer>    
+    </div>
+    <script src="questions/histoire.js"></script>
+    <script src="questions/culture.js"></script>
+    <script src="questions/institutions.js"></script>
+    <script src="questions/geographie.js"></script>
+    <script src="questions/sport.js"></script>
+    <script src="questions/personnalites.js"></script>
+    
+    <!-- Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
+    <!-- Ton JavaScript -->
+    <script src="script.js"></script>
+ <script>
+    if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+            navigator.serviceWorker.register("/service-worker.js")
+                .then(() => {
+                    console.log("Service worker enregistré avec succès.");
+                })
+                .catch(error => {
+                    console.error("Erreur d'enregistrement du service worker :", error);
+                });
+        });
+    }
+</script>   
+</body>
+</html>
