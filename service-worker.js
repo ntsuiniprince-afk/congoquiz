@@ -1,9 +1,10 @@
-const CACHE_NAME = "congoquiz-v2"; // ⬅️ change ce numéro à chaque mise à jour majeure
+const CACHE_NAME = "congoquiz-v3"; // ⬅️ nouvelle version du cache
 
 const FILES_TO_CACHE = [
     "/",
     "/index.html",
-    "/manifest.json"
+    "/manifest.json",
+    "/images/logo1.png"
 ];
 
 self.addEventListener("install", event => {
@@ -12,6 +13,7 @@ self.addEventListener("install", event => {
             return cache.addAll(FILES_TO_CACHE);
         })
     );
+
     self.skipWaiting();
 });
 
@@ -25,27 +27,36 @@ self.addEventListener("activate", event => {
             );
         })
     );
+
     self.clients.claim();
 });
 
 self.addEventListener("fetch", event => {
-    // Pour les pages HTML (navigation) : réseau d'abord, cache en secours
+
+    // Pour les pages HTML :
+    // réseau d'abord, cache en secours
     if (event.request.mode === "navigate") {
+
         event.respondWith(
             fetch(event.request)
                 .then(response => {
+
                     const responseClone = response.clone();
+
                     caches.open(CACHE_NAME).then(cache => {
                         cache.put(event.request, responseClone);
                     });
+
                     return response;
                 })
                 .catch(() => caches.match(event.request))
         );
+
         return;
     }
 
-    // Pour le reste (CSS, JS, images) : cache d'abord, réseau en secours
+    // Pour le reste :
+    // cache d'abord, réseau en secours
     event.respondWith(
         caches.match(event.request).then(cachedResponse => {
             return cachedResponse || fetch(event.request);

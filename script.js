@@ -667,7 +667,7 @@ const questions = [
 
     {
         question: "Quel quartier de Brazzaville est historiquement associé à la sapologie ?",
-        reponses: ["Poto-Poto", "Bacongo", "Moungali"],
+        reponses: [ "Poto-Poto", "Bacongo", "Moungali"],
         bonne: 1,
         explication: "Bacongo, le plus vieil arrondissement de Brazzaville, est historiquement associé à la sapologie."
     },
@@ -698,7 +698,708 @@ const questions = [
         reponses: ["Le café", "Le coton", "Le pétrole"],
         bonne: 2,
         explication: "Le pétrole constitue la principale ressource d'exportation de la République du Congo."
+    },
+      {
+        question: "Quel pays est voisin de la République du Congo à l'ouest ?",
+        reponses: ["Le Cameroun", "La RCA", "Le Gabon"],
+        bonne: 2,
+        explication: "Le Gabon est le pays voisin de la République du Congo à l'ouest."
+    },
+
+    {
+        question: "Quel pays est voisin de la République du Congo au nord-nord-est ?",
+        reponses: ["La République centrafricaine", "Le Gabon", "La RDC"],
+        bonne: 0,
+        explication: "La République centrafricaine borde la République du Congo au nord-nord-est."
+    },
+
+    {
+        question: "Quelle enclave angolaise est voisine de la République du Congo au sud-ouest ?",
+        reponses: ["Le Cabinda", "Le Zanzibar", "Le Somaliland"],
+        bonne: 0,
+        explication: "Le Cabinda, enclave angolaise, est voisin de la République du Congo au sud-ouest."
+    },
+
+    {
+        question: "Avec quel pays la République du Congo partage-t-elle sa plus longue frontière terrestre ?",
+        reponses: ["Le Gabon", "Le Cameroun", "La RDC"],
+        bonne: 0,
+        explication: "La frontière avec le Gabon, longue d'environ 1 900 km, est la plus longue frontière terrestre du Congo."
+    },
+
+    {
+        question: "Quelle est l'altitude approximative du mont Nabemba, point culminant du pays ?",
+        reponses: ["1 020 mètres", "720 mètres", "1 500 mètres"],
+        bonne: 0,
+        explication: "Le mont Nabemba culmine à environ 1 020 mètres d'altitude."
+    },
+
+    {
+        question: "En quelle année le parc national d'Odzala-Kokoua, l'un des plus vieux d'Afrique, a-t-il été créé ?",
+        reponses: ["1935", "1960", "1993"],
+        bonne: 0,
+        explication: "Le parc national d'Odzala-Kokoua a été créé en 1935."
+    },
+
+    {
+        question: "Quel mammifère aquatique rare est protégé dans les lagunes du parc de Conkouati-Douli ?",
+        reponses: ["Le lamantin d'Afrique", "L'hippopotame nain", "Le phoque moine"],
+        bonne: 0,
+        explication: "Le lamantin d'Afrique est protégé dans les lagunes et rivières du parc de Conkouati-Douli."
+    },
+
+    {
+        question: "Quel cours d'eau se jette dans le fleuve Congo à Liranga ?",
+        reponses: ["L'Oubangui", "La Sangha", "La Léfini"],
+        bonne: 0,
+        explication: "L'Oubangui se jette dans le fleuve Congo à la hauteur de Liranga."
+    },
+
+    {
+        question: "L'équateur traverse-t-il le territoire de la République du Congo ?",
+        reponses: ["Oui, il traverse le nord du pays(à Makoua)", "Non, il passe loin au sud", "Non, uniquement au large des côtes"],
+        bonne: 0,
+        explication: "Le Congo est situé de part et d'autre de l'équateur, qui traverse le nord du pays."
+    },
+
+    {
+        question: "Quel nouveau département créé en 2024 a pour chef-lieu Odziba ?",
+        reponses: ["Le Djoué-Léfini", "La Nkéni-Alima", "Le Congo-Oubangui"],
+        bonne: 0,
+        explication: "Le département du Djoué-Léfini, créé en 2024, a pour chef-lieu Odziba."
+    },
+
+    {
+        question: "Quel nouveau département créé en 2024 a pour chef-lieu Gamboma ?",
+        reponses: ["La Nkéni-Alima", "Le Congo-Oubangui", "Le Djoué-Léfini"],
+        bonne: 0,
+        explication: "Le département de la Nkéni-Alima, créé en 2024, a pour chef-lieu Gamboma."
+    },
+
+    {
+        question: "Quel nouveau département créé en 2024 a pour chef-lieu Mossaka ?",
+        reponses: ["La Nkéni-Alima", "Le Djoué-Léfini", "Le Congo-Oubangui"],
+        bonne: 2,
+        explication: "Le département du Congo-Oubangui, créé en 2024, a pour chef-lieu Mossaka."
+    },
+
+    {
+        question: "Quelle était approximativement la population de Pointe-Noire selon le recensement de 2023 ?",
+        reponses: ["1,4 million", "700 000", "2,5 millions"],
+        bonne: 0,
+        explication: "Pointe-Noire comptait environ 1,4 million d'habitants lors du recensement de 2023."
+    },
+
+    {
+        question: "Quel est le département le plus vaste de la République du Congo en superficie ?",
+        reponses: ["La Likouala", "Le Pool", "La Sangha"],
+        bonne: 0,
+        explication: "La Likouala, avec près de 62 000 km², est le département le plus vaste du pays."
+    },
+
+    {
+        question: "Quel est le département le plus petit en superficie ?",
+        reponses: ["Pointe-Noire", "Le Kouilou", "La Lékoumou"],
+        bonne: 0,
+        explication: "Le département de Pointe-Noire est le plus petit du pays en superficie."
+    },
+
+    {
+        question: "Quel est le département le moins peuplé de la République du Congo ?",
+        reponses: ["Le Kouilou", "La Sangha", "La Cuvette-Ouest"],
+        bonne: 0,
+        explication: "Le Kouilou est le département le moins peuplé du pays."
+    },
+
+    {
+        question: "Environ quel pourcentage du territoire congolais est recouvert de forêt tropicale ?",
+        reponses: ["70 %", "50 %", "90 %"],
+        bonne: 0,
+        explication: "Environ 70 % du territoire de la République du Congo est recouvert de forêt tropicale."
+    },
+
+    {
+        question: "Quel ancien royaume précolonial était établi sur la côte atlantique, dans l'actuel Kouilou ?",
+        reponses: ["Le royaume de Loango", "Le royaume du Kanem", "Le royaume du Buganda"],
+        bonne: 0,
+        explication: "Le royaume de Loango était établi sur la côte atlantique, dans la région de l'actuel Kouilou."
+    },
+
+    {
+        question: "Sous quel autre nom le royaume Téké était-il connu dans les sources historiques anciennes ?",
+        reponses: ["Anzico", "Ngoyo", "Kongo"],
+        bonne: 0,
+        explication: "Le royaume Téké est également désigné sous le nom d'Anzico dans plusieurs sources anciennes."
+    },
+
+    {
+        question: "Quel titre portait le souverain du royaume Téké rencontré par Pierre Savorgnan de Brazza ?",
+        reponses: ["Manikongo", "Mwami", "Makoko"],
+        bonne: 2,
+        explication: "Le souverain du royaume Téké portait le titre de Makoko."
+    },
+
+    {
+        question: "Quel navigateur portugais atteignit l'embouchure du fleuve Congo en 1482 ?",
+        reponses: ["Vasco de Gama", "Bartolomeu Dias", "Diogo Cão"],
+        bonne: 2,
+        explication: "Le navigateur portugais Diogo Cão atteignit l'embouchure du fleuve Congo en 1482."
+    },
+
+    {
+        question: "Entre quelles années Pierre Savorgnan de Brazza effectua-t-il sa première série d'explorations dans la région ?",
+        reponses: ["1875 et 1878", "1885 et 1888", "1890 et 1893"],
+        bonne: 0,
+        explication: "Brazza effectua une première série d'explorations entre 1875 et 1878."
+    },
+
+    {
+        question: "Quelle conférence internationale de 1884-1885 a fixé les règles du partage colonial de l'Afrique ?",
+        reponses: ["La Conférence de Bandung", "La Conférence de Genève", "La Conférence de Berlin"],
+        bonne: 2,
+        explication: "La Conférence de Berlin de 1884-1885 a fixé les règles européennes du partage colonial de l'Afrique."
+    },
+
+    {
+        question: "En quelle année l'Afrique équatoriale française (AEF) a-t-elle été organisée en fédération coloniale ?",
+        reponses: ["1898", "1930", "1910"],
+        bonne: 2,
+        explication: "L'Afrique équatoriale française a été organisée en fédération coloniale en 1910."
+    },
+
+    {
+        question: "Quel nom colonial désignait le territoire correspondant à l'actuelle République du Congo ?",
+        reponses: ["Le Moyen-Congo", "Le Congo belge", "Le Congo portugais"],
+        bonne: 0,
+        explication: "Le territoire correspondant à l'actuelle République du Congo était appelé Moyen-Congo pendant la période coloniale."
+    },
+
+    {
+        question: "Quel administrateur colonial devint gouverneur général de l'AEF en novembre 1940 ?",
+        reponses: ["René Pleven", "André Malraux", "Félix Éboué"],
+        bonne: 2,
+        explication: "Félix Éboué fut nommé gouverneur général de l'AEF en novembre 1940."
+    },
+
+    {
+        question: "Quelle loi française de 1956 accorda une plus grande autonomie politique aux territoires d'outre-mer ?",
+        reponses: ["La loi Debré", "La loi Ferry", "La loi-cadre Defferre"],
+        bonne: 2,
+        explication: "La loi-cadre Defferre de 1956 renforça l'autonomie politique des territoires français d'outre-mer."
+    },
+
+    {
+        question: "Quel parti politique Fulbert Youlou fonda-t-il en 1956 ?",
+        reponses: ["Le MSA", "Le PCT", "L'UDDIA"],
+        bonne: 2,
+        explication: "Fulbert Youlou fonda l'UDDIA (Union démocratique de défense des intérêts africains) en 1956."
+    },
+
+    {
+        question: "À quelle date la République du Congo fut-elle admise à l'Organisation des Nations unies ?",
+        reponses: ["15 août 1960", "28 novembre 1960", "20 septembre 1960"],
+        bonne: 2,
+        explication: "La République du Congo fut admise à l'ONU le 20 septembre 1960."
+    },
+
+    {
+        question: "À quelles dates précises se déroulent les Trois Glorieuses de 1963 ?",
+        reponses: ["10, 11 et 12 août", "15, 16 et 17 août", "13, 14 et 15 août"],
+        bonne: 2,
+        explication: "Les Trois Glorieuses se déroulent les 13, 14 et 15 août 1963."
+    },
+
+    {
+        question: "Quel parti devient parti unique sous Alphonse Massamba-Débat en 1964 ?",
+        reponses: ["Le PCT", "L'UDDIA", "Le Mouvement national de la révolution (MNR)"],
+        bonne: 2,
+        explication: "Le Mouvement national de la révolution (MNR) devient le parti unique sous Massamba-Débat en 1964."
+    },
+
+    {
+        question: "Qui fut nommé Premier ministre sous la présidence d'Alphonse Massamba-Débat ?",
+        reponses: ["Pascal Lissouba", "Henri Lopes", "André Milongo"],
+        bonne: 0,
+        explication: "Pascal Lissouba fut nommé Premier ministre sous la présidence d'Alphonse Massamba-Débat."
+    },
+
+    {
+        question: "Quel organe révolutionnaire fut créé lors de la crise politique de 1968 ?",
+        reponses: ["Le Conseil national de la Révolution", "Le Conseil économique et social", "Le Conseil de la magistrature"],
+        bonne: 0,
+        explication: "Le Conseil national de la Révolution (CNR) fut créé lors de la crise politique de 1968."
+    },
+
+    {
+        question: "En quelle année le Parti congolais du travail (PCT) a-t-il été créé ?",
+        reponses: ["1964", "1977", "1969"],
+        bonne: 2,
+        explication: "Le Parti congolais du travail a été créé le 31 décembre 1969."
+    },
+
+    {
+        question: "Quel nom le Congo adopte-t-il officiellement à la fin de 1969 ?",
+        reponses: ["République socialiste du Congo", "État populaire du Congo", "République populaire du Congo"],
+        bonne: 2,
+        explication: "Le pays adopte officiellement le nom de République populaire du Congo à la fin de 1969."
+    },
+
+    {
+        question: "Qui succède à Marien Ngouabi à la tête du pays en 1977 ?",
+        reponses: ["Denis Sassou Nguesso", "Pascal Lissouba", "Joachim Yhombi-Opango"],
+        bonne: 2,
+        explication: "Joachim Yhombi-Opango dirige le pays après la mort de Marien Ngouabi en 1977."
+    },
+
+    {
+        question: "À quelle date Joachim Yhombi-Opango est-il écarté du pouvoir ?",
+        reponses: ["18 mars 1977", "14 août 1979", "5 février 1979"],
+        bonne: 2,
+        explication: "Joachim Yhombi-Opango est écarté du pouvoir le 5 février 1979."
+    },
+
+    {
+        question: "Avec quel grand État socialiste le Congo signe-t-il un traité d'amitié et de coopération en 1981 ?",
+        reponses: ["Cuba", "La Chine", "L'Union soviétique"],
+        bonne: 2,
+        explication: "Le Congo signe en 1981 un traité d'amitié et de coopération avec l'Union soviétique."
+    },
+
+    {
+        question: "En quelle année Denis Sassou Nguesso est-il réélu président pendant la période du parti unique ?",
+        reponses: ["1979", "1989", "1984"],
+        bonne: 2,
+        explication: "Denis Sassou Nguesso est réélu président en 1984, pendant la période du parti unique."
+    },
+
+    {
+        question: "Quelle décision idéologique majeure le PCT prend-il en décembre 1990 ?",
+        reponses: ["Il devient une monarchie", "Il fusionne avec l'UDDIA", "Il abandonne le marxisme-léninisme"],
+        bonne: 2,
+        explication: "Le PCT abandonne officiellement le marxisme-léninisme en décembre 1990."
+    },
+
+    {
+        question: "Quel nom portait la milice associée au camp de Denis Sassou Nguesso pendant la guerre civile de 1997 ?",
+        reponses: ["Les Ninjas", "Les Cocoyes", "Les Cobras"],
+        bonne: 2,
+        explication: "Les Cobras étaient la milice associée au camp de Denis Sassou Nguesso en 1997."
+    },
+
+    {
+        question: "Quel groupe armé était principalement associé à Bernard Kolélas pendant la guerre civile de 1997 ?",
+        reponses: ["Les Cobras", "Les Zoulous", "Les Ninjas"],
+        bonne: 2,
+        explication: "Les Ninjas étaient principalement associés à Bernard Kolélas pendant la guerre civile de 1997."
+    },
+
+    {
+        question: "Quel pays a apporté un soutien militaire déterminant au camp de Denis Sassou Nguesso en 1997 ?",
+        reponses: ["Le Sénégal", "Le Maroc", "L'Angola"],
+        bonne: 2,
+        explication: "Les forces angolaises ont apporté un soutien militaire déterminant à Denis Sassou Nguesso en 1997."
+    },
+
+    {
+        question: "En quelle année une nouvelle Constitution a-t-elle été adoptée par référendum après la guerre civile de 1997 ?",
+        reponses: ["1999", "2008", "2002"],
+        bonne: 2,
+        explication: "Une nouvelle Constitution a été adoptée par référendum en janvier 2002."
+    },
+
+    {
+        question: "Combien de fois le mandat du Président de la République du Congo est-il renouvelable selon la Constitution de 2015 ?",
+        reponses: ["Une fois", "Trois fois", "Deux fois"],
+        bonne: 2,
+        explication: "Le mandat présidentiel, fixé à cinq ans, est renouvelable deux fois selon la Constitution de 2015."
+    },
+
+    {
+        question: "Quel âge minimum faut-il avoir pour être candidat à l'élection présidentielle au Congo ?",
+        reponses: ["25 ans", "35 ans", "30 ans"],
+        bonne: 2,
+        explication: "L'âge minimum pour être candidat à la présidence est de trente ans révolus."
+    },
+
+    {
+        question: "Combien de membres compte la Cour constitutionnelle de la République du Congo ?",
+        reponses: ["Sept", "Douze", "Neuf"],
+        bonne: 2,
+        explication: "La Cour constitutionnelle de la République du Congo est composée de neuf membres."
+    },
+
+    {
+        question: "Le Parlement de la République du Congo est-il composé d'une ou de deux chambres ?",
+        reponses: ["D'une seule chambre", "De trois chambres", "De deux chambres"],
+        bonne: 2,
+        explication: "Le Parlement congolais est bicaméral : il comprend l'Assemblée nationale et le Sénat."
+    },
+
+    {
+        question: "Qui peut dissoudre l'Assemblée nationale selon la Constitution congolaise ?",
+        reponses: ["Le Premier ministre", "Le Président du Sénat", "Le Président de la République"],
+        bonne: 2,
+        explication: "Le Président de la République peut dissoudre l'Assemblée nationale."
+    },
+
+    {
+        question: "Par quel acte l'Assemblée nationale peut-elle renverser le Gouvernement ?",
+        reponses: ["Un référendum", "Un décret", "Une motion de censure"],
+        bonne: 2,
+        explication: "L'Assemblée nationale peut renverser le Gouvernement par le vote d'une motion de censure."
+    },
+
+    {
+        question: "Quelle juridiction spéciale la Constitution institue-t-elle pour juger le Président en cas de haute trahison ?",
+        reponses: ["La Cour suprême", "Le Conseil supérieur de la magistrature", "La Haute Cour de justice"],
+        bonne: 2,
+        explication: "La Constitution institue une Haute Cour de justice, notamment compétente en cas de haute trahison du Président."
+    },
+
+    {
+        question: "Qui est l'actuel Premier ministre, chef du Gouvernement de la République du Congo ?",
+        reponses: ["Isidore Mvouba", "Pierre Ngolo", "Anatole Collinet Makosso"],
+        bonne: 2,
+        explication: "Anatole Collinet Makosso est Premier ministre, chef du Gouvernement de la République du Congo."
+    },
+
+    {
+        question: "Quel plat est considéré comme un plat national du Congo, préparé dans une sauce de noix de palme ?",
+        reponses: ["Le saka-saka", "Le fufu", "Le poulet moambe"],
+        bonne: 2,
+        explication: "Le poulet moambe, cuisiné dans une sauce à base de pulpe de noix de palme, est un plat emblématique du Congo."
+    },
+
+    {
+        question: "Le saka-saka, plat traditionnel congolais, est préparé à partir de quel ingrédient principal ?",
+        reponses: ["Des feuilles de manioc pilées", "Des grains de maïs", "Des feuilles de bananier"],
+        bonne: 0,
+        explication: "Le saka-saka est préparé à base de feuilles de manioc pilées."
+    },
+
+    {
+        question: "Comment appelle-t-on la technique traditionnelle consistant à cuire du poisson enveloppé dans des feuilles ?",
+        reponses: ["Le fufu", "Le madesu", "Le maboké"],
+        bonne: 2,
+        explication: "Le maboké (ou liboke) consiste à cuire du poisson enveloppé dans des feuilles."
+    },
+
+    {
+        question: "Quel accompagnement à base de manioc ou de maïs sert à saisir la sauce et la viande avec les doigts ?",
+        reponses: ["Le riz", "Le fufu (foufou)", "Le pain"],
+        bonne: 1,
+        explication: "Le fufu (ou foufou) est une pâte de manioc ou de maïs utilisée pour saisir la sauce et la viande."
+    },
+
+    {
+        question: "Quel est le groupe ethnique majoritaire en République du Congo ?",
+        reponses: ["Les Bateke", "Les Bakongo", "Les Mbochi"],
+        bonne: 1,
+        explication: "Les Bakongo constituent le groupe ethnique majoritaire du pays."
+    },
+
+    {
+        question: "Quel est le deuxième groupe ethnique le plus important du pays, réputé pour ses masques et statues ?",
+        reponses: ["Les Bateke", "Les Sangha", "Les Vili"],
+        bonne: 0,
+        explication: "Les Bateke forment le deuxième groupe ethnique du pays et sont réputés pour leurs masques et statues."
+    },
+
+    {
+        question: "À quel groupe ethnique appartient l'actuel président Denis Sassou Nguesso ?",
+        reponses: ["Bakongo", "Mbochi", "Bateke"],
+        bonne: 1,
+        explication: "Denis Sassou Nguesso appartient au groupe ethnique Mbochi."
+    },
+
+    {
+        question: "Comment appelle-t-on le tambour à fente traditionnel, aussi utilisé pour transmettre des messages codés ?",
+        reponses: ["La sanza", "Le lokole", "Le balafon"],
+        bonne: 1,
+        explication: "Le lokole est un tambour à fente qui servait aussi à transmettre des messages codés à distance."
+    },
+
+    {
+        question: "Comment appelle-t-on localement le xylophone traditionnel congolais ?",
+        reponses: ["Le madimba", "Le ngoma", "La sanza"],
+        bonne: 0,
+        explication: "Le madimba est le nom local du xylophone traditionnel, aussi appelé balafon."
+    },
+
+    {
+        question: "Quel musicien congolais est crédité d'avoir introduit la sanza dans un orchestre moderne en 1954 ?",
+        reponses: ["Franco Luambo", "Antoine Moundanda", "Joseph Kabaselle"],
+        bonne: 1,
+        explication: "Antoine Moundanda est crédité d'avoir introduit la sanza dans un orchestre moderne en 1954."
+    },
+
+    {
+        question: "Quel poète congolais est considéré comme une figure majeure de la littérature du pays ?",
+        reponses: ["Tchicaya U Tam'si", "Emmanuel Dongala", "Guy Menga"],
+        bonne: 0,
+        explication: "Tchicaya U Tam'si est considéré comme l'un des plus grands poètes congolais."
+    },
+
+    {
+        question: "Quel écrivain congolais, également ancien Premier ministre, est l'auteur du « Pleurer-rire » ?",
+        reponses: ["Guy Menga", "Henri Lopes", "Jean-Baptiste Tati-Loutard"],
+        bonne: 1,
+        explication: "Henri Lopes, écrivain et ancien Premier ministre, est l'auteur du « Pleurer-rire »."
+    },
+
+    {
+        question: "Dans quelle ville congolaise est né le poète Jean-Baptiste Tati-Loutard en 1938 ?",
+        reponses: ["Brazzaville", "Pointe-Noire", "Dolisie"],
+        bonne: 1,
+        explication: "Jean-Baptiste Tati-Loutard est né en 1938 à Pointe-Noire."
+    },
+
+    {
+        question: "Quel métier scientifique l'écrivain congolais Emmanuel Dongala exerce-t-il en parallèle de l'écriture ?",
+        reponses: ["Médecin", "Chimiste", "Géologue"],
+        bonne: 1,
+        explication: "Emmanuel Dongala est à la fois écrivain et chimiste de formation."
+    },
+
+    {
+        question: "Dans quel pays la CAN 1972, remportée par le Congo, a-t-elle été organisée ?",
+        reponses: ["Le Cameroun", "Le Ghana", "L'Égypte"],
+        bonne: 0,
+        explication: "La CAN 1972, remportée par le Congo, a été organisée au Cameroun."
+    },
+
+    {
+        question: "En quelle année la Fédération congolaise de football (FECOFOOT) a-t-elle été fondée ?",
+        reponses: ["1960", "1962", "1966"],
+        bonne: 1,
+        explication: "La FECOFOOT a été fondée en 1962."
+    },
+
+    {
+        question: "Quel ancien international congolais a joué à Blackburn Rovers puis à l'Anzhi Makhachkala ?",
+        reponses: ["Christopher Samba", "Delvin Ndinga", "Prince Oniangué"],
+        bonne: 0,
+        explication: "Christopher Samba a joué plusieurs saisons à Blackburn Rovers avant de rejoindre l'Anzhi Makhachkala."
+    },
+
+    {
+        question: "Quel joueur congolais a évolué à l'AJ Auxerre puis à l'AS Monaco ?",
+        reponses: ["Prince Oniangué", "Delvin Ndinga", "Fabrice Ondama"],
+        bonne: 1,
+        explication: "Delvin Ndinga a joué à l'AJ Auxerre avant de rejoindre l'AS Monaco."
+    },
+
+    {
+        question: "Quel ancien capitaine des Diables Rouges a joué au Stade de Reims puis à Wolverhampton ?",
+        reponses: ["Prince Oniangué", "Chris Malonga", "Fabrice Ondama"],
+        bonne: 0,
+        explication: "Prince Oniangué a joué au Stade de Reims avant de rejoindre Wolverhampton Wanderers."
+    },
+
+    {
+        question: "Quelle est la capacité du stade de Kintélé, construit pour les Jeux africains de 2015 ?",
+        reponses: ["30 000 places", "60 000 places", "90 000 places"],
+        bonne: 1,
+        explication: "Le stade olympique de Kintélé a une capacité de 60 000 places."
+    },
+
+    {
+        question: "En quelle année la Fédération congolaise de basket-ball (FECOKET) a-t-elle été créée ?",
+        reponses: ["1958", "1961", "1970"],
+        bonne: 1,
+        explication: "La FECOKET a été créée en octobre 1961."
+    },
+
+    {
+        question: "En quelle année la Fédération congolaise de handball (FECOHAND) a-t-elle été fondée ?",
+        reponses: ["1961", "1970", "1980"],
+        bonne: 1,
+        explication: "La FECOHAND a été fondée en 1970."
+    },
+
+    {
+        question: "Combien de titres l'équipe féminine du Congo a-t-elle remportés au Championnat d'Afrique de handball ?",
+        reponses: ["Deux", "Quatre", "Six"],
+        bonne: 1,
+        explication: "L'équipe féminine du Congo a remporté quatre titres au Championnat d'Afrique de handball."
+    },
+
+    {
+        question: "En 2026, quel club congolais a remporté le Championnat d'Afrique des clubs vainqueurs de coupe de handball masculin ?",
+        reponses: ["Inter Club", "Étoile du Congo", "AS Otohô"],
+        bonne: 1,
+        explication: "L'Étoile du Congo a remporté ce titre continental en juillet 2026, à Kinshasa."
+    },
+
+    {
+        question: "Quel est le surnom du club de football AC Léopards de Dolisie ?",
+        reponses: ["Les Fauves du Niari", "Les Lions de la Cuvette", "Les Aigles du Pool"],
+        bonne: 0,
+        explication: "L'AC Léopards de Dolisie est surnommé les Fauves du Niari."
+    },
+
+    {
+        question: "Quel club de football est traditionnellement associé aux couleurs jaune et noir à Brazzaville ?",
+        reponses: ["L'Étoile du Congo", "Les Diables Noirs", "L'Inter Club"],
+        bonne: 1,
+        explication: "Les Diables Noirs de Brazzaville sont traditionnellement associés aux couleurs jaune et noir."
+    },
+
+    {
+        question: "Quel club a remporté la Coupe de la Confédération de la CAF en 2012 ?",
+        reponses: ["L'Étoile du Congo", "L'AC Léopards", "Le CARA"],
+        bonne: 1,
+        explication: "L'AC Léopards de Dolisie a remporté la Coupe de la Confédération de la CAF en 2012."
+    },
+
+    {
+        question: "Quel ancien international congolais a évolué au Paris Saint-Germain dans les années 1970 ?",
+        reponses: ["François M'Pelé", "Delvin Ndinga", "Fabrice Ondama"],
+        bonne: 0,
+        explication: "François M'Pelé a évolué au Paris Saint-Germain à partir de 1973."
+    },
+
+    {
+        question: "En 2015, jusqu'à quel stade de la CAN la République du Congo est-elle allée ?",
+        reponses: ["La phase de groupes", "Les quarts de finale", "Les demi-finales"],
+        bonne: 1,
+        explication: "Les Diables Rouges ont atteint les quarts de finale de la CAN 2015."
+    },
+
+    {
+        question: "Quel est le nom de scène du chanteur congolais Ibambi Okombi Rogatien, leader du groupe Extra Musica ?",
+        reponses: ["Zao", "Roga-Roga", "Aurlus Mabélé"],
+        bonne: 1,
+        explication: "Roga-Roga est le nom de scène d'Ibambi Okombi Rogatien, leader du groupe Extra Musica."
+    },
+
+    {
+        question: "Quel royaume précolonial a donné son nom à la ville de Loango, aujourd'hui chef-lieu du Kouilou ?",
+        reponses: ["Le royaume Kongo", "Le royaume de Loango", "Le royaume Tio"],
+        bonne: 1,
+        explication: "La ville de Loango a donné son nom au royaume de Loango, ancienne entité précoloniale de la côte atlantique."
+    },
+
+    {
+        question: "Quelle ville du Kouilou fut un ancien port d'embarquement d'esclaves lors de la traite transatlantique ?",
+        reponses: ["Hinda", "Loango", "Madingo-Kayes"],
+        bonne: 1,
+        explication: "Loango fut un ancien port d'embarquement d'esclaves lors de la traite transatlantique."
+    },
+
+    {
+        question: "Comment appelle-t-on un membre féminin du mouvement de la SAPE ?",
+        reponses: ["Une ambianceuse", "Une sapeuse", "Une élégante"],
+        bonne: 1,
+        explication: "Une adepte féminine de la SAPE est appelée une sapeuse."
+    },
+
+    {
+        question: "Quelle ville est considérée par les sapeurs congolais comme la capitale mythique de la sape ?",
+        reponses: ["Bruxelles", "Paris", "Londres"],
+        bonne: 1,
+        explication: "Paris est considérée comme la capitale mythique de la SAPE."
+    },
+
+    {
+        question: "Quel est le nom du fleuve qui traverse le nord de la République du Congo et donne son nom à un département ?",
+        reponses: ["La Sangha", "La Léfini", "La Bouenza"],
+        bonne: 0,
+        explication: "La Sangha est un cours d'eau du bassin du Congo qui traverse le nord du pays et donne son nom à un département."
+    },
+
+    {
+        question: "Quel massif montagneux forestier occupe le sud-ouest de la République du Congo ?",
+        reponses: ["Le massif du Chaillu", "Le Mayombe", "Les plateaux Batéké"],
+        bonne: 1,
+        explication: "Le Mayombe est le massif montagneux forestier du sud-ouest du Congo."
+    },
+
+    {
+        question: "Comment appelle-t-on les vastes plateaux sablonneux du centre du pays, couverts de savane ?",
+        reponses: ["Les plateaux Batéké", "Le massif du Chaillu", "Le Mayombe"],
+        bonne: 0,
+        explication: "Les plateaux Batéké sont de vastes plateaux sablonneux couverts de savane, au centre du pays."
+    },
+
+    {
+        question: "À Brazzaville, un immeuble emblématique porte le nom du point culminant du pays. Comment s'appelle-t-il ?",
+        reponses: ["La Tour Elf", "La Tour Nabemba", "La Tour du Fleuve"],
+        bonne: 1,
+        explication: "La Tour Nabemba, à Brazzaville, tire son nom du mont Nabemba."
+    },
+
+    {
+        question: "Entre quelles années le chemin de fer Congo-Océan a-t-il été construit ?",
+        reponses: ["1900 et 1910", "1921 et 1934", "1945 et 1955"],
+        bonne: 1,
+        explication: "Le chemin de fer Congo-Océan a été construit entre 1921 et 1934."
+    },
+
+    {
+        question: "Quel est le fuseau horaire de la République du Congo ?",
+        reponses: ["UTC", "UTC+1", "UTC+3"],
+        bonne: 1,
+        explication: "La République du Congo est à l'heure UTC+1 (heure d'Afrique de l'Ouest)."
+    },
+
+    {
+        question: "Pointe-Noire a été fondée en 1883 en vue de la construction de quel type d'infrastructure ?",
+        reponses: ["Un aéroport", "Un port en eau profonde", "Une raffinerie"],
+        bonne: 1,
+        explication: "Pointe-Noire a été fondée en 1883 en vue de la construction d'un port en eau profonde."
+    },
+
+    {
+        question: "Quelle loi de 2003 a fixé l'organisation administrative du Congo en 12 départements avant la réforme de 2024 ?",
+        reponses: ["La loi n°3-2003", "La loi n°1-1995", "La loi n°10-1998"],
+        bonne: 0,
+        explication: "La loi n°3-2003 a fixé l'organisation du pays en 12 départements, avant la réforme de 2024."
+    },
+
+    {
+        question: "Quel massif se situe entre les plateaux Batéké et la vallée du Niari ?",
+        reponses: ["Le Mayombe", "Le massif du Chaillu", "Le mont Nabemba"],
+        bonne: 1,
+        explication: "Le massif du Chaillu se situe entre les plateaux Batéké et la vallée du Niari."
+    },
+
+    {
+        question: "Comment appelle-t-on l'instrument de percussion traditionnel fabriqué à partir de calebasses séchées remplies de grains ?",
+        reponses: ["Le balafon", "Les maracas", "Le tam-tam"],
+        bonne: 1,
+        explication: "Les maracas traditionnelles sont fabriquées à partir de calebasses séchées remplies de grains."
+    },
+
+    {
+        question: "Le parc national de Conkouati-Douli, sur la façade atlantique, est un site majeur de nidification pour quelle espèce ?",
+        reponses: ["Les albatros", "Les tortues luth", "Les manchots"],
+        bonne: 1,
+        explication: "Les plages du parc de Conkouati-Douli constituent un site majeur de nidification pour les tortues luth."
+    },
+
+    {
+        question: "Quelle industrie constitue le principal moteur économique de la ville de Pointe-Noire ?",
+        reponses: ["L'industrie textile", "Le pétrole et l'activité portuaire", "L'industrie automobile"],
+        bonne: 1,
+        explication: "Le pétrole et l'activité du port autonome font de Pointe-Noire le principal centre économique du pays."
+    },
+
+    {
+        question: "Quelle expression idéologique était utilisée par le régime d'Alphonse Massamba-Débat pour décrire son orientation ?",
+        reponses: ["Le socialisme bantou", "Le libéralisme tropical", "Le nationalisme impérial"],
+        bonne: 0,
+        explication: "Le régime de Massamba-Débat se réclamait notamment d'un « socialisme bantou »."
+    },
+
+    {
+        question: "En 1940, quelle ville devient un centre majeur de la France libre en Afrique ?",
+        reponses: ["Pointe-Noire", "Brazzaville", "Dolisie"],
+        bonne: 1,
+        explication: "Brazzaville est devenue en 1940 un centre majeur de la France libre en Afrique."
     }
+
+
 
 ];
     const SUPABASE_URL = "https://ccxbknqqfwlusiprtwbs.supabase.co";
