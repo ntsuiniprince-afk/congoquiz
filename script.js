@@ -757,7 +757,7 @@ const questions = [
 
     {
         question: "L'équateur traverse-t-il le territoire de la République du Congo ?",
-        reponses: ["Oui, il traverse le nord du pays(à Makoua)", "Non, il passe loin au sud", "Non, uniquement au large des côtes"],
+        reponses: [ "Oui, il traverse le nord du pays(à Makoua)", "Non, il passe loin au sud", "Non, uniquement au large des côtes"],
         bonne: 0,
         explication: "Le Congo est situé de part et d'autre de l'équateur, qui traverse le nord du pays."
     },
@@ -1610,184 +1610,184 @@ function choisirQuestions(nombre) {
     }
     async function questionSuivante(){
 
-        document.getElementById ("messageErreur").textContent = "";
-    
-        numeroQuestion++;
-    
-        if(numeroQuestion < nombreQuestions){
-    
-            afficherQuestion();
-    
-            document.getElementById("explication").innerHTML = "";
-    
-            document.getElementById("btnSuivant").style.display = "none";
-    
-        }else{
-    
-            let joueur = chargerJoueur();
-    
-            // ==========================================
-            // FIN DE LA PARTIE
-            // ==========================================
-    
-            // Une partie terminée = une partie jouée
-            joueur.partiesJouees++;
-    
-            // Ajout des points gagnés
-            joueur.points += score;
-    
-            // Victoire parfaite
-            if(score === nombreQuestions){
-                joueur.partiesGagnees++;
-            }
-    
-            // Sanction si le joueur est sous la moyenne
-            if(score < (nombreQuestions / 2)){
-                joueur.points -= nombreQuestions;
-            }
-    
-            // Empêcher les points négatifs
-            if(joueur.points < 0){
-                joueur.points = 0;
-            }
-    
-            // ==========================================
-            // MEILLEUR SCORE PAR CATÉGORIE
-            // ==========================================
-    
-            if(categorieChoisie === "sport" && score > joueur.sport){
-                joueur.sport = score;
-            }
-    
-            if(categorieChoisie === "histoire" && score > joueur.histoire){
-                joueur.histoire = score;
-            }
-    
-            if(categorieChoisie === "culture" && score > joueur.culture){
-                joueur.culture = score;
-            }
-    
-            if(categorieChoisie === "institutions" && score > joueur.institutions){
-                joueur.institutions = score;
-            }
-    
-            if(categorieChoisie === "geographie" && score > joueur.geographie){
-                joueur.geographie = score;
-            }
-    
-            if(categorieChoisie === "personnalites" && score > joueur.personnalites){
-                joueur.personnalites = score;
-            }
-    
-            // ==========================================
-            // SAUVEGARDE LOCALE
-            // ==========================================
-    
-            sauvegarderJoueur(joueur);
-    
-            // ==========================================
-            // MISE À JOUR AUTOMATIQUE SUPABASE
-            // ==========================================
-    
-            await mettreAJourJoueurSupabase(joueur);
-    
-            // ==========================================
-            // AFFICHAGE DU RÉSULTAT
-            // ==========================================
-    
-            let pourcentage = Math.round(
-                (score / nombreQuestions) * 100
-            );
-    
-            let niveau = "";
-    
-            if(pourcentage >= 90){
-    
-                niveau = "👑 Expert de la culture congolaise";
-    
-            }else if(pourcentage >= 70){
-    
-                niveau = "🏆 Très bon connaisseur";
-    
-            }else if(pourcentage >= 50){
-    
-                niveau = "📚 Bon niveau";
-    
-            }else if(pourcentage >= 30){
-    
-                niveau = "🌱 Continue à apprendre";
-    
-            }else{
-    
-                niveau = "💪 Débutant";
-    
-            }
-    
-            let etoiles = "";
-    
-            if(pourcentage >= 90){
-    
-                etoiles = "⭐⭐⭐⭐⭐";
-    
-            }else if(pourcentage >= 70){
-    
-                etoiles = "⭐⭐⭐⭐";
-    
-            }else if(pourcentage >= 50){
-    
-                etoiles = "⭐⭐⭐";
-    
-            }else if(pourcentage >= 30){
-    
-                etoiles = "⭐⭐";
-    
-            }else{
-    
-                etoiles = "⭐";
-    
-            }
-    
-            document.querySelector(".accueil").innerHTML = `
-    
-                <div class="finQuizContainer">
-    
-                    <h1 class="finQuizTitre">
-                        🎉 Quiz terminé !
-                    </h1>
-    
-                    <div class="scoreCard">
-    
-                        <h2>${score}/${nombreQuestions}</h2>
-    
-                        <p>📊 ${pourcentage}%</p>
-    
-                        <h3>${niveau}</h3>
-    
-                        <div class="etoiles">
-                            ${etoiles}
-                        </div>
-    
-                    </div>
-    
-                    <button
-                        class="rejouer"
-                        onclick="rejouer()">
-                        🔄 Rejouer
-                    </button>
-    
-                    <button
-                        class="retourAccueil"
-                        onclick="window.location.href='index.html?accueil=1'">
-                        🏠 Retour au menu
-                    </button>
-    
-                </div>
-    
-            `;
-    
+    document.getElementById("messageErreur").textContent = "";
+
+    numeroQuestion++;
+
+    if(numeroQuestion < nombreQuestions){
+
+        afficherQuestion();
+
+        document.getElementById("explication").innerHTML = "";
+
+        document.getElementById("btnSuivant").style.display = "none";
+
+    }else{
+
+        let joueur = chargerJoueur();
+
+        // ==========================================
+        // FIN DE LA PARTIE
+        // ==========================================
+
+        // Une partie terminée = une partie jouée
+        joueur.partiesJouees++;
+
+        // ==========================================
+        // AJOUT DES POINTS
+        // ==========================================
+        // 1 bonne réponse = 2 points
+        // Mauvaise réponse = 0 point
+        // Temps écoulé = 0 point
+        // Aucune pénalité
+
+        joueur.points += score * 2;
+
+        // ==========================================
+        // VICTOIRE PARFAITE
+        // ==========================================
+
+        if(score === nombreQuestions){
+            joueur.partiesGagnees++;
         }
-    
+
+        // ==========================================
+        // MEILLEUR SCORE PAR CATÉGORIE
+        // ==========================================
+
+        if(categorieChoisie === "sport" && score > joueur.sport){
+            joueur.sport = score;
+        }
+
+        if(categorieChoisie === "histoire" && score > joueur.histoire){
+            joueur.histoire = score;
+        }
+
+        if(categorieChoisie === "culture" && score > joueur.culture){
+            joueur.culture = score;
+        }
+
+        if(categorieChoisie === "institutions" && score > joueur.institutions){
+            joueur.institutions = score;
+        }
+
+        if(categorieChoisie === "geographie" && score > joueur.geographie){
+            joueur.geographie = score;
+        }
+
+        if(categorieChoisie === "personnalites" && score > joueur.personnalites){
+            joueur.personnalites = score;
+        }
+
+        // ==========================================
+        // SAUVEGARDE LOCALE
+        // ==========================================
+
+        sauvegarderJoueur(joueur);
+
+        // ==========================================
+        // MISE À JOUR AUTOMATIQUE SUPABASE
+        // ==========================================
+
+        await mettreAJourJoueurSupabase(joueur);
+
+        // ==========================================
+        // AFFICHAGE DU RÉSULTAT
+        // ==========================================
+
+        let pourcentage = Math.round(
+            (score / nombreQuestions) * 100
+        );
+
+        let niveau = "";
+
+        if(pourcentage >= 90){
+
+            niveau = "👑 Expert de la culture congolaise";
+
+        }else if(pourcentage >= 70){
+
+            niveau = "🏆 Très bon connaisseur";
+
+        }else if(pourcentage >= 50){
+
+            niveau = "📚 Bon niveau";
+
+        }else if(pourcentage >= 30){
+
+            niveau = "🌱 Continue à apprendre";
+
+        }else{
+
+            niveau = "💪 Débutant";
+
+        }
+
+        let etoiles = "";
+
+        if(pourcentage >= 90){
+
+            etoiles = "⭐⭐⭐⭐⭐";
+
+        }else if(pourcentage >= 70){
+
+            etoiles = "⭐⭐⭐⭐";
+
+        }else if(pourcentage >= 50){
+
+            etoiles = "⭐⭐⭐";
+
+        }else if(pourcentage >= 30){
+
+            etoiles = "⭐⭐";
+
+        }else{
+
+            etoiles = "⭐";
+
+        }
+
+        document.querySelector(".accueil").innerHTML = `
+
+            <div class="finQuizContainer">
+
+                <h1 class="finQuizTitre">
+                    🎉 Quiz terminé !
+                </h1>
+
+                <div class="scoreCard">
+
+                    <h2>${score}/${nombreQuestions}</h2>
+
+                    <p>📊 ${pourcentage}%</p>
+
+                    <h3>${niveau}</h3>
+
+                    <div class="etoiles">
+                        ${etoiles}
+                    </div>
+
+                </div>
+
+                <button
+                    class="rejouer"
+                    onclick="rejouer()">
+                    🔄 Rejouer
+                </button>
+
+                <button
+                    class="retourAccueil"
+                    onclick="window.location.href='index.html?accueil=1'">
+                    🏠 Retour au menu
+                </button>
+
+            </div>
+
+        `;
+
     }
+
+}
    
     function demarrerChrono(){
 
