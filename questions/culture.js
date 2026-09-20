@@ -1098,6 +1098,708 @@ const questionsCulture = [
     ],
     bonne: 2,
     explication: "Le fleuve Congo est le deuxième plus long fleuve d'Afrique après le Nil, et borde Brazzaville."
-}
+},
+
+    {
+        question: "Quel peintre et sculpteur congolais, né à Pointe-Noire en 1953, est notamment connu pour ses œuvres sur le thème de la Tchikoumbi ?",
+        reponses: ["Marcel Gotène", "Nicolas Ondongo", "Frédéric Trigo Piula", "Pierre Lods"],
+        bonne: 2,
+        explication: "Frédéric Trigo Piula, né à Pointe-Noire en 1953, est un peintre et sculpteur congolais reconnu, notamment pour ses œuvres sur la Tchikoumbi."
+    },
+
+    {
+        question: "Chez les Vili, qu'est-ce que la Tchikoumbi, thème récurrent dans l'œuvre du peintre Trigo Piula ?",
+        reponses: ["Une danse guerrière", "Un rite d'initiation féminine", "Un plat traditionnel", "Un instrument de musique"],
+        bonne: 1,
+        explication: "La Tchikoumbi est un rite traditionnel d'initiation féminine chez le peuple Vili, marquant le passage à l'âge adulte."
+    },
+
+    {
+        question: "Quel collectif d'artistes Trigo Piula a-t-il fondé à son retour au Congo en 1982 ?",
+        reponses: ["Poto-Poto Nouveau", "Ndji Ndji Art", "Bacongo Art", "Loango Créatif"],
+        bonne: 1,
+        explication: "Trigo Piula a fondé en 1982, à son retour au Congo, le collectif d'artistes Ndji Ndji Art."
+    },
+
+    {
+        question: "Quel écrivain et homme de culture congolais, né en 1929 à Nzungui, cofonda l'Institut d'études congolaises en 1960 ?",
+        reponses: ["Guy Menga", "Patrice Joseph Lhoni", "Sylvain Bemba", "Tchicaya U Tam'si"],
+        bonne: 1,
+        explication: "Patrice Joseph Lhoni, né en 1929 à Nzungui, cofonda l'Institut d'études congolaises en 1960 et le Centre congolais du théâtre en 1964."
+    },
+
+    {
+        question: "Quel type de récit oral, mettant souvent en scène des animaux, constitue une part importante de la littérature traditionnelle congolaise ?",
+        reponses: ["Le roman", "Le conte", "La poésie épique uniquement", "Le théâtre classique"],
+        bonne: 1,
+        explication: "Le conte, mettant souvent en scène des animaux à la manière de fables, constitue une part importante de la tradition orale congolaise."
+    },
+
+    {
+        question: "Autour de quelle pratique orale traditionnelle la culture kongo organise-t-elle une grande partie de sa transmission culturelle ?",
+        reponses: ["L'écriture uniquement", "La palabre (contes et proverbes)", "Le théâtre occidental", "La correspondance épistolaire"],
+        bonne: 1,
+        explication: "La culture kongo s'organise traditionnellement autour de la palabre, un espace de transmission par les contes et les proverbes."
+    },
+
+    {
+        question: "Quel type d'animal est fréquemment le personnage principal des fables et contes traditionnels congolais, incarnant la ruse ?",
+        reponses: ["Le lion uniquement", "La tortue ou le lièvre", "Le poisson", "L'aigle"],
+        bonne: 1,
+        explication: "La tortue et le lièvre, incarnant souvent la ruse, sont des personnages récurrents des contes traditionnels congolais."
+    },
+
+    {
+        question: "Quel rite traditionnel de passage à l'âge adulte, pratiqué dans plusieurs ethnies congolaises, concerne les jeunes hommes ?",
+        reponses: ["Le mariage précoce uniquement", "Les rites d'initiation masculine (circoncision et enseignements)", "Le baptême chrétien uniquement", "Aucun rite de passage n'existe"],
+        bonne: 1,
+        explication: "Plusieurs ethnies congolaises pratiquent des rites d'initiation masculine, incluant souvent la circoncision et des enseignements traditionnels."
+    },
+
+    {
+        question: "Comment appelle-t-on, en pays kongo, l'ensemble des figures de protection ou de pouvoir sculptées et parfois cloutées ?",
+        reponses: ["Les sanzas", "Les minkisi (nkisi au singulier)", "Les liputa", "Les kuba"],
+        bonne: 1,
+        explication: "Les minkisi (singulier nkisi) désignent, en pays kongo, des figures sculptées investies de pouvoirs protecteurs ou thérapeutiques."
+    },
+
+    {
+        question: "Quel type de figure de pouvoir kongo est parfois recouverte de clous et de lames métalliques plantés au fil des cérémonies ?",
+        reponses: ["Le simple masque décoratif", "Le nkisi nkondi", "La statuette funéraire uniquement", "Le tambour à fente"],
+        bonne: 1,
+        explication: "Le nkisi nkondi est une statue de pouvoir kongo, hérissée de clous et de lames métalliques plantés lors des cérémonies et serments."
+    },
+
+    {
+        question: "Quel type d'artisanat traditionnel congolais consiste à tisser des fibres de raphia pour en faire des tissus ou des paniers ?",
+        reponses: ["La poterie exclusivement", "La vannerie et le tissage de raphia", "La joaillerie", "La forge exclusivement"],
+        bonne: 1,
+        explication: "La vannerie et le tissage de fibres de raphia constituent un artisanat traditionnel important en République du Congo."
+    },
+
+    {
+        question: "Quel savoir-faire artisanal traditionnel, pratiqué notamment par les femmes, consiste à façonner des récipients en argile ?",
+        reponses: ["La sculpture sur bois", "La poterie", "La forge du fer", "Le tissage du raphia"],
+        bonne: 1,
+        explication: "La poterie, souvent pratiquée par les femmes, est un artisanat traditionnel important dans plusieurs régions du Congo."
+    },
+
+    {
+        question: "Quel métal les forgerons traditionnels congolais travaillaient-ils pour fabriquer outils et armes avant la colonisation ?",
+        reponses: ["L'aluminium", "Le fer", "Le platine", "Le titane"],
+        bonne: 1,
+        explication: "Les forgerons traditionnels congolais travaillaient le fer pour fabriquer outils, armes et objets rituels."
+    },
+
+    {
+        question: "Quelle boisson traditionnelle fermentée, tirée de la sève du palmier, est consommée dans plusieurs régions du Congo ?",
+        reponses: ["La bière de mil", "Le vin de palme", "Le munkoyo", "Le thé"],
+        bonne: 1,
+        explication: "Le vin de palme, obtenu par fermentation de la sève du palmier, est une boisson traditionnelle consommée dans plusieurs régions du Congo."
+    },
+
+    {
+        question: "Quelle boisson traditionnelle à base de manioc fermenté est également consommée en Afrique centrale, dont le Congo ?",
+        reponses: ["Le vin de palme", "Le munkoyo", "Le thé", "Le café"],
+        bonne: 1,
+        explication: "Le munkoyo, boisson à base de manioc et de racines fermentées, est consommée dans certaines régions d'Afrique centrale, dont le Congo."
+    },
+
+    {
+        question: "Quel fruit tropical, largement cultivé au Congo, sert à préparer une boisson rafraîchissante appréciée en saison sèche ?",
+        reponses: ["La pomme", "Le bissap (oseille de Guinée)", "La poire", "Le kiwi"],
+        bonne: 1,
+        explication: "Le bissap, à base de fleurs d'oseille de Guinée, est une boisson rafraîchissante largement consommée au Congo."
+    },
+
+    {
+        question: "Quel plat à base de chenilles est consommé comme source de protéines dans plusieurs régions forestières du Congo ?",
+        reponses: ["Les escargots au beurre", "Les chenilles grillées ou en sauce", "Le caviar", "Les huîtres"],
+        bonne: 1,
+        explication: "Les chenilles, riches en protéines, sont consommées grillées ou en sauce dans plusieurs régions forestières du Congo."
+    },
+
+    {
+        question: "Quel type de viande de brousse, bien que réglementé, reste consommé traditionnellement dans certaines régions rurales congolaises ?",
+        reponses: ["Le porc uniquement", "Le gibier (viande de brousse)", "Le bœuf importé", "Aucune viande de brousse n'est consommée"],
+        bonne: 1,
+        explication: "Le gibier, ou viande de brousse, reste traditionnellement consommé dans certaines régions rurales congolaises, malgré une réglementation visant à protéger la faune."
+    },
+
+    {
+        question: "Quel type de festivité traditionnelle marque généralement la fin des récoltes dans plusieurs villages congolais ?",
+        reponses: ["Le Nouvel An chinois", "Une fête des récoltes ou de l'igname", "La Toussaint", "Le Ramadan"],
+        bonne: 1,
+        explication: "Plusieurs villages congolais célèbrent traditionnellement une fête des récoltes marquant la fin de la saison agricole."
+    },
+
+    {
+        question: "Comment appelle-t-on la cérémonie traditionnelle de deuil et de commémoration des défunts pratiquée dans plusieurs cultures congolaises ?",
+        reponses: ["Le carnaval", "La veillée funéraire (ou matanga)", "La fête de la musique", "Le pèlerinage"],
+        bonne: 1,
+        explication: "La veillée funéraire, parfois appelée matanga, est une cérémonie traditionnelle de deuil pratiquée dans plusieurs cultures d'Afrique centrale, dont le Congo."
+    },
+
+    {
+        question: "Quel jeu de stratégie traditionnel, joué avec des graines ou des cailloux sur un plateau à cavités, est répandu au Congo comme dans une grande partie de l'Afrique ?",
+        reponses: ["Les échecs", "L'awalé (ou songo)", "Le tarot", "Le mahjong"],
+        bonne: 1,
+        explication: "L'awalé, aussi appelé songo dans certaines régions, est un jeu de stratégie traditionnel répandu au Congo et dans une grande partie de l'Afrique."
+    },
+
+    {
+        question: "Quel jeu d'adresse traditionnel, pratiqué par les enfants avec des cailloux ou des graines lancés et rattrapés, est courant au Congo ?",
+        reponses: ["Les échecs", "Le jeu des osselets", "Le bridge", "Le poker"],
+        bonne: 1,
+        explication: "Le jeu des osselets, pratiqué avec des cailloux ou des graines, est un jeu d'adresse traditionnel courant chez les enfants congolais."
+    },
+
+    {
+        question: "Quelle discipline de lutte traditionnelle, pratiquée notamment lors de fêtes villageoises, existe dans plusieurs régions du Congo ?",
+        reponses: ["Le judo", "La lutte traditionnelle congolaise", "Le karaté", "La boxe anglaise uniquement"],
+        bonne: 1,
+        explication: "La lutte traditionnelle, pratiquée lors de fêtes villageoises, est un sport et un divertissement traditionnel répandu au Congo."
+    },
+
+    {
+        question: "Quel accessoire vestimentaire traditionnel, souvent porté par les chefs coutumiers, symbolise l'autorité dans plusieurs sociétés congolaises ?",
+        reponses: ["La cravate", "Le bâton de commandement", "Le chapeau melon", "Les lunettes de soleil"],
+        bonne: 1,
+        explication: "Le bâton de commandement est un symbole traditionnel d'autorité porté par les chefs coutumiers dans plusieurs sociétés congolaises."
+    },
+
+    {
+        question: "Quel type de parure corporelle traditionnelle, aujourd'hui moins répandue, était pratiqué par certaines ethnies congolaises à des fins esthétiques ou identitaires ?",
+        reponses: ["Le piercing corporel uniquement", "Les tatouages à l'encre uniquement", "Les scarifications", "Aucune parure corporelle n'existait"],
+        bonne: 2,
+        explication: "Les scarifications constituaient une parure corporelle traditionnelle pratiquée par certaines ethnies congolaises, à des fins esthétiques ou identitaires."
+    },
+
+    {
+        question: "Quel type de coiffure traditionnelle élaborée est porté par certaines femmes lors de cérémonies importantes au Congo ?",
+        reponses: ["Le crâne rasé en toute occasion", "Des perruques synthétiques modernes uniquement", "Des coiffures tressées élaborées", "Aucune coiffure particulière"],
+        bonne: 2,
+        explication: "Des coiffures tressées élaborées sont traditionnellement portées par les femmes lors de cérémonies importantes au Congo."
+    },
+
+    {
+        question: "Quelle matière végétale est traditionnellement utilisée pour tresser des paniers, chapeaux et nattes en République du Congo ?",
+        reponses: ["La laine", "Le coton uniquement", "Le raphia", "Le cuir"],
+        bonne: 2,
+        explication: "Le raphia est une matière végétale traditionnellement utilisée pour tresser paniers, chapeaux et nattes au Congo."
+    },
+
+    {
+        question: "Quel type d'habitat traditionnel, à base de terre battue et de feuilles de palmier ou de raphia, caractérisait les villages congolais avant l'urbanisation ?",
+        reponses: ["La tente nomade", "Le gratte-ciel", "La case traditionnelle en terre et en feuilles de raphia", "L'igloo"],
+        bonne: 2,
+        explication: "La case traditionnelle en terre battue, couverte de feuilles de palmier ou de raphia, caractérisait l'habitat rural congolais avant l'urbanisation."
+    },
+
+    {
+        question: "Quelle est la fonction traditionnelle du « nganga » dans plusieurs sociétés congolaises ?",
+        reponses: ["Un musicien professionnel", "Un simple artisan", "Un guérisseur ou devin traditionnel", "Un chef militaire uniquement"],
+        bonne: 2,
+        explication: "Le nganga est traditionnellement un guérisseur ou devin, jouant un rôle central dans la médecine traditionnelle et les rites de plusieurs sociétés congolaises."
+    },
+
+    {
+        question: "Quel rôle social le griot ou conteur traditionnel joue-t-il dans plusieurs communautés d'Afrique centrale, dont le Congo ?",
+        reponses: ["Juge suprême", "Chef militaire", "Gardien de la mémoire orale et transmetteur de la tradition", "Agriculteur uniquement"],
+        bonne: 2,
+        explication: "Le conteur, parfois assimilé au griot ouest-africain, joue le rôle de gardien de la mémoire orale et de transmetteur de la tradition."
+    },
+
+    {
+        question: "Quelle place occupe traditionnellement la palabre (assemblée de discussion collective) dans la résolution des conflits en milieu rural congolais ?",
+        reponses: ["Un rôle purement cérémoniel sans effet pratique", "Aucun rôle, tout est réglé par la justice moderne", "Un rôle central dans la médiation et la résolution des conflits", "Elle est réservée aux femmes uniquement"],
+        bonne: 2,
+        explication: "La palabre occupe traditionnellement un rôle central dans la médiation et la résolution des conflits en milieu rural congolais."
+    },
+
+    {
+        question: "Quel type de masque, porté lors de cérémonies rituelles chez les Bateke, est particulièrement recherché par les collectionneurs d'art africain ?",
+        reponses: ["Le masque grec antique", "Le masque vénitien", "Le masque Teke (ou Tsaye)", "Le masque japonais Nô"],
+        bonne: 2,
+        explication: "Les masques Teke (ou Tsaye), utilisés lors de cérémonies rituelles, sont particulièrement recherchés par les collectionneurs d'art africain."
+    },
+
+    {
+        question: "Quelle fonction les masques traditionnels congolais remplissent-ils le plus souvent, au-delà de l'esthétique ?",
+        reponses: ["Une fonction commerciale uniquement", "Une fonction purement décorative sans signification", "Une fonction rituelle et spirituelle", "Une fonction militaire uniquement"],
+        bonne: 2,
+        explication: "Les masques traditionnels congolais remplissent le plus souvent une fonction rituelle et spirituelle, au-delà de leur valeur esthétique."
+    },
+
+    {
+        question: "Quel type de sculpture funéraire, destinée à honorer la mémoire des ancêtres, est traditionnellement réalisé par certains peuples du Congo ?",
+        reponses: ["Des tombeaux de marbre", "Des pyramides monumentales", "Des statuettes ou reliquaires d'ancêtres", "Des mausolées en pierre uniquement"],
+        bonne: 2,
+        explication: "Des statuettes ou reliquaires destinés à honorer la mémoire des ancêtres sont traditionnellement réalisés par certains peuples du Congo."
+    },
+
+    {
+        question: "Comment qualifie-t-on la transmission des savoirs traditionnels congolais, historiquement peu écrite avant la colonisation ?",
+        reponses: ["Une transmission uniquement par hiéroglyphes", "Une transmission uniquement écrite en caractères latins", "Une transmission essentiellement orale", "Une transmission interdite par la tradition"],
+        bonne: 2,
+        explication: "La transmission des savoirs traditionnels congolais était historiquement essentiellement orale, avant l'introduction de l'écriture par la colonisation."
+    },
+
+    {
+        question: "Quel type de cérémonie traditionnelle accompagne généralement la naissance d'un enfant dans plusieurs sociétés congolaises ?",
+        reponses: ["Un jeûne collectif obligatoire", "Aucune cérémonie particulière", "Une cérémonie de présentation ou de bénédiction du nouveau-né", "Un pèlerinage à l'étranger"],
+        bonne: 2,
+        explication: "Une cérémonie de présentation ou de bénédiction du nouveau-né accompagne généralement la naissance dans plusieurs sociétés congolaises."
+    },
+
+    {
+        question: "Quel principe social traditionnel valorise fortement le respect des aînés dans la culture congolaise ?",
+        reponses: ["Le rejet systématique des traditions", "L'individualisme radical", "Le respect de la hiérarchie d'âge et des anciens", "L'absence de hiérarchie sociale"],
+        bonne: 2,
+        explication: "Le respect de la hiérarchie d'âge et des anciens est un principe social fortement valorisé dans la culture congolaise traditionnelle."
+    },
+
+    {
+        question: "Quelle valeur sociale traditionnelle met l'accent sur la solidarité et l'entraide au sein de la famille élargie congolaise ?",
+        reponses: ["La compétition permanente", "L'individualisme économique", "La solidarité familiale et communautaire", "L'isolement volontaire"],
+        bonne: 2,
+        explication: "La solidarité familiale et communautaire, incluant la famille élargie, est une valeur sociale traditionnelle forte de la culture congolaise."
+    },
+
+    {
+        question: "Dans la tradition congolaise, à qui la dot est-elle traditionnellement versée lors d'un mariage coutumier ?",
+        reponses: ["Au chef du village uniquement, sans lien avec la famille", "À l'État", "À la famille de la mariée", "À une association caritative"],
+        bonne: 2,
+        explication: "La dot est traditionnellement versée à la famille de la mariée, scellant l'alliance entre les deux familles."
+    },
+
+    {
+        question: "Quel principe traditionnel régit souvent l'organisation de la terre et de l'héritage dans certaines sociétés matrilinéaires du Congo, comme chez les Bakongo ?",
+        reponses: ["L'absence totale de règles de filiation", "La filiation patrilinéaire stricte partout", "La filiation matrilinéaire (transmission par la lignée maternelle)", "La propriété collective sans transmission"],
+        bonne: 2,
+        explication: "Chez certaines sociétés congolaises, dont les Bakongo, la filiation matrilinéaire régit traditionnellement l'organisation sociale et l'héritage."
+    },
+
+    {
+        question: "Quel type de musique traditionnelle accompagne généralement les cérémonies funéraires en pays kongo ?",
+        reponses: ["Une musique électronique moderne uniquement", "Le silence total est imposé", "Des chants et percussions funéraires spécifiques", "Aucune musique n'est associée aux funérailles"],
+        bonne: 2,
+        explication: "Des chants et percussions funéraires spécifiques accompagnent généralement les cérémonies de deuil en pays kongo."
+    },
+
+    {
+        question: "Quel est le nom donné au vêtement traditionnel drapé, souvent en tissu wax, porté par les femmes congolaises au quotidien ?",
+        reponses: ["Le sari", "Le kimono", "Le pagne", "Le boubou touareg"],
+        bonne: 2,
+        explication: "Le pagne, souvent en tissu wax, est le vêtement traditionnel drapé porté quotidiennement par de nombreuses femmes congolaises."
+    },
+
+    {
+        question: "Quel accessoire vestimentaire, porté noué autour de la tête, complète traditionnellement la tenue féminine congolaise ?",
+        reponses: ["La casquette de baseball", "Le chapeau melon", "Le foulard ou pagne de tête (mouchoir de tête)", "Le bonnet de laine"],
+        bonne: 2,
+        explication: "Le foulard ou pagne de tête, noué de diverses façons, complète traditionnellement la tenue féminine congolaise."
+    },
+
+    {
+        question: "Quel type de tenue traditionnelle ample et colorée est couramment porté par les hommes lors des grandes occasions au Congo ?",
+        reponses: ["Le kimono", "Le kilt écossais", "Le boubou", "Le sarong balinais"],
+        bonne: 2,
+        explication: "Le boubou, tenue ample et colorée, est couramment porté par les hommes congolais lors des grandes occasions."
+    },
+
+    {
+        question: "Quelle place la musique et la danse occupent-elles traditionnellement dans les cérémonies religieuses ou spirituelles congolaises ?",
+        reponses: ["Un rôle secondaire réservé aux enfants uniquement", "Aucune place, elles sont interdites", "Une place centrale, indissociable du rituel", "Elles sont réservées aux funérailles uniquement"],
+        bonne: 2,
+        explication: "La musique et la danse occupent une place centrale dans les cérémonies religieuses ou spirituelles traditionnelles congolaises, indissociables du rituel."
+    },
+
+    {
+        question: "Quel type de tambour rituel accompagne les cérémonies de guérison ou de possession dans certaines traditions congolaises ?",
+        reponses: ["La caisse claire moderne", "Le tambour de basque uniquement", "Le tambour ngoma rituel", "Le tambourin occidental"],
+        bonne: 2,
+        explication: "Le tambour ngoma rituel accompagne traditionnellement les cérémonies de guérison ou de possession dans certaines traditions congolaises."
+    },
+
+    {
+        question: "Quel type d'art corporel traditionnel utilise la peinture au kaolin (argile blanche) lors de certaines cérémonies rituelles congolaises ?",
+        reponses: ["Le henné", "Le tatouage permanent à l'encre", "Le maquillage rituel au kaolin", "Le maquillage carnavalesque occidental"],
+        bonne: 2,
+        explication: "Le maquillage rituel au kaolin, argile blanche, est utilisé lors de certaines cérémonies rituelles traditionnelles congolaises."
+    },
+
+    {
+        question: "Quel rôle social les sociétés initiatiques traditionnelles jouaient-elles historiquement dans l'éducation des jeunes au Congo ?",
+        reponses: ["Un rôle purement commercial", "Aucun rôle éducatif", "Un rôle éducatif et de transmission des valeurs communautaires", "Un rôle réservé à l'armée uniquement"],
+        bonne: 2,
+        explication: "Les sociétés initiatiques traditionnelles jouaient historiquement un rôle éducatif important, transmettant les valeurs et savoirs communautaires aux jeunes générations."
+    },
+
+    {
+        question: "Quel type de récipient traditionnel, souvent décoré, est utilisé pour conserver et transporter l'eau ou le vin de palme ?",
+        reponses: ["Le tonneau en bois européen", "La bouteille en plastique", "Le seau en métal moderne", "La calebasse"],
+        bonne: 3,
+        explication: "La calebasse, souvent décorée, est traditionnellement utilisée pour conserver et transporter l'eau ou le vin de palme."
+    },
+
+    {
+        question: "Quel matériau naturel est traditionnellement utilisé pour fabriquer des cordes, filets de pêche ou liens dans l'artisanat congolais ?",
+        reponses: ["Le plastique", "Le nylon uniquement", "Le fil de fer", "Les fibres végétales (raphia, liane)"],
+        bonne: 3,
+        explication: "Les fibres végétales, comme le raphia ou la liane, sont traditionnellement utilisées pour fabriquer cordes, filets et liens dans l'artisanat congolais."
+    },
+
+    {
+        question: "Quel type de piège traditionnel, à base de fibres tressées, est utilisé pour la chasse au petit gibier en forêt congolaise ?",
+        reponses: ["Le filet de pêche marin", "Le fusil à pompe uniquement", "La cage métallique importée", "Le piège à collet tressé"],
+        bonne: 3,
+        explication: "Le piège à collet tressé, fabriqué à partir de fibres végétales, est traditionnellement utilisé pour la chasse au petit gibier en forêt."
+    },
+
+    {
+        question: "Quelle activité économique traditionnelle reste centrale pour de nombreuses communautés riveraines du fleuve Congo et de ses affluents ?",
+        reponses: ["L'élevage de rennes", "L'extraction minière industrielle", "Le tourisme de masse", "La pêche artisanale"],
+        bonne: 3,
+        explication: "La pêche artisanale reste une activité économique centrale pour de nombreuses communautés riveraines du fleuve Congo et de ses affluents."
+    },
+
+    {
+        question: "Quel type de piroguе traditionnelle, taillée dans un tronc d'arbre unique, est couramment utilisée sur le fleuve Congo ?",
+        reponses: ["Le ferry industriel", "Le kayak en plastique", "Le voilier moderne", "La pirogue monoxyle"],
+        bonne: 3,
+        explication: "La pirogue monoxyle, taillée dans un seul tronc d'arbre, est un moyen de transport traditionnel couramment utilisé sur le fleuve Congo."
+    },
+
+    {
+        question: "Quelle place les peuples autochtones (souvent appelés pygmées) occupent-ils dans la reconnaissance officielle de la République du Congo ?",
+        reponses: ["Ils n'existent plus au Congo", "Ils ne sont pas reconnus par la loi", "Ils sont considérés comme des étrangers", "Ils sont reconnus et une loi protège leurs droits"],
+        bonne: 3,
+        explication: "Les peuples autochtones (parfois appelés pygmées) sont officiellement reconnus en République du Congo, protégés par une loi spécifique adoptée en 2011."
+    },
+
+    {
+        question: "En quelle année la République du Congo a-t-elle adopté une loi spécifique sur la promotion et la protection des droits des populations autochtones ?",
+        reponses: ["2001", "2011", "1990", "2020"],
+        bonne: 1,
+        explication: "La République du Congo a adopté en 2011 une loi sur la promotion et la protection des droits des populations autochtones, une première en Afrique centrale."
+    },
+
+    {
+        question: "Quel type de savoir traditionnel les peuples autochtones du Congo, notamment en forêt, possèdent-ils particulièrement ?",
+        reponses: ["Une expertise en métallurgie industrielle", "Aucune connaissance particulière de la forêt", "Une expertise en navigation maritime uniquement", "Une connaissance approfondie de la pharmacopée forestière"],
+        bonne: 3,
+        explication: "Les peuples autochtones du Congo possèdent une connaissance approfondie de la pharmacopée forestière traditionnelle."
+    },
+
+    {
+        question: "Quel type de plante médicinale traditionnelle est couramment utilisé dans la pharmacopée congolaise pour traiter diverses affections ?",
+        reponses: ["Uniquement des minéraux", "Uniquement des médicaments de synthèse importés", "Aucune plante n'est utilisée traditionnellement", "Des plantes et écorces médicinales locales"],
+        bonne: 3,
+        explication: "Des plantes et écorces médicinales locales sont couramment utilisées dans la pharmacopée traditionnelle congolaise."
+    },
+
+    {
+        question: "Quelle place la médecine traditionnelle occupe-t-elle encore aujourd'hui aux côtés de la médecine moderne en République du Congo ?",
+        reponses: ["Elle a remplacé entièrement la médecine moderne", "Elle a totalement disparu", "Elle est officiellement interdite par la loi", "Elle reste largement pratiquée en complément de la médecine moderne"],
+        bonne: 3,
+        explication: "La médecine traditionnelle reste largement pratiquée en complément de la médecine moderne en République du Congo."
+    },
+
+    {
+        question: "Quel type de cérémonie traditionnelle marque le passage du statut de célibataire à celui de personne mariée chez plusieurs ethnies congolaises, en plus de la dot ?",
+        reponses: ["Un simple contrat écrit sans cérémonie", "Aucune cérémonie, seule la dot compte", "Un examen médical obligatoire uniquement", "Une fête communautaire réunissant les deux familles"],
+        bonne: 3,
+        explication: "Une fête communautaire réunissant les deux familles marque traditionnellement, en plus de la dot, le passage au statut de personne mariée."
+    },
+
+    {
+        question: "Quel principe traditionnel de partage est souvent observé lors des repas communautaires en milieu rural congolais ?",
+        reponses: ["Le jeûne collectif systématique", "Le repas individuel obligatoire", "L'interdiction de partager la nourriture", "Le partage collectif du repas dans un même plat"],
+        bonne: 3,
+        explication: "Le partage collectif du repas, souvent servi dans un même grand plat, est un principe traditionnel observé lors des repas communautaires en milieu rural."
+    },
+
+    {
+        question: "Quel type d'hospitalité traditionnelle est particulièrement valorisé envers les visiteurs et étrangers dans la culture congolaise ?",
+        reponses: ["La méfiance permanente", "Le rejet systématique des étrangers", "L'indifférence totale envers les visiteurs", "L'accueil chaleureux et le partage avec l'hôte"],
+        bonne: 3,
+        explication: "L'accueil chaleureux et le partage avec l'hôte constituent une valeur d'hospitalité traditionnelle fortement valorisée dans la culture congolaise."
+    },
+
+    {
+        question: "Quel est le nom donné à la sauce épicée à base de piment, très utilisée pour relever les plats congolais ?",
+        reponses: ["La mayonnaise", "Le ketchup", "La moutarde", "Le pili-pili"],
+        bonne: 3,
+        explication: "Le pili-pili, sauce pimentée, est très utilisé pour relever les plats traditionnels congolais."
+    },
+
+    {
+        question: "Quel légume-feuille, proche de l'épinard, est couramment cuisiné dans les sauces congolaises, notamment dans le nord du pays ?",
+        reponses: ["Les artichauts", "Le chou-fleur", "Les asperges", "Les feuilles de patate douce (matembele)"],
+        bonne: 3,
+        explication: "Les feuilles de patate douce, appelées matembele, sont couramment cuisinées en sauce dans plusieurs régions du Congo."
+    },
+
+    {
+        question: "Quel tubercule, à côté du manioc, constitue une base alimentaire importante dans certaines régions du Congo ?",
+        reponses: ["Le radis noir", "La pomme de terre européenne", "Le topinambour", "L'igname"],
+        bonne: 3,
+        explication: "L'igname, à côté du manioc, constitue une base alimentaire importante dans certaines régions du Congo."
+    },
+
+    {
+        question: "Quel fruit tropical très consommé au Congo est utilisé aussi bien frais qu'en jus ou en confiture ?",
+        reponses: ["L'airelle", "La cerise", "La framboise", "La mangue"],
+        bonne: 3,
+        explication: "La mangue, très consommée au Congo, est utilisée fraîche, en jus ou en confiture."
+    },
+
+    {
+        question: "Quel type de poisson séché ou fumé est couramment utilisé pour parfumer les sauces traditionnelles congolaises ?",
+        reponses: ["La morue islandaise fraîche", "Le saumon norvégien frais", "Le thon en boîte uniquement", "Le poisson fumé (makayabu ou similaire)"],
+        bonne: 3,
+        explication: "Le poisson séché ou fumé est couramment utilisé pour parfumer les sauces traditionnelles congolaises."
+    },
+
+    {
+        question: "Quelle huile est traditionnellement utilisée comme base de cuisson dans de nombreux plats congolais ?",
+        reponses: ["L'huile de coco uniquement", "L'huile d'olive extra-vierge", "L'huile de sésame", "L'huile de palme"],
+        bonne: 3,
+        explication: "L'huile de palme est traditionnellement la base de cuisson de nombreux plats congolais, notamment le moambe."
+    },
+
+    {
+        question: "Quel type de banane, différente de la banane douce, est couramment cuisinée frite ou bouillie au Congo ?",
+        reponses: ["Il n'existe qu'un seul type de banane", "La banane naine des Antilles", "La banane rouge exclusivement décorative", "La banane plantain"],
+        bonne: 3,
+        explication: "La banane plantain, différente de la banane douce, est couramment cuisinée frite ou bouillie au Congo."
+    },
+
+    {
+        question: "Comment appelle-t-on, en langue locale, le marché populaire où se vendent produits vivriers et objets artisanaux dans les villes congolaises ?",
+        reponses: ["La foire internationale", "Le supermarché uniquement", "La bourse", "Le marché (zando en lingala)"],
+        bonne: 3,
+        explication: "Le marché populaire, appelé « zando » en lingala, est un lieu central de la vie économique et sociale dans les villes congolaises."
+    },
+
+    {
+        question: "Quel type de commerce ambulant, très présent dans les rues des villes congolaises, complète l'activité des marchés fixes ?",
+        reponses: ["Le commerce interdit par la loi", "Le commerce en ligne exclusivement", "Les grandes surfaces internationales uniquement", "Le petit commerce informel ambulant"],
+        bonne: 3,
+        explication: "Le petit commerce informel ambulant complète largement l'activité des marchés fixes dans les villes congolaises."
+    },
+
+    {
+        question: "Quelle place la Sape accorde-t-elle traditionnellement au choix des couleurs et à l'harmonie vestimentaire ?",
+        reponses: ["La Sape interdit les couleurs vives", "Aucune importance, tout est permis sans règle", "Seul le noir est autorisé", "Une place centrale, la Sape valorisant l'élégance et l'harmonie des couleurs"],
+        bonne: 3,
+        explication: "La Sape accorde une place centrale à l'harmonie des couleurs et à l'élégance vestimentaire raffinée."
+    },
+
+    {
+        question: "Quel type d'accessoire, souvent porté avec fierté, complète la panoplie traditionnelle du sapeur congolais ?",
+        reponses: ["Le sac à dos de sport", "Le casque de moto uniquement", "Les tongs en plastique", "Le chapeau et la canne"],
+        bonne: 3,
+        explication: "Le chapeau et la canne font partie des accessoires traditionnels complétant la panoplie du sapeur congolais."
+    },
+
+    {
+        question: "Quelle marque ou style de costume est particulièrement recherchée et valorisée par les sapeurs congolais ?",
+        reponses: ["Les vêtements traditionnels uniquement, sans influence occidentale", "Les vêtements de sport uniquement", "Les tenues militaires", "Les costumes de grands couturiers européens"],
+        bonne: 3,
+        explication: "Les sapeurs congolais valorisent particulièrement les costumes de grands couturiers et créateurs européens."
+    },
+
+    {
+        question: "La Sape est-elle exclusivement une pratique masculine, ou existe-t-il également des femmes sapeuses ?",
+        reponses: ["Elle est exclusivement masculine", "Il existe aussi des femmes, appelées sapeuses", "Elle est exclusivement féminine", "Elle est réservée aux enfants"],
+        bonne: 1,
+        explication: "Bien que majoritairement masculine, la Sape compte également des femmes, appelées sapeuses."
+    },
+
+    {
+        question: "Quel documentaire ou œuvre culturelle a contribué à faire connaître la Sape congolaise à l'international ?",
+        reponses: ["La Sape reste totalement inconnue à l'étranger", "Aucune œuvre n'existe sur ce sujet", "Uniquement des articles universitaires obscurs", "Des documentaires et reportages photographiques primés à l'international"],
+        bonne: 3,
+        explication: "Plusieurs documentaires et reportages photographiques primés ont contribué à faire connaître la Sape congolaise à l'international."
+    },
+
+    {
+        question: "Quel type de démarche particulière les sapeurs adoptent-ils souvent en public, faisant partie intégrante de leur art ?",
+        reponses: ["Une démarche théâtrale et posée, mettant en valeur la tenue", "Une démarche pressée et discrète", "Ils évitent de se montrer en public", "Aucune démarche particulière n'est adoptée"],
+        bonne: 0,
+        explication: "Les sapeurs adoptent souvent une démarche théâtrale et posée en public, mettant en valeur leur tenue avec élégance."
+    },
+
+    {
+        question: "Quel est le nom donné, en pays kongo, au chef traditionnel qui exerce une autorité coutumière sur un village ou une région ?",
+        reponses: ["Le chef de terre ou chef coutumier", "Le préfet", "Le gouverneur", "Le maire uniquement"],
+        bonne: 0,
+        explication: "Le chef de terre, ou chef coutumier, exerce traditionnellement une autorité reconnue sur un village ou une région en pays kongo."
+    },
+
+    {
+        question: "Quel rôle le chef coutumier joue-t-il traditionnellement, en complément de l'administration moderne, dans les zones rurales congolaises ?",
+        reponses: ["Un rôle de médiation sociale et de gestion foncière coutumière", "Aucun rôle, il a été totalement supprimé", "Un rôle exclusivement religieux sans lien avec le foncier", "Un rôle militaire uniquement"],
+        bonne: 0,
+        explication: "Le chef coutumier joue traditionnellement un rôle de médiation sociale et de gestion foncière coutumière dans les zones rurales congolaises."
+    },
+
+    {
+        question: "Quel type d'objet rituel, souvent conservé dans les familles, sert de lien symbolique avec les ancêtres dans la tradition kongo ?",
+        reponses: ["Les reliquaires ou objets ancestraux", "Les téléphones portables", "Les vélos", "Les montres modernes"],
+        bonne: 0,
+        explication: "Les reliquaires ou objets ancestraux servent traditionnellement de lien symbolique avec les ancêtres dans la culture kongo."
+    },
+
+    {
+        question: "Quelle importance la notion de « clan » revêt-elle traditionnellement dans l'organisation sociale de plusieurs ethnies congolaises ?",
+        reponses: ["Une importance centrale dans l'identité et l'organisation sociale", "Aucune importance particulière", "Une importance uniquement administrative moderne", "Le clan n'existe pas dans la culture congolaise"],
+        bonne: 0,
+        explication: "La notion de clan revêt une importance centrale dans l'identité et l'organisation sociale traditionnelle de plusieurs ethnies congolaises."
+    },
+
+    {
+        question: "Quel principe régit traditionnellement l'appartenance à un clan dans plusieurs sociétés matrilinéaires du Congo ?",
+        reponses: ["L'appartenance se transmet par la mère", "L'appartenance se transmet uniquement par le père", "L'appartenance est choisie librement à l'âge adulte", "Il n'existe aucune règle de transmission"],
+        bonne: 0,
+        explication: "Dans plusieurs sociétés matrilinéaires du Congo, l'appartenance clanique se transmet traditionnellement par la mère."
+    },
+
+    {
+        question: "Quel type de proverbe congolais met généralement en avant une leçon de sagesse collective ?",
+        reponses: ["Un proverbe imagé, souvent tiré d'observations de la nature ou de la vie quotidienne", "Un simple slogan publicitaire moderne", "Une citation extraite de la Bible uniquement", "Un texte de loi"],
+        bonne: 0,
+        explication: "Les proverbes congolais sont généralement des formules imagées, tirées d'observations de la nature ou de la vie quotidienne, véhiculant une leçon de sagesse collective."
+    },
+
+    {
+        question: "Quel rôle les proverbes jouent-ils traditionnellement dans l'éducation des enfants au sein des familles congolaises ?",
+        reponses: ["Un rôle pédagogique important, transmettant des valeurs morales", "Aucun rôle éducatif", "Un rôle purement décoratif dans les discours officiels", "Ils sont réservés aux tribunaux uniquement"],
+        bonne: 0,
+        explication: "Les proverbes jouent traditionnellement un rôle pédagogique important dans l'éducation des enfants et la transmission des valeurs morales."
+    },
+
+    {
+        question: "Quel type d'événement social traditionnel réunit souvent chants, danses et repas communautaires dans les villages congolais ?",
+        reponses: ["Une fête villageoise ou communautaire", "Un simple rendez-vous administratif", "Une réunion syndicale", "Un examen scolaire"],
+        bonne: 0,
+        explication: "Une fête villageoise réunissant chants, danses et repas communautaires est un événement social traditionnel courant dans les villages congolais."
+    },
+
+    {
+        question: "Quel rôle les enfants jouent-ils traditionnellement lors des veillées de contes dans les villages congolais ?",
+        reponses: ["Ils sont les principaux auditeurs, réunis autour des anciens conteurs", "Ils sont exclus des veillées", "Ils remplacent les conteurs adultes", "Aucun enfant n'y assiste jamais"],
+        bonne: 0,
+        explication: "Les enfants sont traditionnellement les principaux auditeurs des veillées de contes, réunis autour des anciens conteurs du village."
+    },
+
+    {
+        question: "Quel type de musique accompagne traditionnellement les veillées de contes dans certaines régions congolaises ?",
+        reponses: ["Des chants et percussions légères entre les récits", "Un silence total imposé", "De la musique électronique moderne", "Aucune musique n'accompagne les contes"],
+        bonne: 0,
+        explication: "Des chants et percussions légères accompagnent traditionnellement les veillées de contes dans certaines régions congolaises, ponctuant les récits."
+    },
+
+    {
+        question: "Quelle figure symbolique de la ruse et de l'intelligence apparaît fréquemment dans les contes kongo, à l'image d'autres traditions africaines ?",
+        reponses: ["L'araignée ou la tortue rusée", "Le loup solitaire", "Le dragon", "Le sphinx"],
+        bonne: 0,
+        explication: "L'araignée ou la tortue rusée, figures symboliques de l'intelligence, apparaissent fréquemment dans les contes traditionnels kongo."
+    },
+
+    {
+        question: "Quel type de morale les contes traditionnels congolais cherchent-ils généralement à transmettre aux jeunes générations ?",
+        reponses: ["Des leçons de sagesse, de prudence et de respect des règles sociales", "Aucune morale particulière", "Des leçons de mathématiques uniquement", "Des règles de circulation routière"],
+        bonne: 0,
+        explication: "Les contes traditionnels congolais cherchent généralement à transmettre des leçons de sagesse, de prudence et de respect des règles sociales aux jeunes générations."
+    },
+
+    {
+        question: "Quel est le nom de la principale langue bantoue parlée par les Bakongo, à la base du kituba ?",
+        reponses: ["Le kikongo", "Le lingala", "Le swahili", "Le zoulou"],
+        bonne: 0,
+        explication: "Le kikongo est la langue bantoue des Bakongo, à la base du kituba, langue véhiculaire du sud du pays."
+    },
+
+    {
+        question: "Quelle langue bantoue est parlée par le peuple Téké, deuxième groupe ethnique du pays ?",
+        reponses: ["Le teke (ou tio)", "Le kikongo", "Le lingala", "Le mbochi"],
+        bonne: 0,
+        explication: "Le teke, ou tio, est la langue traditionnelle du peuple Téké."
+    },
+
+    {
+        question: "Quelle langue bantoue est parlée par le peuple Mbochi, originaire du centre-nord du pays ?",
+        reponses: ["Le mbochi", "Le kikongo", "Le vili", "Le teke"],
+        bonne: 0,
+        explication: "Le mbochi est la langue traditionnelle du peuple du même nom, originaire du centre-nord du Congo."
+    },
+
+    {
+        question: "Quel dialecte kikongo est parlé par les Vili, sous-groupe bakongo établi près de Pointe-Noire ?",
+        reponses: ["Le vili", "Le lari", "Le yombe", "Le kouyou"],
+        bonne: 0,
+        explication: "Le vili est le dialecte kikongo parlé par les Vili, sous-groupe bakongo établi près de Pointe-Noire."
+    },
+
+    {
+        question: "Quel sous-groupe bakongo, implanté notamment dans le Mayombe, est réputé pour son artisanat de sculpture sur bois ?",
+        reponses: ["Les Yombe", "Les Lari", "Les Sundi", "Les Kongo dia Ntotila"],
+        bonne: 0,
+        explication: "Les Yombe, sous-groupe bakongo du massif du Mayombe, sont réputés pour leur artisanat de sculpture sur bois."
+    },
+
+    {
+        question: "Quel sous-groupe bakongo est notamment implanté dans le département du Pool, autour de Kinkala ?",
+        reponses: ["Les Sundi", "Les Yombe", "Les Vili", "Les Kouyou"],
+        bonne: 0,
+        explication: "Les Sundi sont un sous-groupe bakongo notamment implanté dans le département du Pool, autour de Kinkala."
+    },
+
+    {
+        question: "Quel type de rythme musical, hérité des traditions bantu, sous-tend historiquement la rumba congolaise ?",
+        reponses: ["Des rythmes de percussions traditionnelles bantu", "Le rythme du flamenco espagnol", "Le rythme du reggae jamaïcain", "Le rythme du tango argentin"],
+        bonne: 0,
+        explication: "Des rythmes de percussions traditionnelles bantu sous-tendent historiquement la genèse de la rumba congolaise."
+    },
+
+    {
+        question: "Quel type de guitare, introduite pendant la période coloniale, a profondément transformé la musique congolaise moderne ?",
+        reponses: ["La guitare acoustique puis électrique", "Le violon classique", "Le piano à queue", "La harpe celtique"],
+        bonne: 0,
+        explication: "La guitare, d'abord acoustique puis électrique, a profondément transformé la musique congolaise moderne à partir du XXe siècle."
+    },
+
+    {
+        question: "Quel style vestimentaire les musiciens congolais de rumba et de soukous ont-ils souvent adopté, en lien avec la sapologie ?",
+        reponses: ["Un style élégant et soigné, proche de la Sape", "Un style négligé et débraillé", "Un uniforme militaire", "Un style exclusivement traditionnel sans influence moderne"],
+        bonne: 0,
+        explication: "Les musiciens congolais de rumba et de soukous ont souvent adopté un style vestimentaire élégant et soigné, proche de l'esthétique de la Sape."
+    },
+
+    {
+        question: "Quel type d'événement culturel majeur, organisé tous les deux ans à Brazzaville, met à l'honneur les musiques du continent africain ?",
+        reponses: ["Le FESPAM (Festival panafricain de musique)", "Le Festival de Cannes", "La Fête de la musique parisienne", "Le Coachella africain"],
+        bonne: 0,
+        explication: "Le FESPAM, Festival panafricain de musique, organisé tous les deux ans à Brazzaville, met à l'honneur les musiques du continent africain."
+    },
+
+    {
+        question: "Quel type d'événement religieux syncrétique, mêlant christianisme et croyances traditionnelles, est apparu au Congo au XXe siècle ?",
+        reponses: ["Des mouvements religieux syncrétiques comme le kimbanguisme", "Le bouddhisme zen", "Le shintoïsme", "L'hindouisme"],
+        bonne: 0,
+        explication: "Des mouvements religieux syncrétiques, mêlant christianisme et croyances traditionnelles, comme le kimbanguisme, sont apparus en Afrique centrale au XXe siècle."
+    },
+
+    {
+        question: "Quelle place la religion chrétienne occupe-t-elle aujourd'hui dans la société congolaise, aux côtés des croyances traditionnelles ?",
+        reponses: ["Elle est majoritaire, souvent en coexistence avec des pratiques traditionnelles", "Elle est totalement absente", "Elle est minoritaire face à l'islam", "Elle a été interdite par la loi"],
+        bonne: 0,
+        explication: "Le christianisme est la religion majoritaire en République du Congo, souvent en coexistence avec certaines pratiques et croyances traditionnelles."
+    }
+
+
 
 ]

@@ -1,11 +1,12 @@
 /* ==========================================
    CONGOQUIZ — MODE EN LIGNE
    Gestion des confrontations en ligne
+   2, 3 ou 4 joueurs
 ========================================== */
 
 
 /* ==========================================
-   ÉLÉMENTS DE LA PAGE
+   ÉLÉMENTS HTML PRINCIPAUX
 ========================================== */
 
 const menuPartieEnLigne =
@@ -66,7 +67,9 @@ let surveillanceReponses =
    BASE DE QUESTIONS
 ========================================== */
 
-function obtenirQuestionsCategorie(categorie){
+function obtenirQuestionsCategorie(
+    categorie
+){
 
     switch(categorie){
 
@@ -217,17 +220,16 @@ function afficherProfilEnLigne(){
    MESSAGE
 ========================================== */
 
-function afficherMessage(message){
+function afficherMessage(
+    message
+){
 
-    if(!messageModeEnLigne){
+    if(messageModeEnLigne){
 
-        return;
+        messageModeEnLigne.textContent =
+            message;
 
     }
-
-
-    messageModeEnLigne.textContent =
-        message;
 
 }
 
@@ -293,7 +295,10 @@ async function genererCodeUnique(){
             await supabaseClient
                 .from("parties_en_ligne")
                 .select("id")
-                .eq("code", code)
+                .eq(
+                    "code",
+                    code
+                )
                 .limit(1);
 
 
@@ -327,6 +332,293 @@ async function genererCodeUnique(){
 
 
     return null;
+
+}
+
+
+/* ==========================================
+   NOMBRE DE JOUEURS
+========================================== */
+
+function obtenirNombreJoueurs(
+    partie
+){
+
+    const nombre =
+        Number(
+            partie?.nombre_joueurs ?? 2
+        );
+
+
+    if(
+        [2, 3, 4].includes(
+            nombre
+        )
+    ){
+
+        return nombre;
+
+    }
+
+
+    return 2;
+
+}
+
+
+/* ==========================================
+   OBTENIR LES JOUEURS ACTIFS DE LA PARTIE
+========================================== */
+function obtenirJoueursPartie(partie) {
+
+    const nombre = obtenirNombreJoueurs(partie);
+
+    const joueurs = [];
+
+    for (let numero = 1; numero <= nombre; numero++) {
+
+        const idJoueur = partie[`joueur${numero}_id`];
+
+        if (idJoueur !== null && idJoueur !== undefined) {
+            joueurs.push(idJoueur);
+        }
+    }
+
+    return joueurs;
+}
+
+
+/* ==========================================
+   OBTENIR LE NUMÉRO DU JOUEUR CONNECTÉ
+========================================== */
+
+function obtenirNumeroJoueur(partie) {
+
+    if (!joueur || !joueur.id) {
+        return null;
+    }
+
+    const nombre = obtenirNombreJoueurs(partie);
+
+    for (let numero = 1; numero <= nombre; numero++) {
+
+        if (partie[`joueur${numero}_id`] === joueur.id) {
+            return numero;
+        }
+    }
+
+    return null;
+}
+
+/* ==========================================
+   OBTENIR LA COLONNE DE RÉPONSE
+========================================== */
+
+function obtenirColonneReponse(
+    partie
+){
+
+    const numeroJoueur =
+        obtenirNumeroJoueur(
+            partie
+        );
+
+
+    if(!numeroJoueur){
+
+        return null;
+
+    }
+
+
+    return `reponse_joueur${numeroJoueur}`;
+
+}
+
+
+/* ==========================================
+   OBTENIR LA COLONNE DE SCORE
+========================================== */
+
+function obtenirColonneScore(
+    numeroJoueur
+){
+
+    if(
+        ![1, 2, 3, 4].includes(
+            numeroJoueur
+        )
+    ){
+
+        return null;
+
+    }
+
+
+    return `score_joueur${numeroJoueur}`;
+
+}
+
+
+/* ==========================================
+   RÉCUPÉRER LES PSEUDOS
+========================================== */
+
+async function obtenirPseudosPartie(
+    partie
+){
+
+    const pseudos = {
+
+        joueur1:
+            "Joueur 1",
+
+        joueur2:
+            "Joueur 2",
+
+        joueur3:
+            "Joueur 3",
+
+        joueur4:
+            "Joueur 4"
+
+    };
+
+
+    if(!partie){
+
+        return pseudos;
+
+    }
+
+
+    const nombreJoueurs =
+        obtenirNombreJoueurs(
+            partie
+        );
+
+
+    const ids = [];
+
+
+    for(
+        let numero = 1;
+        numero <= nombreJoueurs;
+        numero++
+    ){
+
+        const id =
+            partie[
+                `joueur${numero}_id`
+            ];
+
+
+        if(
+            id !== null &&
+            id !== undefined
+        ){
+
+            ids.push(id);
+
+        }
+
+    }
+
+
+    if(ids.length === 0){
+
+        return pseudos;
+
+    }
+
+
+    try{
+
+        const {
+            data,
+            error
+        } =
+            await supabaseClient
+                .from("joueur")
+                .select("id, pseudo")
+                .in(
+                    "id",
+                    ids
+                );
+
+
+        if(error){
+
+            console.warn(
+                "⚠️ Impossible de récupérer les pseudos :",
+                error
+            );
+
+            return pseudos;
+
+        }
+
+
+        if(Array.isArray(data)){
+
+            for(
+                let numero = 1;
+                numero <= nombreJoueurs;
+                numero++
+            ){
+
+                const id =
+                    partie[
+                        `joueur${numero}_id`
+                    ];
+
+
+                if(
+                    id === null ||
+                    id === undefined
+                ){
+
+                    continue;
+
+                }
+
+
+                const utilisateur =
+                    data.find(
+                        element =>
+                            String(element.id) ===
+                            String(id)
+                    );
+
+
+                if(
+                    utilisateur?.pseudo
+                ){
+
+                    pseudos[
+                        `joueur${numero}`
+                    ] =
+                        utilisateur.pseudo;
+
+                }
+
+            }
+
+        }
+
+    }
+
+    catch(erreur){
+
+        console.warn(
+            "⚠️ Erreur récupération des pseudos :",
+            erreur
+        );
+
+    }
+
+
+    return pseudos;
 
 }
 
@@ -368,6 +660,34 @@ function afficherCreationPartie(){
     if(salleAttente){
 
         salleAttente.style.display =
+            "none";
+
+    }
+
+
+    const confrontation =
+        document.getElementById(
+            "confrontation"
+        );
+
+
+    const resultat =
+        document.getElementById(
+            "resultatPartie"
+        );
+
+
+    if(confrontation){
+
+        confrontation.style.display =
+            "none";
+
+    }
+
+
+    if(resultat){
+
+        resultat.style.display =
             "none";
 
     }
@@ -420,265 +740,43 @@ function afficherMenuPartie(){
     }
 
 
+    const confrontation =
+        document.getElementById(
+            "confrontation"
+        );
+
+
+    const resultat =
+        document.getElementById(
+            "resultatPartie"
+        );
+
+
+    if(confrontation){
+
+        confrontation.style.display =
+            "none";
+
+    }
+
+
+    if(resultat){
+
+        resultat.style.display =
+            "none";
+
+    }
+
+
     afficherMessage("");
 
 }
 
-
 /* ==========================================
-   CRÉATION DE LA PARTIE
+   AFFICHER LA SALLE D'ATTENTE
 ========================================== */
 
-async function creerPartieEnLigne(){
-
-    if(!joueur || !joueur.id){
-
-        afficherMessage(
-            "❌ Votre profil n'est pas correctement enregistré en ligne."
-        );
-
-        console.error(
-            "❌ Aucun ID Supabase pour le joueur."
-        );
-
-        return;
-
-    }
-
-
-    const selectCategorie =
-        document.getElementById(
-            "categoriePartie"
-        );
-
-
-    const selectNombreQuestions =
-        document.getElementById(
-            "nombreQuestionsPartie"
-        );
-
-
-    const categorie =
-        selectCategorie?.value;
-
-
-    const nombreQuestions =
-        Number(
-            selectNombreQuestions?.value
-        );
-
-
-    if(
-        !categorie ||
-        ![5, 10, 20].includes(nombreQuestions)
-    ){
-
-        afficherMessage(
-            "❌ Paramètres de partie invalides."
-        );
-
-        return;
-
-    }
-
-
-    /* ==========================================
-       PRÉPARER LES QUESTIONS
-    ========================================== */
-
-    const questionsPartie =
-        preparerQuestionsPartie(
-            categorie,
-            nombreQuestions
-        );
-
-
-    if(
-        questionsPartie.length <
-        nombreQuestions
-    ){
-
-        afficherMessage(
-            "❌ Pas assez de questions disponibles dans cette catégorie."
-        );
-
-        return;
-
-    }
-
-
-    const bouton =
-        document.getElementById(
-            "confirmerCreationPartie"
-        );
-
-
-    if(bouton){
-
-        bouton.disabled =
-            true;
-
-        bouton.textContent =
-            "⏳ Création en cours...";
-
-    }
-
-
-    try{
-
-        /* ==========================================
-           GÉNÉRER UN CODE UNIQUE
-        ========================================== */
-
-        const code =
-            await genererCodeUnique();
-
-
-        if(!code){
-
-            afficherMessage(
-                "❌ Impossible de créer le code de la partie."
-            );
-
-            return;
-
-        }
-
-
-        /* ==========================================
-           CRÉER LA PARTIE
-        ========================================== */
-
-        const {
-            data,
-            error
-        } =
-            await supabaseClient
-                .from("parties_en_ligne")
-                .insert({
-
-                    code:
-                        code,
-
-                    joueur1_id:
-                        joueur.id,
-
-                    joueur2_id:
-                        null,
-
-                    statut:
-                        "attente",
-
-                    categorie:
-                        categorie,
-
-                    nombre_questions:
-                        nombreQuestions,
-
-                    questions:
-                        questionsPartie,
-
-                    score_joueur1:
-                        0,
-
-                    score_joueur2:
-                        0,
-
-                    gagnant_id:
-                        null,
-
-                    question_actuelle:
-                        0,
-
-                    reponse_joueur1:
-                        null,
-
-                    reponse_joueur2:
-                        null,
-
-                    traitement_question:
-                        false,
-
-                    fin_question:
-                        null
-
-                })
-                .select("*")
-                .single();
-
-
-        if(error){
-
-            console.error(
-                "❌ Erreur création partie :",
-                error
-            );
-
-            afficherMessage(
-                "❌ Impossible de créer la partie."
-            );
-
-            return;
-
-        }
-
-
-        console.log(
-            "✅ Partie créée :",
-            data
-        );
-
-
-        partieEnLigneActuelle =
-            data;
-
-
-        afficherSalleAttente(
-            data
-        );
-
-
-        surveillerArriveeAdversaire(
-            data.id
-        );
-
-    }
-
-    catch(erreur){
-
-        console.error(
-            "❌ Erreur inattendue création partie :",
-            erreur
-        );
-
-        afficherMessage(
-            "❌ Une erreur est survenue."
-        );
-
-    }
-
-    finally{
-
-        if(bouton){
-
-            bouton.disabled =
-                false;
-
-            bouton.textContent =
-                "🚀 Créer la partie";
-
-        }
-
-    }
-
-}
-
-
-/* ==========================================
-   AFFICHER SALLE D'ATTENTE
-========================================== */
-
-function afficherSalleAttente(partie){
+function afficherSalleAttentePartie(){
 
     arreterChronoEnLigne();
 
@@ -715,76 +813,481 @@ function afficherSalleAttente(partie){
     }
 
 
-    const code =
+    const confrontation =
         document.getElementById(
-            "codePartieAffiche"
+            "confrontation"
         );
 
 
-    const statut =
+    const resultat =
         document.getElementById(
-            "statutPartie"
+            "resultatPartie"
         );
 
 
-    const pseudoAdversaire =
-        document.getElementById(
-            "pseudoAdversaire"
-        );
+    if(confrontation){
 
-
-    const adversaireInfo =
-        document.getElementById(
-            "adversaireInfo"
-        );
-
-
-    if(code){
-
-        code.textContent =
-            partie?.code ||
-            "----";
-
-    }
-
-
-    if(statut){
-
-        statut.textContent =
-            "En attente d'un joueur...";
-
-    }
-
-
-    if(pseudoAdversaire){
-
-        pseudoAdversaire.textContent =
-            "---";
-
-    }
-
-
-    if(adversaireInfo){
-
-        adversaireInfo.style.display =
+        confrontation.style.display =
             "none";
 
     }
 
 
-    afficherMessage("");
+    if(resultat){
+
+        resultat.style.display =
+            "none";
+
+    }
 
 }
 
 
 /* ==========================================
-   ANNULER CRÉATION
+   CRÉATION DE LA PARTIE
+========================================== */
+
+/* ==========================================
+   CRÉATION DE LA PARTIE
+========================================== */
+
+async function creerPartieEnLigne(){
+
+    if(!joueur || !joueur.id){
+
+        afficherMessage(
+            "Impossible de créer la partie : joueur non identifié."
+        );
+
+        return;
+
+    }
+
+
+    const categorieElement =
+        document.getElementById(
+            "categoriePartie"
+        );
+
+
+    const nombreQuestionsElement =
+        document.getElementById(
+            "nombreQuestionsPartie"
+        );
+
+
+    const nombreJoueursElement =
+        document.getElementById(
+            "nombreJoueursPartie"
+        );
+
+
+    const bouton =
+        document.getElementById(
+            "confirmerCreationPartie"
+        );
+
+
+    if(
+        !categorieElement ||
+        !nombreQuestionsElement ||
+        !nombreJoueursElement
+    ){
+
+        afficherMessage(
+            "Erreur : formulaire de création incomplet."
+        );
+
+        return;
+
+    }
+
+
+    const categorie =
+        categorieElement.value;
+
+
+    const nombreQuestions =
+        parseInt(
+            nombreQuestionsElement.value,
+            10
+        );
+
+
+    const nombreJoueurs =
+        parseInt(
+            nombreJoueursElement.value,
+            10
+        );
+
+
+    if(
+        ![2, 3, 4].includes(
+            nombreJoueurs
+        )
+    ){
+
+        afficherMessage(
+            "Le nombre de joueurs doit être compris entre 2 et 4."
+        );
+
+        return;
+
+    }
+
+
+    const questions =
+        preparerQuestionsPartie(
+            categorie,
+            nombreQuestions
+        );
+
+
+    if(
+        !questions ||
+        questions.length < nombreQuestions
+    ){
+
+        afficherMessage(
+            "Pas assez de questions disponibles dans cette catégorie."
+        );
+
+        return;
+
+    }
+
+
+    if(bouton){
+
+        bouton.disabled =
+            true;
+
+    }
+
+
+    try{
+
+        const code =
+            await genererCodeUnique();
+
+
+        if(!code){
+
+            afficherMessage(
+                "Impossible de générer un code de partie unique."
+            );
+
+            return;
+
+        }
+
+
+        const {
+            data,
+            error
+        } =
+            await supabaseClient
+                .from("parties_en_ligne")
+                .insert([{
+
+                    code:
+                        code,
+
+                    joueur1_id:
+                        joueur.id,
+
+                    joueur2_id:
+                        null,
+
+                    joueur3_id:
+                        null,
+
+                    joueur4_id:
+                        null,
+
+                    statut:
+                        "attente",
+
+                    categorie:
+                        categorie,
+
+                    nombre_questions:
+                        nombreQuestions,
+
+                    nombre_joueurs:
+                        nombreJoueurs,
+
+                    score_joueur1:
+                        0,
+
+                    score_joueur2:
+                        0,
+
+                    score_joueur3:
+                        0,
+
+                    score_joueur4:
+                        0,
+
+                    gagnant_id:
+                        null,
+
+                    questions:
+                        questions,
+
+                    question_actuelle:
+                        0,
+
+                    reponse_joueur1:
+                        null,
+
+                    reponse_joueur2:
+                        null,
+
+                    reponse_joueur3:
+                        null,
+
+                    reponse_joueur4:
+                        null,
+
+                    traitement_question:
+                        false,
+
+                    fin_question:
+                        null
+
+                }])
+                .select("*")
+                .single();
+
+
+        if(error){
+
+            throw error;
+
+        }
+
+
+        partieEnLigneActuelle =
+            data;
+
+
+        console.log(
+            "Partie créée :",
+            data
+        );
+
+
+        afficherSalleAttentePartie();
+
+
+        await mettreAJourSalleAttente(
+            data
+        );
+
+
+        afficherMessage(
+            `Partie créée ! Code : ${data.code}`
+        );
+
+
+        surveillerArriveeJoueurs(
+            data.id
+        );
+
+    }
+
+    catch(error){
+
+        console.error(
+            "Erreur lors de la création de la partie :",
+            error
+        );
+
+
+        afficherMessage(
+            "Impossible de créer la partie. Réessaie."
+        );
+
+    }
+
+    finally{
+
+        if(bouton){
+
+            bouton.disabled =
+                false;
+
+        }
+
+    }
+
+}
+
+
+/* ==========================================
+   METTRE À JOUR LA SALLE D'ATTENTE
+========================================== */
+
+async function mettreAJourSalleAttente(partie) {
+
+    if (!partie) {
+        return;
+    }
+
+    const nombreJoueurs = obtenirNombreJoueurs(partie);
+
+    const joueurs = obtenirJoueursPartie(partie);
+
+    const pseudos = await obtenirPseudosPartie(partie);
+
+    const codePartieAffiche = document.getElementById("codePartieAffiche");
+    const statutPartie = document.getElementById("statutPartie");
+    const listeJoueursAttente = document.getElementById("listeJoueursAttente");
+
+    if (codePartieAffiche) {
+        codePartieAffiche.textContent = partie.code || "----";
+    }
+
+    if (statutPartie) {
+
+        if (partie.statut === "attente") {
+
+            statutPartie.textContent =
+                `Joueurs présents : ${joueurs.length}/${nombreJoueurs}`;
+
+        } else if (partie.statut === "en_cours") {
+
+            statutPartie.textContent =
+                "La partie commence...";
+
+        } else if (partie.statut === "terminee") {
+
+            statutPartie.textContent =
+                "Partie terminée.";
+
+        } else {
+
+            statutPartie.textContent =
+                "En attente des joueurs...";
+        }
+    }
+
+    if (listeJoueursAttente) {
+
+        let html = "";
+
+        for (let numero = 1; numero <= nombreJoueurs; numero++) {
+
+            const idJoueur = partie[`joueur${numero}_id`];
+
+            const pseudo = pseudos[`pseudo${numero}`];
+
+            if (idJoueur !== null && idJoueur !== undefined) {
+
+                html += `
+                    <p>
+                        👤 Joueur ${numero} :
+                        <strong>
+                            ${securiserTexte(pseudo || "Joueur")}
+                        </strong>
+                    </p>
+                `;
+
+            } else {
+
+                html += `
+                    <p>
+                        ⏳ Joueur ${numero} :
+                        <strong>
+                            En attente...
+                        </strong>
+                    </p>
+                `;
+            }
+        }
+
+        listeJoueursAttente.innerHTML = html;
+    }
+}
+
+
+/* ==========================================
+   ANNULER PARTIE
 ========================================== */
 
 async function annulerPartieEnLigne(){
 
     arreterChronoEnLigne();
     arreterSurveillancesEnLigne();
+
+
+    if(
+        partieEnLigneActuelle &&
+        joueur?.id
+    ){
+
+        try{
+
+            const numeroJoueur =
+                obtenirNumeroJoueur(
+                    partieEnLigneActuelle
+                );
+
+
+            if(
+                numeroJoueur === 1
+            ){
+
+                await supabaseClient
+                    .from("parties_en_ligne")
+                    .delete()
+                    .eq(
+                        "id",
+                        partieEnLigneActuelle.id
+                    )
+                    .eq(
+                        "statut",
+                        "attente"
+                    );
+
+            }
+
+            else if(
+                numeroJoueur
+            ){
+
+                await supabaseClient
+                    .from("parties_en_ligne")
+                    .update({
+
+                        [`joueur${numeroJoueur}_id`]:
+                            null
+
+                    })
+                    .eq(
+                        "id",
+                        partieEnLigneActuelle.id
+                    )
+                    .eq(
+                        "statut",
+                        "attente"
+                    );
+
+            }
+
+        }
+
+        catch(erreur){
+
+            console.warn(
+                "⚠️ Erreur annulation partie :",
+                erreur
+            );
+
+        }
+
+    }
 
 
     partieEnLigneActuelle =
@@ -838,6 +1341,34 @@ function afficherRejoindrePartie(){
     }
 
 
+    const confrontation =
+        document.getElementById(
+            "confrontation"
+        );
+
+
+    const resultat =
+        document.getElementById(
+            "resultatPartie"
+        );
+
+
+    if(confrontation){
+
+        confrontation.style.display =
+            "none";
+
+    }
+
+
+    if(resultat){
+
+        resultat.style.display =
+            "none";
+
+    }
+
+
     afficherMessage("");
 
 
@@ -865,7 +1396,10 @@ function afficherRejoindrePartie(){
 
 async function rejoindrePartieEnLigne(){
 
-    if(!joueur || !joueur.id){
+    if(
+        !joueur ||
+        !joueur.id
+    ){
 
         afficherMessage(
             "❌ Votre profil n'est pas correctement enregistré en ligne."
@@ -903,7 +1437,11 @@ async function rejoindrePartieEnLigne(){
     }
 
 
-    if(!/^CQ-[A-Z0-9]{4}$/.test(code)){
+    if(
+        !/^CQ-[A-Z0-9]{4}$/.test(
+            code
+        )
+    ){
 
         afficherMessage(
             "❌ Code de partie invalide."
@@ -933,109 +1471,267 @@ async function rejoindrePartieEnLigne(){
 
     try{
 
-        const {
-            data: partie,
-            error
-        } =
-            await supabaseClient
-                .from("parties_en_ligne")
-                .select("*")
-                .eq("code", code)
-                .eq("statut", "attente")
-                .is("joueur2_id", null)
-                .maybeSingle();
-
-
-        if(error){
-
-            console.error(
-                "❌ Erreur vérification de la partie :",
-                error
-            );
-
-            afficherMessage(
-                "❌ Impossible de vérifier ce code."
-            );
-
-            return;
-
-        }
-
-
-        if(!partie){
-
-            afficherMessage(
-                "❌ Cette partie n'existe pas ou n'est plus disponible."
-            );
-
-            return;
-
-        }
-
-
-        if(
-            partie.joueur1_id ===
-            joueur.id
-        ){
-
-            afficherMessage(
-                "❌ Vous ne pouvez pas rejoindre votre propre partie."
-            );
-
-            return;
-
-        }
+        let partieRejointe =
+            null;
 
 
         /*
-         * Le chrono démarre au moment où le deuxième
-         * joueur rejoint la partie.
+         * Plusieurs tentatives permettent de gérer
+         * l'arrivée simultanée de joueurs.
          */
 
-        const finQuestion =
-            new Date(
-                Date.now() +
-                DUREE_QUESTION * 1000
-            ).toISOString();
+        for(
+            let tentative = 0;
+            tentative < 3;
+            tentative++
+        ){
+
+            const {
+                data: partie,
+                error
+            } =
+                await supabaseClient
+                    .from("parties_en_ligne")
+                    .select("*")
+                    .eq(
+                        "code",
+                        code
+                    )
+                    .eq(
+                        "statut",
+                        "attente"
+                    )
+                    .maybeSingle();
 
 
-        const {
-            data: partieRejointe,
-            error: erreurRejoindre
-        } =
-            await supabaseClient
-                .from("parties_en_ligne")
-                .update({
+            if(error){
 
-                    joueur2_id:
-                        joueur.id,
+                console.error(
+                    "❌ Erreur vérification de la partie :",
+                    error
+                );
 
-                    statut:
-                        "en_cours",
+                afficherMessage(
+                    "❌ Impossible de vérifier ce code."
+                );
 
-                    fin_question:
-                        finQuestion
+                return;
 
-                })
-                .eq("id", partie.id)
-                .eq("statut", "attente")
-                .is("joueur2_id", null)
-                .select("*")
-                .maybeSingle();
+            }
 
 
-        if(erreurRejoindre){
+            if(!partie){
 
-            console.error(
-                "❌ Erreur pour rejoindre la partie :",
-                erreurRejoindre
-            );
+                afficherMessage(
+                    "❌ Cette partie n'existe pas ou n'est plus disponible."
+                );
 
-            afficherMessage(
-                "❌ Impossible de rejoindre la partie."
-            );
+                return;
 
-            return;
+            }
+
+
+            /*
+             * Empêcher le créateur de rejoindre
+             * sa propre partie.
+             */
+
+            if(
+                String(partie.joueur1_id) ===
+                String(joueur.id)
+            ){
+
+                afficherMessage(
+                    "❌ Vous ne pouvez pas rejoindre votre propre partie."
+                );
+
+                return;
+
+            }
+
+
+            /*
+             * Empêcher un joueur déjà présent
+             * de rejoindre une deuxième fois.
+             */
+
+            let dejaPresent =
+                false;
+
+
+            const nombreJoueurs =
+                obtenirNombreJoueurs(
+                    partie
+                );
+
+
+            for(
+                let numero = 1;
+                numero <= nombreJoueurs;
+                numero++
+            ){
+
+                const id =
+                    partie[
+                        `joueur${numero}_id`
+                    ];
+
+
+                if(
+                    id !== null &&
+                    id !== undefined &&
+                    String(id) ===
+                    String(joueur.id)
+                ){
+
+                    dejaPresent =
+                        true;
+
+                    break;
+
+                }
+
+            }
+
+
+            if(dejaPresent){
+
+                afficherMessage(
+                    "❌ Vous êtes déjà dans cette partie."
+                );
+
+                return;
+
+            }
+
+
+            const joueursPresents =
+                obtenirJoueursPartie(
+                    partie
+                );
+
+
+            if(
+                joueursPresents.length >=
+                nombreJoueurs
+            ){
+
+                afficherMessage(
+                    "❌ Cette partie est déjà complète."
+                );
+
+                return;
+
+            }
+
+
+            /*
+             * Chercher le premier emplacement libre.
+             */
+
+            let numeroJoueurLibre =
+                null;
+
+
+            for(
+                let numero = 2;
+                numero <= nombreJoueurs;
+                numero++
+            ){
+
+                const id =
+                    partie[
+                        `joueur${numero}_id`
+                    ];
+
+
+                if(
+                    id === null ||
+                    id === undefined
+                ){
+
+                    numeroJoueurLibre =
+                        numero;
+
+                    break;
+
+                }
+
+            }
+
+
+            if(!numeroJoueurLibre){
+
+                afficherMessage(
+                    "❌ Cette partie est complète."
+                );
+
+                return;
+
+            }
+
+
+            const colonneJoueur =
+                `joueur${numeroJoueurLibre}_id`;
+
+
+            /*
+             * Réservation protégée :
+             * l'emplacement doit encore être NULL.
+             */
+
+            const {
+                data: resultatUpdate,
+                error: erreurUpdate
+            } =
+                await supabaseClient
+                    .from("parties_en_ligne")
+                    .update({
+
+                        [colonneJoueur]:
+                            joueur.id
+
+                    })
+                    .eq(
+                        "id",
+                        partie.id
+                    )
+                    .eq(
+                        "statut",
+                        "attente"
+                    )
+                    .is(
+                        colonneJoueur,
+                        null
+                    )
+                    .select("*")
+                    .maybeSingle();
+
+
+            if(erreurUpdate){
+
+                console.error(
+                    "❌ Erreur pour rejoindre la partie :",
+                    erreurUpdate
+                );
+
+                afficherMessage(
+                    "❌ Impossible de rejoindre la partie."
+                );
+
+                return;
+
+            }
+
+
+            if(resultatUpdate){
+
+                partieRejointe =
+                    resultatUpdate;
+
+                break;
+
+            }
 
         }
 
@@ -1043,7 +1739,7 @@ async function rejoindrePartieEnLigne(){
         if(!partieRejointe){
 
             afficherMessage(
-                "❌ Cette partie vient d'être rejointe par un autre joueur."
+                "❌ La partie vient d'être rejointe par un autre joueur. Réessayez."
             );
 
             return;
@@ -1051,137 +1747,181 @@ async function rejoindrePartieEnLigne(){
         }
 
 
-        console.log(
-            "✅ Partie rejointe :",
-            partieRejointe
-        );
-
-
         partieEnLigneActuelle =
             partieRejointe;
 
 
-        const {
-            data: adversaire,
-            error: erreurAdversaire
-        } =
-            await supabaseClient
-                .from("joueur")
-                .select("pseudo")
-                .eq(
-                    "id",
-                    partieRejointe.joueur1_id
-                )
-                .maybeSingle();
-
-
-        if(erreurAdversaire){
-
-            console.warn(
-                "⚠️ Impossible de récupérer le pseudo de l'adversaire :",
-                erreurAdversaire
-            );
-
-        }
-
-
-        if(menuPartieEnLigne){
-
-            menuPartieEnLigne.style.display =
-                "none";
-
-        }
-
-
-        if(creationPartie){
-
-            creationPartie.style.display =
-                "none";
-
-        }
-
-
-        if(rejoindrePartie){
-
-            rejoindrePartie.style.display =
-                "none";
-
-        }
-
-
-        if(salleAttente){
-
-            salleAttente.style.display =
-                "block";
-
-        }
-
-
-        const codeAffiche =
-            document.getElementById(
-                "codePartieAffiche"
+        const nombreJoueurs =
+            obtenirNombreJoueurs(
+                partieRejointe
             );
 
 
-        const statutPartie =
-            document.getElementById(
-                "statutPartie"
+        const joueursApresRejoindre =
+            obtenirJoueursPartie(
+                partieRejointe
             );
 
 
-        const pseudo =
-            document.getElementById(
-                "pseudoAdversaire"
-            );
-
-
-        const adversaireInfo =
-            document.getElementById(
-                "adversaireInfo"
-            );
-
-
-        if(codeAffiche){
-
-            codeAffiche.textContent =
-                partieRejointe.code;
-
-        }
-
-
-        if(statutPartie){
-
-            statutPartie.textContent =
-                "✅ Adversaire trouvé !";
-
-        }
-
-
-        if(pseudo){
-
-            pseudo.textContent =
-                adversaire?.pseudo ||
-                "Adversaire";
-
-        }
-
-
-        if(adversaireInfo){
-
-            adversaireInfo.style.display =
-                "block";
-
-        }
-
-
-        afficherMessage(
-            "✅ Vous avez rejoint la partie."
-        );
-
-
-        afficherConfrontation(
+        console.log(
+            `👥 Joueurs présents : ${joueursApresRejoindre.length}/${nombreJoueurs}`,
             partieRejointe
         );
+
+
+        /*
+         * Si la partie est complète,
+         * on tente de la démarrer.
+         */
+
+        if(
+            joueursApresRejoindre.length >=
+            nombreJoueurs
+        ){
+
+            const finQuestion =
+                new Date(
+                    Date.now() +
+                    DUREE_QUESTION * 1000
+                ).toISOString();
+
+
+            const {
+                data: partieDemarree,
+                error: erreurDemarrage
+            } =
+                await supabaseClient
+                    .from("parties_en_ligne")
+                    .update({
+
+                        statut:
+                            "en_cours",
+
+                        fin_question:
+                            finQuestion
+
+                    })
+                    .eq(
+                        "id",
+                        partieRejointe.id
+                    )
+                    .eq(
+                        "statut",
+                        "attente"
+                    )
+                    .select("*")
+                    .maybeSingle();
+
+
+            if(erreurDemarrage){
+
+                console.error(
+                    "❌ Erreur démarrage partie :",
+                    erreurDemarrage
+                );
+
+                afficherMessage(
+                    "❌ Impossible de démarrer la partie."
+                );
+
+                return;
+
+            }
+
+
+            if(partieDemarree){
+
+                partieEnLigneActuelle =
+                    partieDemarree;
+
+            }
+
+            else{
+
+                /*
+                 * Un autre joueur a déjà démarré
+                 * la partie.
+                 */
+
+                const {
+                    data: partieActualisee,
+                    error: erreurLecture
+                } =
+                    await supabaseClient
+                        .from("parties_en_ligne")
+                        .select("*")
+                        .eq(
+                            "id",
+                            partieRejointe.id
+                        )
+                        .maybeSingle();
+
+
+                if(erreurLecture){
+
+                    console.error(
+                        "❌ Erreur récupération partie actualisée :",
+                        erreurLecture
+                    );
+
+                    afficherMessage(
+                        "❌ Impossible de récupérer l'état de la partie."
+                    );
+
+                    return;
+
+                }
+
+
+                if(partieActualisee){
+
+                    partieEnLigneActuelle =
+                        partieActualisee;
+
+                }
+
+            }
+
+        }
+
+
+        /*
+         * Si la partie est maintenant en cours,
+         * afficher la confrontation.
+         */
+
+        if(
+            partieEnLigneActuelle &&
+            partieEnLigneActuelle.statut ===
+            "en_cours"
+        ){
+
+            await afficherConfrontation(
+                partieEnLigneActuelle
+            );
+
+        }
+
+        else{
+
+            afficherSalleAttentePartie();
+
+
+            await mettreAJourSalleAttente(
+                partieEnLigneActuelle
+            );
+
+
+            afficherMessage(
+                "✅ Vous avez rejoint la partie."
+            );
+
+
+            surveillerArriveeJoueurs(
+                partieEnLigneActuelle.id
+            );
+
+        }
 
     }
 
@@ -1213,72 +1953,11 @@ async function rejoindrePartieEnLigne(){
     }
 
 }
-/* ==========================================
-   BOUTONS
-========================================== */
-
-document
-    .getElementById("btnCreerPartie")
-    ?.addEventListener(
-        "click",
-        afficherCreationPartie
-    );
-
-
-document
-    .getElementById("confirmerCreationPartie")
-    ?.addEventListener(
-        "click",
-        creerPartieEnLigne
-    );
-
-
-document
-    .getElementById("annulerCreationPartie")
-    ?.addEventListener(
-        "click",
-        afficherMenuPartie
-    );
-
-
-document
-    .getElementById("btnRejoindrePartie")
-    ?.addEventListener(
-        "click",
-        afficherRejoindrePartie
-    );
-
-
-document
-    .getElementById("confirmerRejoindrePartie")
-    ?.addEventListener(
-        "click",
-        rejoindrePartieEnLigne
-    );
-
-
-document
-    .getElementById("annulerRejoindrePartie")
-    ?.addEventListener(
-        "click",
-        afficherMenuPartie
-    );
-
-
-document
-    .getElementById("annulerPartie")
-    ?.addEventListener(
-        "click",
-        annulerPartieEnLigne
-    );
 
 
 /* ==========================================
-   INITIALISATION
+   CHARGER UNE PARTIE COMPLÈTE
 ========================================== */
-
-afficherProfilEnLigne();
-
 
 /* ==========================================
    CHARGER UNE PARTIE COMPLÈTE
@@ -1288,78 +1967,91 @@ async function chargerPartieEtAfficher(
     partieId
 ){
 
-    try{
+    const {
+        data,
+        error
+    } =
+        await supabaseClient
+            .from("parties_en_ligne")
+            .select("*")
+            .eq(
+                "id",
+                partieId
+            )
+            .single();
 
-        const {
-            data: partie,
+
+    if(error){
+
+        console.error(
+            "Erreur lors du chargement de la partie :",
             error
-        } =
-            await supabaseClient
-                .from("parties_en_ligne")
-                .select("*")
-                .eq("id", partieId)
-                .maybeSingle();
-
-
-        if(error){
-
-            console.error(
-                "❌ Erreur récupération partie :",
-                error
-            );
-
-            return;
-
-        }
-
-
-        if(!partie){
-
-            console.error(
-                "❌ Partie introuvable."
-            );
-
-            return;
-
-        }
-
-
-        console.log(
-            "🔄 Partie actualisée :",
-            partie
         );
 
 
-        partieEnLigneActuelle =
-            partie;
-
-
-        if(
-            partie.statut ===
-            "terminee"
-        ){
-
-            afficherResultatPartie(
-                partie
-            );
-
-            return;
-
-        }
-
-
-        afficherConfrontation(
-            partie
+        afficherMessage(
+            "Impossible de charger la partie."
         );
+
+
+        return;
 
     }
 
-    catch(erreur){
 
-        console.error(
-            "❌ Erreur inattendue récupération partie :",
-            erreur
+    partieEnLigneActuelle =
+        data;
+
+
+    if(
+        data.statut ===
+        "attente"
+    ){
+
+        afficherSalleAttentePartie();
+
+
+        await mettreAJourSalleAttente(
+            data
         );
+
+
+        surveillerArriveeJoueurs(
+            data.id
+        );
+
+
+        return;
+
+    }
+
+
+    if(
+        data.statut ===
+        "en_cours"
+    ){
+
+        await afficherConfrontation(
+            data
+        );
+
+
+        return;
+
+    }
+
+
+    if(
+        data.statut ===
+        "terminee"
+    ){
+
+        await afficherResultatPartie(
+            data
+        );
+
+
+        return;
 
     }
 
@@ -1367,12 +2059,37 @@ async function chargerPartieEtAfficher(
 
 
 /* ==========================================
-   SURVEILLER JOUEUR 2
+   SURVEILLER L'ARRIVÉE DES JOUEURS
 ========================================== */
 
-function surveillerArriveeAdversaire(
-    partieId
+/* ==========================================
+   SURVEILLER L'ARRIVÉE DES JOUEURS
+========================================== */
+
+function surveillerArriveeJoueurs(
+    partieId = null
 ){
+
+    /*
+     * Si aucun ID n'est fourni, on récupère
+     * celui de la partie actuellement ouverte.
+     */
+
+    const idPartie =
+        partieId ||
+        partieEnLigneActuelle?.id;
+
+
+    if(!idPartie){
+
+        console.error(
+            "❌ Impossible de surveiller la partie : ID de partie absent."
+        );
+
+        return;
+
+    }
+
 
     if(surveillancePartie){
 
@@ -1385,7 +2102,7 @@ function surveillerArriveeAdversaire(
 
     console.log(
         "👀 Surveillance de la partie :",
-        partieId
+        idPartie
     );
 
 
@@ -1402,7 +2119,10 @@ function surveillerArriveeAdversaire(
                         await supabaseClient
                             .from("parties_en_ligne")
                             .select("*")
-                            .eq("id", partieId)
+                            .eq(
+                                "id",
+                                idPartie
+                            )
                             .maybeSingle();
 
 
@@ -1420,12 +2140,76 @@ function surveillerArriveeAdversaire(
 
                     if(!partie){
 
+                        console.warn(
+                            "⚠️ Partie introuvable pendant la surveillance."
+                        );
+
                         return;
 
                     }
 
 
-                    if(partie.joueur2_id){
+                    partieEnLigneActuelle =
+                        partie;
+
+
+                    const nombreJoueurs =
+                        obtenirNombreJoueurs(
+                            partie
+                        );
+
+
+                    const joueursPresents =
+                        obtenirJoueursPartie(
+                            partie
+                        );
+
+
+                    /*
+                     * Tant que la partie attend encore
+                     * des joueurs, on actualise la salle.
+                     */
+
+                    if(
+                        partie.statut ===
+                        "attente"
+                    ){
+
+                        await mettreAJourSalleAttente(
+                            partie
+                        );
+
+                        return;
+
+                    }
+
+
+                    /*
+                     * Lorsque la partie passe à "en_cours",
+                     * chaque joueur présent sur son propre écran
+                     * arrive ici et affiche la confrontation.
+                     */
+
+                    if(
+                        partie.statut ===
+                        "en_cours"
+                    ){
+
+                        /*
+                         * Sécurité :
+                         * on ne lance le jeu que lorsque
+                         * tous les joueurs prévus sont présents.
+                         */
+
+                        if(
+                            joueursPresents.length <
+                            nombreJoueurs
+                        ){
+
+                            return;
+
+                        }
+
 
                         clearInterval(
                             surveillancePartie
@@ -1436,88 +2220,44 @@ function surveillerArriveeAdversaire(
 
 
                         console.log(
-                            "✅ Adversaire détecté !",
+                            "✅ Partie démarrée pour tous les joueurs :",
                             partie
                         );
 
 
-                        partieEnLigneActuelle =
-                            partie;
-
-
-                        const {
-                            data: adversaire,
-                            error: erreurAdversaire
-                        } =
-                            await supabaseClient
-                                .from("joueur")
-                                .select("pseudo")
-                                .eq(
-                                    "id",
-                                    partie.joueur2_id
-                                )
-                                .maybeSingle();
-
-
-                        if(erreurAdversaire){
-
-                            console.warn(
-                                "⚠️ Impossible de récupérer le pseudo :",
-                                erreurAdversaire
-                            );
-
-                        }
-
-
-                        const statut =
-                            document.getElementById(
-                                "statutPartie"
-                            );
-
-
-                        const pseudo =
-                            document.getElementById(
-                                "pseudoAdversaire"
-                            );
-
-
-                        const adversaireInfo =
-                            document.getElementById(
-                                "adversaireInfo"
-                            );
-
-
-                        if(statut){
-
-                            statut.textContent =
-                                "✅ Adversaire trouvé !";
-
-                        }
-
-
-                        if(pseudo){
-
-                            pseudo.textContent =
-                                adversaire?.pseudo ||
-                                "Adversaire";
-
-                        }
-
-
-                        if(adversaireInfo){
-
-                            adversaireInfo.style.display =
-                                "block";
-
-                        }
-
-
                         afficherMessage(
-                            "✅ Votre adversaire a rejoint la partie !"
+                            "⚔️ La confrontation commence !"
                         );
 
 
-                        afficherConfrontation(
+                        await afficherConfrontation(
+                            partie
+                        );
+
+
+                        return;
+
+                    }
+
+
+                    /*
+                     * Partie terminée.
+                     */
+
+                    if(
+                        partie.statut ===
+                        "terminee"
+                    ){
+
+                        clearInterval(
+                            surveillancePartie
+                        );
+
+                        surveillancePartie =
+                            null;
+
+
+                        afficherResultatPartie(
                             partie
                         );
 
@@ -1528,7 +2268,7 @@ function surveillerArriveeAdversaire(
                 catch(erreur){
 
                     console.error(
-                        "❌ Erreur inattendue surveillance :",
+                        "❌ Erreur inattendue surveillance partie :",
                         erreur
                     );
 
@@ -1539,113 +2279,11 @@ function surveillerArriveeAdversaire(
         );
 
 }
+
+
 /* ==========================================
-   RÉCUPÉRER LES PSEUDOS DE LA PARTIE
+   AFFICHER LA CONFRONTATION
 ========================================== */
-
-async function obtenirPseudosPartie(partie){
-
-    const pseudos = {
-        joueur1:
-            joueur?.pseudo ||
-            "Joueur 1",
-
-        joueur2:
-            "Joueur 2"
-    };
-
-
-    if(!partie){
-
-        return pseudos;
-
-    }
-
-
-    const ids =
-        [
-            partie.joueur1_id,
-            partie.joueur2_id
-        ]
-        .filter(Boolean);
-
-
-    if(ids.length === 0){
-
-        return pseudos;
-
-    }
-
-
-    try{
-
-        const {
-            data,
-            error
-        } =
-            await supabaseClient
-                .from("joueur")
-                .select("id, pseudo")
-                .in("id", ids);
-
-
-        if(error){
-
-            console.warn(
-                "⚠️ Impossible de récupérer les pseudos :",
-                error
-            );
-
-            return pseudos;
-
-        }
-
-
-        if(Array.isArray(data)){
-
-            const joueur1 =
-                data.find(
-                    utilisateur =>
-                        utilisateur.id ===
-                        partie.joueur1_id
-                );
-
-
-            const joueur2 =
-                data.find(
-                    utilisateur =>
-                        utilisateur.id ===
-                        partie.joueur2_id
-                );
-
-
-            pseudos.joueur1 =
-                joueur1?.pseudo ||
-                pseudos.joueur1;
-
-
-            pseudos.joueur2 =
-                joueur2?.pseudo ||
-                pseudos.joueur2;
-
-        }
-
-    }
-
-    catch(erreur){
-
-        console.warn(
-            "⚠️ Erreur récupération des pseudos :",
-            erreur
-        );
-
-    }
-
-
-    return pseudos;
-
-}
-
 
 async function afficherConfrontation(
     partie
@@ -1655,6 +2293,34 @@ async function afficherConfrontation(
 
         console.error(
             "❌ Partie en ligne absente."
+        );
+
+        return;
+
+    }
+
+
+    const nombreJoueurs =
+        obtenirNombreJoueurs(
+            partie
+        );
+
+
+    const joueursPresents =
+        obtenirJoueursPartie(
+            partie
+        );
+
+
+    if(
+        partie.statut !==
+        "en_cours" ||
+        joueursPresents.length <
+        nombreJoueurs
+    ){
+
+        await mettreAJourSalleAttente(
+            partie
         );
 
         return;
@@ -1679,20 +2345,6 @@ async function afficherConfrontation(
         );
 
         return;
-
-    }
-
-
-    const accueil =
-        document.getElementById(
-            "accueil"
-        );
-
-
-    if(accueil){
-
-        accueil.style.display =
-            "none";
 
     }
 
@@ -1733,55 +2385,99 @@ async function afficherConfrontation(
     }
 
 
-    const codePartie =
-        document.getElementById(
-            "codePartieEnLigne"
-        );
-
-
-    if(codePartie){
-
-        codePartie.textContent =
-            partie.code ||
-            "";
-
-    }
-
-
-    /* ==========================================
-       AFFICHER LES VRAIS PSEUDOS
-    ========================================== */
-
     const pseudos =
         await obtenirPseudosPartie(
             partie
         );
 
 
-    const pseudoJoueur1 =
-        document.getElementById(
-            "pseudoJoueur1"
-        );
+    /*
+     * Afficher les cartes correspondant
+     * au nombre réel de joueurs.
+     */
+
+    for(
+        let numero = 1;
+        numero <= 4;
+        numero++
+    ){
+
+        const carte =
+            document.getElementById(
+                `joueurConfrontation${numero}`
+            );
 
 
-    const pseudoJoueur2 =
-        document.getElementById(
-            "pseudoJoueur2"
-        );
+        const pseudo =
+            document.getElementById(
+                `pseudoJoueur${numero}`
+            );
 
 
-    if(pseudoJoueur1){
+        const score =
+            document.getElementById(
+                `scoreJoueur${numero}`
+            );
 
-        pseudoJoueur1.textContent =
-            pseudos.joueur1;
+
+        if(carte){
+
+            carte.style.display =
+                numero <= nombreJoueurs
+                    ? "flex"
+                    : "none";
+
+        }
+
+
+        if(
+            numero <=
+            nombreJoueurs
+        ){
+
+            if(pseudo){
+
+                pseudo.textContent =
+                    pseudos[
+                        `joueur${numero}`
+                    ] ||
+                    `Joueur ${numero}`;
+
+            }
+
+
+            if(score){
+
+                score.textContent =
+                    Number(
+                        partie[
+                            `score_joueur${numero}`
+                        ] ?? 0
+                    );
+
+            }
+
+        }
 
     }
 
 
-    if(pseudoJoueur2){
+    /*
+     * Le VS est conservé uniquement en 1v1.
+     */
 
-        pseudoJoueur2.textContent =
-            pseudos.joueur2;
+    const separateur =
+        confrontation.querySelector(
+            ".vs"
+        );
+
+
+    if(separateur){
+
+        separateur.style.display =
+            nombreJoueurs === 2
+                ? "block"
+                : "none";
 
     }
 
@@ -1816,78 +2512,36 @@ function mettreAJourScoresEnLigne(
     }
 
 
-    const score1 =
-        Number(
-            partie.score_joueur1 ?? 0
+    const nombreJoueurs =
+        obtenirNombreJoueurs(
+            partie
         );
 
 
-    const score2 =
-        Number(
-            partie.score_joueur2 ?? 0
-        );
+    for(
+        let numero = 1;
+        numero <= 4;
+        numero++
+    ){
+
+        const element =
+            document.getElementById(
+                `scoreJoueur${numero}`
+            );
 
 
-    const scoreJoueur1 =
-        document.getElementById(
-            "scoreJoueur1EnLigne"
-        );
+        if(element){
 
+            element.textContent =
+                numero <= nombreJoueurs
+                    ? Number(
+                        partie[
+                            `score_joueur${numero}`
+                        ] ?? 0
+                    )
+                    : "";
 
-    const scoreJoueur2 =
-        document.getElementById(
-            "scoreJoueur2EnLigne"
-        );
-
-
-    if(scoreJoueur1){
-
-        scoreJoueur1.textContent =
-            score1;
-
-    }
-
-
-    if(scoreJoueur2){
-
-        scoreJoueur2.textContent =
-            score2;
-
-    }
-
-
-    /*
-     * Ton HTML actuel utilise :
-     * scoreJoueur1
-     * scoreJoueur2
-     *
-     * On met donc également ces éléments à jour.
-     */
-
-    const ancienScore1 =
-        document.getElementById(
-            "scoreJoueur1"
-        );
-
-
-    const ancienScore2 =
-        document.getElementById(
-            "scoreJoueur2"
-        );
-
-
-    if(ancienScore1){
-
-        ancienScore1.textContent =
-            score1;
-
-    }
-
-
-    if(ancienScore2){
-
-        ancienScore2.textContent =
-            score2;
+        }
 
     }
 
@@ -1895,7 +2549,7 @@ function mettreAJourScoresEnLigne(
 
 
 /* ==========================================
-   AFFICHER LA QUESTION + CHRONO
+   AFFICHER QUESTION + CHRONO
 ========================================== */
 
 function afficherQuestionEnLigne(
@@ -1941,6 +2595,7 @@ function afficherQuestionEnLigne(
             index
         );
 
+
         if(
             index >=
             questions.length
@@ -1951,6 +2606,7 @@ function afficherQuestionEnLigne(
             );
 
         }
+
 
         return;
 
@@ -2029,12 +2685,12 @@ function afficherQuestionEnLigne(
                 "bouton-reponse";
 
 
-            bouton.textContent =
-                reponse;
-
-
             bouton.type =
                 "button";
+
+
+            bouton.textContent =
+                reponse;
 
 
             bouton.addEventListener(
@@ -2057,7 +2713,18 @@ function afficherQuestionEnLigne(
     );
 
 
-    afficherMessage("");
+    const colonneReponse =
+        obtenirColonneReponse(
+            partie
+        );
+
+
+    const maReponse =
+        colonneReponse
+            ? partie[
+                colonneReponse
+            ]
+            : null;
 
 
     const statut =
@@ -2068,25 +2735,16 @@ function afficherQuestionEnLigne(
 
     if(statut){
 
-        const maReponse =
-            joueur.id ===
-            partie.joueur1_id
-                ? partie.reponse_joueur1
-                : joueur.id ===
-                    partie.joueur2_id
-                        ? partie.reponse_joueur2
-                        : null;
-
-
         if(
             maReponse !== null &&
             maReponse !== undefined
         ){
 
             statut.textContent =
-                "✅ Réponse enregistrée. En attente de l'adversaire...";
+                "✅ Réponse enregistrée. En attente des autres joueurs...";
 
         }
+
         else{
 
             statut.textContent =
@@ -2097,10 +2755,29 @@ function afficherQuestionEnLigne(
     }
 
 
+    if(
+        maReponse !== null &&
+        maReponse !== undefined
+    ){
+
+        document
+            .querySelectorAll(
+                "#reponsesEnLigne .bouton-reponse"
+            )
+            .forEach(
+                bouton => {
+
+                    bouton.disabled =
+                        true;
+
+                }
+            );
+
+    }
+
+
     /*
-     * Le chrono est commun aux deux joueurs.
-     * Il est calculé à partir de fin_question
-     * stocké dans Supabase.
+     * Le chrono est commun à tous les joueurs.
      */
 
     if(partie.fin_question){
@@ -2110,6 +2787,7 @@ function afficherQuestionEnLigne(
         );
 
     }
+
     else{
 
         initialiserChronoQuestion(
@@ -2119,6 +2797,8 @@ function afficherQuestionEnLigne(
     }
 
 }
+
+
 /* ==========================================
    ENREGISTRER UNE RÉPONSE
 ========================================== */
@@ -2142,29 +2822,13 @@ async function enregistrerReponseEnLigne(
         partieEnLigneActuelle;
 
 
-    let colonneReponse =
-        null;
+    const colonneReponse =
+        obtenirColonneReponse(
+            partie
+        );
 
 
-    if(
-        joueur.id ===
-        partie.joueur1_id
-    ){
-
-        colonneReponse =
-            "reponse_joueur1";
-
-    }
-    else if(
-        joueur.id ===
-        partie.joueur2_id
-    ){
-
-        colonneReponse =
-            "reponse_joueur2";
-
-    }
-    else{
+    if(!colonneReponse){
 
         console.error(
             "❌ Joueur non reconnu dans cette partie."
@@ -2175,23 +2839,19 @@ async function enregistrerReponseEnLigne(
     }
 
 
-    /*
-     * Empêcher une deuxième réponse.
-     */
-
     if(
-        partie[colonneReponse] !== null &&
-        partie[colonneReponse] !== undefined
+        partie[
+            colonneReponse
+        ] !== null &&
+        partie[
+            colonneReponse
+        ] !== undefined
     ){
 
         return;
 
     }
 
-
-    /*
-     * Vérifier que le temps n'est pas déjà écoulé.
-     */
 
     if(partie.fin_question){
 
@@ -2243,7 +2903,16 @@ async function enregistrerReponseEnLigne(
                     indexReponse
 
             })
-            .eq("id", partie.id)
+            .eq(
+                "id",
+                partie.id
+            )
+            .eq(
+                "question_actuelle",
+                Number(
+                    partie.question_actuelle ?? 0
+                )
+            )
             .is(
                 colonneReponse,
                 null
@@ -2282,7 +2951,7 @@ async function enregistrerReponseEnLigne(
     if(!data){
 
         console.warn(
-            "⚠️ La réponse existait déjà ou le temps est terminé."
+            "⚠️ La réponse existait déjà ou la question a changé."
         );
 
         return;
@@ -2306,18 +2975,23 @@ async function enregistrerReponseEnLigne(
     if(statut){
 
         statut.textContent =
-            "✅ Réponse enregistrée. En attente de l'adversaire...";
+            "✅ Réponse enregistrée. En attente des autres joueurs...";
 
     }
 
 
     console.log(
         "✅ Réponse enregistrée :",
-        indexReponse
+        indexReponse,
+        colonneReponse
     );
 
 }
 
+
+/* ==========================================
+   DÉMARRER LE CHRONO
+========================================== */
 
 /* ==========================================
    DÉMARRER LE CHRONO
@@ -2345,6 +3019,14 @@ function demarrerChronoEnLigne(
         return;
 
     }
+
+
+    /*
+     * Nouvelle question :
+     * on efface immédiatement l'ancien message.
+     */
+
+    afficherMessage("");
 
 
     if(
@@ -2411,6 +3093,11 @@ function demarrerChronoEnLigne(
             arreterChronoEnLigne();
 
 
+            /*
+             * Afficher le message uniquement
+             * pendant la transition de fin de question.
+             */
+
             afficherMessage(
                 "⏰ Temps écoulé !"
             );
@@ -2470,11 +3157,6 @@ async function initialiserChronoQuestion(
     }
 
 
-    /*
-     * Si un autre joueur a déjà créé
-     * le chrono, on l'utilise.
-     */
-
     if(partie.fin_question){
 
         demarrerChronoEnLigne(
@@ -2486,13 +3168,29 @@ async function initialiserChronoQuestion(
     }
 
 
-    /*
-     * On tente de créer le chrono.
-     *
-     * Le .is("fin_question", null)
-     * garantit qu'un seul joueur
-     * peut réellement l'initialiser.
-     */
+    const nombreJoueurs =
+        obtenirNombreJoueurs(
+            partie
+        );
+
+
+    const joueursPresents =
+        obtenirJoueursPartie(
+            partie
+        );
+
+
+    if(
+        partie.statut !==
+        "en_cours" ||
+        joueursPresents.length <
+        nombreJoueurs
+    ){
+
+        return;
+
+    }
+
 
     const finQuestion =
         new Date(
@@ -2513,7 +3211,20 @@ async function initialiserChronoQuestion(
                     finQuestion
 
             })
-            .eq("id", partie.id)
+            .eq(
+                "id",
+                partie.id
+            )
+            .eq(
+                "statut",
+                "en_cours"
+            )
+            .eq(
+                "question_actuelle",
+                Number(
+                    partie.question_actuelle ?? 0
+                )
+            )
             .is(
                 "fin_question",
                 null
@@ -2550,10 +3261,8 @@ async function initialiserChronoQuestion(
 
 
     /*
-     * Quelqu'un d'autre a probablement
+     * Un autre joueur a probablement
      * initialisé le chrono.
-     *
-     * On récupère alors la partie.
      */
 
     const {
@@ -2563,7 +3272,10 @@ async function initialiserChronoQuestion(
         await supabaseClient
             .from("parties_en_ligne")
             .select("*")
-            .eq("id", partie.id)
+            .eq(
+                "id",
+                partie.id
+            )
             .maybeSingle();
 
 
@@ -2615,13 +3327,9 @@ async function gererFinChronoEnLigne(){
 
 
     const colonneReponse =
-        partie.joueur1_id ===
-        joueur.id
-            ? "reponse_joueur1"
-            : partie.joueur2_id ===
-                joueur.id
-                    ? "reponse_joueur2"
-                    : null;
+        obtenirColonneReponse(
+            partie
+        );
 
 
     if(!colonneReponse){
@@ -2635,14 +3343,13 @@ async function gererFinChronoEnLigne(){
     }
 
 
-    /*
-     * Si une réponse existe déjà,
-     * rien à faire.
-     */
-
     if(
-        partie[colonneReponse] !== null &&
-        partie[colonneReponse] !== undefined
+        partie[
+            colonneReponse
+        ] !== null &&
+        partie[
+            colonneReponse
+        ] !== undefined
     ){
 
         return;
@@ -2662,7 +3369,16 @@ async function gererFinChronoEnLigne(){
                     -1
 
             })
-            .eq("id", partie.id)
+            .eq(
+                "id",
+                partie.id
+            )
+            .eq(
+                "question_actuelle",
+                Number(
+                    partie.question_actuelle ?? 0
+                )
+            )
             .is(
                 colonneReponse,
                 null
@@ -2703,30 +3419,27 @@ async function gererFinChronoEnLigne(){
    SURVEILLER LES RÉPONSES
 ========================================== */
 
+/* ==========================================
+   SURVEILLER LES RÉPONSES
+========================================== */
+
 function surveillerReponsesPartie(){
 
     if(surveillanceReponses){
-
         return;
-
     }
-
 
     console.log(
         "👀 Surveillance des réponses démarrée."
     );
-
 
     surveillanceReponses =
         setInterval(
             async () => {
 
                 if(!partieEnLigneActuelle){
-
                     return;
-
                 }
-
 
                 try{
 
@@ -2737,7 +3450,7 @@ function surveillerReponsesPartie(){
                         await supabaseClient
                             .from("parties_en_ligne")
                             .select(
-                                "id, code, joueur1_id, joueur2_id, questions, question_actuelle, reponse_joueur1, reponse_joueur2, traitement_question, score_joueur1, score_joueur2, statut, fin_question"
+                                "id, code, joueur1_id, joueur2_id, joueur3_id, joueur4_id, nombre_joueurs, questions, question_actuelle, reponse_joueur1, reponse_joueur2, reponse_joueur3, reponse_joueur4, traitement_question, score_joueur1, score_joueur2, score_joueur3, score_joueur4, statut, fin_question, gagnant_id"
                             )
                             .eq(
                                 "id",
@@ -2754,14 +3467,11 @@ function surveillerReponsesPartie(){
                         );
 
                         return;
-
                     }
 
 
                     if(!partie){
-
                         return;
-
                     }
 
 
@@ -2781,17 +3491,13 @@ function surveillerReponsesPartie(){
                         partie;
 
 
-                    /* ==========================================
-                       METTRE À JOUR LES SCORES
-                    ========================================== */
-
                     mettreAJourScoresEnLigne(
                         partie
                     );
 
 
                     /* ==========================================
-                       PARTIE TERMINÉE
+                       PARTIE DÉJÀ TERMINÉE
                     ========================================== */
 
                     if(
@@ -2804,7 +3510,6 @@ function surveillerReponsesPartie(){
                         );
 
                         return;
-
                     }
 
 
@@ -2817,12 +3522,6 @@ function surveillerReponsesPartie(){
                         ancienIndex
                     ){
 
-                        console.log(
-                            "➡️ Nouvelle question :",
-                            nouvelIndex + 1
-                        );
-
-
                         if(
                             nouvelIndex >=
                             partie.questions.length
@@ -2833,7 +3532,6 @@ function surveillerReponsesPartie(){
                             );
 
                             return;
-
                         }
 
 
@@ -2842,13 +3540,16 @@ function surveillerReponsesPartie(){
                         );
 
                         return;
-
                     }
 
 
                     /* ==========================================
-                       CHRONO EXPIRÉ
+                       VÉRIFIER SI LE CHRONO EST EXPIRÉ
                     ========================================== */
+
+                    let partieActuelle =
+                        partie;
+
 
                     if(partie.fin_question){
 
@@ -2863,31 +3564,51 @@ function surveillerReponsesPartie(){
                             Date.now() >= fin
                         ){
 
+                            console.log(
+                                "⏰ Chrono terminé. Vérification des réponses..."
+                            );
+
+
                             const misesAJour =
                                 {};
 
 
-                            if(
-                                partie.reponse_joueur1 ===
-                                null
+                            const nombreJoueurs =
+                                obtenirNombreJoueurs(
+                                    partie
+                                );
+
+
+                            /*
+                             * Toutes les réponses manquantes
+                             * deviennent -1.
+                             */
+
+                            for(
+                                let numero = 1;
+                                numero <= nombreJoueurs;
+                                numero++
                             ){
 
-                                misesAJour.reponse_joueur1 =
-                                    -1;
+                                const colonne =
+                                    `reponse_joueur${numero}`;
 
+
+                                if(
+                                    partie[colonne] === null ||
+                                    partie[colonne] === undefined
+                                ){
+
+                                    misesAJour[colonne] =
+                                        -1;
+                                }
                             }
 
 
-                            if(
-                                partie.reponse_joueur2 ===
-                                null
-                            ){
-
-                                misesAJour.reponse_joueur2 =
-                                    -1;
-
-                            }
-
+                            /*
+                             * Il reste au moins une réponse
+                             * à enregistrer.
+                             */
 
                             if(
                                 Object.keys(
@@ -2912,6 +3633,10 @@ function surveillerReponsesPartie(){
                                             "id",
                                             partie.id
                                         )
+                                        .eq(
+                                            "question_actuelle",
+                                            nouvelIndex
+                                        )
                                         .select("*")
                                         .maybeSingle();
 
@@ -2919,47 +3644,72 @@ function surveillerReponsesPartie(){
                                 if(erreurTemps){
 
                                     console.error(
-                                        "❌ Erreur traitement du chrono :",
+                                        "❌ Erreur enregistrement des réponses après expiration :",
                                         erreurTemps
                                     );
 
                                     return;
-
                                 }
 
 
-                                if(
-                                    partieApresTemps
-                                ){
+                                if(partieApresTemps){
+
+                                    partieActuelle =
+                                        partieApresTemps;
 
                                     partieEnLigneActuelle =
                                         partieApresTemps;
-
                                 }
-
                             }
-
                         }
-
                     }
 
 
-                    const partieActuelle =
-                        partieEnLigneActuelle;
-
-
                     /* ==========================================
-                       ATTENDRE LES DEUX RÉPONSES
+                       VÉRIFIER À NOUVEAU TOUTES LES RÉPONSES
                     ========================================== */
 
-                    if(
-                        !partieActuelle ||
-                        partieActuelle.reponse_joueur1 === null ||
-                        partieActuelle.reponse_joueur2 === null
+                    const nombreJoueurs =
+                        obtenirNombreJoueurs(
+                            partieActuelle
+                        );
+
+
+                    let toutesLesReponses =
+                        true;
+
+
+                    for(
+                        let numero = 1;
+                        numero <= nombreJoueurs;
+                        numero++
                     ){
 
-                        return;
+                        const colonne =
+                            `reponse_joueur${numero}`;
 
+
+                        if(
+                            partieActuelle[colonne] === null ||
+                            partieActuelle[colonne] === undefined
+                        ){
+
+                            toutesLesReponses =
+                                false;
+
+                            break;
+                        }
+                    }
+
+
+                    /*
+                     * Au moins un joueur n'a pas encore
+                     * répondu et son chrono n'est pas
+                     * encore arrivé à zéro.
+                     */
+
+                    if(!toutesLesReponses){
+                        return;
                     }
 
 
@@ -2973,7 +3723,6 @@ function surveillerReponsesPartie(){
                     ){
 
                         return;
-
                     }
 
 
@@ -3003,6 +3752,12 @@ function surveillerReponsesPartie(){
                                 "traitement_question",
                                 false
                             )
+                            .eq(
+                                "question_actuelle",
+                                Number(
+                                    partieActuelle.question_actuelle ?? 0
+                                )
+                            )
                             .select("*")
                             .maybeSingle();
 
@@ -3010,29 +3765,34 @@ function surveillerReponsesPartie(){
                     if(erreurVerrou){
 
                         console.error(
-                            "❌ Erreur verrouillage :",
+                            "❌ Erreur verrouillage de la question :",
                             erreurVerrou
                         );
 
                         return;
-
                     }
 
 
+                    /*
+                     * Un autre joueur a obtenu le verrou.
+                     */
+
                     if(!verrou){
-
                         return;
-
                     }
 
 
                     console.log(
-                        "🔒 Verrou obtenu."
+                        "🔒 Question verrouillée. Traitement..."
                     );
 
 
                     arreterChronoEnLigne();
 
+
+                    /* ==========================================
+                       TRAITER LA QUESTION
+                    ========================================== */
 
                     await traiterQuestionPartie(
                         verrou
@@ -3046,13 +3806,11 @@ function surveillerReponsesPartie(){
                         "❌ Erreur surveillance réponses :",
                         erreur
                     );
-
                 }
 
             },
             500
         );
-
 }
 
 
@@ -3086,6 +3844,8 @@ function arreterSurveillancesEnLigne(){
     }
 
 }
+
+
 /* ==========================================
    TRAITER LA QUESTION
 ========================================== */
@@ -3101,7 +3861,7 @@ async function traiterQuestionPartie(
 
 
     const question =
-        partie.questions[
+        partie.questions?.[
             indexQuestion
         ];
 
@@ -3118,52 +3878,74 @@ async function traiterQuestionPartie(
     }
 
 
-    /* ==========================================
-       VÉRIFIER LES RÉPONSES
-    ========================================== */
-
-    const joueur1Correct =
-        Number(
-            partie.reponse_joueur1
-        ) ===
-        Number(
-            question.bonne
+    const nombreJoueurs =
+        obtenirNombreJoueurs(
+            partie
         );
 
 
-    const joueur2Correct =
-        Number(
-            partie.reponse_joueur2
-        ) ===
-        Number(
-            question.bonne
-        );
+    const misesAJour =
+        {};
 
 
     /* ==========================================
        CALCULER LES SCORES
     ========================================== */
 
-    const nouveauScoreJoueur1 =
-        Number(
-            partie.score_joueur1 || 0
-        ) +
-        (
-            joueur1Correct
-                ? 1
-                : 0
-        );
+    for(
+        let numero = 1;
+        numero <= nombreJoueurs;
+        numero++
+    ){
+
+        const colonneReponse =
+            `reponse_joueur${numero}`;
 
 
-    const nouveauScoreJoueur2 =
-        Number(
-            partie.score_joueur2 || 0
-        ) +
-        (
-            joueur2Correct
-                ? 1
-                : 0
-        );
+        const colonneScore =
+            obtenirColonneScore(
+                numero
+            );
+
+
+        const reponse =
+            Number(
+                partie[
+                    colonneReponse
+                ]
+            );
+
+
+        const ancienScore =
+            Number(
+                partie[
+                    colonneScore
+                ] ?? 0
+            );
+
+
+        const bonneReponse =
+            Number(
+                question.bonne
+            );
+
+
+        const estCorrect =
+            reponse ===
+            bonneReponse;
+
+
+        misesAJour[
+            colonneScore
+        ] =
+            ancienScore +
+            (
+                estCorrect
+                    ? 1
+                    : 0
+            );
+
+    }
 
 
     const prochaineQuestion =
@@ -3175,14 +3957,6 @@ async function traiterQuestionPartie(
         partie.questions.length;
 
 
-    /*
-     * Si la partie continue,
-     * on crée immédiatement la nouvelle échéance.
-     *
-     * Si la partie est terminée,
-     * fin_question devient null.
-     */
-
     const finQuestion =
         partieTerminee
             ? null
@@ -3190,6 +3964,104 @@ async function traiterQuestionPartie(
                 Date.now() +
                 DUREE_QUESTION * 1000
             ).toISOString();
+
+
+    /*
+     * Réinitialiser les réponses
+     * des joueurs actifs.
+     */
+
+    for(
+        let numero = 1;
+        numero <= nombreJoueurs;
+        numero++
+    ){
+
+        misesAJour[
+            `reponse_joueur${numero}`
+        ] =
+            null;
+
+    }
+
+
+    misesAJour.question_actuelle =
+        prochaineQuestion;
+
+
+    misesAJour.fin_question =
+        finQuestion;
+
+
+    misesAJour.traitement_question =
+        false;
+
+
+    misesAJour.statut =
+        partieTerminee
+            ? "terminee"
+            : "en_cours";
+
+
+    /* ==========================================
+       DÉTERMINER LE GAGNANT
+    ========================================== */
+
+    if(partieTerminee){
+
+        const joueurs =
+            [];
+
+
+        for(
+            let numero = 1;
+            numero <= nombreJoueurs;
+            numero++
+        ){
+
+            joueurs.push({
+
+                numero:
+                    numero,
+
+                id:
+                    partie[
+                        `joueur${numero}_id`
+                    ],
+
+                score:
+                    misesAJour[
+                        `score_joueur${numero}`
+                    ]
+
+            });
+
+        }
+
+
+        const scoreMax =
+            Math.max(
+                ...joueurs.map(
+                    element =>
+                        element.score
+                )
+            );
+
+
+        const gagnants =
+            joueurs.filter(
+                element =>
+                    element.score ===
+                    scoreMax
+            );
+
+
+        misesAJour.gagnant_id =
+            gagnants.length === 1
+                ? gagnants[0].id
+                : null;
+
+    }
 
 
     /* ==========================================
@@ -3202,35 +4074,9 @@ async function traiterQuestionPartie(
     } =
         await supabaseClient
             .from("parties_en_ligne")
-            .update({
-
-                score_joueur1:
-                    nouveauScoreJoueur1,
-
-                score_joueur2:
-                    nouveauScoreJoueur2,
-
-                question_actuelle:
-                    prochaineQuestion,
-
-                fin_question:
-                    finQuestion,
-
-                reponse_joueur1:
-                    null,
-
-                reponse_joueur2:
-                    null,
-
-                traitement_question:
-                    false,
-
-                statut:
-                    partieTerminee
-                        ? "terminee"
-                        : "en_cours"
-
-            })
+            .update(
+                misesAJour
+            )
             .eq(
                 "id",
                 partie.id
@@ -3238,6 +4084,10 @@ async function traiterQuestionPartie(
             .eq(
                 "traitement_question",
                 true
+            )
+            .eq(
+                "question_actuelle",
+                indexQuestion
             )
             .select("*")
             .maybeSingle();
@@ -3272,25 +4122,25 @@ async function traiterQuestionPartie(
     );
 
 
-    console.log(
-        "📊 Score joueur 1 :",
-        nouveauScoreJoueur1
-    );
+    for(
+        let numero = 1;
+        numero <= nombreJoueurs;
+        numero++
+    ){
 
+        console.log(
+            `📊 Score joueur ${numero} :`,
+            partieMiseAJour[
+                `score_joueur${numero}`
+            ]
+        );
 
-    console.log(
-        "📊 Score joueur 2 :",
-        nouveauScoreJoueur2
-    );
+    }
 
 
     partieEnLigneActuelle =
         partieMiseAJour;
 
-
-    /* ==========================================
-       FIN DE PARTIE
-    ========================================== */
 
     if(partieTerminee){
 
@@ -3303,12 +4153,43 @@ async function traiterQuestionPartie(
     }
 
 
-    /* ==========================================
-       AFFICHER LA QUESTION SUIVANTE
-    ========================================== */
-
     afficherQuestionEnLigne(
         partieMiseAJour
+    );
+
+}
+
+
+/* ==========================================
+   SÉCURISER UN TEXTE
+========================================== */
+
+function securiserTexte(
+    texte
+){
+
+    return String(
+        texte
+    )
+    .replace(
+        /&/g,
+        "&amp;"
+    )
+    .replace(
+        /</g,
+        "&lt;"
+    )
+    .replace(
+        />/g,
+        "&gt;"
+    )
+    .replace(
+        /"/g,
+        "&quot;"
+    )
+    .replace(
+        /'/g,
+        "&#039;"
     );
 
 }
@@ -3343,6 +4224,18 @@ async function afficherResultatPartie(
         );
 
 
+    const resultat =
+        document.getElementById(
+            "resultatPartie"
+        );
+
+
+    const resultatFinal =
+        document.getElementById(
+            "resultatFinal"
+        );
+
+
     if(confrontation){
 
         confrontation.style.display =
@@ -3351,10 +4244,12 @@ async function afficherResultatPartie(
     }
 
 
-    const resultat =
-        document.getElementById(
-            "resultatPartie"
-        );
+    if(salleAttente){
+
+        salleAttente.style.display =
+            "none";
+
+    }
 
 
     if(resultat){
@@ -3365,24 +4260,6 @@ async function afficherResultatPartie(
     }
 
 
-    const scoreJoueur1 =
-        Number(
-            partie.score_joueur1 || 0
-        );
-
-
-    const scoreJoueur2 =
-        Number(
-            partie.score_joueur2 || 0
-        );
-
-
-    const resultatFinal =
-        document.getElementById(
-            "resultatFinal"
-        );
-
-
     if(!resultatFinal){
 
         return;
@@ -3390,9 +4267,11 @@ async function afficherResultatPartie(
     }
 
 
-    /* ==========================================
-       RÉCUPÉRER LES VRAIS PSEUDOS
-    ========================================== */
+    const nombreJoueurs =
+        obtenirNombreJoueurs(
+            partie
+        );
+
 
     const pseudos =
         await obtenirPseudosPartie(
@@ -3400,93 +4279,207 @@ async function afficherResultatPartie(
         );
 
 
-    const nomJoueur1 =
-        String(
-            pseudos.joueur1
-        )
-        .replace(
-            /&/g,
-            "&amp;"
-        )
-        .replace(
-            /</g,
-            "&lt;"
-        )
-        .replace(
-            />/g,
-            "&gt;"
-        )
-        .replace(
-            /"/g,
-            "&quot;"
-        )
-        .replace(
-            /'/g,
-            "&#039;"
+    const joueurs =
+        [];
+
+
+    for(
+        let numero = 1;
+        numero <= nombreJoueurs;
+        numero++
+    ){
+
+        const id =
+            partie[
+                `joueur${numero}_id`
+            ];
+
+
+        if(
+            id === null ||
+            id === undefined
+        ){
+
+            continue;
+
+        }
+
+
+        joueurs.push({
+
+            numero:
+                numero,
+
+            id:
+                id,
+
+            pseudo:
+                pseudos[
+                    `joueur${numero}`
+                ] ||
+                `Joueur ${numero}`,
+
+            score:
+                Number(
+                    partie[
+                        `score_joueur${numero}`
+                    ] ?? 0
+                )
+
+        });
+
+    }
+
+
+    if(joueurs.length === 0){
+
+        resultatFinal.innerHTML =
+            "<p>Résultat indisponible.</p>";
+
+        return;
+
+    }
+
+
+    const scoreMax =
+        Math.max(
+            ...joueurs.map(
+                joueurPartie =>
+                    joueurPartie.score
+            )
         );
 
 
-    const nomJoueur2 =
-        String(
-            pseudos.joueur2
-        )
-        .replace(
-            /&/g,
-            "&amp;"
-        )
-        .replace(
-            /</g,
-            "&lt;"
-        )
-        .replace(
-            />/g,
-            "&gt;"
-        )
-        .replace(
-            /"/g,
-            "&quot;"
-        )
-        .replace(
-            /'/g,
-            "&#039;"
+    const gagnants =
+        joueurs.filter(
+            joueurPartie =>
+                joueurPartie.score ===
+                scoreMax
         );
+
+
+    let html =
+        "";
 
 
     if(
-        scoreJoueur1 >
-        scoreJoueur2
+        gagnants.length === 1
     ){
 
-        resultatFinal.innerHTML = `
-            <p>🏆 ${nomJoueur1} gagne !</p>
-            <p>${nomJoueur1} : ${scoreJoueur1}</p>
-            <p>${nomJoueur2} : ${scoreJoueur2}</p>
-        `;
+        html +=
+            `<p>🏆 ${
+                securiserTexte(
+                    gagnants[0].pseudo
+                )
+            } gagne !</p>`;
 
     }
-    else if(
-        scoreJoueur2 >
-        scoreJoueur1
-    ){
 
-        resultatFinal.innerHTML = `
-            <p>🏆 ${nomJoueur2} gagne !</p>
-            <p>${nomJoueur1} : ${scoreJoueur1}</p>
-            <p>${nomJoueur2} : ${scoreJoueur2}</p>
-        `;
-
-    }
     else{
 
-        resultatFinal.innerHTML = `
-            <p>🤝 Égalité !</p>
-            <p>${nomJoueur1} : ${scoreJoueur1}</p>
-            <p>${nomJoueur2} : ${scoreJoueur2}</p>
-        `;
+        html +=
+            "<p>🤝 Égalité !</p>";
 
     }
 
+
+    joueurs.forEach(
+        joueurPartie => {
+
+            html +=
+                `
+                <p>
+                    ${
+                        securiserTexte(
+                            joueurPartie.pseudo
+                        )
+                    }
+                    : ${joueurPartie.score}
+                </p>
+                `;
+
+        }
+    );
+
+
+    resultatFinal.innerHTML =
+        html;
+
 }
+
+
+/* ==========================================
+   BOUTONS
+========================================== */
+
+document
+    .getElementById(
+        "btnCreerPartie"
+    )
+    ?.addEventListener(
+        "click",
+        afficherCreationPartie
+    );
+
+
+document
+    .getElementById(
+        "confirmerCreationPartie"
+    )
+    ?.addEventListener(
+        "click",
+        creerPartieEnLigne
+    );
+
+
+document
+    .getElementById(
+        "annulerCreationPartie"
+    )
+    ?.addEventListener(
+        "click",
+        afficherMenuPartie
+    );
+
+
+document
+    .getElementById(
+        "btnRejoindrePartie"
+    )
+    ?.addEventListener(
+        "click",
+        afficherRejoindrePartie
+    );
+
+
+document
+    .getElementById(
+        "confirmerRejoindrePartie"
+    )
+    ?.addEventListener(
+        "click",
+        rejoindrePartieEnLigne
+    );
+
+
+document
+    .getElementById(
+        "annulerRejoindrePartie"
+    )
+    ?.addEventListener(
+        "click",
+        afficherMenuPartie
+    );
+
+
+document
+    .getElementById(
+        "annulerPartie"
+    )
+    ?.addEventListener(
+        "click",
+        annulerPartieEnLigne
+    );
 
 
 /* ==========================================
@@ -3502,13 +4495,22 @@ document
         () => {
 
             arreterChronoEnLigne();
-
             arreterSurveillancesEnLigne();
+
+
+            partieEnLigneActuelle =
+                null;
 
 
             const resultat =
                 document.getElementById(
                     "resultatPartie"
+                );
+
+
+            const confrontation =
+                document.getElementById(
+                    "confrontation"
                 );
 
 
@@ -3520,22 +4522,12 @@ document
             }
 
 
-            const confrontation =
-                document.getElementById(
-                    "confrontation"
-                );
-
-
             if(confrontation){
 
                 confrontation.style.display =
                     "none";
 
             }
-
-
-            partieEnLigneActuelle =
-                null;
 
 
             afficherMenuPartie();
@@ -3557,7 +4549,6 @@ document
         () => {
 
             arreterChronoEnLigne();
-
             arreterSurveillancesEnLigne();
 
 
@@ -3570,3 +4561,10 @@ document
 
         }
     );
+
+
+/* ==========================================
+   INITIALISATION
+========================================== */
+
+afficherProfilEnLigne();

@@ -44,7 +44,7 @@
         </h1>
 
         <p class="sousTitreModeEnLigne">
-            Affronte un autre joueur dans une confrontation en ligne.
+            Affronte d'autres joueurs dans une confrontation en ligne.
         </p>
 
 
@@ -78,7 +78,7 @@
 
 
         <!-- ==============================
-             MENU PRINCIPAL DU MODE EN LIGNE
+             MENU PRINCIPAL
         =============================== -->
 
         <section
@@ -125,6 +125,36 @@
                 ⚔️ Créer une partie
             </h2>
 
+
+            <!-- ==============================
+                 NOMBRE DE JOUEURS
+            =============================== -->
+
+            <label for="nombreJoueursPartie">
+                Nombre de joueurs
+            </label>
+
+            <select id="nombreJoueursPartie">
+
+                <option value="2">
+                    2 joueurs — 1v1
+                </option>
+
+                <option value="3">
+                    3 joueurs — 1v1v1
+                </option>
+
+                <option value="4">
+                    4 joueurs — 1v1v1v1
+                </option>
+
+            </select>
+
+
+            <!-- ==============================
+                 CATÉGORIE
+            =============================== -->
+
             <label for="categoriePartie">
                 Catégorie
             </label>
@@ -162,6 +192,10 @@
             </select>
 
 
+            <!-- ==============================
+                 NOMBRE DE QUESTIONS
+            =============================== -->
+
             <label for="nombreQuestionsPartie">
                 Nombre de questions
             </label>
@@ -183,6 +217,10 @@
             </select>
 
 
+            <!-- ==============================
+                 CONFIRMER
+            =============================== -->
+
             <button
                 id="confirmerCreationPartie"
                 class="boutonModeEnLigne">
@@ -191,6 +229,10 @@
 
             </button>
 
+
+            <!-- ==============================
+                 ANNULER
+            =============================== -->
 
             <button
                 id="annulerCreationPartie"
@@ -217,7 +259,7 @@
             </h2>
 
             <p>
-                Entre le code communiqué par l'autre joueur.
+                Entre le code communiqué par le créateur de la partie.
             </p>
 
 
@@ -263,13 +305,17 @@
             style="display: none;">
 
             <h2>
-                ⏳ En attente de l'adversaire
+                ⏳ En attente des joueurs
             </h2>
 
             <p>
-                Partage ce code avec ton adversaire :
+                Partage ce code avec les autres joueurs :
             </p>
 
+
+            <!-- ==============================
+                 CODE DE LA PARTIE
+            =============================== -->
 
             <div
                 id="codePartieAffiche"
@@ -280,24 +326,38 @@
             </div>
 
 
+            <!-- ==============================
+                 STATUT
+            =============================== -->
+
             <p id="statutPartie">
-                En attente d'un joueur...
+                En attente des joueurs...
             </p>
 
 
-            <div
-                id="adversaireInfo"
-                style="display: none;">
+            <!-- ==============================
+                 LISTE DES JOUEURS
+                 Le JavaScript remplit
+                 automatiquement ce bloc.
+            =============================== -->
 
-                <p>
-                    ⚔️ Adversaire :
-                    <strong id="pseudoAdversaire">
-                        ---
-                    </strong>
-                </p>
+            <div
+                id="joueursSalleAttente">
+
+                <div id="listeJoueursAttente">
+
+                    <p>
+                        👤 Joueur 1 : En attente...
+                    </p>
+
+                </div>
 
             </div>
 
+
+            <!-- ==============================
+                 ANNULER LA PARTIE
+            =============================== -->
 
             <button
                 id="annulerPartie"
@@ -319,13 +379,21 @@
             class="carteModeEnLigne"
             style="display: none;">
 
+
             <!-- ==============================
                  JOUEURS ET SCORES
             =============================== -->
 
             <div class="joueursConfrontation">
 
-                <div class="joueurConfrontation">
+
+                <!-- ==============================
+                     JOUEUR 1
+                =============================== -->
+
+                <div
+                    class="joueurConfrontation"
+                    id="joueurConfrontation1">
 
                     <strong id="pseudoJoueur1">
                         Joueur 1
@@ -338,18 +406,59 @@
                 </div>
 
 
-                <div class="vs">
-                    VS
-                </div>
+                <!-- ==============================
+                     JOUEUR 2
+                =============================== -->
 
-
-                <div class="joueurConfrontation">
+                <div
+                    class="joueurConfrontation"
+                    id="joueurConfrontation2">
 
                     <strong id="pseudoJoueur2">
                         Joueur 2
                     </strong>
 
                     <span id="scoreJoueur2">
+                        0
+                    </span>
+
+                </div>
+
+
+                <!-- ==============================
+                     JOUEUR 3
+                =============================== -->
+
+                <div
+                    class="joueurConfrontation"
+                    id="joueurConfrontation3"
+                    style="display: none;">
+
+                    <strong id="pseudoJoueur3">
+                        Joueur 3
+                    </strong>
+
+                    <span id="scoreJoueur3">
+                        0
+                    </span>
+
+                </div>
+
+
+                <!-- ==============================
+                     JOUEUR 4
+                =============================== -->
+
+                <div
+                    class="joueurConfrontation"
+                    id="joueurConfrontation4"
+                    style="display: none;">
+
+                    <strong id="pseudoJoueur4">
+                        Joueur 4
+                    </strong>
+
+                    <span id="scoreJoueur4">
                         0
                     </span>
 
@@ -363,6 +472,11 @@
             =============================== -->
 
             <div id="zoneQuestionEnLigne">
+
+
+                <!-- ==============================
+                     NUMÉRO DE QUESTION
+                =============================== -->
 
                 <p id="numeroQuestionEnLigne">
                     Question 1
@@ -378,9 +492,11 @@
                     class="chronoEnLigne">
 
                     ⏱️
+
                     <span id="tempsRestantEnLigne">
                         20
                     </span>
+
                     s
 
                 </div>
@@ -404,7 +520,7 @@
                     class="reponsesEnLigne">
 
                     <!--
-                        Les réponses sont créées
+                        Les réponses sont générées
                         automatiquement par JavaScript.
                     -->
 
@@ -423,7 +539,7 @@
 
 
         <!-- ==============================
-             FIN DE LA PARTIE
+             RÉSULTATS
         =============================== -->
 
         <section
@@ -445,6 +561,10 @@
             </div>
 
 
+            <!-- ==============================
+                 NOUVELLE PARTIE
+            =============================== -->
+
             <button
                 id="btnNouvellePartie"
                 class="boutonModeEnLigne">
@@ -453,6 +573,10 @@
 
             </button>
 
+
+            <!-- ==============================
+                 RETOUR ACCUEIL
+            =============================== -->
 
             <button
                 id="btnRetourAccueil"
@@ -474,17 +598,26 @@
             class="messageModeEnLigne">
         </div>
 
-
     </main>
 
 
     <!-- ==============================
-         SCRIPTS
+         SUPABASE
     =============================== -->
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
+
+    <!-- ==============================
+         SCRIPT PRINCIPAL
+    =============================== -->
+
     <script src="script.js"></script>
+
+
+    <!-- ==============================
+         BANQUES DE QUESTIONS
+    =============================== -->
 
     <script src="questions/histoire.js"></script>
     <script src="questions/culture.js"></script>
@@ -492,6 +625,11 @@
     <script src="questions/geographie.js"></script>
     <script src="questions/sport.js"></script>
     <script src="questions/personnalites.js"></script>
+
+
+    <!-- ==============================
+         MODE EN LIGNE
+    =============================== -->
 
     <script src="mode-en-ligne.js"></script>
 
