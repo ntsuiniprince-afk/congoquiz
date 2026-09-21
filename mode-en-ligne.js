@@ -4199,6 +4199,10 @@ function securiserTexte(
    AFFICHER LE RÉSULTAT FINAL
 ========================================== */
 
+/* ==========================================
+   AFFICHER LE RÉSULTAT FINAL
+========================================== */
+
 async function afficherResultatPartie(
     partie
 ){
@@ -4217,6 +4221,184 @@ async function afficherResultatPartie(
     partieEnLigneActuelle =
         partie;
 
+
+    /* ==========================================
+       RÉCUPÉRER LE JOUEUR ACTUEL
+    ========================================== */
+
+    const numeroJoueur =
+        obtenirNumeroJoueur(
+            partie
+        );
+
+
+    /*
+     * Si le joueur actuel ne fait pas partie
+     * de cette partie, on n'attribue rien.
+     */
+
+    if(
+        numeroJoueur &&
+        joueur &&
+        joueur.id
+    ){
+
+        const colonneScore =
+            `score_joueur${numeroJoueur}`;
+
+
+        const colonnePointsAttribues =
+            `points_attribues_joueur${numeroJoueur}`;
+
+
+        const scoreFinal =
+            Number(
+                partie[
+                    colonneScore
+                ] ?? 0
+            );
+
+
+        /*
+         * Vérifier si les points de cette partie
+         * ont déjà été attribués à ce joueur.
+         */
+
+        const {
+            data: attribution,
+            error: erreurAttribution
+        } =
+            await supabaseClient
+                .from("parties_en_ligne")
+                .update({
+                    [colonnePointsAttribues]:
+                        true
+                })
+                .eq(
+                    "id",
+                    partie.id
+                )
+                .eq(
+                    colonnePointsAttribues,
+                    false
+                )
+                .select("*")
+                .maybeSingle();
+
+
+        if(erreurAttribution){
+
+            console.error(
+                "❌ Erreur lors de la vérification des points :",
+                erreurAttribution
+            );
+
+        }
+
+        else if(attribution){
+
+            /*
+             * Une seule attribution :
+             *
+             * 1 bonne réponse = 1 point dans la partie
+             * puis score final × 2 = points du profil.
+             */
+
+            const pointsGagnes =
+                scoreFinal * 2;
+
+
+            const joueurLocal =
+                chargerJoueur();
+
+
+            joueurLocal.points =
+                Number(
+                    joueurLocal.points ?? 0
+                ) +
+                pointsGagnes;
+
+
+            joueurLocal.partiesJouees =
+                Number(
+                    joueurLocal.partiesJouees ?? 0
+                ) +
+                1;
+
+
+            /*
+             * Sauvegarde locale.
+             */
+
+            sauvegarderJoueur(
+                joueurLocal
+            );
+
+
+            /*
+             * Mise à jour du profil Supabase.
+             */
+
+            const miseAJourReussie =
+                await mettreAJourJoueurSupabase(
+                    joueurLocal
+                );
+
+
+            if(!miseAJourReussie){
+
+                /*
+                 * Si la mise à jour du profil échoue,
+                 * on remet le marqueur à false afin
+                 * de pouvoir réessayer plus tard.
+                 */
+
+                await supabaseClient
+                    .from("parties_en_ligne")
+                    .update({
+                        [colonnePointsAttribues]:
+                            false
+                    })
+                    .eq(
+                        "id",
+                        partie.id
+                    )
+                    .eq(
+                        colonnePointsAttribues,
+                        true
+                    );
+
+
+                console.error(
+                    "❌ Les points de la partie n'ont pas pu être ajoutés au profil."
+                );
+
+            }
+
+            else{
+
+                console.log(
+                    `🏆 Partie en ligne terminée : ${scoreFinal} bonne(s) réponse(s) → +${pointsGagnes} points.`
+                );
+
+            }
+
+        }
+
+        else{
+
+            console.log(
+                "ℹ️ Les points de cette partie ont déjà été attribués à ce joueur."
+            );
+
+        }
+
+    }
+
+
+    /* ==========================================
+       AFFICHAGE DU RÉSULTAT
+    ========================================== */
 
     const confrontation =
         document.getElementById(
