@@ -2021,5 +2021,122 @@ VERSION MOBILE CONGOQUIZ
 .boutonModeEnLigne:hover {
     transform: translateY(-2px);
 }
+/* ==========================================
+   RÉSULTATS - FIN DE PARTIE
+========================================== */
+
+#resultatPartie {
+    padding: 30px 25px 35px;
+    overflow: hidden;
+}
+
+#resultatPartie h2 {
+    margin: 0 0 25px;
+    font-size: 28px;
+    color: #222;
+}
+
+
+/* ==========================================
+   ZONE DES RÉSULTATS
+========================================== */
+
+#resultatFinal {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto 25px;
+}
+
+
+/* ==========================================
+   GAGNANT
+========================================== */
+
+#resultatFinal p:first-child {
+    margin: 0 auto 25px;
+    padding: 22px 20px;
+
+    background: linear-gradient(
+        135deg,
+        #fff8d6,
+        #fff1a8
+    );
+
+    border: 2px solid #f2c94c;
+    border-radius: 18px;
+
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.10);
+
+    font-size: 24px;
+    font-weight: 800;
+    color: #222;
+
+    line-height: 1.4;
+}
+
+
+/* ==========================================
+   RÉSULTATS DES JOUEURS
+========================================== */
+
+#resultatFinal p:not(:first-child) {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin: 10px 0;
+    padding: 14px 18px;
+
+    background: #f7f7f7;
+
+    border-radius: 12px;
+
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+
+    box-sizing: border-box;
+}
+
+
+/* ==========================================
+   BOUTONS DE FIN
+========================================== */
+
+#resultatPartie .boutonModeEnLigne,
+#resultatPartie .boutonSecondaire {
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 600px) {
+
+    #resultatPartie {
+        padding: 25px 15px 30px;
+    }
+
+    #resultatPartie h2 {
+        font-size: 25px;
+        margin-bottom: 22px;
+    }
+
+    #resultatFinal p:first-child {
+        padding: 20px 15px;
+        font-size: 22px;
+    }
+
+    #resultatFinal p:not(:first-child) {
+        padding: 13px 15px;
+        font-size: 17px;
+    }
+
+}
 
 

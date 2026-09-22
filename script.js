@@ -2,7 +2,7 @@ const questions = [
 
     {
         question: "Quelle est la capitale de la République du Congo ?",
-        reponses: ["Pointe-Noire", "Brazzaville", "Owando"],
+        reponses: [ "Pointe-Noire", "Brazzaville", "Owando"],
         bonne: 1,
         explication: "Brazzaville est la capitale politique de la République du Congo."
     },
