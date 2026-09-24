@@ -1397,7 +1397,710 @@ const questions = [
         reponses: ["Pointe-Noire", "Brazzaville", "Dolisie"],
         bonne: 1,
         explication: "Brazzaville est devenue en 1940 un centre majeur de la France libre en Afrique."
+    },
+    
+
+    {
+        question: "Selon l'article 8 de la Constitution, la peine de mort est-elle appliquée en République du Congo ?",
+        reponses: ["Oui, pour les crimes les plus graves", "Non, elle est abolie", "Oui, mais rarement appliquée"],
+        bonne: 1,
+        explication: "L'article 8 de la Constitution dispose que la peine de mort est abolie en République du Congo."
+    },
+
+    {
+        question: "Le principe de la présomption d'innocence s'applique-t-il devant toutes les juridictions congolaises ?",
+        reponses: ["Oui, il s'agit d'un principe général de procédure", "Non, seulement devant la Cour suprême", "Non, uniquement en matière civile"],
+        bonne: 0,
+        explication: "La présomption d'innocence est un principe général applicable devant l'ensemble des juridictions congolaises."
+    },
+
+    {
+        question: "Un citoyen congolais peut-il être extradé vers une puissance étrangère, selon l'article 10 de la Constitution ?",
+        reponses: ["Oui, systématiquement", "Non, sauf en cas de perte ou de déchéance de sa nationalité", "Oui, sur simple demande diplomatique"],
+        bonne: 1,
+        explication: "L'article 10 dispose qu'aucun citoyen congolais ne peut être extradé, sauf en cas de perte ou de déchéance de sa nationalité."
+    },
+
+    {
+        question: "Que dispose la Constitution congolaise au sujet de la torture et des traitements inhumains ?",
+        reponses: ["Ils sont autorisés en cas d'état d'urgence", "Ils sont interdits", "Ils sont soumis à autorisation judiciaire"],
+        bonne: 1,
+        explication: "La Constitution interdit tout acte de torture et tout traitement cruel, inhumain ou dégradant."
+    },
+
+    {
+        question: "Selon l'article 19 de la Constitution, un Congolais peut-il acquérir une seconde nationalité ?",
+        reponses: ["Non, jamais", "Oui, la Constitution garantit ce droit", "Uniquement avec autorisation présidentielle"],
+        bonne: 1,
+        explication: "L'article 19 dispose que tout Congolais a le droit de changer de nationalité ou d'en acquérir une seconde."
+    },
+
+    {
+        question: "Que dispose l'article 20 de la Constitution au sujet du domicile ?",
+        reponses: ["Il est inviolable", "Il peut être perquisitionné sans mandat", "Il appartient à l'État"],
+        bonne: 0,
+        explication: "L'article 20 de la Constitution dispose que le domicile est inviolable."
+    },
+
+    {
+        question: "La Constitution garantit-elle un droit au repos et aux congés payés ?",
+        reponses: ["Non", "Uniquement pour les fonctionnaires", "Oui"],
+        bonne: 2,
+        explication: "La Constitution garantit à toute personne le droit au repos et aux loisirs, notamment à des congés périodiques rémunérés."
+    },
+
+    {
+        question: "Qui décrète l'état d'urgence ou l'état de siège en République du Congo ?",
+        reponses: ["Le Premier ministre seul", "L'Assemblée nationale", "Le Président de la République en Conseil des ministres"],
+        bonne: 2,
+        explication: "L'état d'urgence, comme l'état de siège, est décrété par le Président de la République en Conseil des ministres."
+    },
+
+    {
+        question: "Une révision de la Constitution peut-elle intervenir pendant un état de guerre, d'urgence ou de siège ?",
+        reponses: ["Oui, sans restriction", "Oui, mais uniquement par référendum", "Non, la révision est alors interdite"],
+        bonne: 2,
+        explication: "Aucune révision de la Constitution ne peut intervenir durant un état de guerre, d'urgence ou de siège."
+    },
+
+    {
+        question: "Les séances des chambres du Parlement congolais sont-elles publiques par principe ?",
+        reponses: ["Non, elles sont toujours secrètes", "Oui, sauf exception de huis clos", "Oui, mais seulement pour l'Assemblée nationale"],
+        bonne: 1,
+        explication: "L'article 122 de la Constitution dispose que les séances de chaque chambre du Parlement sont publiques, sauf demande de huis clos."
+    },
+
+    {
+        question: "Combien de titres compose la Constitution de la République du Congo de 2015 ?",
+        reponses: ["Dix-sept titres", "Dix titres", "Douze titres"],
+        bonne: 0,
+        explication: "La Constitution de 2015 comprend dix-sept titres, du préambule aux dispositions finales."
+    },
+
+    {
+        question: "Quel titre de la Constitution est consacré à la Haute Cour de justice ?",
+        reponses: ["Le titre 9", "Le titre 8", "Le titre 10"],
+        bonne: 2,
+        explication: "Le titre 10 de la Constitution est consacré à la Haute Cour de justice."
+    },
+
+    {
+        question: "Quel titre de la Constitution est consacré au Médiateur de la République ?",
+        reponses: ["Le titre 12", "Le titre 11", "Le titre 13"],
+        bonne: 0,
+        explication: "Le titre 12 de la Constitution est consacré au Médiateur de la République."
+    },
+
+    {
+        question: "Le préambule de la Constitution congolaise se réfère-t-il à la Déclaration universelle des droits de l'Homme de 1948 ?",
+        reponses: ["Non", "Uniquement de manière indirecte", "Oui"],
+        bonne: 2,
+        explication: "Le préambule déclare partie intégrante de la Constitution les principes de la Déclaration universelle des droits de l'Homme du 10 décembre 1948."
+    },
+
+    {
+        question: "Que condamne expressément le préambule de la Constitution congolaise ?",
+        reponses: ["Le coup d'État et l'exercice tyrannique du pouvoir", "La liberté de la presse", "La décentralisation"],
+        bonne: 0,
+        explication: "Le préambule condamne le coup d'État, l'exercice tyrannique du pouvoir et l'usage de la violence politique comme moyens d'accession au pouvoir."
+    },
+
+    {
+        question: "Que dispose la Constitution congolaise au sujet du droit à un environnement sain ?",
+        reponses: ["Il est reconnu comme un droit du citoyen", "Il ne concerne que les zones protégées", "Il n'est pas mentionné"],
+        bonne: 0,
+        explication: "La Constitution reconnaît le droit de chaque citoyen à un environnement sain, satisfaisant et durable."
+    },
+
+    {
+        question: "La liberté syndicale est-elle reconnue par la Constitution congolaise ?",
+        reponses: ["Non", "Uniquement pour les fonctionnaires", "Oui"],
+        bonne: 2,
+        explication: "La Constitution reconnaît la liberté syndicale à tout citoyen."
+    },
+
+    {
+        question: "Le droit de grève est-il reconnu par la Constitution congolaise ?",
+        reponses: ["Oui, sans aucune limite", "Oui, dans les conditions fixées par la loi", "Non, il est interdit"],
+        bonne: 1,
+        explication: "Le droit de grève est reconnu par la Constitution, dans les conditions fixées par la loi."
+    },
+
+    {
+        question: "Selon la Constitution, à qui appartient la souveraineté nationale en République du Congo ?",
+        reponses: ["Au Parlement", "Au Président de la République", "Au peuple"],
+        bonne: 2,
+        explication: "La souveraineté nationale appartient au peuple, qui l'exerce par ses représentants ou par voie de référendum."
+    },
+
+    {
+        question: "La Constitution fixe-t-elle le sceau de l'État ?",
+        reponses: ["Uniquement pour usage militaire", "Non, ce n'est pas mentionné", "Oui, parmi les symboles de la République"],
+        bonne: 2,
+        explication: "La Constitution mentionne le sceau parmi les symboles de la République, aux côtés du drapeau, de l'hymne et de la devise."
+    },
+
+    {
+        question: "Combien de fois la Constitution de la République du Congo a-t-elle été modifiée depuis son adoption en 2015 ?",
+        reponses: ["Une fois, en 2022", "Cinq fois", "Jamais"],
+        bonne: 0,
+        explication: "La Constitution de 2015 a été modifiée une fois, par la loi constitutionnelle n°2-2022 du 7 janvier 2022."
+    },
+
+    {
+        question: "Le Président de la République est-il le chef suprême des armées selon la Constitution congolaise ?",
+        reponses: ["Non, ce rôle revient au chef d'état-major", "Non, c'est le Premier ministre", "Oui"],
+        bonne: 2,
+        explication: "Le Président de la République est le chef suprême des armées selon la Constitution congolaise."
+    },
+
+    {
+        question: "Qui négocie et ratifie les traités internationaux au nom de la République du Congo ?",
+        reponses: ["Le Premier ministre", "Le Président de la République", "Le ministre des Affaires étrangères seul, sans validation présidentielle"],
+        bonne: 1,
+        explication: "Le Président de la République négocie et ratifie les traités internationaux."
+    },
+
+    {
+        question: "La Constitution reconnaît-elle un droit d'asile pour les personnes persécutées ?",
+        reponses: ["Uniquement pour les réfugiés climatiques", "Oui, pour les personnes persécutées en raison de leur action pour la liberté", "Non"],
+        bonne: 1,
+        explication: "La Constitution reconnaît le droit d'asile pour les personnes persécutées en raison de leur action en faveur de la liberté et de la démocratie."
+    },
+
+    {
+        question: "Combien de membres de la Cour constitutionnelle sont désignés par la Cour suprême ?",
+        reponses: ["Deux", "Un", "Trois"],
+        bonne: 0,
+        explication: "Selon l'article 182, deux membres de la Cour constitutionnelle sont désignés par la Cour suprême parmi les membres de cette juridiction."
+    },
+
+    {
+        question: "Combien de membres de la Cour constitutionnelle sont nommés par le Président de l'Assemblée nationale ?",
+        reponses: ["Deux", "Un", "Trois"],
+        bonne: 0,
+        explication: "L'article 182 de la Constitution prévoit que deux membres de la Cour constitutionnelle sont nommés par le Président de l'Assemblée nationale."
+    },
+
+    {
+        question: "Quel a été le résultat de la République du Congo lors de sa toute première participation à la CAN, en 1968 ?",
+        reponses: ["Vainqueur", "Éliminé au premier tour", "Finaliste"],
+        bonne: 1,
+        explication: "Lors de sa première participation à la CAN en 1968, le Congo a été éliminé dès le premier tour."
+    },
+
+    {
+        question: "Quel résultat la République du Congo a-t-elle obtenu à la CAN 1974, deux ans après son titre ?",
+        reponses: ["Vainqueur", "Demi-finaliste", "Quart de finaliste"],
+        bonne: 1,
+        explication: "Le Congo a atteint les demi-finales de la CAN 1974."
+    },
+
+    {
+        question: "Quel résultat la République du Congo a-t-elle obtenu à la CAN 1978 ?",
+        reponses: ["Demi-finaliste", "Quart de finaliste", "Éliminé au premier tour"],
+        bonne: 2,
+        explication: "Le Congo a été éliminé dès le premier tour de la CAN 1978."
+    },
+
+    {
+        question: "Quel résultat la République du Congo a-t-elle obtenu à la CAN 1992 ?",
+        reponses: ["Finaliste", "Quart de finaliste", "Demi-finaliste"],
+        bonne: 1,
+        explication: "Le Congo a atteint les quarts de finale de la CAN 1992."
+    },
+
+    {
+        question: "Quel résultat la République du Congo a-t-elle obtenu à la CAN 2000 ?",
+        reponses: ["Quart de finaliste", "Demi-finaliste", "Éliminé au premier tour"],
+        bonne: 2,
+        explication: "Le Congo a été éliminé dès le premier tour de la CAN 2000."
+    },
+
+    {
+        question: "Quel club a remporté la Coupe du Congo en 1983 ?",
+        reponses: ["Étoile du Congo", "CARA Brazzaville", "Inter Club"],
+        bonne: 0,
+        explication: "L'Étoile du Congo a remporté la Coupe du Congo en 1983."
+    },
+
+    {
+        question: "Quel club a remporté la Coupe du Congo en 1978 ?",
+        reponses: ["Inter Club", "Vita Club Mokanda", "CARA Brazzaville"],
+        bonne: 0,
+        explication: "L'Inter Club de Brazzaville a remporté la Coupe du Congo en 1978."
+    },
+
+    {
+        question: "Quel club a remporté la Coupe du Congo en 1981 ?",
+        reponses: ["Vita Club Mokanda", "Inter Club", "CARA Brazzaville"],
+        bonne: 2,
+        explication: "Le CARA Brazzaville a remporté la Coupe du Congo en 1981."
+    },
+
+    {
+        question: "Quel club a remporté la Coupe du Congo en 1982 ?",
+        reponses: ["CARA Brazzaville", "AS Chéminots", "Inter Club"],
+        bonne: 1,
+        explication: "L'AS Chéminots de Pointe-Noire a remporté la Coupe du Congo en 1982."
+    },
+
+    {
+        question: "Quel club a remporté la toute première édition du championnat du Congo, en 1961 ?",
+        reponses: ["Diables Noirs", "Étoile du Congo", "CARA Brazzaville"],
+        bonne: 0,
+        explication: "Les Diables Noirs de Brazzaville ont remporté la toute première édition du championnat du Congo en 1961, face à l'AS Chéminots."
+    },
+
+    {
+        question: "Quel club a été champion du Congo en 1967 ?",
+        reponses: ["Diables Noirs", "Étoile du Congo", "CARA Brazzaville"],
+        bonne: 1,
+        explication: "L'Étoile du Congo a été championne du Congo en 1967."
+    },
+
+    {
+        question: "Quel club a été champion du Congo en 1968 ?",
+        reponses: ["Diables Noirs", "Patronage Sainte-Anne", "Étoile du Congo"],
+        bonne: 1,
+        explication: "Patronage Sainte-Anne a été champion du Congo en 1968."
+    },
+
+    {
+        question: "Quel club a été champion du Congo en 1970-1971 ?",
+        reponses: ["Diables Noirs", "Vita Club Mokanda", "CARA Brazzaville"],
+        bonne: 1,
+        explication: "Vita Club Mokanda, de Pointe-Noire, a été champion du Congo en 1970-1971."
+    },
+
+    {
+        question: "En quelle année la République du Congo a-t-elle fait ses débuts aux Jeux Olympiques d'été ?",
+        reponses: ["1972", "1960", "1964"],
+        bonne: 2,
+        explication: "La République du Congo a fait ses débuts aux Jeux Olympiques en 1964, à Tokyo."
+    },
+
+    {
+        question: "Pour quelle raison la République du Congo n'a-t-elle pas participé aux Jeux Olympiques de 1976 ?",
+        reponses: ["Un boycott africain", "Une guerre civile", "Une interdiction de la FIFA"],
+        bonne: 0,
+        explication: "La République du Congo a boycotté les Jeux Olympiques de 1976 à Montréal, comme de nombreuses autres nations africaines."
+    },
+
+    {
+        question: "Combien de médailles olympiques la République du Congo a-t-elle remportées à ce jour ?",
+        reponses: ["Une seule, en bronze", "Aucune", "Trois, toutes en bronze"],
+        bonne: 1,
+        explication: "La République du Congo n'a encore jamais remporté de médaille olympique."
+    },
+
+    {
+        question: "En quelle année le Comité national olympique et sportif du Congo a-t-il été créé et reconnu par le CIO ?",
+        reponses: ["1964", "1960", "1980"],
+        bonne: 0,
+        explication: "Le Comité national olympique et sportif du Congo a été créé et reconnu par le CIO en 1964."
+    },
+
+    {
+        question: "Dans quelle épreuve de natation Freddy Mayala a-t-il concouru aux Jeux Olympiques de Paris 2024 ?",
+        reponses: ["Le 100 m papillon", "Le 400 m quatre nages", "Le 50 m nage libre"],
+        bonne: 2,
+        explication: "Freddy Mayala a participé à l'épreuve du 50 m nage libre aux Jeux Olympiques de Paris 2024."
+    },
+
+    {
+        question: "Depuis quelle édition la République du Congo participe-t-elle aux Jeux Paralympiques ?",
+        reponses: ["2024", "2012", "2016"],
+        bonne: 2,
+        explication: "La République du Congo participe aux Jeux Paralympiques depuis l'édition de 2016."
+    },
+
+    {
+        question: "En NBA, à quel rang a été sélectionné Serge Ibaka lors de la draft de 2008 ?",
+        reponses: ["24e choix", "10e choix", "1er choix"],
+        bonne: 0,
+        explication: "Serge Ibaka a été sélectionné en 24e position lors de la draft NBA 2008, par les Seattle SuperSonics."
+    },
+
+    {
+        question: "Combien de fois Serge Ibaka a-t-il été élu meilleur contreur de la saison régulière en NBA ?",
+        reponses: ["Une fois", "Trois fois", "Deux fois"],
+        bonne: 2,
+        explication: "Serge Ibaka a été meilleur contreur de la NBA à deux reprises, en 2012 et 2013."
+    },
+
+    {
+        question: "Quel joueur détient le record du plus grand nombre de sélections avec l'équipe nationale du Congo ?",
+        reponses: ["Delvin Ndinga", "Prince Oniangué", "Thievy Bifouma"],
+        bonne: 0,
+        explication: "Delvin Ndinga détient le record de sélections avec les Diables Rouges, avec 56 capes."
+    },
+
+    {
+        question: "Quel joueur est le meilleur buteur de l'histoire de l'équipe nationale du Congo ?",
+        reponses: ["Delvin Ndinga", "François M'Pelé", "Thievy Bifouma"],
+        bonne: 2,
+        explication: "Thievy Bifouma est le meilleur buteur recensé de l'histoire de la sélection congolaise, avec 16 buts."
+    },
+
+    {
+        question: "Quel sport la Fédération congolaise de badminton (FECOBAD) administre-t-elle ?",
+        reponses: ["Le badminton", "Le squash", "Le tennis de table"],
+        bonne: 0,
+        explication: "La FECOBAD est la fédération congolaise chargée du badminton."
+    },
+
+    {
+        question: "Depuis quelle année la fédération de basket-ball de la République du Congo est-elle affiliée à la FIBA ?",
+        reponses: ["1961", "1958", "1962"],
+        bonne: 2,
+        explication: "Selon les registres de la FIBA, la fédération congolaise de basket-ball est affiliée depuis 1962."
+    },
+
+    {
+        question: "À combien de reprises l'équipe masculine de basket-ball du Congo a-t-elle disputé le championnat d'Afrique (AfroBasket) ?",
+        reponses: ["3 fois", "12 fois", "7 fois"],
+        bonne: 2,
+        explication: "L'équipe masculine du Congo a disputé sept fois le championnat d'Afrique de basket-ball (AfroBasket)."
+    },
+
+    {
+        question: "Quel dirigeant congolais orchestra une tentative de coup d'État contre Marien Ngouabi le 22 février 1972 ?",
+        reponses: ["Ange Diawara", "Pierre Anga", "Pierre Kinganga"],
+        bonne: 0,
+        explication: "Ange Diawara, à la tête du Mouvement du 22 février (M22), tenta un coup d'État contre Marien Ngouabi le 22 février 1972."
+    },
+
+    {
+        question: "Quelle fut l'issue de la cavale d'Ange Diawara après l'échec de son coup d'État de 1972 ?",
+        reponses: ["Il fut capturé et tué en 1973", "Il s'exila en France", "Il fut gracié par Ngouabi"],
+        bonne: 0,
+        explication: "Ange Diawara, en fuite après l'échec de son coup d'État, fut capturé en embuscade et tué en avril 1973."
+    },
+
+    {
+        question: "Quelle nouvelle couleur dominante adopte le drapeau de la République populaire du Congo à partir de 1969 ?",
+        reponses: ["Le rouge", "Le bleu", "Le blanc"],
+        bonne: 0,
+        explication: "Le drapeau devient rouge à partir de 1969, orné d'une étoile et d'outils croisés, à l'image des emblèmes socialistes."
+    },
+
+    {
+        question: "Quels symboles ornaient le drapeau rouge de la République populaire du Congo entre 1969 et 1991 ?",
+        reponses: ["Un aigle et une couronne", "Une étoile et une houe et un marteau croisés", "Un lion et une épée"],
+        bonne: 1,
+        explication: "Le drapeau rouge de la période socialiste (1969-1991) était orné de deux palmes encadrant une étoile ainsi qu'une houe et un marteau croisés."
+    },
+
+    {
+        question: "Quel était le titre de l'hymne national de la République populaire du Congo durant la période du parti unique ?",
+        reponses: ["Debout Congolais", "La Congolaise", "Les Trois Glorieuses"],
+        bonne: 2,
+        explication: "L'hymne national devient « Les Trois Glorieuses » durant la période du parti unique (1969-1991), avant le retour de « La Congolaise » en 1991."
+    },
+
+    {
+        question: "Sur quel système économique reposait l'exploitation coloniale du Congo français au début du XXe siècle, dénoncé par André Gide ?",
+        reponses: ["Le libre-échange total", "La collectivisation agraire", "Le système des concessions à des compagnies privées"],
+        bonne: 2,
+        explication: "Le système des concessions accordait à des compagnies privées de vastes territoires à exploiter, souvent au prix d'abus dénoncés par André Gide."
+    },
+
+    {
+        question: "Quel est l'ordre de grandeur généralement avancé du nombre de victimes de la construction du chemin de fer Congo-Océan (1921-1934) ?",
+        reponses: ["Quelques centaines", "Un million", "Plusieurs dizaines de milliers"],
+        bonne: 2,
+        explication: "Les historiens avancent un ordre de grandeur de plusieurs dizaines de milliers de victimes parmi les travailleurs forcés de la construction du CFCO."
+    },
+
+    {
+        question: "Quel mouvement politico-religieux, fondé par Simon Kimbangu dans les années 1920, a également influencé une partie de la population congolaise ?",
+        reponses: ["Le matsouanisme", "Le kimbanguisme", "Le mouvement Mau Mau"],
+        bonne: 1,
+        explication: "Le kimbanguisme, fondé par le prophète Simon Kimbangu dans les années 1920, a influencé une partie de la population de la région du Kongo, dont le Congo-Brazzaville."
+    },
+
+    {
+        question: "Quel mouvement, fondé par André Matsoua, a été perçu par les autorités coloniales comme une menace politique et religieuse dans les années 1920-1930 ?",
+        reponses: ["Le matsouanisme", "Le kimbanguisme", "Le mouvement panafricaniste de Nkrumah"],
+        bonne: 0,
+        explication: "Le matsouanisme, mouvement fondé autour d'André Matsoua, a été perçu par les autorités coloniales comme une menace politique dans les années 1920-1930."
+    },
+
+    {
+        question: "Le Congo a-t-il bénéficié d'un allègement de sa dette extérieure dans le cadre de l'initiative internationale PPTE (Pays pauvres très endettés) ?",
+        reponses: ["Non, jamais", "Oui, dans les années 2000-2010", "Non, le pays n'était pas éligible"],
+        bonne: 1,
+        explication: "Le Congo a bénéficié d'un allègement de sa dette extérieure dans le cadre de l'initiative PPTE, dans les années 2000-2010."
+    },
+
+    {
+        question: "Quel opposant politique a été particulièrement actif lors de la contestation de l'élection présidentielle de 2016 ?",
+        reponses: ["Guy Brice Parfait Kolélas", "André Milongo", "Bernard Kolélas"],
+        bonne: 0,
+        explication: "Guy Brice Parfait Kolélas, fils de Bernard Kolélas, fut un opposant actif lors de l'élection présidentielle de 2016."
+    },
+
+    {
+        question: "Quel opposant est décédé peu avant ou pendant la campagne présidentielle de 2021, suscitant une vive émotion ?",
+        reponses: ["Guy Brice Parfait Kolélas", "André Milongo", "Bernard Kolélas"],
+        bonne: 0,
+        explication: "Guy Brice Parfait Kolélas, candidat à l'élection présidentielle de 2021, est décédé pendant l'évacuation sanitaire liée à son état de santé peu après le scrutin."
+    },
+
+    {
+        question: "Quel peintre et sculpteur congolais, né à Pointe-Noire en 1953, est notamment connu pour ses œuvres sur le thème de la Tchikoumbi ?",
+        reponses: ["Frédéric Trigo Piula", "Marcel Gotène", "Nicolas Ondongo"],
+        bonne: 0,
+        explication: "Frédéric Trigo Piula, né à Pointe-Noire en 1953, est un peintre et sculpteur congolais reconnu, notamment pour ses œuvres sur la Tchikoumbi."
+    },
+
+    {
+        question: "Quel type de récipient traditionnel, souvent décoré, est utilisé pour conserver et transporter l'eau ou le vin de palme ?",
+        reponses: ["Le tonneau en bois européen", "La calebasse", "La bouteille en plastique"],
+        bonne: 1,
+        explication: "La calebasse, souvent décorée, est traditionnellement utilisée pour conserver et transporter l'eau ou le vin de palme."
+    },
+
+    {
+        question: "En quelle année la République du Congo a-t-elle adopté une loi spécifique sur la promotion et la protection des droits des populations autochtones ?",
+        reponses: ["2001", "2011", "1990"],
+        bonne: 1,
+        explication: "La République du Congo a adopté en 2011 une loi sur la promotion et la protection des droits des populations autochtones, une première en Afrique centrale."
+    },
+
+    {
+        question: "Qui fut le tout premier Premier ministre de l'histoire de la République du Congo, en 1963 ?",
+        reponses: ["Alphonse Massamba-Débat", "Pascal Lissouba", "Ambroise Noumazalaye"],
+        bonne: 0,
+        explication: "Alphonse Massamba-Débat fut le tout premier Premier ministre de la République du Congo, à partir du 16 août 1963, avant de devenir président."
+    },
+
+    {
+        question: "Qui succède à Alphonse Massamba-Débat au poste de Premier ministre en décembre 1963 ?",
+        reponses: ["Pascal Lissouba", "Alfred Raoul", "Ambroise Noumazalaye"],
+        bonne: 0,
+        explication: "Pascal Lissouba devient Premier ministre en décembre 1963, avant de devenir président en 1992."
+    },
+
+    {
+        question: "Qui devient Premier ministre en 1966, sous la présidence d'Alphonse Massamba-Débat ?",
+        reponses: ["Henri Lopes", "Alfred Raoul", "Ambroise Noumazalaye"],
+        bonne: 2,
+        explication: "Ambroise Noumazalaye devient Premier ministre en 1966, sous la présidence de Massamba-Débat."
+    },
+
+    {
+        question: "Dans quelle ville Ambroise Noumazalaye, ancien Premier ministre, est-il né en 1933 ?",
+        reponses: ["Dolisie", "Brazzaville", "Pointe-Noire"],
+        bonne: 1,
+        explication: "Ambroise Noumazalaye est né à Brazzaville en 1933."
+    },
+
+    {
+        question: "Qui occupe le poste de Premier ministre entre 1975 et 1984, la plus longue durée continue à ce poste ?",
+        reponses: ["Henri Lopes", "Louis Sylvain-Goma", "Ange Édouard Poungui"],
+        bonne: 1,
+        explication: "Louis Sylvain-Goma a été Premier ministre de 1975 à 1984, la plus longue période continue à ce poste."
+    },
+
+    {
+        question: "Quelle particularité concerne Louis Sylvain-Goma parmi les Premiers ministres congolais ?",
+        reponses: ["Il est le seul à avoir occupé le poste deux fois, non consécutivement", "Il n'a jamais quitté ses fonctions", "Il est le plus jeune Premier ministre de l'histoire"],
+        bonne: 0,
+        explication: "Louis Sylvain-Goma est le seul Premier ministre congolais à avoir occupé ce poste à deux reprises non consécutives (1975-1984 puis 1991)."
+    },
+
+    {
+        question: "Qui occupe le poste de Premier ministre en 1990-1991, juste avant la Conférence nationale souveraine ?",
+        reponses: ["André Milongo", "Pierre Moussa", "Louis Sylvain-Goma"],
+        bonne: 1,
+        explication: "Pierre Moussa a été Premier ministre en 1990-1991, avant la Conférence nationale souveraine."
+    },
+
+    {
+        question: "Qui devient Premier ministre en 1993, après avoir déjà été chef de l'État de 1977 à 1979 ?",
+        reponses: ["Denis Sassou Nguesso", "Joachim Yhombi-Opango", "Pascal Lissouba"],
+        bonne: 1,
+        explication: "Joachim Yhombi-Opango, ancien chef de l'État (1977-1979), est devenu Premier ministre de 1993 à 1996."
+    },
+
+    {
+        question: "Qui occupe brièvement le poste de Premier ministre en 1997, peu avant la reprise du pouvoir par Denis Sassou Nguesso ?",
+        reponses: ["Bernard Kolélas", "André Milongo", "Charles David Ganao"],
+        bonne: 0,
+        explication: "Bernard Kolélas a brièvement occupé le poste de Premier ministre en septembre-octobre 1997."
+    },
+
+    {
+        question: "Quel est, à ce jour, le nombre total de personnes ayant occupé la fonction de Premier ministre de la République du Congo ?",
+        reponses: ["Dix", "Dix-sept", "Quatorze"],
+        bonne: 1,
+        explication: "Dix-sept personnes ont occupé la fonction de Premier ministre de la République du Congo depuis sa création en 1963."
+    },
+
+    {
+        question: "Qui fut l'unique cardinal originaire de la République du Congo ?",
+        reponses: ["Anatole Milandou", "Barthélémy Batantu", "Émile Biayenda"],
+        bonne: 2,
+        explication: "Émile Biayenda est à ce jour l'unique cardinal originaire de la République du Congo."
+    },
+
+    {
+        question: "En quelle année Émile Biayenda a-t-il été créé cardinal par le pape Paul VI ?",
+        reponses: ["1970", "1977", "1973"],
+        bonne: 2,
+        explication: "Émile Biayenda a été créé cardinal par le pape Paul VI en 1973."
+    },
+
+    {
+        question: "Quelle fonction religieuse le cardinal Émile Biayenda occupait-il au moment de sa mort ?",
+        reponses: ["Archevêque de Brazzaville", "Évêque de Pointe-Noire", "Nonce apostolique"],
+        bonne: 0,
+        explication: "Émile Biayenda était archevêque de Brazzaville de 1971 à sa mort en 1977."
+    },
+
+    {
+        question: "Quel est le titre de la pièce de théâtre de Guy Menga adaptée de la tradition orale congolaise, souvent jouée dans les écoles ?",
+        reponses: ["Le Cercle des Tropiques", "La Marmite de Koka-Mbala", "L'Oracle"],
+        bonne: 1,
+        explication: "« La Marmite de Koka-Mbala » est l'une des pièces les plus connues de Guy Menga, inspirée de la tradition orale congolaise."
+    },
+
+    {
+        question: "Quel cinéaste congolais est reconnu comme le réalisateur du premier long métrage de fiction du pays, « La Rançon d'une alliance » (1973) ?",
+        reponses: ["Camille Mouyeke", "Jean-Michel Tchissoukou", "Sébastien Kamba"],
+        bonne: 2,
+        explication: "Sébastien Kamba est le réalisateur de « La Rançon d'une alliance » (1973), considéré comme le premier long métrage congolais."
+    },
+
+    {
+        question: "Quel photographe congolais contemporain est reconnu à l'international pour ses œuvres sur le bassin du Congo ?",
+        reponses: ["Camille Mouyeke", "Léonard Pongo", "Jean-Michel Tchissoukou"],
+        bonne: 1,
+        explication: "Léonard Pongo est un photographe congolais reconnu à l'international pour ses travaux sur le bassin du Congo."
+    },
+
+    {
+        question: "Quel ancien diplomate et ministre congolais des Affaires étrangères a également présidé l'Assemblée générale des Nations unies ?",
+        reponses: ["Basile Ikouébé", "Jean-Claude Gakosso", "Rodolphe Adada"],
+        bonne: 2,
+        explication: "Rodolphe Adada, diplomate congolais, a présidé la 59e session de l'Assemblée générale des Nations unies en 2004."
+    },
+
+    {
+        question: "Quel numéro de maillot Serge Ibaka a-t-il porté tout au long de sa carrière en NBA, en hommage à sa mère ?",
+        reponses: ["Le numéro 5", "Le numéro 9", "Le numéro 15"],
+        bonne: 1,
+        explication: "Serge Ibaka a porté le numéro 9 tout au long de sa carrière NBA, en hommage à sa mère, décédée quand il avait neuf ans."
+    },
+
+    {
+        question: "Depuis quelle année la FECOFOOT est-elle membre de la Confédération africaine de football (CAF) ?",
+        reponses: ["1970", "1962", "1966"],
+        bonne: 2,
+        explication: "La FECOFOOT est membre de la Confédération africaine de football (CAF) depuis 1966."
+    },
+
+    {
+        question: "Comment appelle-t-on, en pays kongo, l'ensemble des figures de protection ou de pouvoir sculptées et parfois cloutées ?",
+        reponses: ["Les sanzas", "Les liputa", "Les minkisi (nkisi au singulier)"],
+        bonne: 2,
+        explication: "Les minkisi (singulier nkisi) désignent, en pays kongo, des figures sculptées investies de pouvoirs protecteurs ou thérapeutiques."
+    },
+
+    {
+        question: "Quel type de figure de pouvoir kongo est parfois recouverte de clous et de lames métalliques plantés au fil des cérémonies ?",
+        reponses: ["La statuette funéraire uniquement", "Le simple masque décoratif", "Le nkisi nkondi"],
+        bonne: 2,
+        explication: "Le nkisi nkondi est une statue de pouvoir kongo, hérissée de clous et de lames métalliques plantés lors des cérémonies et serments."
+    },
+
+    {
+        question: "Quel jeu de stratégie traditionnel, joué avec des graines ou des cailloux sur un plateau à cavités, est répandu au Congo comme dans une grande partie de l'Afrique ?",
+        reponses: ["Les échecs", "L'awalé (ou songo)", "Le tarot"],
+        bonne: 1,
+        explication: "L'awalé, aussi appelé songo dans certaines régions, est un jeu de stratégie traditionnel répandu au Congo et dans une grande partie de l'Afrique."
+    },
+
+    {
+        question: "Quelle boisson traditionnelle à base de manioc fermenté est également consommée en Afrique centrale, dont le Congo ?",
+        reponses: ["Le munkoyo", "Le thé", "Le vin de palme"],
+        bonne: 0,
+        explication: "Le munkoyo, boisson à base de manioc et de racines fermentées, est consommée dans certaines régions d'Afrique centrale, dont le Congo."
+    },
+
+    {
+        question: "Quel sous-groupe bakongo, implanté notamment dans le Mayombe, est réputé pour son artisanat de sculpture sur bois ?",
+        reponses: ["Les Lari", "Les Sundi", "Les Yombe"],
+        bonne: 2,
+        explication: "Les Yombe, sous-groupe bakongo du massif du Mayombe, sont réputés pour leur artisanat de sculpture sur bois."
+    },
+
+    {
+        question: "Quel sous-groupe bakongo est notamment implanté dans le département du Pool, autour de Kinkala ?",
+        reponses: ["Les Sundi", "Les Yombe", "Les Vili"],
+        bonne: 0,
+        explication: "Les Sundi sont un sous-groupe bakongo notamment implanté dans le département du Pool, autour de Kinkala."
+    },
+
+    {
+        question: "Quel officier congolais tenta un coup d'État manqué contre Marien Ngouabi le 23 mars 1970 ?",
+        reponses: ["Pierre Kinganga", "Joachim Yhombi-Opango", "Ange Diawara"],
+        bonne: 0,
+        explication: "Le lieutenant Pierre Kinganga, surnommé Sirocco, tenta un coup d'État manqué le 23 mars 1970 contre Marien Ngouabi."
+    },
+
+    {
+        question: "Une révision de la Constitution peut-elle intervenir lorsque les pouvoirs du Président sont exercés par intérim ?",
+        reponses: ["Non, la révision est alors exclue", "Oui, uniquement si le Sénat l'approuve", "Oui, sans condition"],
+        bonne: 0,
+        explication: "La révision constitutionnelle est exclue lorsque les pouvoirs présidentiels sont exercés par intérim, notamment par le Président du Sénat."
+    },
+
+    {
+        question: "Quel club a été champion du Congo en 1969 ?",
+        reponses: ["Diables Noirs", "Étoile du Congo", "CARA Brazzaville"],
+        bonne: 2,
+        explication: "Le CARA Brazzaville a été champion du Congo en 1969."
+    },
+
+    {
+        question: "Quel corps militaire fut dissous en 1970 en raison de ses liens suspectés avec les tentatives de coup d'État ?",
+        reponses: ["L'armée de l'air", "La marine nationale", "La gendarmerie"],
+        bonne: 2,
+        explication: "Le corps de la gendarmerie, soupçonné d'être impliqué dans les tentatives de coup d'État, fut dissous en 1970."
+    },
+
+    {
+        question: "Combien de sièges compte l'Assemblée nationale de la République du Congo depuis les élections de 2022 ?",
+        reponses: ["121 sièges", "151 sièges", "101 sièges"],
+        bonne: 1,
+        explication: "L'Assemblée nationale de la République du Congo compte 151 sièges depuis les élections de 2022."
+    },
+
+    {
+        question: "Quel club a été champion du Congo lors de la saison 1968 ?",
+        reponses: ["Diables Noirs", "Patronage Sainte-Anne", "Étoile du Congo"],
+        bonne: 1,
+        explication: "Patronage Sainte-Anne a été champion du Congo en 1968."
+    },
+
+    {
+        question: "Quel record personnel Franck Elemba a-t-il établi au lancer de poids lors des Jeux Olympiques de Rio 2016 ?",
+        reponses: ["19,72 m", "21,20 m", "20,53 m"],
+        bonne: 1,
+        explication: "Franck Elemba a lancé le poids à 21,20 m à Rio 2016, un nouveau record national."
+    },
+
+    {
+        question: "Quel corps militaire congolais fut dissous en 1970, soupçonné de liens avec les tentatives de coup d'État ?",
+        reponses: ["L'armée de l'air", "La marine nationale", "La gendarmerie"],
+        bonne: 2,
+        explication: "Le corps de la gendarmerie fut dissous en 1970, soupçonné d'être impliqué dans les tentatives de coup d'État."
     }
+
+
 
 
 
